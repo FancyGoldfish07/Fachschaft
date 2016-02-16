@@ -31,6 +31,15 @@ source 'https://rubygems.org'
 # Use ActiveModel has_secure_password
   gem 'bcrypt', '~> 3.1.7'
 
+#DESIGN
+#AngularJS
+gem 'angularjs-rails', '~> 1.5'
+#Fonts
+gem 'font-awesome-rails', '~> 4.5', '>= 4.5.0.1'
+gem 'weather-icons-rails', '~> 0.1.1'
+#Bootstrap
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
