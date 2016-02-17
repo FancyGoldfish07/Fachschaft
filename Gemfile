@@ -26,6 +26,8 @@ source 'https://rubygems.org'
 
   gem 'devise', '~> 3.5', '>= 3.5.6'
 
+  gem 'pundit', '~> 1.1'
+
   gem 'fullcalendar-rails', '~> 2.6'
 
 # Use ActiveModel has_secure_password
