@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  mount Maktoub::Engine => '/newsletter'
+
+
+
+
+
   devise_for :users
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
@@ -59,4 +66,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+
 end
