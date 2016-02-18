@@ -9,4 +9,9 @@ module ApplicationHelper
     end
   end
 
+  #Default button
+  def button_to_default(name,url)
+    link_to name, url, class: "btn btn-w-md btn-gap-v btn-default"
+  end
+
 end
