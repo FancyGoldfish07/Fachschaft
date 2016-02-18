@@ -2,15 +2,15 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string :title
-      t.datetime :date
+      t.datetime :start
       t.integer :priority
       t.boolean :flag
-      t.string :imageURL
-      t.string :externalLink
-      t.string :revision
-      t.string :typeOfDate
-      t.datetime :editingDeadline
-      t.string :userGroup
+      t.text :imageURL
+      t.text :url
+      t.integer :repeat
+      t.integer :typeOfDate
+      t.datetime :end
+      t.integer :userGroup
 
       t.timestamps null: false
     end
