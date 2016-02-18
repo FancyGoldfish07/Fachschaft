@@ -13,7 +13,6 @@
 
  *= require_self
  *= require fullcalendar
- *= require_tree .
  */
 
   

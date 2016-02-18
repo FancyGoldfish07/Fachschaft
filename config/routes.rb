@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :events
   devise_for :users
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
