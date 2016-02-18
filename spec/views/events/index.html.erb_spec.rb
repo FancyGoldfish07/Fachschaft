@@ -7,21 +7,21 @@ RSpec.describe "events/index", type: :view do
         :title => "Title",
         :priority => 1,
         :flag => false,
-        :imageURL => "Image Url",
-        :externalLink => "External Link",
-        :revision => "Revision",
-        :typeOfDate => "Type Of Date",
-        :userGroup => "User Group"
+        :imageURL => "MyText",
+        :url => "MyText",
+        :repeat => 2,
+        :typeOfDate => 3,
+        :userGroup => 4
       ),
       Event.create!(
         :title => "Title",
         :priority => 1,
         :flag => false,
-        :imageURL => "Image Url",
-        :externalLink => "External Link",
-        :revision => "Revision",
-        :typeOfDate => "Type Of Date",
-        :userGroup => "User Group"
+        :imageURL => "MyText",
+        :url => "MyText",
+        :repeat => 2,
+        :typeOfDate => 3,
+        :userGroup => 4
       )
     ])
   end
@@ -31,10 +31,10 @@ RSpec.describe "events/index", type: :view do
     assert_select "tr>td", :text => "Title".to_s, :count => 2
     assert_select "tr>td", :text => 1.to_s, :count => 2
     assert_select "tr>td", :text => false.to_s, :count => 2
-    assert_select "tr>td", :text => "Image Url".to_s, :count => 2
-    assert_select "tr>td", :text => "External Link".to_s, :count => 2
-    assert_select "tr>td", :text => "Revision".to_s, :count => 2
-    assert_select "tr>td", :text => "Type Of Date".to_s, :count => 2
-    assert_select "tr>td", :text => "User Group".to_s, :count => 2
+    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "tr>td", :text => 2.to_s, :count => 2
+    assert_select "tr>td", :text => 3.to_s, :count => 2
+    assert_select "tr>td", :text => 4.to_s, :count => 2
   end
 end

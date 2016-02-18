@@ -6,11 +6,11 @@ RSpec.describe "events/show", type: :view do
       :title => "Title",
       :priority => 1,
       :flag => false,
-      :imageURL => "Image Url",
-      :externalLink => "External Link",
-      :revision => "Revision",
-      :typeOfDate => "Type Of Date",
-      :userGroup => "User Group"
+      :imageURL => "MyText",
+      :url => "MyText",
+      :repeat => 2,
+      :typeOfDate => 3,
+      :userGroup => 4
     ))
   end
 
@@ -19,10 +19,10 @@ RSpec.describe "events/show", type: :view do
     expect(rendered).to match(/Title/)
     expect(rendered).to match(/1/)
     expect(rendered).to match(/false/)
-    expect(rendered).to match(/Image Url/)
-    expect(rendered).to match(/External Link/)
-    expect(rendered).to match(/Revision/)
-    expect(rendered).to match(/Type Of Date/)
-    expect(rendered).to match(/User Group/)
+    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/2/)
+    expect(rendered).to match(/3/)
+    expect(rendered).to match(/4/)
   end
 end

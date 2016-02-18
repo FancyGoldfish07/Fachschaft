@@ -16,8 +16,8 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
+    <%= f.label :start %><br>
+    <%= f.datetime_select :start %>
   </div>
   <div class="field">
     <%= f.label :priority %><br>
@@ -29,27 +29,27 @@
   </div>
   <div class="field">
     <%= f.label :imageURL %><br>
-    <%= f.text_field :imageURL %>
+    <%= f.text_area :imageURL %>
   </div>
   <div class="field">
-    <%= f.label :externalLink %><br>
-    <%= f.text_field :externalLink %>
+    <%= f.label :url %><br>
+    <%= f.text_area :url %>
   </div>
   <div class="field">
-    <%= f.label :revision %><br>
-    <%= f.text_field :revision %>
+    <%= f.label :repeat %><br>
+    <%= f.number_field :repeat %>
   </div>
   <div class="field">
     <%= f.label :typeOfDate %><br>
-    <%= f.text_field :typeOfDate %>
+    <%= f.number_field :typeOfDate %>
   </div>
   <div class="field">
-    <%= f.label :editingDeadline %><br>
-    <%= f.datetime_select :editingDeadline %>
+    <%= f.label :end %><br>
+    <%= f.datetime_select :end %>
   </div>
   <div class="field">
     <%= f.label :userGroup %><br>
-    <%= f.text_field :userGroup %>
+    <%= f.number_field :userGroup %>
   </div>
   <div class="actions">
     <%= f.submit %>

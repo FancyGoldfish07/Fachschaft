@@ -6,11 +6,11 @@ RSpec.describe "events/edit", type: :view do
       :title => "MyString",
       :priority => 1,
       :flag => false,
-      :imageURL => "MyString",
-      :externalLink => "MyString",
-      :revision => "MyString",
-      :typeOfDate => "MyString",
-      :userGroup => "MyString"
+      :imageURL => "MyText",
+      :url => "MyText",
+      :repeat => 1,
+      :typeOfDate => 1,
+      :userGroup => 1
     ))
   end
 
@@ -25,11 +25,11 @@ RSpec.describe "events/edit", type: :view do
 
       assert_select "input#event_flag[name=?]", "event[flag]"
 
-      assert_select "input#event_imageURL[name=?]", "event[imageURL]"
+      assert_select "textarea#event_imageURL[name=?]", "event[imageURL]"
 
-      assert_select "input#event_externalLink[name=?]", "event[externalLink]"
+      assert_select "textarea#event_url[name=?]", "event[url]"
 
-      assert_select "input#event_revision[name=?]", "event[revision]"
+      assert_select "input#event_repeat[name=?]", "event[repeat]"
 
       assert_select "input#event_typeOfDate[name=?]", "event[typeOfDate]"
 
