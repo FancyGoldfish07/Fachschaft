@@ -16,16 +16,40 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.label :date %><br>
+    <%= f.datetime_select :date %>
   </div>
   <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
+    <%= f.label :priority %><br>
+    <%= f.number_field :priority %>
   </div>
   <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
+    <%= f.label :flag %><br>
+    <%= f.check_box :flag %>
+  </div>
+  <div class="field">
+    <%= f.label :imageURL %><br>
+    <%= f.text_field :imageURL %>
+  </div>
+  <div class="field">
+    <%= f.label :externalLink %><br>
+    <%= f.text_field :externalLink %>
+  </div>
+  <div class="field">
+    <%= f.label :revision %><br>
+    <%= f.text_field :revision %>
+  </div>
+  <div class="field">
+    <%= f.label :typeOfDate %><br>
+    <%= f.text_field :typeOfDate %>
+  </div>
+  <div class="field">
+    <%= f.label :editingDeadline %><br>
+    <%= f.datetime_select :editingDeadline %>
+  </div>
+  <div class="field">
+    <%= f.label :userGroup %><br>
+    <%= f.text_field :userGroup %>
   </div>
   <div class="actions">
     <%= f.submit %>
