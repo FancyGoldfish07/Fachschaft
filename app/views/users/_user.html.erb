@@ -1,10 +1,12 @@
 <td>
-  <%= link_to user.email, user %>
+ <h5> <%= user.email%></h5>
 </td>
 <td>
   <%= form_for(user) do |f| %>
+      <span class="ui-select">
       <%= f.select(:role, User.roles.keys.map {|role| [role.upcase,role]}) %>
-      <%= f.submit 'Rolle wechseln', :class => 'button-xs' %>
+      </span>
+        <%= f.submit 'Rolle wechseln', :class => 'btn btn-w-md btn-gap-v btn-default' %>
   <% end %>
 </td>
 <td>
