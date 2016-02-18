@@ -1,0 +1,14 @@
+<div class="panel-body">
+  <% if current_user.present? %>
+      <%= button_to_delete("Löschen", user_path(current_user),true)  %>
+      <%= button_to_default("Passwort ändern",edit_user_registration_path) %>
+      <%= button_to_delete('Logout', destroy_user_session_path,false) %>
+      <% if current_user.isAdmin %>
+          <%= button_to_default("Alle Nutzer", users_path) %>
+
+      <% end %>
+  <% else %>
+      <%= button_to_default("Einloggen", new_user_session_path)  %>
+      <%= button_to_default("Anmelden",new_user_registration_path) %>
+  <% end %>
+</div>
