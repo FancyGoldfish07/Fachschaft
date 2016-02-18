@@ -48,6 +48,9 @@ gem 'weather-icons-rails', '~> 0.1.1'
 #Bootstrap
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 
+#MomentJS for the Calendar
+gem 'momentjs-rails', '>= 2.8.1', :github => 'derekprior/momentjs-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

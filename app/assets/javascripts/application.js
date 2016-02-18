@@ -16,8 +16,9 @@
 //= require vendor
 //= require ui
 //= require app
+//= require moment
 //= require fullcalendar
-//= require_tree .
+
 
 $(document).ready(function() {
 
