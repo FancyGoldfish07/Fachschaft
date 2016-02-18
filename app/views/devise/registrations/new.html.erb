@@ -21,7 +21,7 @@
  <span class="input-group-addon">
                                     <span class="ti-email"></span>
                                 </span>
-    <%= f.email_field :email, autofocus: true,:class => "form-control input-lg" %>
+    <%= f.email_field :email, autofocus: true,placeholder: "E-Mail",:class => "form-control input-lg" %>
   </div>
   </div>
 
@@ -31,21 +31,24 @@
                                     <span class="ti-lock"></span>
                                 </span>
 
-    <%= f.password_field :password, autocomplete: "off",:class => "form-control input-lg" %>
-                  <% if @minimum_password_length %>
-                      <em>(<%= @minimum_password_length %> characters minimum)</em>
-                  <% end %><br />
-                </div>
+    <%= f.password_field :password, autocomplete: "off", placeholder:"Passwort",:class => "form-control input-lg" %>
+
                 </div>
 
+                </div>
+              <% if @minimum_password_length %>
+                  <p class="additional-info text-small">(Mindestens <%= @minimum_password_length %> Zeichen)</p>
+              <% end %>
               <div class="form-group">
                 <div class="input-group">
                                 <span class="input-group-addon">
                                     <span class="ti-lock"></span>
                                 </span>
 
-    <%= f.password_field :password_confirmation, autocomplete: "off",:class => "form-control input-lg" %>
-                  <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off",
+                         placeholder:"Passwort wiederholen",
+                         :class => "form-control input-lg" %>
+
   </div>
                 </div>
 
