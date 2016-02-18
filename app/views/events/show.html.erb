@@ -6,18 +6,48 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @event.description %>
+  <strong>Date:</strong>
+  <%= @event.date %>
 </p>
 
 <p>
-  <strong>Start time:</strong>
-  <%= @event.start_time %>
+  <strong>Priority:</strong>
+  <%= @event.priority %>
 </p>
 
 <p>
-  <strong>End time:</strong>
-  <%= @event.end_time %>
+  <strong>Flag:</strong>
+  <%= @event.flag %>
+</p>
+
+<p>
+  <strong>Imageurl:</strong>
+  <%= @event.imageURL %>
+</p>
+
+<p>
+  <strong>Externallink:</strong>
+  <%= @event.externalLink %>
+</p>
+
+<p>
+  <strong>Revision:</strong>
+  <%= @event.revision %>
+</p>
+
+<p>
+  <strong>Typeofdate:</strong>
+  <%= @event.typeOfDate %>
+</p>
+
+<p>
+  <strong>Editingdeadline:</strong>
+  <%= @event.editingDeadline %>
+</p>
+
+<p>
+  <strong>Usergroup:</strong>
+  <%= @event.userGroup %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
