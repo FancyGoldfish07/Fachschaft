@@ -34,18 +34,23 @@
 
             <div class="divider divider-xl"></div>
             <div class="form-group">
+              <div class="input-group">
+                <% if devise_mapping.rememberable? -%>
+
+                    <%= f.check_box :remember_me, :text=>"Anmeldung speichern", :class=> "ui-checkbox" %>
+                    <%= f.label :remember_me, :class=> "ui-checkbox" %>
+
+                <% end -%>
+              </div>
+            </div>
+            <div class="form-group">
               <%= f.submit "Log In", :class=>"btn btn-primary btn-lg btn-block text-center" %>
 
             </div>
           </fieldset>
 
 
-        <% if devise_mapping.rememberable? -%>
-            <div class="field">
-              <%= f.check_box :remember_me, :text=>"Anmeldung speichern" %>
-              <%= f.label :remember_me %>
-            </div>
-        <% end -%>
+
 
 
 <% end %>
