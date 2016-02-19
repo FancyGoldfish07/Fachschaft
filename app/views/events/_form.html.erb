@@ -53,6 +53,11 @@
                               multiple: true %>
 
     </div>
+    <div class="field">
+<p>Eventtyp:</p>
+      <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id} %>
+
+    </div>
   <div class="actions">
     <%= f.submit %>
   </div>

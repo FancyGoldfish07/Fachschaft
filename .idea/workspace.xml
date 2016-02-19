@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50420948-2e09-469d-846c-f0a8188cad00" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/event.rb" afterPath="$PROJECT_DIR$/app/models/event.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/event_category.rb" afterPath="$PROJECT_DIR$/app/models/event_category.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/events/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/events/_form.html.erb" />
     </list>
     <ignored path="Fachschaft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,21 +77,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="event_category.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="event_category.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/event_category.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.03311258">
+            <state vertical-scroll-proportion="0.0">
               <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/events/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.8639456">
+              <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -144,11 +141,11 @@
         <option value="$PROJECT_DIR$/db/migrate/20160219054609_add_roles_to_events.rb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/models/role.rb" />
-        <option value="$PROJECT_DIR$/app/views/events/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/events_controller.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20160219085244_add_event_category_to_event.rb" />
         <option value="$PROJECT_DIR$/app/models/event_category.rb" />
         <option value="$PROJECT_DIR$/app/models/event.rb" />
+        <option value="$PROJECT_DIR$/app/views/events/_form.html.erb" />
       </list>
     </option>
   </component>
@@ -1185,14 +1182,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/events/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/events_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1235,8 +1224,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/event_category.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03311258">
+        <state vertical-scroll-proportion="0.0">
           <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/events/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8639456">
+          <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
           <folding />
         </state>
       </provider>
