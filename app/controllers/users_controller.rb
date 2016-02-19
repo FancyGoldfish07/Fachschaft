@@ -14,11 +14,12 @@ class UsersController < ApplicationController
   #Only used to update the role of a user
   def update
     authorize(current_user)
-    if @user.update_attributes(param_check)
+
+if @user.setRole params[:user][:role_ids]
       redirect_to users_path, :notice => "Rolle geändert"
     else
-      redirect_to users_path, :alert => "Rolle nicht geändert"
-    end
+      redirect_to users_path, :notice => "Rolle nicht geändert"
+  end
   end
 
   def destroy
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
 
   #Safe params
   def param_check
-    params.require(:user).permit(:role)
+    params.require(:user).permit(:role_ids)
   end
 
 end
