@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :subscribers
   mount Maktoub::Engine => '/newsletter'
-
-
-
-
-
   devise_for :users
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
