@@ -26,6 +26,10 @@ class Role < ActiveRecord::Base
   def self.POSSIBLE_ROLES
     ["User", "Fachschaft","Manager","Admin"]
   end
+  #Gets the role models
+  def self.getRoles
+    Role.all.limit(6)
+  end
   #Gets the name of the role. A bit of Java love :)
 def toString
   self.name
