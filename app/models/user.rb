@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   after_create :send_signup_confirmation
   def send_signup_confirmation
-    UserMailer.signup_confirmation(self).deliver
+    UserMailer.role_change_confirmation(self).deliver
   end
 
 #sets the Role of the user. Works only if roleName is part of Role.POSSIBLE_ROLES
