@@ -30,6 +30,9 @@ source 'https://rubygems.org'
 
   gem 'fullcalendar-rails', '~> 2.6'
 
+  #Rolify
+  gem 'rolify', '~> 5.0'
+
 # Use ActiveModel has_secure_password
   gem 'bcrypt', '~> 3.1.7'
 
