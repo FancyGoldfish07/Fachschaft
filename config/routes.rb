@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :event_typs
   resources :events
   devise_for :users
   #Routes just for our lovely admin
