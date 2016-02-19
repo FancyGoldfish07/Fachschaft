@@ -8,9 +8,8 @@ RSpec.describe "events/edit", type: :view do
       :flag => false,
       :imageURL => "MyText",
       :url => "MyText",
-      :repeat => 1,
-      :typeOfDate => 1,
-      :userGroup => 1
+      :ort => "MyText",
+      :description => "MyText"
     ))
   end
 
@@ -29,11 +28,9 @@ RSpec.describe "events/edit", type: :view do
 
       assert_select "textarea#event_url[name=?]", "event[url]"
 
-      assert_select "input#event_repeat[name=?]", "event[repeat]"
+      assert_select "textarea#event_ort[name=?]", "event[ort]"
 
-      assert_select "input#event_typeOfDate[name=?]", "event[typeOfDate]"
-
-      assert_select "input#event_userGroup[name=?]", "event[userGroup]"
+      assert_select "textarea#event_description[name=?]", "event[description]"
     end
   end
 end

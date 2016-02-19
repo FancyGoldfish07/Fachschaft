@@ -36,20 +36,16 @@
     <%= f.text_area :url %>
   </div>
   <div class="field">
-    <%= f.label :repeat %><br>
-    <%= f.number_field :repeat %>
-  </div>
-  <div class="field">
-    <%= f.label :typeOfDate %><br>
-    <%= f.number_field :typeOfDate %>
-  </div>
-  <div class="field">
     <%= f.label :end %><br>
     <%= f.datetime_select :end %>
   </div>
   <div class="field">
-    <%= f.label :userGroup %><br>
-    <%= f.number_field :userGroup %>
+    <%= f.label :ort %><br>
+    <%= f.text_area :ort %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -9,9 +9,8 @@ RSpec.describe "events/index", type: :view do
         :flag => false,
         :imageURL => "MyText",
         :url => "MyText",
-        :repeat => 2,
-        :typeOfDate => 3,
-        :userGroup => 4
+        :ort => "MyText",
+        :description => "MyText"
       ),
       Event.create!(
         :title => "Title",
@@ -19,9 +18,8 @@ RSpec.describe "events/index", type: :view do
         :flag => false,
         :imageURL => "MyText",
         :url => "MyText",
-        :repeat => 2,
-        :typeOfDate => 3,
-        :userGroup => 4
+        :ort => "MyText",
+        :description => "MyText"
       )
     ])
   end
@@ -33,8 +31,7 @@ RSpec.describe "events/index", type: :view do
     assert_select "tr>td", :text => false.to_s, :count => 2
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
     assert_select "tr>td", :text => "MyText".to_s, :count => 2
-    assert_select "tr>td", :text => 2.to_s, :count => 2
-    assert_select "tr>td", :text => 3.to_s, :count => 2
-    assert_select "tr>td", :text => 4.to_s, :count => 2
+    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "tr>td", :text => "MyText".to_s, :count => 2
   end
 end
