@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
   def isAdmin
     self.has_role? Role.Admin
   end
+  #Returns the name of the current role
+  def current_role
+    self.roles[0].toString
+  end
   private
   ##
   #First User in the Database is an admin, rest defaults to user
