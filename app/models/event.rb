@@ -4,10 +4,21 @@ class Event < ActiveRecord::Base
   belongs_to :event_category
   after_initialize :set_default_priority, :if => :new_record?
   #The priority
-  enum priority: [:highest, :high,:medium,:low,:lowest]
-  private
-  #Sets the default priority of the event
-  def set_default_priority
-self.priority ||= :medium
+  enum priority: [:highest, :high, :medium, :low, :lowest]
+
+  #Set backgroundColor based on priority. This is used in the JSON
+  def backgroundColor
+    if self.highest?
+      "red"
+    elsif self.high?
+      "blue"
+    else
+      "white"
+    end
+    end
+    private
+    #Sets the default priority of the event
+    def set_default_priority
+      self.priority ||= :medium
+    end
   end
-end
