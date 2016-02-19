@@ -11,11 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160219085244) do
+=======
+ActiveRecord::Schema.define(version: 20160219082037) do
+>>>>>>> 7e6bcae3b2f514cc970af9a70d21a883ac3ab54d
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "event_categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -50,12 +55,26 @@ ActiveRecord::Schema.define(version: 20160219085244) do
     t.string   "name"
     t.integer  "resource_id"
     t.string   "resource_type"
+=======
+  create_table "mailkick_opt_outs", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.boolean  "active",     default: true, null: false
+    t.string   "reason"
+    t.string   "list"
+>>>>>>> 7e6bcae3b2f514cc970af9a70d21a883ac3ab54d
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+=======
+  add_index "mailkick_opt_outs", ["email"], name: "index_mailkick_opt_outs_on_email", using: :btree
+  add_index "mailkick_opt_outs", ["user_id", "user_type"], name: "index_mailkick_opt_outs_on_user_id_and_user_type", using: :btree
+>>>>>>> 7e6bcae3b2f514cc970af9a70d21a883ac3ab54d
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

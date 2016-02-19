@@ -1,4 +1,9 @@
 source 'https://rubygems.org'
+  # Mailer
+  gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+  gem 'maktoub'
+  gem 'mailkick'
+
 
 
 
@@ -74,8 +79,7 @@ group :development do
 
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
 
-  # Mailer
-  gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+
 
 
 end
