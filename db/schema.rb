@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219054609) do
+ActiveRecord::Schema.define(version: 20160219085244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -26,9 +32,12 @@ ActiveRecord::Schema.define(version: 20160219054609) do
     t.datetime "end"
     t.text     "ort"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "event_category_id"
   end
+
+  add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
 
   create_table "events_roles", id: false, force: :cascade do |t|
     t.integer "event_id"
@@ -73,4 +82,5 @@ ActiveRecord::Schema.define(version: 20160219054609) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "events", "event_categories"
 end
