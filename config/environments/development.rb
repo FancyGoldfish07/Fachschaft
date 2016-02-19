@@ -14,11 +14,12 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for mailgun
-  ActionMailer::Base.smtp_settings = {
+  config.action_mailer.smtp_settings = {
+
       :port           => 587,
       :address        => "smtp.mailgun.org",
       :domain         => 'sandbox4ea8eba4cefb460db058755433978bcd.mailgun.org',
