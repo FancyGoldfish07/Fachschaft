@@ -26,6 +26,8 @@ if @user.setRole params[:user][:role_ids]
     authorize current_user
     @user.destroy
     if checkAdmin
+      # Send confirmation Mail
+      UserMailer.delete_account(self).deliver
       redirect_to users_path, :notice => "Nutzer gelöscht"
     else
       redirect_to root_path
