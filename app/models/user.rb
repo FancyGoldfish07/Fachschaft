@@ -2,6 +2,7 @@
 #User model
 #
 class User < ActiveRecord::Base
+  #Use rolify
   rolify
 
   #after a new user is created set new role
@@ -10,6 +11,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
 #sets the Role of the user. Works only if roleName is part of Role.POSSIBLE_ROLES
   def setRole(roleName)
     #Is the role part of possible roles
@@ -18,7 +20,11 @@ class User < ActiveRecord::Base
       self.roles = []
       #Add role
       self.add_role roleName
-    end
+      return true
+    else
+
+      false
+      end
   end
   #Checks if the current user is an admin
   #returns a boolean
