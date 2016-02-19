@@ -8,4 +8,22 @@ class Role < ActiveRecord::Base
             :allow_nil => true
 
   scopify
+  def self.User
+    self.POSSIBLE_ROLES[0]
+  end
+  def self.Fachschaft
+    self.POSSIBLE_ROLES[1]
+  end
+  def self.Manager
+    self.POSSIBLE_ROLES[2]
+  end
+  def self.Admin
+    self.POSSIBLE_ROLES[3]
+  end
+
+  #Our possible roles array
+  def self.POSSIBLE_ROLES
+    ["User", "Fachschaft","Manager","Admin"]
+  end
+
 end
