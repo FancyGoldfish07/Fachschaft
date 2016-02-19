@@ -5,7 +5,7 @@
   <%= simple_form_for(user) do |f| %>
       <span class="ui-select">
 
-      <%=  f.input :role_ids, :collection => Role.POSSIBLE_ROLES, prompt: "Rolle:", selected:user.current_role %>
+      <%=  f.input :role_ids,:label => "Rolle:", :collection => Role.POSSIBLE_ROLES,  selected:user.current_role %>
 
       </span>
         <%= f.submit 'Rolle wechseln', :class => 'btn btn-w-md btn-gap-v btn-default' %>
