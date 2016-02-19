@@ -30,6 +30,9 @@ source 'https://rubygems.org'
 
   gem 'fullcalendar-rails', '~> 2.6'
 
+#Ice-Cube
+gem 'ice_cube', '~> 0.13.3'
+
   #Rolify
   gem 'rolify', '~> 5.0'
 
