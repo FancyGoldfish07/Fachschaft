@@ -33,6 +33,9 @@ source 'https://rubygems.org'
   #Rolify
   gem 'rolify', '~> 5.0'
 
+#simple Form
+gem 'simple_form', '~> 3.2.1'
+
 # Use ActiveModel has_secure_password
   gem 'bcrypt', '~> 3.1.7'
 
