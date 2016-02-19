@@ -2,6 +2,7 @@
 #User model
 #
 class User < ActiveRecord::Base
+  rolify
 
 
   #User can either be user, fs, manager or admin
