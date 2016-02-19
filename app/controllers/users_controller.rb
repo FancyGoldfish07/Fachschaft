@@ -25,7 +25,6 @@ if @user.setRole params[:user][:role_ids]
   def destroy
     authorize current_user
     @user.destroy
-    UserMailer.signup_confirmation(@user).deliver
     if checkAdmin
       redirect_to users_path, :notice => "Nutzer gelöscht"
     else
