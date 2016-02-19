@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "event_typs/show", type: :view do
+RSpec.describe "event_categories/show", type: :view do
   before(:each) do
-    @event_typ = assign(:event_typ, EventTyp.create!(
+    @event_category = assign(:event_category, EventCategory.create!(
       :name => "Name"
     ))
   end

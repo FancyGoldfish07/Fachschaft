@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe "event_typs/index", type: :view do
+RSpec.describe "event_categories/index", type: :view do
   before(:each) do
-    assign(:event_typs, [
-      EventTyp.create!(
+    assign(:event_categories, [
+      EventCategory.create!(
         :name => "Name"
       ),
-      EventTyp.create!(
+      EventCategory.create!(
         :name => "Name"
       )
     ])
   end
 
-  it "renders a list of event_typs" do
+  it "renders a list of event_categories" do
     render
     assert_select "tr>td", :text => "Name".to_s, :count => 2
   end
