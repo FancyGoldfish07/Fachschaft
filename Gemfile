@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-# Mailer
-gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
-gem 'maktoub'
+  # Mailer
+  gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+  gem 'maktoub'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
