@@ -8,9 +8,8 @@ RSpec.describe "events/show", type: :view do
       :flag => false,
       :imageURL => "MyText",
       :url => "MyText",
-      :repeat => 2,
-      :typeOfDate => 3,
-      :userGroup => 4
+      :ort => "MyText",
+      :description => "MyText"
     ))
   end
 
@@ -21,8 +20,7 @@ RSpec.describe "events/show", type: :view do
     expect(rendered).to match(/false/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/2/)
-    expect(rendered).to match(/3/)
-    expect(rendered).to match(/4/)
+    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/MyText/)
   end
 end

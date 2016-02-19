@@ -7,10 +7,9 @@ class CreateEvents < ActiveRecord::Migration
       t.boolean :flag
       t.text :imageURL
       t.text :url
-      t.integer :repeat
-      t.integer :typeOfDate
       t.datetime :end
-      t.integer :userGroup
+      t.text :ort
+      t.text :description
 
       t.timestamps null: false
     end
