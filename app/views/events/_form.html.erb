@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :priority %><br>
-    <%= f.number_field :priority %>
+    <%= f.select(:priority, Event.priorities.keys.map {|priority| [priority.titleize,priority]}) %>
   </div>
   <div class="field">
     <%= f.label :flag %><br>
@@ -58,6 +58,9 @@
       <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id} %>
 
     </div>
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
