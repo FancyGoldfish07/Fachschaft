@@ -1,24 +1,25 @@
 <%= simple_form_for(@recurrence) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+
 
     <%= f.input :start %>
     <%= f.input :end %>
     <h3>Rules</h3>
 <div id="rules">
-  <div class="nested-fields">
+
     <%= f.simple_fields_for :rules do |rule| %>
       <%= render "rule_fields", :f => rule %>
 
     <% end %>
-    </div>
-  <div>
+  <div id="links">
+    <%= link_to_add_association 'Neue Regel', f, :rules %>
+  </div>
+</div>
     <br>
 
-    <%= link_to_add_association 'Neue Regel', f, :rules %>
 
-    </div>
+
 
   <div class="form-actions">
     <%= f.button :submit %>

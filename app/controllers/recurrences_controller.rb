@@ -69,6 +69,6 @@ class RecurrencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recurrence_params
-      params.require(:recurrence).permit(:event_id, :start, :end, rules_attributes: [:day, :recurrence_id, :week, :month, :days])
+      params.require(:recurrence).permit(:event_id, :start, :end, rules_attributes: [:id, :day, :week, :month, :days, :_destroy])
     end
 end
