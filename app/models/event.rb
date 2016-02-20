@@ -2,7 +2,7 @@
 class Event < ActiveRecord::Base
   has_and_belongs_to_many :roles
   belongs_to :event_category
-  has_one :recurrence
+  belongs_to :recurrence, :polymorphic => true
   after_initialize :set_default_priority, :if => :new_record?
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]

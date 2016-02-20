@@ -1,3 +1,9 @@
+#Is an event repeated? If so how often?
 class Recurrence < ActiveRecord::Base
-  belongs_to :event
+  include IceCube
+  has_one :event
+
+  #Serialize Ice_Cube
+  serialize :pattern, Schedule
+
 end
