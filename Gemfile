@@ -32,6 +32,8 @@ source 'https://rubygems.org'
 
 #Ice-Cube
 gem 'ice_cube', '~> 0.13.3'
+#Ice Cube for helper
+gem 'recurring_select', '~> 2.0'
 
   #Rolify
   gem 'rolify', '~> 5.0'

@@ -18,6 +18,8 @@
 //= require app
 //= require moment
 //= require fullcalendar
+//= require recurring_select
+
 
 
 $(document).ready(function() {
