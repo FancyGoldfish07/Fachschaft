@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   resources :rules
   resources :recurrences
   resources :event_categories
-  resources :events
+  resources :events do
+    resources :build, controller: 'events/build'
+  end
   devise_for :users
 
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
-
+ resources :event_wizard
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
