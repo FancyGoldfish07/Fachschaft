@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
- resources :event_wizard
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

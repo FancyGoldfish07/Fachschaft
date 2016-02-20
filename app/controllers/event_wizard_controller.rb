@@ -1,7 +1,8 @@
-class Events::BuildController < ApplicationController
+class EventWizardController < ApplicationController
+  include Wicked::Wizard
   steps :build_event, :add_recurrence, :add_exludes
   def show
-    @event = Event.find(:event_id)
+    @event = Event.find(params[:event_id])
     render_wizard
   end
   def update
