@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :recurrences
   resources :event_categories
   resources :events
-  devise_for :users
+  devise_for :users, :path_prefix => 'd'
   #Routes just for our lovely admin
-  resources :users, only: [:index, :update, :destroy]
+  resources :users, path: :people, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20160220060339) do
   create_table "recurrences", force: :cascade do |t|
     t.date     "start"
     t.date     "end"
-    t.text     "schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,7 +67,6 @@ ActiveRecord::Schema.define(version: 20160220060339) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "rules", force: :cascade do |t|
-    t.integer  "mode"
     t.integer  "day"
     t.integer  "recurrence_id"
     t.datetime "created_at",    null: false
@@ -107,5 +105,5 @@ ActiveRecord::Schema.define(version: 20160220060339) do
 
   add_foreign_key "events", "event_categories"
   add_foreign_key "events", "recurrences"
-  add_foreign_key "rules", "recurrences"
+  add_foreign_key "rules", "recurrences", on_delete: :cascade
 end

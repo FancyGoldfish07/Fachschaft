@@ -18,7 +18,7 @@
 //= require app
 //= require moment
 //= require fullcalendar
-//= require recurring_select
+//= require cocoon
 
 
 

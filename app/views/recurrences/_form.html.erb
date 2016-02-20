@@ -5,8 +5,20 @@
 
     <%= f.input :start %>
     <%= f.input :end %>
-    <%= f.select_recurring :schedule %>
-  </div>
+    <h3>Rules</h3>
+<div id="rules">
+  <div class="nested-fields">
+    <%= f.simple_fields_for :rules do |rule| %>
+      <%= render "rule_fields", :f => rule %>
+
+    <% end %>
+    </div>
+  <div>
+    <br>
+
+    <%= link_to_add_association 'Neue Regel', f, :rules %>
+
+    </div>
 
   <div class="form-actions">
     <%= f.button :submit %>

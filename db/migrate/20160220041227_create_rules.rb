@@ -1,9 +1,8 @@
 class CreateRules < ActiveRecord::Migration
   def change
     create_table :rules do |t|
-      t.integer :mode
       t.integer :day
-      t.references :recurrence, index: true, foreign_key: true
+      t.references :recurrence, index: true, foreign_key: {on_delete: :cascade}
 
       t.timestamps null: false
     end
