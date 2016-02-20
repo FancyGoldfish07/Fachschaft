@@ -6,17 +6,19 @@ class User < ActiveRecord::Base
   rolify
 
   #after a new user is created set new role
-  after_initialize :set_default_role, :if => :new_record?
+  after_create :set_default_role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   after_create :send_signup_confirmation
+
   def send_signup_confirmation
     UserMailer.signup_confirmation(self).deliver
   end
 
-#sets the Role of the user. Works only if roleName is part of Role.POSSIBLE_ROLES
+  #sets the Role of the user. Works only if roleName is part of Role.POSSIBLE_ROLES
   def setRole(roleName)
     #Is the role part of possible roles
     if Role.POSSIBLE_ROLES.include? roleName
@@ -25,22 +27,27 @@ class User < ActiveRecord::Base
       #Add role
       self.add_role roleName
       # Send confirmation Mail
-      UserMailer.role_change_confirmation(self).deliver
+      if (self.exists?)
+        UserMailer.role_change_confirmation(self).deliver
+      end
       return true
     else
 
       false
-      end
+    end
   end
+
   #Checks if the current user is an admin
   #returns a boolean
   def isAdmin
     self.has_role? Role.Admin
   end
+
   #Returns the name of the current role
   def current_role
     self.roles[0].toString
   end
+
   private
   ##
   #First User in the Database is an admin, rest defaults to user

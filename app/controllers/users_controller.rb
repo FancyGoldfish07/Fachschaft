@@ -15,11 +15,11 @@ class UsersController < ApplicationController
   def update
     authorize(current_user)
 
-if @user.setRole params[:user][:role_ids]
+    if @user.setRole params[:user][:role_ids]
       redirect_to users_path, :notice => "Rolle geändert"
     else
       redirect_to users_path, :notice => "Rolle nicht geändert"
-  end
+    end
   end
 
   def destroy
@@ -27,7 +27,7 @@ if @user.setRole params[:user][:role_ids]
     @user.destroy
     if checkAdmin
       # Send confirmation Mail
-      UserMailer.delete_account(self).deliver
+      #UserMailer.delete_account(self).deliver
       redirect_to users_path, :notice => "Nutzer gelöscht"
     else
       redirect_to root_path
