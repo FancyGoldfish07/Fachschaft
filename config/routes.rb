@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :recurrences
   resources :event_categories
   resources :events do
-    resources :build, controller: 'events/build'
+    resource :build, controller: "events/build"
   end
   devise_for :users
 
