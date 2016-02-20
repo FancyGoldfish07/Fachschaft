@@ -18,7 +18,7 @@
       <tr>
         <td><%= recurrence.start %></td>
         <td><%= recurrence.end %></td>
-        <td><%= recurrence.pattern %></td>
+        <td><%= recurrence.schedule.to_s %></td>
         <td><%= link_to 'Show', recurrence %></td>
         <td><%= link_to 'Edit', edit_recurrence_path(recurrence) %></td>
         <td><%= link_to 'Destroy', recurrence, method: :delete, data: { confirm: 'Are you sure?' } %></td>

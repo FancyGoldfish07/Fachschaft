@@ -13,7 +13,7 @@
 
 <p>
   <strong>Pattern:</strong>
-  <%= @recurrence.pattern %>
+  <%= @recurrence.schedule.to_s %>
 </p>
 
 <%= link_to 'Edit', edit_recurrence_path(@recurrence) %> |
