@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220060339) do
+ActiveRecord::Schema.define(version: 20160220205323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,12 +48,21 @@ ActiveRecord::Schema.define(version: 20160220060339) do
 
   add_index "events_roles", ["event_id", "role_id"], name: "index_events_roles_on_event_id_and_role_id", using: :btree
 
+  create_table "excludes", force: :cascade do |t|
+    t.date     "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "recurrences", force: :cascade do |t|
     t.date     "start"
     t.date     "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "exclude_id"
   end
+
+  add_index "recurrences", ["exclude_id"], name: "index_recurrences_on_exclude_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -105,5 +114,6 @@ ActiveRecord::Schema.define(version: 20160220060339) do
 
   add_foreign_key "events", "event_categories"
   add_foreign_key "events", "recurrences"
+  add_foreign_key "recurrences", "excludes"
   add_foreign_key "rules", "recurrences", on_delete: :cascade
 end

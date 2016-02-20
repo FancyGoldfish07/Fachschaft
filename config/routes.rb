@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :excludes
   resources :rules
   resources :recurrences
   resources :event_categories
