@@ -69,6 +69,6 @@ class RulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rule_params
-      params.require(:rule).permit(:mode, :day, :recurrence_id, :week, :month)
+      params.require(:rule).permit(:mode, :day, :recurrence_id, :week, :month, :days)
     end
 end
