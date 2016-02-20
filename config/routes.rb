@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   resources :event_categories
   resources :events
-=======
+
 
   mount Maktoub::Engine => '/newsletter'
->>>>>>> 7e6bcae3b2f514cc970af9a70d21a883ac3ab54d
+
   devise_for :users
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
