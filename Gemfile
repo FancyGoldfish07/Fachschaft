@@ -58,6 +58,9 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 #MomentJS for the Calendar
 gem 'momentjs-rails', '>= 2.8.1', :github => 'derekprior/momentjs-rails'
 
+# #Wicked for creating wizards
+gem 'wicked', '~> 1.2', '>= 1.2.1'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
