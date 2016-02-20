@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219085244) do
+ActiveRecord::Schema.define(version: 20160220000625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(version: 20160219085244) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "event_category_id"
+    t.integer  "recurrence_id"
   end
 
   add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
+  add_index "events", ["recurrence_id"], name: "index_events_on_recurrence_id", using: :btree
 
   create_table "events_roles", id: false, force: :cascade do |t|
     t.integer "event_id"
@@ -45,6 +47,14 @@ ActiveRecord::Schema.define(version: 20160219085244) do
   end
 
   add_index "events_roles", ["event_id", "role_id"], name: "index_events_roles_on_event_id_and_role_id", using: :btree
+
+  create_table "recurrences", force: :cascade do |t|
+    t.date     "start"
+    t.date     "end"
+    t.text     "pattern"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -83,4 +93,5 @@ ActiveRecord::Schema.define(version: 20160219085244) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "events", "event_categories"
+  add_foreign_key "events", "recurrences"
 end

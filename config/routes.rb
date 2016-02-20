@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :recurrences
   resources :event_categories
   resources :events
   devise_for :users
