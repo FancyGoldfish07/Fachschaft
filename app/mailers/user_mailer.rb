@@ -1,9 +1,10 @@
 class UserMailer < ApplicationMailer
 
   def signup_confirmation(user)
+    @user = user
     mail(to: user.email) do |format|
-      format.html { render layout: '../user_mailer/role_change_confirmation.html.erb' }
-      format.text { render text: '../user_mailer/role_change_confirmation.html.erb' }
+      format.html { render layout: '../../views/user_mailer/signup_confirmation.html.erb' }
+      format.text { render text: '../../views/user_mailer/signup_confirmation.text.erb' }
 
       # @user = user
 
@@ -12,9 +13,10 @@ class UserMailer < ApplicationMailer
   end
 
   def role_change_confirmation(user)
+    @user = user
     mail(to: user.email) do |format|
-      format.html { render layout: '../user_mailer/role_change_confirmation.html.erb' }
-      format.text { render text: '../user_mailer/role_change_confirmation.html.erb' }
+      format.html { render layout: '../../views/user_mailer/role_change_confirmation.html.erb' }
+      format.text { render text: '../../views/user_mailer/role_change_confirmation.text.erb' }
 
       # @user = user
       # mail to: user.email, subject: "User changed has been role"
@@ -22,9 +24,10 @@ class UserMailer < ApplicationMailer
   end
 
   def password_changed(user)
+    @user = user
     mail(to: user.email) do |format|
-      format.html { render layout: '../user_mailer/password_changed' }
-      format.text { render text: '../user_mailer/password_changed' }
+      format.html { render layout: '../user_mailer/password_changed.html.erb' }
+      format.text { render text: '../user_mailer/password_changed.text.erb' }
 
       # @user = user
       # mail to: user.email, subject: "Your Password has been updated"
@@ -32,9 +35,10 @@ class UserMailer < ApplicationMailer
   end
 
   def delete_account(user)
+    @user = user
     mail(to: user.email) do |format|
-      format.html { render layout: '../user_mailer/delete_account' }
-      format.text { render text: '../user_mailer/delete_account' }
+      format.html { render layout: '../user_mailer/delete_account.html.erb' }
+      format.text { render text: '../user_mailer/delete_account.text.erb' }
 
       # @user = user
       # mail to: user.email, subject: "Your Account has been deleted"

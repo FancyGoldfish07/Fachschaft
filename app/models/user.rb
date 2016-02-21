@@ -6,17 +6,17 @@ class User < ActiveRecord::Base
   rolify
 
   #after a new user is created set new role
-  after_create :set_default_role
+  after_save :set_default_role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_create :send_signup_confirmation
+  # after_create :send_signup_confirmation
 
-  #def send_signup_confirmation
+  # def send_signup_confirmation
    # UserMailer.signup_confirmation(self).deliver
-  #end
+  # end
 
   #sets the Role of the user. Works only if roleName is part of Role.POSSIBLE_ROLES
   def setRole(roleName)
@@ -28,9 +28,9 @@ class User < ActiveRecord::Base
       self.add_role roleName
       # If user already exists send Info about role change, else send signup confirmation
       if (User.exists?(self))
-        UserMailer.role_change_confirmation(self).deliver
+        #UserMailer.role_change_confirmation(self).deliver
       else
-        UserMailer.signup_confirmation(self).deliver
+        #UserMailer.signup_confirmation(self).deliver
       end
       return true
     else

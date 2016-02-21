@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   mount Maktoub::Engine => '/newsletter'
 
   devise_for :users
+  # devise_for :users, controllers: { sessions: "users/registrations_controller" }
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
 

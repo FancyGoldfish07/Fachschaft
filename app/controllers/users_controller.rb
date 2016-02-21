@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :checkAdmin
+  before_action :checkAdmin, UserMailer.signup_confirmation(self).deliver
   before_action :set_User, only: [:edit, :update, :destroy]
 
   def index
@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   #Only used to update the role of a user
   def update
     authorize(current_user)
-
     if @user.setRole params[:user][:role_ids]
       redirect_to users_path, :notice => "Rolle geändert"
     else
@@ -27,7 +26,7 @@ class UsersController < ApplicationController
     @user.destroy
     if checkAdmin
       # Send confirmation Mail
-      #UserMailer.delete_account(self).deliver
+
       redirect_to users_path, :notice => "Nutzer gelöscht"
     else
       redirect_to root_path
@@ -38,8 +37,6 @@ class UsersController < ApplicationController
   #checks if the currently logged in user is the admin
   def checkAdmin
     current_user.present? && current_user.isAdmin
-
-
   end
 
   #Sets the user we are currently messing with
