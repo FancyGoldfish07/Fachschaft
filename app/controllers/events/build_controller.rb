@@ -6,8 +6,9 @@ class Events::BuildController < ApplicationController
     @event = Event.find(params[:event_id])
     if @event.repeats
       if !@event.recurrence.present?
-
-        @event.create_recurrence
+#Create a new recurrence with the date of our event.
+        @event.create_recurrence(start: @event.start.to_date)
+        @event.save
        @recurrence = @event.recurrence
       else
       @recurrence = @event.recurrence

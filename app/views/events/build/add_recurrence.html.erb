@@ -7,8 +7,9 @@
 
 
 
-    <%= f.input :start %>
+   <p> Diese Wiederholung geht vom <%= @recurrence.start %> bis zum</p>
 <%= f.input :end %>
+      <br>
     <h3>Rules</h3>
 <div id="rules">
 
@@ -26,6 +27,6 @@
 
 
   <div class="form-actions">
-    <%= f.submit "Continue" %>
+    <%= f.submit "Continue" %>@
   </div>
 <% end %></div>
