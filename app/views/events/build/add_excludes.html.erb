@@ -8,6 +8,7 @@
 <% dates.each do |date| %>
          <p><%= date %></p>
           <%end %>
+      <%= f.input :start, label: "Tage", collection: dates.each_with_index.map {|name, index| [name,index]} %>
       <div class="actions">
         <%= f.submit "Continue" %>
       </div>
