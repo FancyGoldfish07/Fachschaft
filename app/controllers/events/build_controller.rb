@@ -3,7 +3,7 @@ class Events::BuildController < ApplicationController
   steps :build, :add_recurrence, :add_exludes
   def show
     @event = Event.find(params[:event_id])
-    render_step(:build_event)
+    render_wizard
   end
   def update
 
