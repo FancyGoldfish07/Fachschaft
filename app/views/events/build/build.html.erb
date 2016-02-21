@@ -28,6 +28,7 @@
       <%= f.label :url %><br>
       <%= f.text_area :url %>
     </div>
+
     <div class="field">
       <%= f.label :end %><br>
       <%= f.datetime_select :end %>
@@ -51,7 +52,10 @@
       <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id} %>
 
     </div>
-
+      <div class="field">
+        <%= f.label :repeats %><br>
+        <%= f.check_box :repeats %>
+      </div>
 
 
 

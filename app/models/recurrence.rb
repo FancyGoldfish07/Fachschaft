@@ -1,9 +1,10 @@
 #Is an event repeated? If so how often?
 class Recurrence < ActiveRecord::Base
   include IceCube
-  has_one :event
   has_many :rules
   has_many :excludes
+  has_many :events
+
   #Allow us to edit rules
   accepts_nested_attributes_for :rules, reject_if: :all_blank, allow_destroy: true
 #Get all appointments for our rules from start to end

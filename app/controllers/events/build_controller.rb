@@ -1,25 +1,49 @@
 class Events::BuildController < ApplicationController
   include Wicked::Wizard
   steps :build, :add_recurrence, :add_exludes
+
   def show
     @event = Event.find(params[:event_id])
-    render_wizard
-  end
-  def update
-    @event = Event.find(params[:event_id])
-    case step
-      when :build
-        @event.update(event_params)
+    if @event.repeats
+      if !@event.recurrence.present?
+        @event.recurrence = Recurrence.create
+      end
+      @recurrence = @event.recurrence
+
     end
 
-    render_wizard @event
+
+  render_wizard
+end
+
+def update
+  @event = Event.find(params[:event_id])
+  @recurrence = @event.recurrence
+  case step
+    when :build
+      @event.update(event_params)
+    when :add_recurrence
+      if @recurrence.present?
+        @recurrence.update(recurrence_params)
+      end
   end
-  def create
-    @event = Event.create
-    redirect_to wizard_path(steps.first,:event_id => @event.id)
-  end
-  private
-  def event_params
-    params.require(:event).permit(:title, :start, :priority, :flag, :imageURL, :url, :end, :ort, :description,role_ids: [])
-  end
+
+  render_wizard @event
+end
+
+def create
+  @event = Event.create
+  redirect_to wizard_path(steps.first, :event_id => @event.id)
+end
+
+private
+#Safe params
+def event_params
+  params.require(:event).permit(:title, :start, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, role_ids: [])
+end
+
+def recurrence_params
+  params.require(:recurrence).permit(:event_id, :start, :end, rules_attributes: [:id, :day, :week, :month, :days, :_destroy])
+end
+
 end
