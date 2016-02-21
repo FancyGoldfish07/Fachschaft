@@ -1,1 +1,59 @@
-<p>Event</p>
+<div class="panel-heading">
+<h3>Event</h3>
+</div>
+<div class="panel-body">
+  <%= render layout: 'form' do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :start %><br>
+      <%= f.datetime_select :start %>
+    </div>
+    <div class="field">
+      <%= f.label :priority %><br>
+      <%= f.select(:priority, Event.priorities.keys.map {|priority| [priority.titleize,priority]}) %>
+    </div>
+    <div class="field">
+      <%= f.label :flag %><br>
+      <%= f.check_box :flag %>
+    </div>
+    <div class="field">
+      <%= f.label :imageURL %><br>
+      <%= f.text_area :imageURL %>
+    </div>
+    <div class="field">
+      <%= f.label :url %><br>
+      <%= f.text_area :url %>
+    </div>
+    <div class="field">
+      <%= f.label :end %><br>
+      <%= f.datetime_select :end %>
+    </div>
+    <div class="field">
+      <%= f.label :ort %><br>
+      <%= f.text_area :ort %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+
+      <%= f.collection_select :role_ids, Role.getRoles, :id, :name, {selected: @event.role_ids},
+                              multiple: true %>
+
+    </div>
+    <div class="field">
+      <p>Eventtyp:</p>
+      <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id} %>
+
+    </div>
+
+
+
+
+<% end %>
+</div>
