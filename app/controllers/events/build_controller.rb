@@ -1,14 +1,17 @@
 class Events::BuildController < ApplicationController
   include Wicked::Wizard
-  steps :build, :add_recurrence, :add_exludes
+  steps :build, :add_recurrence, :add_excludes
 
   def show
     @event = Event.find(params[:event_id])
     if @event.repeats
       if !@event.recurrence.present?
-        @event.recurrence = Recurrence.create
-      end
+
+        @event.create_recurrence
+       @recurrence = @event.recurrence
+      else
       @recurrence = @event.recurrence
+      end
 
     end
 

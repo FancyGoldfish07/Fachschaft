@@ -11,15 +11,18 @@ class Recurrence < ActiveRecord::Base
   def getDates(startDate, endDate)
     schedule = IceCube::Schedule.new(startDate) do |s|
       rules.each do |rule|
-      s.add_recurrence_rule(rule)
+      s.add_recurrence_rule(rule.getRule)
       end
-      schedule.occurrences(endDate)
+    return   s.occurrences(endDate)
     end
 
   end
   #Gets all dates from now for the next six months
   def getDatesSixMonths(startDate)
-    getDates(startDate,startDate + 6.months)
+   return getDates(startDate,startDate + 6.months)
+  end
+  def getDatesStartFinish()
+   return getDates(self.start,self.end)
   end
 
 

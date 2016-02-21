@@ -1,0 +1,15 @@
+<div class="panel-heading">
+  <h3>Termine</h3>
+</div>
+<div class="panel-body">
+  <%= simple_form_for @recurrence, url: wizard_path do |f| %>
+      <%= f.error_notification %>
+      <% dates = @recurrence.getDatesStartFinish %>
+<% dates.each do |date| %>
+         <p><%= date %></p>
+          <%end %>
+      <div class="actions">
+        <%= f.submit "Continue" %>
+      </div>
+  <% end %>
+</div>
