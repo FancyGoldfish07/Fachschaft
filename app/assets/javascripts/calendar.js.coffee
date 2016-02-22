@@ -46,6 +46,10 @@ $(document).ready ->
     eventResize: (event, dayDelta, minuteDelta, revertFunc) ->
       updateEvent(event);
 
+  $('#calendar_prev').fullCalendar
+    defaultView: 'agendaWeek',
+    height: 500,
+
 
 updateEvent = (the_event) ->
   $.update "/events/" + the_event.id,
@@ -54,3 +58,5 @@ updateEvent = (the_event) ->
       starts_at: "" + the_event.start,
       ends_at: "" + the_event.end,
       description: the_event.description
+
+

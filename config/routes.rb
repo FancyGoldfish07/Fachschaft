@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  get 'home' => 'home#index'
 
   #Dummy route
   root "dummy#index"
