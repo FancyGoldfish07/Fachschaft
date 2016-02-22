@@ -29,6 +29,10 @@ def update
   case step
     when :build
       @event.update(event_params)
+if !@event.repeats
+jump_to :check
+end
+
     when :add_recurrence
       if @recurrence.present?
 
@@ -62,10 +66,12 @@ excludes = param[:exclude_ids]
           end
 
       end
+    when :check
+      @event.makeRecurr
   end
-
-  render_wizard @event
+render_wizard @event
 end
+
 
 def create
   @event = Event.create
@@ -75,7 +81,7 @@ end
 private
 #Safe params
 def event_params
-  params.require(:event).permit(:title, :start,:event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, role_ids: [])
+  params.require(:event).permit(:title, :start,:event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, :reviewed, role_ids: [])
 end
 
 def recurrence_params

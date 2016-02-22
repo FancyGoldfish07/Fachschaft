@@ -19,7 +19,42 @@ end
     else
       "white"
     end
+  end
+  #Makes a new revision for this thing.
+  def makeRevision
+   #Only temporarly
+    if repeats
+     makeRecurr
+   end
+
+  end
+#Propagates the event into the future
+  def makeRecurr
+    if repeats
+      if recurrence.present?
+        if recurrence.events.count == 1
+          #We are the only event yet, HOOORAY
+          dates = recurrence.getDatesAllInOne
+          dates.each do |date|
+            if !start = date
+              #We do not want to override ourselve
+if !date.past?
+  #We do not want to add past events
+  time = start.to_time
+  newStart = DateTime.new(date.year,date.month,date.day,time.hour,time.min,time.sec)
+  newEnd = newStart +(duration).seconds
+
+  recurrence.events.create(title: self.title,description:self.description,
+                           event_category: self.event_category, ort:self.ort,role_ids: self.role_ids,url: self.url,
+                           imageURL: self.imageURL,start:newStart, end:newEnd,repeats: true,
+                           priority: self.priority,flag:self.flag )
+end
+            end
+          end
+        end
+      end
     end
+  end
     private
     #Sets the default priority of the event and start dates
     def set_defaults
