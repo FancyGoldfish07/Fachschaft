@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219085244) do
+ActiveRecord::Schema.define(version: 20160222130205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,13 @@ ActiveRecord::Schema.define(version: 20160219085244) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "event_category_id"
+    t.integer  "recurrence_id"
+    t.boolean  "repeats"
+    t.boolean  "reviewed"
   end
 
   add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
+  add_index "events", ["recurrence_id"], name: "index_events_on_recurrence_id", using: :btree
 
   create_table "events_roles", id: false, force: :cascade do |t|
     t.integer "event_id"
@@ -45,6 +49,22 @@ ActiveRecord::Schema.define(version: 20160219085244) do
   end
 
   add_index "events_roles", ["event_id", "role_id"], name: "index_events_roles_on_event_id_and_role_id", using: :btree
+
+  create_table "excludes", force: :cascade do |t|
+    t.date     "date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "recurrence_id"
+  end
+
+  add_index "excludes", ["recurrence_id"], name: "index_excludes_on_recurrence_id", using: :btree
+
+  create_table "recurrences", force: :cascade do |t|
+    t.date     "start"
+    t.date     "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -56,6 +76,18 @@ ActiveRecord::Schema.define(version: 20160219085244) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "rules", force: :cascade do |t|
+    t.integer  "day"
+    t.integer  "recurrence_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "week"
+    t.integer  "month"
+    t.integer  "days"
+  end
+
+  add_index "rules", ["recurrence_id"], name: "index_rules_on_recurrence_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -70,10 +102,12 @@ ActiveRecord::Schema.define(version: 20160219085244) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
@@ -83,4 +117,7 @@ ActiveRecord::Schema.define(version: 20160219085244) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "events", "event_categories"
+  add_foreign_key "events", "recurrences"
+  add_foreign_key "excludes", "recurrences"
+  add_foreign_key "rules", "recurrences", on_delete: :cascade
 end

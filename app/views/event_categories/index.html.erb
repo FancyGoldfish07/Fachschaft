@@ -16,7 +16,11 @@
         <td><%= event_category.name %></td>
         <td><%= link_to 'Show', event_category %></td>
         <td><%= link_to 'Edit', edit_event_category_path(event_category) %></td>
-        <td><%= link_to 'Destroy', event_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% if event_category.events.count > 0 %>
+          <p>Dieser Eventtyp kann erst gelöscht werden, wenn alle Events mit diesem Typ gelöscht worden sind</p>
+      <% else %>
+          <%= link_to 'Destroy', event_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     <% end %>
       </tr>
     <% end %>
   </tbody>

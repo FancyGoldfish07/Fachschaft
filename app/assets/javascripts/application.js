@@ -18,5 +18,10 @@
 //= require app
 //= require moment
 //= require fullcalendar
+//= require cocoon
 //= require_tree .
+
+
+
+
 
