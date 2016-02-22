@@ -6,12 +6,10 @@
       <%= f.error_notification %>
       <p>Vom <%= @recurrence.start %> bis zum <%= @recurrence.end %> findet dieses Event an diesen Tagen statt.</p>
       <p>Bitte wähle nun die Tage aus, wo dieses Event nicht stattfindet (z. B. in den Semesterferien). </p>
-      <% dates = @recurrence.getDatesStartFinish %>
-<% dates.each do |date| %>
-         <p><%= date %></p>
-          <%end %>
-      <%= f.input :exclude_ids, label: "Tage, an denen " + @recurrence.events.first.title + " nicht stattfindet", collection: dates.each_with_index.map {|name, index| [name,index]},input_html:{multiple: true}, selected: :exclude_ids %>
 
+
+      <p>Tage an denen <%= @recurrence.events.first.title %> nicht stattfindet:</p>
+      <%= f.collection_select :exclude_ids, @recurrence.getDatesStartFinish, :to_s, :to_s, {selected: @recurrence.excludes}, multiple: true, include_hidden: false %>
       <div class="actions">
         <%= f.submit "Continue" %>
       </div>
