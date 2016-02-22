@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   belongs_to :event_category
   belongs_to :recurrence
   after_initialize :set_defaults, :if => :new_record?
+  after_save :check_reviewed
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
 #The duration of the event in seconds
@@ -18,6 +19,12 @@ end
       "blue"
     else
       "white"
+    end
+  end
+  #Done after save
+  def check_reviewed
+    if reviewed
+      makeRevision
     end
   end
   #Makes a new revision for this thing.
@@ -36,13 +43,19 @@ end
           #We are the only event yet, HOOORAY
           dates = recurrence.getDatesAllInOne
           dates.each do |date|
-            if !start = date
+            date = DateTime.parse(date.to_time.to_s)
+            date = date.to_date
+            if date != start.to_date
+
               #We do not want to override ourselve
 if !date.past?
   #We do not want to add past events
   time = start.to_time
-  newStart = DateTime.new(date.year,date.month,date.day,time.hour,time.min,time.sec)
-  newEnd = newStart +(duration).seconds
+  newStart = start
+newStart=  newStart.to_time.change(day: date.to_time.day,year: date.to_time.year,month: date.to_time.month)
+  newEnd = newEnd.to_time.change(day: date.to_time.day,year: date.to_time.year,month: date.to_time.month)
+newStart = DateTime.parse(newStart.to_s)
+  newEnd = DateTime.parse(newEnd.to_s)
 
   recurrence.events.create(title: self.title,description:self.description,
                            event_category: self.event_category, ort:self.ort,role_ids: self.role_ids,url: self.url,

@@ -59,7 +59,7 @@
       <p>
         Mit einem Klick auf Absenden beginnt der Reviewprozess für dein Event.
       </p>
-      <%= f.hidden_field :reviewed,true %>
+      <%= f.input :reviewed, :as => :hidden, :input_html => { :value => true } %>
           <div class="actions">
         <%= f.submit "Absenden" %>
       </div>
