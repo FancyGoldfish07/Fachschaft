@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :rules
   resources :recurrences
   resources :event_categories
-  resources :events
+  resources :events do
+    resources :build
+  end
+  
   resources :build
 
   devise_for :users

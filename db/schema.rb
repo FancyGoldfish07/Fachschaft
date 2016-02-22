@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222130205) do
+ActiveRecord::Schema.define(version: 20160222215602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,20 +58,6 @@ ActiveRecord::Schema.define(version: 20160222130205) do
   end
 
   add_index "excludes", ["recurrence_id"], name: "index_excludes_on_recurrence_id", using: :btree
-
-  create_table "mailkick_opt_outs", force: :cascade do |t|
-    t.string   "email"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.boolean  "active",     default: true, null: false
-    t.string   "reason"
-    t.string   "list"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "mailkick_opt_outs", ["email"], name: "index_mailkick_opt_outs_on_email", using: :btree
-  add_index "mailkick_opt_outs", ["user_id", "user_type"], name: "index_mailkick_opt_outs_on_user_id_and_user_type", using: :btree
 
   create_table "recurrences", force: :cascade do |t|
     t.date     "start"
@@ -129,6 +115,18 @@ ActiveRecord::Schema.define(version: 20160222130205) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.text     "object_changes"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   add_foreign_key "events", "event_categories"
   add_foreign_key "events", "recurrences"

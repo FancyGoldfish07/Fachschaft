@@ -43,6 +43,9 @@ gem 'cocoon', '~> 1.2', '>= 1.2.7'
 #simple Form
 gem 'simple_form', '~> 3.2.1'
 
+#Use Paper Trail
+gem 'paper_trail', '~> 4.1'
+
 # Use ActiveModel has_secure_password
   gem 'bcrypt', '~> 3.1.7'
 
