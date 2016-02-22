@@ -51,13 +51,9 @@ ActiveRecord::Schema.define(version: 20160222144254) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "event_category_id"
-    t.integer  "recurrence_id"
-    t.boolean  "repeats"
-    t.boolean  "reviewed"
   end
 
   add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
-  add_index "events", ["recurrence_id"], name: "index_events_on_recurrence_id", using: :btree
 
   create_table "events_roles", id: false, force: :cascade do |t|
     t.integer "event_id"
@@ -65,15 +61,6 @@ ActiveRecord::Schema.define(version: 20160222144254) do
   end
 
   add_index "events_roles", ["event_id", "role_id"], name: "index_events_roles_on_event_id_and_role_id", using: :btree
-
-  create_table "excludes", force: :cascade do |t|
-    t.date     "date"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "recurrence_id"
-  end
-
-  add_index "excludes", ["recurrence_id"], name: "index_excludes_on_recurrence_id", using: :btree
 
   create_table "mailkick_opt_outs", force: :cascade do |t|
     t.string   "email"
@@ -89,13 +76,6 @@ ActiveRecord::Schema.define(version: 20160222144254) do
   add_index "mailkick_opt_outs", ["email"], name: "index_mailkick_opt_outs_on_email", using: :btree
   add_index "mailkick_opt_outs", ["user_id", "user_type"], name: "index_mailkick_opt_outs_on_user_id_and_user_type", using: :btree
 
-  create_table "recurrences", force: :cascade do |t|
-    t.date     "start"
-    t.date     "end"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -106,18 +86,6 @@ ActiveRecord::Schema.define(version: 20160222144254) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
-
-  create_table "rules", force: :cascade do |t|
-    t.integer  "day"
-    t.integer  "recurrence_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "week"
-    t.integer  "month"
-    t.integer  "days"
-  end
-
-  add_index "rules", ["recurrence_id"], name: "index_rules_on_recurrence_id", using: :btree
 
   create_table "subscribers", force: :cascade do |t|
     t.string   "name"
@@ -152,7 +120,4 @@ ActiveRecord::Schema.define(version: 20160222144254) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "events", "event_categories"
-  add_foreign_key "events", "recurrences"
-  add_foreign_key "excludes", "recurrences"
-  add_foreign_key "rules", "recurrences", on_delete: :cascade
 end

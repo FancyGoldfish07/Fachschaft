@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f25e8c4-8656-4ecd-b9bf-7ea0c2299b5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Fachschaft.iml" afterPath="$PROJECT_DIR$/.idea/Fachschaft.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/subscribers_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/subscribers_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/mailers/newsletter_mailer.rb" afterPath="$PROJECT_DIR$/app/mailers/newsletter_mailer.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/subscriber.rb" afterPath="$PROJECT_DIR$/app/models/subscriber.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/events/new.html.erb" afterPath="$PROJECT_DIR$/app/views/events/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/newsletter_mailer/send_newsletter.html.erb" afterPath="$PROJECT_DIR$/app/views/newsletter_mailer/send_newsletter.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/newsletter_mailer/send_newsletter.text.erb" afterPath="$PROJECT_DIR$/app/views/newsletter_mailer/send_newsletter.text.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/subscribers/index.html.erb" afterPath="$PROJECT_DIR$/app/views/subscribers/index.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="Fachschaft.iws" />
@@ -40,21 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="subscribers_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="subscribers_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/subscribers_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+            <state relative-caret-position="306">
+              <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="send_newsletter.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="send_newsletter.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/newsletter_mailer/send_newsletter.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+            <state relative-caret-position="504">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,8 +125,8 @@
       <file leaf-file-name="subscriber.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/subscriber.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="7" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="7" />
+            <state relative-caret-position="450">
+              <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -187,10 +179,10 @@
         <option value="$PROJECT_DIR$/app/views/events/new.html.erb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/jobs/send_newsletter_job.rb" />
-        <option value="$PROJECT_DIR$/app/models/subscriber.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/subscribers_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/subscribers/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/newsletter_mailer/send_newsletter.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/subscriber.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/subscribers_controller.rb" />
       </list>
     </option>
   </component>
@@ -1018,14 +1010,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/subscriber.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="7" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/subscribers/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1082,18 +1066,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/subscribers_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/newsletter_mailer/send_newsletter.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+        <state relative-caret-position="504">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/newsletter_mailer/send_newsletter.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/models/subscriber.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+        <state relative-caret-position="450">
+          <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/subscribers_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
           <folding />
         </state>
       </provider>

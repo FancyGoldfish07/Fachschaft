@@ -32,7 +32,13 @@ class SubscribersController < ApplicationController
         format.json { render :show, status: :created, location: @subscriber }
         # Send confirmation mail
         NewsletterMailer.newsletter_signup_confirmation(@subscriber).deliver_later
-        @subscriber.send_newsletter
+
+        # For testing! Sends newsletter!
+        @from = DateTime.new(2016,01,01)
+        @to = DateTime.new(2017,01,01)
+        @subscriber.send_newsletter(@from, @to)
+
+
       else
         format.html { render :new }
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
@@ -52,17 +58,6 @@ class SubscribersController < ApplicationController
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-
-  def delete_all
-    @subscribers = Subscriber.all
-    @subscribers.each do|u|
-      NewsletterMailer.send_newsletter(u, @newsletter_events).deliver_later
-      u.destroy
-    end
-    format.html { redirect_to subscribers_url, notice: 'Subscriber was successfully destroyed.' }
-    format.json { head :no_content }
   end
 
   # DELETE /subscribers/1
