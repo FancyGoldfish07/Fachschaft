@@ -1,6 +1,6 @@
 class Events::BuildController < ApplicationController
   include Wicked::Wizard
-  steps :build, :add_recurrence, :add_excludes, :overview
+  steps :build, :add_recurrence, :add_excludes, :check
 
   def show
     @event = Event.find(params[:event_id])
@@ -14,7 +14,10 @@ class Events::BuildController < ApplicationController
       @recurrence = @event.recurrence
       end
 
-    end
+    else
+      @event.recurrence = nil
+      @event.save
+      end
 
 
   render_wizard
@@ -72,7 +75,7 @@ end
 private
 #Safe params
 def event_params
-  params.require(:event).permit(:title, :start, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, role_ids: [])
+  params.require(:event).permit(:title, :start,:event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, role_ids: [])
 end
 
 def recurrence_params
