@@ -3,12 +3,27 @@
 <head>
 
 </head>
+<style>
+  h4.sansserif {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+  }
+  h5.sansserif {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+  }
+</style>
 <body>
-<h3>Hi <%= @subscriber.name %>,</h3>
+<h4 class="sansserif">Hi <%= @subscriber.name %>,</h4>
+<h4 class="sansserif">Here is our weekly newsletter: </h4>
 <br>
-<h3>Heres our weekly newsletter.</h3>
-
-
+<% @newsletter_events.each do |event| %>
+    <h4 class="sansserif">Title: <%= event.title %></h4>
+    <h5 class="sansserif">Place: <%= event.ort %></h5>
+    <h5 class="sansserif">Time: <%= event.start.strftime("%d.%m.%Y, %H:%M") %></h5>
+    <h4 class="sansserif">Description: <%= event.description %></h4>
+    <h5 class="sansserif">------------------------------------------</h5>
+<%end %>
 </body>
 </html>
 

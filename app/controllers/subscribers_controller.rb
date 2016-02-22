@@ -31,8 +31,8 @@ class SubscribersController < ApplicationController
         format.html { redirect_to @subscriber, notice: 'Subscriber was successfully created.' }
         format.json { render :show, status: :created, location: @subscriber }
         # Send confirmation mail
-        NewsletterMailer.newsletter_signup_confirmation(@subscriber).deliver
-        @subscriber.get_subscribers
+        NewsletterMailer.newsletter_signup_confirmation(@subscriber).deliver_later
+        @subscriber.send_newsletter
       else
         format.html { render :new }
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
@@ -54,6 +54,17 @@ class SubscribersController < ApplicationController
     end
   end
 
+
+  def delete_all
+    @subscribers = Subscriber.all
+    @subscribers.each do|u|
+      NewsletterMailer.send_newsletter(u, @newsletter_events).deliver_later
+      u.destroy
+    end
+    format.html { redirect_to subscribers_url, notice: 'Subscriber was successfully destroyed.' }
+    format.json { head :no_content }
+  end
+
   # DELETE /subscribers/1
   # DELETE /subscribers/1.json
   def destroy
@@ -67,7 +78,8 @@ class SubscribersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+   # Use callbacks to share common setup or constraints between actions.
     def set_subscriber
       @subscriber = Subscriber.find(params[:id])
     end
