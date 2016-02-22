@@ -53,6 +53,7 @@ if !date.past?
   time = start.to_time
   newStart = start
 newStart=  newStart.to_time.change(day: date.to_time.day,year: date.to_time.year,month: date.to_time.month)
+  newEnd = self.end
   newEnd = newEnd.to_time.change(day: date.to_time.day,year: date.to_time.year,month: date.to_time.month)
 newStart = DateTime.parse(newStart.to_s)
   newEnd = DateTime.parse(newEnd.to_s)
