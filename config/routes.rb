@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  resources :excludes
+  resources :rules
+  resources :recurrences
   resources :event_categories
-  resources :events
+  resources :events do
+    resources :build, controller: "events/build"
+
+  end
   devise_for :users
+
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
 

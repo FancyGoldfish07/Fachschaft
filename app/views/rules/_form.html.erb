@@ -1,0 +1,14 @@
+<%= simple_form_for(@rule) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :day, label: "Wochentag", collection: Rule.DAYS.each_with_index.map {|name, index| [name,index]} %>
+    <%= f.input :week, label: "Wochenwiederholung", input_html: { min: 1}  %>
+    <%= f.input :month, label: "Monatswiederholung: 0 bedeutet keine Monatswiederholung", input_html: { min: 0 } %>
+    <%= f.input :days, label: "Tageswiederholung: 0 bedeutet keine Tageswiederholung und -1 bededeutet der letzte Wochentag des Monats", input_html: { min: -1, max:4 } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
