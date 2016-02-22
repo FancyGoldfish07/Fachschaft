@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :newsletters
   resources :subscribers
   resources :event_categories
   resources :events

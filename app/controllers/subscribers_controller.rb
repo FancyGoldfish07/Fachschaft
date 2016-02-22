@@ -33,12 +33,6 @@ class SubscribersController < ApplicationController
         # Send confirmation mail
         NewsletterMailer.newsletter_signup_confirmation(@subscriber).deliver_later
 
-        # For testing! Sends newsletter!
-        @from = DateTime.new(2016,01,01)
-        @to = DateTime.new(2017,01,01)
-        @subscriber.send_newsletter(@from, @to)
-
-
       else
         format.html { render :new }
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }

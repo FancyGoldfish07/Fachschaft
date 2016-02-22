@@ -1,9 +1,11 @@
 class NewsletterMailer < ApplicationMailer
 
-  def send_newsletter(subscriber, newsletter_events)
+  def send_newsletter(subscriber, newsletter_events, subject,text)
+    @subject = subject
+    @text = text
     @subscriber = subscriber
     @newsletter_events = newsletter_events
-    mail(to: subscriber.email, subject: "Weekly newsletter") do |format|
+    mail(to: subscriber.email, subject: @subject) do |format|
       format.html { render layout: '../../views/newsletter_mailer/send_newsletter.html.erb' }
       format.text { render text: '../../views/newsletter_mailer/send_newsletter.text.erb' }
     end

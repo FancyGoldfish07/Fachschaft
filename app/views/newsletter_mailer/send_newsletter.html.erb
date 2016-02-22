@@ -15,7 +15,7 @@
 </style>
 <body>
 <h4 class="sansserif">Hi <%= @subscriber.name %>,</h4>
-<h4 class="sansserif">Here is our weekly newsletter: </h4>
+<h4 class="sansserif"><%= @text %></h4>
 <br>
 <% @newsletter_events.each do |event| %>
     <h4 class="sansserif">Title: <%= event.title %></h4>
