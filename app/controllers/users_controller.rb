@@ -26,7 +26,6 @@ class UsersController < ApplicationController
     @user.destroy
     if checkAdmin
       # Send confirmation Mail
-
       redirect_to users_path, :notice => "Nutzer gelöscht"
     else
       redirect_to root_path
