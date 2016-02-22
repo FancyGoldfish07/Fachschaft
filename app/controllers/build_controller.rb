@@ -1,4 +1,4 @@
-class Events::BuildController < ApplicationController
+class BuildController < ApplicationController
   include Wicked::Wizard
   steps :build, :add_recurrence, :add_excludes, :check
 
@@ -77,6 +77,10 @@ def create
   @event = Event.create
   redirect_to wizard_path(steps.first, :event_id => @event.id)
 end
+  def new
+    @event = Event.create
+    redirect_to wizard_path(steps.first, :event_id => @event.id)
+  end
 
 private
 #Safe params

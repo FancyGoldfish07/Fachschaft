@@ -3,10 +3,9 @@ Rails.application.routes.draw do
   resources :rules
   resources :recurrences
   resources :event_categories
-  resources :events do
-    resources :build, controller: "events/build"
+  resources :events
+  resources :build
 
-  end
   devise_for :users
 
   #Routes just for our lovely admin
