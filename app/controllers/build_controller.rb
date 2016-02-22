@@ -7,7 +7,7 @@ class BuildController < ApplicationController
     if @event.repeats
       if !@event.recurrence.present?
 #Create a new recurrence with the date of our event.
-        @event.create_recurrence(start: @event.start.to_date)
+        @event.create_recurrence(start: @event.start.to_date, end: @event.start.to_date + 1.month)
         @event.save
        @recurrence = @event.recurrence
       else
