@@ -15,5 +15,5 @@ proven to be difficult so far...
 
 #Be sure to run rake db:seed after you did your migrations.
 <br><br>
-22.02.2016
+22.02.2016 <br>
 Calendar views now available at /home but without authentification. This still has to be implemented.
