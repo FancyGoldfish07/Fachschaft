@@ -51,9 +51,11 @@ excludes = param[:exclude_ids]
         if excludes.count > 0
         excludes.each do |date|
           #Add and build our date
-          @recurrence.create_exclude(date: date)
+         @recurrence.excludes.create(date: date)
+
         end
-        @recurrence.save
+      #We do not need to do this. Because foreign key.
+          #  @recurrence.save
           end
 
       end
