@@ -59,6 +59,20 @@ ActiveRecord::Schema.define(version: 20160222130205) do
 
   add_index "excludes", ["recurrence_id"], name: "index_excludes_on_recurrence_id", using: :btree
 
+  create_table "mailkick_opt_outs", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.boolean  "active",     default: true, null: false
+    t.string   "reason"
+    t.string   "list"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mailkick_opt_outs", ["email"], name: "index_mailkick_opt_outs_on_email", using: :btree
+  add_index "mailkick_opt_outs", ["user_id", "user_type"], name: "index_mailkick_opt_outs_on_user_id_and_user_type", using: :btree
+
   create_table "recurrences", force: :cascade do |t|
     t.date     "start"
     t.date     "end"
