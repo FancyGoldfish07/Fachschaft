@@ -40,7 +40,11 @@ $(document).ready ->
     height: 500
     events: '/events.json'
 
+  $('#category_category_id').change =>
+    selectedValue = $(this).text
+    $('#calendar_filter').fullCalendar
 
+    events:'/event_categories/'+selectedValue+'.json'
 
   $('#calendar_editable').fullCalendar
     editable: true,
