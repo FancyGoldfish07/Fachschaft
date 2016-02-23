@@ -34,6 +34,8 @@ source 'https://rubygems.org'
   gem 'pundit', '~> 1.1'
 
   gem 'fullcalendar-rails', '~> 2.6'
+  # http://eonasdan.github.io/bootstrap-datetimepicker/
+  gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 #Ice-Cube
 gem 'ice_cube', '~> 0.13.3'
@@ -75,6 +77,7 @@ gem 'wicked', '~> 1.2', '>= 1.2.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 8.2', '>= 8.2.2'
@@ -92,9 +95,6 @@ group :development do
   gem 'spring', '~> 1.6', '>= 1.6.3'
 
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
-
-
-
 
 end
 
