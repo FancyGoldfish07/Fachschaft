@@ -19,6 +19,8 @@
 //= require moment
 //= require fullcalendar
 //= require cocoon
+//= require bootstrap-datetimepicker
+//= require moment/de
 //= require_tree .
 
 
