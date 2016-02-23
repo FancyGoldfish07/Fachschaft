@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-  gem 'maktoub'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
   gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
@@ -29,6 +29,8 @@ source 'https://rubygems.org'
   gem 'pundit', '~> 1.1'
 
   gem 'fullcalendar-rails', '~> 2.6'
+  # http://eonasdan.github.io/bootstrap-datetimepicker/
+  gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 #Ice-Cube
 gem 'ice_cube', '~> 0.13.3'
