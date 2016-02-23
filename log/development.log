@@ -1,0 +1,996 @@
+
+
+Started GET "/" for 192.168.178.53 at 2016-02-23 11:29:48 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DummyController#index as HTML
+  Rendered dummy/index.html.erb within layouts/dummy (1.5ms)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_dummy_html_erb___3406039123847899446_70108807253380 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+Completed 200 OK in 18407ms (Views: 18391.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-af18ba8faed6a172d62789e9908d4016c646aeffac258ca9c73069584b5a58b0.css?body=1" for 192.168.178.53 at 2016-02-23 11:30:07 +0100
+
+
+Started GET "/assets/app.self-962998cb28d9fea7cba6cb1fdf80d64466fdd6f89ff37d584ad762c0eb6b0465.css?body=1" for 192.168.178.53 at 2016-02-23 11:30:07 +0100
+
+
+Started GET "/assets/calendar.self-3ea53eb4283d537fb439db830d0ed2dbbaf53b8cb57ac26f071c61e68771531e.css?body=1" for 192.168.178.53 at 2016-02-23 11:30:07 +0100
+
+
+Started GET "/assets/main.self-9b2c993d2a1343dce0d026b47edcff054ba079367995d95ecd0b8e87e6be6cbe.css?body=1" for 192.168.178.53 at 2016-02-23 11:30:07 +0100
+
+
+Started GET "/assets/scaffolds.self-40204d318ff2371c7da8a65b04d3396f18267b3c593e4e98231c295a8a936e85.css?body=1" for 192.168.178.53 at 2016-02-23 11:30:07 +0100
+
+
+Started GET "/assets/starter-template.self-dcd5030b46370f916f133c18ecb2f5d00884b13eb5f7c157cbcaca8f70671dd2.css?body=1" for 192.168.178.53 at 2016-02-23 11:30:07 +0100
+
+
+Started GET "/assets/themify-icons.self-57ad4f1e68cb6e5a29e00fa91d6c98d39da5a22a773c86ac40913b3c4cac2d0f.css?body=1" for 192.168.178.53 at 2016-02-23 11:30:07 +0100
+
+
+Started GET "/assets/ui.self-b3fc0af2f4a20ff96769d1da2f150ba65c0b0a1ac4acd11293e8d5457761b831.css?body=1" for 192.168.178.53 at 2016-02-23 11:30:07 +0100
+
+
+Started GET "/events.json?start=2016-01-31&end=2016-03-13&_=1456223407484" for 192.168.178.53 at 2016-02-23 11:30:07 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-01-31", "end"=>"2016-03-13", "_"=>"1456223407484"}
+  [1m[35mEvent Load (1.0ms)[0m  SELECT "events".* FROM "events"
+  Rendered events/index.json.jbuilder (32.2ms)
+Completed 200 OK in 47ms (Views: 38.0ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/users/sign_up" for 192.168.178.53 at 2016-02-23 11:30:12 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (0.2ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "User"]]
+  [1m[36mRole Load (0.1ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered devise/shared/_links.html.erb (9.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/devise (21.1ms)
+Completed 200 OK in 165ms (Views: 123.6ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/assets/fonts/themify.woff?-fvbane" for 192.168.178.53 at 2016-02-23 11:30:12 +0100
+
+
+Started GET "/users/sign_in" for 192.168.178.53 at 2016-02-23 11:30:26 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (0.6ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "User"]]
+  [1m[35mRole Load (0.5ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered devise/shared/_links.html.erb (4.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (52.2ms)
+Completed 200 OK in 175ms (Views: 165.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/home" for 192.168.178.53 at 2016-02-23 11:30:32 +0100
+Processing by HomeController#index as HTML
+  Rendered home/_calendar_preview.erb (0.2ms)
+  Rendered home/_tools.html.erb (0.1ms)
+  Rendered home/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 75ms (Views: 74.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2016-02-21&end=2016-02-28&_=1456223433097" for 192.168.178.53 at 2016-02-23 11:30:33 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-02-21", "end"=>"2016-02-28", "_"=>"1456223433097"}
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (2.8ms)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/2.json" for 192.168.178.53 at 2016-02-23 11:30:41 +0100
+Processing by EventsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered events/show.json.jbuilder (1.5ms)
+Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events.json?start=2016-02-21&end=2016-02-28&_=1456223445705" for 192.168.178.53 at 2016-02-23 11:30:45 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-02-21", "end"=>"2016-02-28", "_"=>"1456223445705"}
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (4.9ms)
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fullcalendar/index.html.erb" for 192.168.178.53 at 2016-02-23 11:30:48 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.2ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 64ms (Views: 63.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2016-01-31&end=2016-03-13&_=1456223448405" for 192.168.178.53 at 2016-02-23 11:30:48 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-01-31", "end"=>"2016-03-13", "_"=>"1456223448405"}
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events"
+  Rendered events/index.json.jbuilder (2.2ms)
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/events/new" for 192.168.178.53 at 2016-02-23 11:30:50 +0100
+Processing by EventsController#new as HTML
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT  "roles".* FROM "roles" LIMIT 6[0m
+  [1m[35mEventCategory Load (0.2ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered events/_form.html.erb (27.4ms)
+  Rendered events/new.html.erb within layouts/application (28.1ms)
+Completed 200 OK in 86ms (Views: 81.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/events/new" for 192.168.178.53 at 2016-02-23 11:31:17 +0100
+Processing by EventsController#new as HTML
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT  "roles".* FROM "roles" LIMIT 6[0m
+  [1m[35mEventCategory Load (0.1ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered events/_form.html.erb (11.4ms)
+  Rendered events/new.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 95ms (Views: 93.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/build/new" for 192.168.178.53 at 2016-02-23 11:31:26 +0100
+Processing by BuildController#new as HTML
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "events" ("priority", "start", "end", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["priority", 2], ["start", "2016-02-24 10:31:26.904461"], ["end", "2016-02-24 11:31:26.904461"], ["created_at", "2016-02-23 10:31:26.905016"], ["updated_at", "2016-02-23 10:31:26.905016"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "versions" ("event", "created_at", "object_changes", "item_id", "item_type") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["event", "create"], ["created_at", "2016-02-23 10:31:26.905016"], ["object_changes", "---\npriority:\n- \n- 0\nstart:\n- \n- 2016-02-24 10:31:26.904461900 Z\nend:\n- \n- 2016-02-24 11:31:26.904461900 Z\ncreated_at:\n- \n- &1 2016-02-23 10:31:26.905016500 Z\nupdated_at:\n- \n- *1\nid:\n- \n- 6\n"], ["item_id", 6], ["item_type", "Event"]]
+  [1m[35m (49.1ms)[0m  COMMIT
+Redirected to http://192.168.178.73:3000/events/6/build/build
+Completed 302 Found in 64ms (ActiveRecord: 50.7ms)
+
+
+Started GET "/events/6/build/build" for 192.168.178.53 at 2016-02-23 11:31:26 +0100
+Processing by BuildController#show as HTML
+  Parameters: {"event_id"=>"6", "id"=>"build"}
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  SELECT "roles".id FROM "roles" INNER JOIN "events_roles" ON "roles"."id" = "events_roles"."role_id" WHERE "events_roles"."event_id" = $1  [["event_id", 6]]
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT  "roles".* FROM "roles" LIMIT 6[0m
+  [1m[35mEventCategory Load (0.1ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered build/_form.html.erb (12.4ms)
+  Rendered build/build.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 91ms (Views: 85.0ms | ActiveRecord: 0.9ms)
+
+
+Started PATCH "/events/6/build/build" for 192.168.178.53 at 2016-02-23 11:31:41 +0100
+Processing by BuildController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wwu7ZWh18lGRNHSFiuWz2F6TFv5GN4nlXNNm+lKNbJxrKqMXg4c29r7QhDKv9Wmve03G8+VetNxUP1DVUFQBVA==", "event"=>{"title"=>"dsds", "start(3i)"=>"24", "start(2i)"=>"2", "start(1i)"=>"2016", "start(4i)"=>"10", "start(5i)"=>"31", "priority"=>"medium", "flag"=>"0", "imageURL"=>"", "url"=>"", "end(3i)"=>"24", "end(2i)"=>"2", "end(1i)"=>"2016", "end(4i)"=>"11", "end(5i)"=>"31", "ort"=>"", "description"=>"", "role_ids"=>[""], "event_category_id"=>"1", "repeats"=>"1"}, "commit"=>"Continue", "event_id"=>"6", "id"=>"build"}
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT "roles".* FROM "roles" INNER JOIN "events_roles" ON "roles"."id" = "events_roles"."role_id" WHERE "events_roles"."event_id" = $1[0m  [["event_id", 6]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "events" SET "title" = $1, "event_category_id" = $2, "flag" = $3, "imageURL" = $4, "url" = $5, "ort" = $6, "description" = $7, "repeats" = $8, "start" = $9, "end" = $10, "updated_at" = $11 WHERE "events"."id" = $12  [["title", "dsds"], ["event_category_id", 1], ["flag", "f"], ["imageURL", ""], ["url", ""], ["ort", ""], ["description", ""], ["repeats", "t"], ["start", "2016-02-24 10:31:00.000000"], ["end", "2016-02-24 11:31:00.000000"], ["updated_at", "2016-02-23 10:31:41.481786"], ["id", 6]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "versions" ("event", "object", "created_at", "object_changes", "item_id", "item_type") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event", "update"], ["object", "---\nid: 6\ntitle: \nstart: 2016-02-24 10:31:26.904461000 Z\npriority: 2\nflag: \nimageURL: \nurl: \nend: 2016-02-24 11:31:26.904461000 Z\nort: \ndescription: \ncreated_at: 2016-02-23 10:31:26.905016000 Z\nupdated_at: 2016-02-23 10:31:26.905016000 Z\nevent_category_id: \nrecurrence_id: \nrepeats: \nreviewed: \n"], ["created_at", "2016-02-23 10:31:41.481786"], ["object_changes", "---\ntitle:\n- \n- dsds\nevent_category_id:\n- \n- 1\nflag:\n- \n- false\nimageURL:\n- \n- ''\nurl:\n- \n- ''\nort:\n- \n- ''\ndescription:\n- \n- ''\nrepeats:\n- \n- true\nstart:\n- 2016-02-24 10:31:26.904461000 Z\n- 2016-02-24 10:31:00.000000000 Z\nend:\n- 2016-02-24 11:31:26.904461000 Z\n- 2016-02-24 11:31:00.000000000 Z\nupdated_at:\n- 2016-02-23 10:31:26.905016000 Z\n- 2016-02-23 10:31:41.481786800 Z\n"], ["item_id", 6], ["item_type", "Event"]]
+  [1m[35m (31.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.0ms)[0m  COMMIT
+Redirected to http://192.168.178.73:3000/events/6/build/add_recurrence
+Completed 302 Found in 45ms (ActiveRecord: 32.9ms)
+
+
+Started GET "/events/6/build/add_recurrence" for 192.168.178.53 at 2016-02-23 11:31:41 +0100
+Processing by BuildController#show as HTML
+  Parameters: {"event_id"=>"6", "id"=>"add_recurrence"}
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "recurrences" ("start", "end", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["start", "2016-02-24"], ["end", "2016-03-24"], ["created_at", "2016-02-23 10:31:41.536842"], ["updated_at", "2016-02-23 10:31:41.536842"]]
+  [1m[35m (28.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "events" SET "recurrence_id" = $1, "updated_at" = $2 WHERE "events"."id" = $3  [["recurrence_id", 3], ["updated_at", "2016-02-23 10:31:41.567282"], ["id", 6]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "versions" ("event", "object", "created_at", "object_changes", "item_id", "item_type") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["event", "update"], ["object", "---\nid: 6\ntitle: dsds\nstart: 2016-02-24 10:31:00.000000000 Z\npriority: 2\nflag: false\nimageURL: ''\nurl: ''\nend: 2016-02-24 11:31:00.000000000 Z\nort: ''\ndescription: ''\ncreated_at: 2016-02-23 10:31:26.905016000 Z\nupdated_at: 2016-02-23 10:31:41.481786000 Z\nevent_category_id: 1\nrecurrence_id: \nrepeats: true\nreviewed: \n"], ["created_at", "2016-02-23 10:31:41.567282"], ["object_changes", "---\nrecurrence_id:\n- \n- 3\nupdated_at:\n- 2016-02-23 10:31:41.481786000 Z\n- 2016-02-23 10:31:41.567282300 Z\n"], ["item_id", 6], ["item_type", "Event"]]
+  [1m[35m (46.4ms)[0m  COMMIT
+  [1m[36mRule Load (0.2ms)[0m  [1mSELECT "rules".* FROM "rules" WHERE "rules"."recurrence_id" = $1[0m  [["recurrence_id", 3]]
+  Rendered build/_rule_fields.html.erb (4.4ms)
+  Rendered build/add_recurrence.html.erb within layouts/application (49.0ms)
+Completed 500 Internal Server Error in 141ms (ActiveRecord: 80.0ms)
+
+ActionView::Template::Error (wrong argument type Hash (expected Array)):
+    1: <div class="nested-fields">
+    2: <%= f.input :day, label: "Wochentag", collection: Rule.DAYS.each_with_index.map {|name, index| [name,index]}, include_blank:false %>
+    3: <%= f.input :week, label: "Wochenwiederholung", input_html: { min: 1}  %>
+    4:   <% #We decided this part is not needed. Functionality would be there though.
+    5:   %>
+  app/views/build/_rule_fields.html.erb:2:in `_app_views_build__rule_fields_html_erb___1590378398177613959_70108381577580'
+  app/views/build/add_recurrence.html.erb:21:in `block in _app_views_build_add_recurrence_html_erb___742252605614246755_70108391455280'
+  app/views/build/add_recurrence.html.erb:5:in `_app_views_build_add_recurrence_html_erb___742252605614246755_70108391455280'
+  app/controllers/build_controller.rb:23:in `show'
+
+
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.6ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (30.9ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.4ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.3ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (17.7ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (29.3ms)
+
+
+Started GET "/" for 192.168.178.53 at 2016-02-23 11:41:54 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DummyController#index as HTML
+  Rendered dummy/index.html.erb within layouts/dummy (1.6ms)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /home/ruby/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_dummy_html_erb___2161083553742016912_69834200403840 at /home/ruby/Fachschaft/app/views/layouts/dummy.html.erb:9)
+Completed 200 OK in 15853ms (Views: 15834.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c286d580a2d49400119ee2e806c952c6bf69fd67d3588ef70eaedf0e35bc7c08.css?body=1" for 192.168.178.53 at 2016-02-23 11:42:10 +0100
+
+
+Started GET "/assets/app.self-aa3f776df688b2c3c13770c6c98ebdfa35e26212e7b5ab2735f6bf8d1486e929.css?body=1" for 192.168.178.53 at 2016-02-23 11:42:10 +0100
+
+
+Started GET "/assets/main.self-c3a6e7a3ed9bc7629a061b800a8d66aa74a16aa8614c76639f9028747cd1de4d.css?body=1" for 192.168.178.53 at 2016-02-23 11:42:10 +0100
+
+
+Started GET "/events.json?start=2016-01-31&end=2016-03-13&_=1456224130243" for 192.168.178.53 at 2016-02-23 11:42:10 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-01-31", "end"=>"2016-03-13", "_"=>"1456224130243"}
+  [1m[35mEvent Load (0.6ms)[0m  SELECT "events".* FROM "events"
+  Rendered events/index.json.jbuilder (19.9ms)
+Completed 200 OK in 46ms (Views: 33.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/sign_up" for 192.168.178.53 at 2016-02-23 11:43:40 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (0.3ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "User"]]
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered devise/shared/_links.html.erb (3.8ms)
+  Rendered devise/registrations/new.html.erb within layouts/devise (24.4ms)
+Completed 200 OK in 126ms (Views: 84.0ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/assets/fonts/themify.woff?-fvbane" for 192.168.178.53 at 2016-02-23 11:43:40 +0100
+
+
+Started GET "/users/sign_in" for 192.168.178.53 at 2016-02-23 11:43:43 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "User"]]
+  [1m[35mRole Load (0.1ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered devise/shared/_links.html.erb (5.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (40.3ms)
+Completed 200 OK in 135ms (Views: 130.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/events/new" for 192.168.178.53 at 2016-02-23 11:45:24 +0100
+Processing by EventsController#new as HTML
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT  "roles".* FROM "roles" LIMIT 6[0m
+  [1m[35mEventCategory Load (0.5ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered events/_form.html.erb (36.8ms)
+  Rendered events/new.html.erb within layouts/application (37.5ms)
+Completed 200 OK in 118ms (Views: 114.4ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:45:39 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.1ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 73ms (Views: 72.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:45:45 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.1ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 70ms (Views: 69.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events.json?start=2016-01-31&end=2016-03-13&_=1456224345599" for 192.168.178.53 at 2016-02-23 11:45:45 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-01-31", "end"=>"2016-03-13", "_"=>"1456224345599"}
+  [1m[36mEvent Load (0.3ms)[0m  [1mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (3.8ms)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.0ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 76ms (Views: 75.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-32c6232f7849b55301ad68e5b577a8f5574fd4f2795ab2914b9714310863bf59.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/app.self-aa3f776df688b2c3c13770c6c98ebdfa35e26212e7b5ab2735f6bf8d1486e929.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/application.self-c286d580a2d49400119ee2e806c952c6bf69fd67d3588ef70eaedf0e35bc7c08.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/calendar.self-3ea53eb4283d537fb439db830d0ed2dbbaf53b8cb57ac26f071c61e68771531e.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/events/build.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/app.self-b9484961b804b8b50a212b2d33687f2af3b7c8accc10073dbb04f286c2f0e4df.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/application.self-c286d580a2d49400119ee2e806c952c6bf69fd67d3588ef70eaedf0e35bc7c08.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/app.self-aa3f776df688b2c3c13770c6c98ebdfa35e26212e7b5ab2735f6bf8d1486e929.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/calendar.self-3ea53eb4283d537fb439db830d0ed2dbbaf53b8cb57ac26f071c61e68771531e.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/events/build.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/main.self-c3a6e7a3ed9bc7629a061b800a8d66aa74a16aa8614c76639f9028747cd1de4d.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/scaffolds.self-40204d318ff2371c7da8a65b04d3396f18267b3c593e4e98231c295a8a936e85.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/starter-template.self-dcd5030b46370f916f133c18ecb2f5d00884b13eb5f7c157cbcaca8f70671dd2.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/themify-icons.self-57ad4f1e68cb6e5a29e00fa91d6c98d39da5a22a773c86ac40913b3c4cac2d0f.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/ui.self-b3fc0af2f4a20ff96769d1da2f150ba65c0b0a1ac4acd11293e8d5457761b831.css?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/calendar.self-d0b2fd500bf4ae1d44279bd8bed893483458e2c088a2a4f86a404357fda1188d.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/event_categories.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/events/build.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/ui.self-dee1dbb585902aaee233ae29baf16de746c572d3510305bba254ce7b49627583.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/assets/glyphicons-halflings-regular-fe185d11a49676890d47bb783312a0cda5a44c4039214094e7957b4c040ef11c.woff2" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+
+
+Started GET "/events.json?start=2016-01-31&end=2016-03-13&_=1456224358445" for 192.168.178.53 at 2016-02-23 11:45:58 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-01-31", "end"=>"2016-03-13", "_"=>"1456224358445"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events"
+  Rendered events/index.json.jbuilder (2.4ms)
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:46:00 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.0ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 61ms (Views: 60.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:46:06 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.0ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 65ms (Views: 63.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:46:08 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.0ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 53ms (Views: 53.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 192.168.178.53 at 2016-02-23 11:46:10 +0100
+Processing by DummyController#index as HTML
+  Rendered dummy/index.html.erb within layouts/dummy (0.7ms)
+Completed 200 OK in 71ms (Views: 70.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.0ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 62ms (Views: 61.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c286d580a2d49400119ee2e806c952c6bf69fd67d3588ef70eaedf0e35bc7c08.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-32c6232f7849b55301ad68e5b577a8f5574fd4f2795ab2914b9714310863bf59.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/app.self-aa3f776df688b2c3c13770c6c98ebdfa35e26212e7b5ab2735f6bf8d1486e929.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/calendar.self-3ea53eb4283d537fb439db830d0ed2dbbaf53b8cb57ac26f071c61e68771531e.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/app.self-b9484961b804b8b50a212b2d33687f2af3b7c8accc10073dbb04f286c2f0e4df.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:12 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/application.self-c286d580a2d49400119ee2e806c952c6bf69fd67d3588ef70eaedf0e35bc7c08.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-32c6232f7849b55301ad68e5b577a8f5574fd4f2795ab2914b9714310863bf59.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/app.self-aa3f776df688b2c3c13770c6c98ebdfa35e26212e7b5ab2735f6bf8d1486e929.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/calendar.self-3ea53eb4283d537fb439db830d0ed2dbbaf53b8cb57ac26f071c61e68771531e.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/events/build.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/main.self-c3a6e7a3ed9bc7629a061b800a8d66aa74a16aa8614c76639f9028747cd1de4d.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/scaffolds.self-40204d318ff2371c7da8a65b04d3396f18267b3c593e4e98231c295a8a936e85.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/starter-template.self-dcd5030b46370f916f133c18ecb2f5d00884b13eb5f7c157cbcaca8f70671dd2.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/themify-icons.self-57ad4f1e68cb6e5a29e00fa91d6c98d39da5a22a773c86ac40913b3c4cac2d0f.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/ui.self-b3fc0af2f4a20ff96769d1da2f150ba65c0b0a1ac4acd11293e8d5457761b831.css?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/calendar.self-d0b2fd500bf4ae1d44279bd8bed893483458e2c088a2a4f86a404357fda1188d.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/event_categories.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/events/build.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/ui.self-dee1dbb585902aaee233ae29baf16de746c572d3510305bba254ce7b49627583.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/assets/glyphicons-halflings-regular-fe185d11a49676890d47bb783312a0cda5a44c4039214094e7957b4c040ef11c.woff2" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+
+
+Started GET "/events.json?start=2016-01-31&end=2016-03-13&_=1456224373210" for 192.168.178.53 at 2016-02-23 11:46:13 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-01-31", "end"=>"2016-03-13", "_"=>"1456224373210"}
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events"[0m
+  Rendered events/index.json.jbuilder (2.6ms)
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:46:29 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.0ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 69ms (Views: 68.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:47:18 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.0ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 78ms (Views: 78.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.0ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 62ms (Views: 61.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-c286d580a2d49400119ee2e806c952c6bf69fd67d3588ef70eaedf0e35bc7c08.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/events/build.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-32c6232f7849b55301ad68e5b577a8f5574fd4f2795ab2914b9714310863bf59.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/app.self-aa3f776df688b2c3c13770c6c98ebdfa35e26212e7b5ab2735f6bf8d1486e929.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/calendar.self-3ea53eb4283d537fb439db830d0ed2dbbaf53b8cb57ac26f071c61e68771531e.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/app.self-b9484961b804b8b50a212b2d33687f2af3b7c8accc10073dbb04f286c2f0e4df.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:45 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-32c6232f7849b55301ad68e5b577a8f5574fd4f2795ab2914b9714310863bf59.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/app.self-aa3f776df688b2c3c13770c6c98ebdfa35e26212e7b5ab2735f6bf8d1486e929.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/calendar.self-3ea53eb4283d537fb439db830d0ed2dbbaf53b8cb57ac26f071c61e68771531e.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/main.self-c3a6e7a3ed9bc7629a061b800a8d66aa74a16aa8614c76639f9028747cd1de4d.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/scaffolds.self-40204d318ff2371c7da8a65b04d3396f18267b3c593e4e98231c295a8a936e85.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/starter-template.self-dcd5030b46370f916f133c18ecb2f5d00884b13eb5f7c157cbcaca8f70671dd2.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/themify-icons.self-57ad4f1e68cb6e5a29e00fa91d6c98d39da5a22a773c86ac40913b3c4cac2d0f.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/ui.self-b3fc0af2f4a20ff96769d1da2f150ba65c0b0a1ac4acd11293e8d5457761b831.css?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/calendar.self-d0b2fd500bf4ae1d44279bd8bed893483458e2c088a2a4f86a404357fda1188d.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/event_categories.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/events/build.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/ui.self-dee1dbb585902aaee233ae29baf16de746c572d3510305bba254ce7b49627583.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/assets/glyphicons-halflings-regular-fe185d11a49676890d47bb783312a0cda5a44c4039214094e7957b4c040ef11c.woff2" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+
+
+Started GET "/events.json?start=2016-01-31&end=2016-03-13&_=1456224466287" for 192.168.178.53 at 2016-02-23 11:47:46 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-01-31", "end"=>"2016-03-13", "_"=>"1456224466287"}
+  [1m[35mEvent Load (0.3ms)[0m  SELECT "events".* FROM "events"
+  Rendered events/index.json.jbuilder (3.7ms)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fullcalendar/" for 192.168.178.53 at 2016-02-23 11:47:57 +0100
+Processing by FullcalendarController#index as HTML
+  Rendered fullcalendar/_calendar.html.erb (0.0ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 82ms (Views: 81.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 192.168.178.53 at 2016-02-23 11:48:35 +0100
+Processing by EventsController#new as HTML
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT  "roles".* FROM "roles" LIMIT 6[0m
+  [1m[35mEventCategory Load (0.1ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered events/_form.html.erb (8.4ms)
+  Rendered events/new.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 70ms (Views: 68.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/build/new" for 192.168.178.53 at 2016-02-23 11:48:54 +0100
+Processing by BuildController#new as HTML
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "events" ("priority", "start", "end", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["priority", 2], ["start", "2016-02-24 10:48:54.299347"], ["end", "2016-02-24 11:48:54.299347"], ["created_at", "2016-02-23 10:48:54.299938"], ["updated_at", "2016-02-23 10:48:54.299938"]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "versions" ("event", "created_at", "object_changes", "item_id", "item_type") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["event", "create"], ["created_at", "2016-02-23 10:48:54.299938"], ["object_changes", "---\npriority:\n- \n- 0\nstart:\n- \n- 2016-02-24 10:48:54.299347700 Z\nend:\n- \n- 2016-02-24 11:48:54.299347700 Z\ncreated_at:\n- \n- &1 2016-02-23 10:48:54.299938500 Z\nupdated_at:\n- \n- *1\nid:\n- \n- 7\n"], ["item_id", 7], ["item_type", "Event"]]
+  [1m[35m (98.8ms)[0m  COMMIT
+Redirected to http://192.168.178.73:3000/events/7/build/build
+Completed 302 Found in 117ms (ActiveRecord: 100.6ms)
+
+
+Started GET "/events/7/build/build" for 192.168.178.53 at 2016-02-23 11:48:54 +0100
+Processing by BuildController#show as HTML
+  Parameters: {"event_id"=>"7", "id"=>"build"}
+  [1m[36mEvent Load (0.7ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  SELECT "roles".id FROM "roles" INNER JOIN "events_roles" ON "roles"."id" = "events_roles"."role_id" WHERE "events_roles"."event_id" = $1  [["event_id", 7]]
+  [1m[36mRole Load (0.4ms)[0m  [1mSELECT  "roles".* FROM "roles" LIMIT 6[0m
+  [1m[35mEventCategory Load (0.2ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered build/_form.html.erb (16.1ms)
+  Rendered build/build.html.erb within layouts/application (17.3ms)
+Completed 200 OK in 90ms (Views: 78.8ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/build/new" for 192.168.178.53 at 2016-02-23 11:48:55 +0100
+Processing by BuildController#new as HTML
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "events" ("priority", "start", "end", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["priority", 2], ["start", "2016-02-24 10:48:55.629992"], ["end", "2016-02-24 11:48:55.629992"], ["created_at", "2016-02-23 10:48:55.630522"], ["updated_at", "2016-02-23 10:48:55.630522"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "versions" ("event", "created_at", "object_changes", "item_id", "item_type") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["event", "create"], ["created_at", "2016-02-23 10:48:55.630522"], ["object_changes", "---\npriority:\n- \n- 0\nstart:\n- \n- 2016-02-24 10:48:55.629992600 Z\nend:\n- \n- 2016-02-24 11:48:55.629992600 Z\ncreated_at:\n- \n- &1 2016-02-23 10:48:55.630522000 Z\nupdated_at:\n- \n- *1\nid:\n- \n- 8\n"], ["item_id", 8], ["item_type", "Event"]]
+  [1m[35m (71.2ms)[0m  COMMIT
+Redirected to http://192.168.178.73:3000/events/8/build/build
+Completed 302 Found in 77ms (ActiveRecord: 71.7ms)
+
+
+Started GET "/events/8/build/build" for 192.168.178.53 at 2016-02-23 11:48:55 +0100
+Processing by BuildController#show as HTML
+  Parameters: {"event_id"=>"8", "id"=>"build"}
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  SELECT "roles".id FROM "roles" INNER JOIN "events_roles" ON "roles"."id" = "events_roles"."role_id" WHERE "events_roles"."event_id" = $1  [["event_id", 8]]
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT  "roles".* FROM "roles" LIMIT 6[0m
+  [1m[35mEventCategory Load (0.2ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered build/_form.html.erb (8.0ms)
+  Rendered build/build.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 107ms (Views: 103.6ms | ActiveRecord: 0.9ms)
