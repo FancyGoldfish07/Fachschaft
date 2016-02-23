@@ -69,6 +69,9 @@ gem 'wicked', '~> 1.2', '>= 1.2.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Mailer
+gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 8.2', '>= 8.2.2'
@@ -87,8 +90,6 @@ group :development do
 
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
 
-  # Mailer
-  gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
 
 end
