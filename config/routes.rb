@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'fullcalendar' => 'fullcalendar#index'
   get 'fullcalendar/index.html.erb' => 'fullcalendar#index'
 
+  # get 'newsletters/new.html.erb' => 'newsletter'
+
   #Dummy route
   root "dummy#index"
   # Example of regular route:

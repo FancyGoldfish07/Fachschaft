@@ -1,3 +1,11 @@
 Hi <%= @subscriber.name %>,
 
-Here is our weekly newsletter.
+<%= @text %>
+
+<% @newsletter_events.each do |event| %>
+    Title: <%= event.title %>
+    Place: <%= event.ort %>
+    Time: <%= event.start.strftime("%d.%m.%Y, %H:%M") %>
+    Description:
+    <%= event.description %>
+<%end %>

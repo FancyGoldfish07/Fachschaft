@@ -12,7 +12,7 @@ class Newsletter < ActiveRecord::Base
     @events.each do|u|
       @date = u.start
       # Event needs to be flagged and takes place in desired period
-      if u.flag? and u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
+      if u.reviewed? and u.flag? and u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
         # Adds event to array
         @newsletter_events.push(u)
       end
