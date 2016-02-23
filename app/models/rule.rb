@@ -9,9 +9,10 @@ class Rule < ActiveRecord::Base
   end
   #Returns the Ice_Cube rule
   def getRule
+    dayParam = day + 1
     if self.month == 0
       #Rails week at least for now starts sundays
-      IceCube::Rule.weekly(week).day((day +1) )
+      IceCube::Rule.weekly(week).day(dayParam )
     else
       IceCube::Rule.monthly(month).day_of_week(day => [days])
       end
