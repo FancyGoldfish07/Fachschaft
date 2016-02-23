@@ -27,6 +27,9 @@
 
 
   <div class="form-actions">
+    <%if @step != @wizard_steps.first %>
+        <%= link_to "Zurück",previous_wizard_path %>
+    <%end %>
     <%= f.submit "Continue" %>
   </div>
 <% end %></div>

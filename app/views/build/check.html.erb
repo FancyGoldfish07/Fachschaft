@@ -61,6 +61,9 @@
       </p>
       <%= f.input :reviewed, :as => :hidden, :input_html => { :value => true } %>
           <div class="actions">
+            <%if @step != @wizard_steps.first %>
+                <%= link_to "Zurück",previous_wizard_path %>
+            <%end %>
         <%= f.submit "Absenden" %>
       </div>
   <% end %>
