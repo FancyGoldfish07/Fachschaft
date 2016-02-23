@@ -1,5 +1,5 @@
 <div class="nested-fields">
-<%= f.input :day, label: "Wochentag", collection: Rule.DAYS.each_with_index.map {|name, index| [name,index]}, selected: :day %>
+<%= f.input :day, label: "Wochentag", collection: Rule.DAYS.each_with_index.map {|name, index| [name,index]} %>
 <%= f.input :week, label: "Wochenwiederholung", input_html: { min: 1}  %>
   <% #We decided this part is not needed. Functionality would be there though.
   %>
