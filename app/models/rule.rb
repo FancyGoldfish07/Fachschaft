@@ -28,6 +28,9 @@ class Rule < ActiveRecord::Base
   end
   private
   def set_defaults
+    if day.blank?
+      self.day = 0
+    end
     if month.blank?
       self.month =0
     end
