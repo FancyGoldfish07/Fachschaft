@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :newsletters
+  resources :subscribers
+
   resources :excludes
   resources :rules
   resources :recurrences
@@ -73,4 +77,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+
 end

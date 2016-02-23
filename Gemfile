@@ -1,7 +1,12 @@
 source 'https://rubygems.org'
+  # Mailer
+  gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
+  gem 'mailkick'
 
-  gem 'maktoub'
+# Background Tasks
+ gem 'delayed_job_active_record'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
   gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
@@ -88,8 +93,7 @@ group :development do
 
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
 
-  # Mailer
-  gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+
 
 
 end

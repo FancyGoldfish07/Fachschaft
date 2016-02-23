@@ -12,12 +12,12 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-#We need a username and a username should be unique
+  #We need a username and a username should be unique
   validates :username, :presence => true,
-  :uniqueness => true
+            :uniqueness => true
   #No email as username
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
-#sets the Role of the user. Works only if roleName is part of Role.POSSIBLE_ROLES
+  #sets the Role of the user. Works only if roleName is part of Role.POSSIBLE_ROLES
   def setRole(roleName)
     #Is the role part of possible roles
     if Role.POSSIBLE_ROLES.include? roleName
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     else
 
       false
-      end
+    end
   end
   #Checks if the current user is an admin
   #returns a boolean

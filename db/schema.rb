@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222215602) do
+ActiveRecord::Schema.define(version: 20160222171444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "event_categories", force: :cascade do |t|
     t.string   "name"
@@ -59,6 +75,29 @@ ActiveRecord::Schema.define(version: 20160222215602) do
 
   add_index "excludes", ["recurrence_id"], name: "index_excludes_on_recurrence_id", using: :btree
 
+  create_table "mailkick_opt_outs", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.boolean  "active",     default: true, null: false
+    t.string   "reason"
+    t.string   "list"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mailkick_opt_outs", ["email"], name: "index_mailkick_opt_outs_on_email", using: :btree
+  add_index "mailkick_opt_outs", ["user_id", "user_type"], name: "index_mailkick_opt_outs_on_user_id_and_user_type", using: :btree
+
+  create_table "newsletters", force: :cascade do |t|
+    t.string   "subject"
+    t.text     "description"
+    t.datetime "from"
+    t.datetime "to"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "recurrences", force: :cascade do |t|
     t.date     "start"
     t.date     "end"
@@ -88,6 +127,13 @@ ActiveRecord::Schema.define(version: 20160222215602) do
   end
 
   add_index "rules", ["recurrence_id"], name: "index_rules_on_recurrence_id", using: :btree
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -133,3 +179,5 @@ ActiveRecord::Schema.define(version: 20160222215602) do
   add_foreign_key "excludes", "recurrences"
   add_foreign_key "rules", "recurrences", on_delete: :cascade
 end
+
+

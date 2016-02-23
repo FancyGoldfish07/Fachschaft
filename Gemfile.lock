@@ -78,9 +78,12 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
-    css_parser (1.3.7)
-      addressable
     debug_inspector (0.0.2)
+    delayed_job (4.1.1)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.1.0)
+      activerecord (>= 3.0, < 5)
+      delayed_job (>= 3.0, < 5)
     devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -106,7 +109,6 @@ GEM
       momentjs-rails (>= 2.9.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -128,10 +130,7 @@ GEM
     mailgun-ruby (1.0.3)
       json (~> 1.8)
       rest-client (~> 1.6)
-    maktoub (0.5.3)
-      nokogiri
-      premailer-rails
-      rails (>= 4.0.0)
+    mailkick (0.1.3)
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
@@ -145,12 +144,6 @@ GEM
       activesupport (>= 3.0, < 6.0)
       request_store (~> 1.1)
     pg (0.18.4)
-    premailer (1.8.6)
-      css_parser (>= 1.3.6)
-      htmlentities (>= 4.0.0)
-    premailer-rails (1.9.0)
-      actionmailer (>= 3, < 5)
-      premailer (~> 1.7, >= 1.7.9)
     puma (2.16.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
@@ -275,6 +268,7 @@ DEPENDENCIES
   byebug (~> 8.2, >= 8.2.2)
   capybara (~> 2.6, >= 2.6.2)
   cocoon (~> 1.2, >= 1.2.7)
+  delayed_job_active_record
   devise (~> 3.5, >= 3.5.6)
   factory_girl_rails (~> 4.6)
   font-awesome-rails (~> 4.5, >= 4.5.0.1)
@@ -283,7 +277,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails (~> 4.1)
   mailgun-ruby (~> 1.0.3)
-  maktoub
+  mailkick
   momentjs-rails (>= 2.8.1)!
   paper_trail (~> 4.1)
   pg (~> 0.18.4)
