@@ -11,7 +11,10 @@
       <p>Tage an denen <%= @recurrence.events.first.title %> nicht stattfindet:</p>
       <%= f.collection_select :exclude_ids, @recurrence.getDatesStartFinish, :to_s, :to_s, {selected: @recurrence.excludes}, multiple: true, include_hidden: false %>
       <div class="actions">
-        <%= f.submit "Continue" %>
+     <%if @step != @wizard_steps.first %>
+            <%= link_to "Zurück",previous_wizard_path %>
+            <%end %>
+                <%= f.submit "Continue" %>
       </div>
   <% end %>
 </div>
