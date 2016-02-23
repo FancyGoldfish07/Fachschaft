@@ -34,6 +34,14 @@ $(document).ready ->
     height: 500
     events: '/events.json'
 
+  $('#calendar_filter').fullCalendar
+    editable: false,
+    defaultView: 'month',
+    height: 500
+    events: '/events.json'
+
+
+
   $('#calendar_editable').fullCalendar
     editable: true,
     theme: false,
