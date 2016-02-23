@@ -15,7 +15,7 @@ module DeviseHelper
 
       <b>#{sentence}</b>
 </div>
-<div class="col-md-8">
+<div class="col-md-12">
       <ul>#{messages}</ul>
 </div>
     </div>

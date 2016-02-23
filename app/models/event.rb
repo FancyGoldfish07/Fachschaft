@@ -3,14 +3,13 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :roles
   belongs_to :event_category
   belongs_to :recurrence
-  after_initialize :set_defaults, :if => :new_record?
+  after_initialize :set_defaults
   after_save :check_reviewed
+  #Uses paper trail
+  has_paper_trail
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
-#The duration of the event in seconds
-  def duration
-  return ((self.end - self.start)* 24 * 60 * 60)
-end
+
   #Set backgroundColor based on priority. This is used in the JSON
   def backgroundColor
     if self.highest?
@@ -76,10 +75,10 @@ end
       self.priority ||= :medium
       end
       if self.start.blank?
-        start = DateTime.now
+        self.start = Time.now + 1.day
       end
       if self.end.blank?
-        self.end = start + 1.hour
+        self.end = start.to_time + 1.hour
       end
     end
   end
