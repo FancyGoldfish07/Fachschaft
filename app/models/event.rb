@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   belongs_to :recurrence
   after_initialize :set_defaults, :if => :new_record?
   after_save :check_reviewed
+  #Uses paper trail
+  has_paper_trail
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
 #The duration of the event in seconds

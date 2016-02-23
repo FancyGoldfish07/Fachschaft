@@ -1,6 +1,11 @@
 source 'https://rubygems.org'
+  # Mailer
+  gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
+  gem 'mailkick'
 
+# Background Tasks
+ gem 'delayed_job_active_record'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
   gem 'rails', '4.2.5.1'
@@ -45,6 +50,9 @@ gem 'cocoon', '~> 1.2', '>= 1.2.7'
 #simple Form
 gem 'simple_form', '~> 3.2.1'
 
+#Use Paper Trail
+gem 'paper_trail', '~> 4.1'
+
 # Use ActiveModel has_secure_password
   gem 'bcrypt', '~> 3.1.7'
 
@@ -69,8 +77,6 @@ gem 'wicked', '~> 1.2', '>= 1.2.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Mailer
-gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -89,8 +95,6 @@ group :development do
   gem 'spring', '~> 1.6', '>= 1.6.3'
 
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
-
-
 
 end
 

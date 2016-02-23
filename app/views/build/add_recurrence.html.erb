@@ -1,0 +1,32 @@
+<div class="panel-heading">
+<h3>Widerholung</h3>
+</div>
+<div class="panel-body">
+<%= simple_form_for @recurrence, url: wizard_path do |f| %>
+  <%= f.error_notification %>
+
+
+
+   <p> Diese Wiederholung geht vom <%= @recurrence.start %> bis zum</p>
+<%= f.input :end, label: false %>
+      <br>
+    <h3>Rules</h3>
+<div id="rules">
+
+<%= f.simple_fields_for :rules do |rule| %>
+      <%= render "rule_fields", :f => rule %>
+
+    <% end %>
+<div id="links">
+<%= link_to_add_association 'Neue Regel', f, :rules %>
+  </div>
+</div>
+    <br>
+
+
+
+
+  <div class="form-actions">
+    <%= f.submit "Continue" %>
+  </div>
+<% end %></div>

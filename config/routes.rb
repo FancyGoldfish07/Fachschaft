@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+
+  resources :newsletters
+  resources :subscribers
+
   resources :excludes
   resources :rules
   resources :recurrences
   resources :event_categories
   resources :events do
-    resources :build, controller: "events/build"
-
+    resources :build
   end
+
+  resources :build
+
   devise_for :users
 
   #Routes just for our lovely admin
@@ -71,4 +77,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+
 end

@@ -29,7 +29,17 @@ Rails.application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
-  config.action_mailer.delivery_method = :test
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for mailgun
+  config.action_mailer.smtp_settings = {
+
+      :port           => 587,
+      :address        => "smtp.mailgun.org",
+      :domain         => 'sandbox4ea8eba4cefb460db058755433978bcd.mailgun.org',
+      :user_name      => 'postmaster@sandbox4ea8eba4cefb460db058755433978bcd.mailgun.org',
+      :password       => '5e08118ec55cb1a5d24babe40f0ea202',
+      :authentication => :plain,
+  }
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
