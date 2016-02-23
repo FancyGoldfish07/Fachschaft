@@ -1,0 +1,141 @@
+
+
+<%= form_for(@event, :html => {:role => 'form'})  do |f| %>
+    <% if @event.errors.any? %>
+
+
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+          <ul>
+            <% @event.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :title, :for => 'exampleInputEmail1' %><br>
+      <%= f.text_field :title, :type => 'email', :class => 'form-control', :label => 'Titel', :placeholder=> 'email' %>
+    </div>
+
+<div class="row">
+    <div class='col-md-6'>
+      <div class="form-group">
+        Start:
+        <div class='input-group date' id='datetimepicker1'>
+          <input type='datetime' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class="form-group">
+        Ende:<div class='input-group date' id='datetimepicker2'>
+          <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+    <!-- TODO: Maybe move into a layout -->
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker2').datetimepicker({
+          useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker1").on("dp.change", function (e) {
+          $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+
+        });
+        $("#datetimepicker1").on("dp.change", function (e) {
+          $('#datetimepicker2').data("DateTimePicker").maxDate(e.date);
+        });
+      });
+    </script>
+
+
+<!--
+    <div class="form-group">
+      <%= f.label :start %><br>
+      <%= f.datetime_select :start, :type => 'time', :class => 'form-control', :label => 'Startzeit', :placeholder => 'DD-MM-YYYY'%>
+    </div>
+-->
+
+
+
+    <div class="form-group">
+      <%= f.label :priority %><br>
+      <%= f.select(:priority, Event.priorities.keys.map {|priority| [priority.titleize,priority]}, :type => 'number', :class => 'form-control text-center', :label => 'Priorität') %>
+    </div>
+
+    <!-- Single button
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Action <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+-->
+
+    <div class="field">
+      <%= f.label :flag %><br>
+      <%= f.check_box :flag %>
+    </div>
+    <div class="field">
+      <%= f.label :imageURL %><br>
+      <%= f.text_area :imageURL, :class => 'form-control'%>
+    </div>
+    <div class="field">
+      <%= f.label :url %><br>
+      <%= f.text_area :url, :class => 'form-control' %>
+    </div>
+
+    <!--
+    <div class="field">
+      <%= f.label :end %><br>
+      <%= f.datetime_select :end, :class => 'form-control' %>
+    </div>
+    -->
+
+    <div class="field">
+      <%= f.label :ort %><br>
+      <%= f.text_area :ort, :class => 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, :class => 'form-control' %>
+    </div>
+    <div class="field">
+
+      <%= f.collection_select :role_ids, Role.getRoles, :id, :name, {selected: @event.role_ids},
+                              multiple: true, :class => 'form-control' %>
+
+    </div>
+    <div class="field">
+      <p>Eventtyp:</p>
+      <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id}, :class => 'form-control' %>
+
+    </div>
+
+
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

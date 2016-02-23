@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fachschaft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300,700' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+<!--[if lt IE 9]>
+<div class="lt-ie9-bg">
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
+  <p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+</div>
+<![endif]-->
+
+<div class="body-wide body-auth">
+
+  <div id="content" class="fill">
+
+    <%= yield %>
+
+  </div>
+</div>
+</body>
+</html>
