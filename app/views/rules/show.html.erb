@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @rule.getRule.to_s %>
+</p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @rule.day %>
+</p>
+
+<p>
+  <strong>Recurrence:</strong>
+  <%= @rule.recurrence %>
+</p>
+
+<%= link_to 'Edit', edit_rule_path(@rule) %> |
+<%= link_to 'Back', rules_path %>

@@ -220,9 +220,13 @@ td, th {
 }
 
 @font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url(../fonts/glyphicons-halflings-regular.eot);
-  src: url(../fonts/glyphicons-halflings-regular.eot?#iefix) format("embedded-opentype"), url(../fonts/glyphicons-halflings-regular.woff2) format("woff2"), url(../fonts/glyphicons-halflings-regular.woff) format("woff"), url(../fonts/glyphicons-halflings-regular.ttf) format("truetype"), url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format("svg")
+font-family: 'Glyphicons Halflings';
+src: font-url('glyphicons-halflings-regular.eot');
+src: font-url('glyphicons-halflings-regular.eot?#iefix') format("embedded-opentype"),
+font-url('glyphicons-halflings-regular.woff2') format("woff2"),
+font-url('glyphicons-halflings-regular.woff') format("woff"),
+font-url('glyphicons-halflings-regular.ttf') format("truetype"),
+font-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format("svg")
 }
 
 .glyphicon {
@@ -13115,7 +13119,7 @@ body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  background: image-url('bg-pattern/bg-pattern1.png') #fff
+  background: image-url('background/2.jpg') #fff
 }
 
 .body-wide > .main-container {
@@ -13132,9 +13136,14 @@ body {
   padding-bottom: 50px
 }
 
-.col-md-12 ul, b{
-  list-style-type: none;
-  color: #555555;
-  font-size: larger;
-  font: bolder;
+.panel-default .panel-body .form-group .row {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+section{
+  a{
+
+  }
 }

@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
+
   resources :newsletters
   resources :subscribers
+
+  resources :excludes
+  resources :rules
+  resources :recurrences
   resources :event_categories
-  resources :events
+  resources :events do
+    resources :build, controller: "events/build"
 
-
-  mount Maktoub::Engine => '/newsletter'
-
+  end
   devise_for :users
-  # devise_for :users, controllers: { sessions: "users/registrations_controller" }
+
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
 
@@ -17,6 +21,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  get 'home' => 'home#index'
+  get 'fullcalendar' => 'fullcalendar#index'
+  get 'fullcalendar/index.html.erb' => 'fullcalendar#index'
 
   #Dummy route
   root "dummy#index"

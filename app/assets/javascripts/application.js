@@ -14,9 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require vendor
-//= require ui
+//= exclude ui
 //= require app
 //= require moment
 //= require fullcalendar
+//= require cocoon
 //= require_tree .
+
+
+
+
 

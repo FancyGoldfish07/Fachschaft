@@ -1,434 +1,79 @@
+
 <!DOCTYPE html>
-<!--[if lt IE 8]>
-<html class="no-js lt-ie8"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
+<html>
 <head>
-  <title>Fachschaft</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300,700' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
 </head>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
 
-<body data-ng-app="app" id="app" class="app ng-scope" data-custom-page="" data-off-canvas-nav="" data-ng-controller="AppCtrl" data-ng-class=" {'layout-boxed': admin.layout === 'boxed'} ">
-<!--[if lt IE 9]>
-<div class="lt-ie9-bg">
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
-  <p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-</div>
-<![endif]-->
 
-<!-- ngInclude: 'app/layout/header.html' -->
-<section data-ng-include=" 'app/layout/header.html' " id="header" class="header-container ng-scope header-fixed bg-white" data-ng-class="{ 'header-fixed': admin.fixedHeader,
-                                  'bg-white': ['11','12','13','14','15','16','21'].indexOf(admin.skin) >= 0,
-                                  'bg-dark': admin.skin === '31',
-                                  'bg-primary': ['22','32'].indexOf(admin.skin) >= 0,
-                                  'bg-success': ['23','33'].indexOf(admin.skin) >= 0,
-                                  'bg-info-alt': ['24','34'].indexOf(admin.skin) >= 0,
-                                  'bg-warning': ['25','35'].indexOf(admin.skin) >= 0,
-                                  'bg-danger': ['26','36'].indexOf(admin.skin) >= 0
-                 }" style="">
-  <header class="top-header clearfix ng-scope">
+  <title>Fachschaft</title>
 
-    <!-- Logo -->
-    <div class="logo bg-dark" ng-class="{ 'bg-dark': ['11','31'].indexOf(admin.skin) >= 0,
-                     'bg-white': admin.skin === '21',
-                     'bg-primary': ['12','22','32'].indexOf(admin.skin) >= 0,
-                     'bg-success': ['13','23','33'].indexOf(admin.skin) >= 0,
-                     'bg-info-alt': ['14','24','34'].indexOf(admin.skin) >= 0,
-                     'bg-warning': ['15','25','35'].indexOf(admin.skin) >= 0,
-                     'bg-danger': ['16','26','36'].indexOf(admin.skin) >= 0,
-                    }">
-      <a href="#/">
-        <span class="logo-icon glyphicon glyphicon-leaf"></span>
-        <span class="logo-text ng-binding">Slim</span>
-      </a>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300,700' rel='stylesheet' type='text/css'>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <![endif]-->
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="expand" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Fachschaft</a>
     </div>
-
-    <!-- needs to be put after logo to make it work -->
-    <div class="menu-button" toggle-off-canvas="">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </div>
-
-    <div class="top-nav">
-      <ul class="nav-left list-unstyled">
-        <li>
-          <a href="#/" data-toggle-nav-collapsed-min="" class="toggle-min"><i class="ti-menu"></i></a>
-        </li>
-        <li class="dropdown hidden-xs" uib-dropdown="" is-open="status.isopenSettings">
-          <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-settings"></i></a>
-          <div class="dropdown-menu with-arrow panel panel-default admin-options dropdown-menu-scaleIn" ui-not-close-on-click="">
-            <div class="panel-heading"> Admin Options</div>
-            <ul class="list-group">
-              <li class="list-group-item">
-                <p>Layouts Style</p>
-                <label class="ui-radio"><input name="layout" type="radio" value="boxed" ng-model="admin.layout" class="ng-pristine ng-untouched ng-valid" aria-checked="false" aria-invalid="false"><span>Boxed</span></label>
-                <label class="ui-radio"><input name="layout" type="radio" value="wide" ng-model="admin.layout" class="ng-pristine ng-untouched ng-valid" aria-checked="true" aria-invalid="false"><span>Wide</span></label>
-              </li>
-              <li class="list-group-item">
-                <p>Menu Style</p>
-                <label class="ui-radio"><input name="menu" type="radio" value="vertical" ng-model="admin.menu" class="ng-pristine ng-untouched ng-valid" aria-checked="true" aria-invalid="false"><span>Vertical</span></label>
-                <label class="ui-radio"><input name="menu" type="radio" value="horizontal" ng-model="admin.menu" class="ng-pristine ng-untouched ng-valid" aria-checked="false" aria-invalid="false"><span>Horizontal</span></label>
-              </li>
-              <li class="list-group-item">
-                <p>Additional</p>
-                <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option1" ng-model="admin.fixedHeader" class="ng-pristine ng-untouched ng-valid" aria-checked="true" aria-invalid="false"><span>Fixed Top Header</span></label>
-                <br>
-                <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option1" ng-model="admin.fixedSidebar" class="ng-pristine ng-untouched ng-valid" aria-checked="true" aria-invalid="false"><span>Fixed Sidebar Menu</span></label>
-              </li>
-              <li class="list-group-item">
-                <p>
-                  <span>Page Transition: </span>
-                  <span class="space"></span>
-                  <select ng-model="admin.pageTransition" ng-options="ageTransitionOpt.name for ageTransitionOpt in pageTransitionOpts" class="ng-pristine ng-untouched ng-valid" aria-invalid="false">
-                    <option label="Fade up" value="object:85" selected="selected">Fade up</option>
-                    <option label="Scale up" value="object:86">Scale up</option>
-                    <option label="Slide in from right" value="object:87">Slide in from right</option>
-                    <option label="Flip Y" value="object:88">Flip Y</option>
-                  </select>
-                </p>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="dropdown hidden-xs" uib-dropdown="" is-open="status.isopenPalette">
-          <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-paint-bucket"></i></a>
-          <div class="dropdown-menu with-arrow panel panel-default skin-options dropdown-menu-scaleIn" ui-not-close-on-click="">
-            <div class="panel-heading">Skin Options</div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-xs-4">
-                  <label class="skin-check">
-                    <input type="radio" name="skin" value="11" ng-model="admin.skin" class="ng-pristine ng-untouched ng-valid" aria-checked="true" aria-invalid="false">
-                                    <span class="skin-item bg-body">
-                                        <span class="overlay"><span class="glyphicon glyphicon-ok"></span></span>
-                                        <span class="bg-dark item-header"></span>
-                                        <span class="bg-white item-header"></span>
-                                        <span class="bg-dark"></span>
-                                    </span>
-                  </label>
-
-                </div>
-                <div class="col-xs-4">
-                  <label class="skin-check">
-                    <input type="radio" name="skin" value="21" ng-model="admin.skin" class="ng-pristine ng-untouched ng-valid" aria-checked="false" aria-invalid="false">
-                                    <span class="skin-item bg-body">
-                                        <span class="overlay"><span class="glyphicon glyphicon-ok"></span></span>
-                                        <span class="bg-white item-header"></span>
-                                        <span class="bg-white item-header"></span>
-                                        <span class="bg-dark"></span>
-                                    </span>
-                  </label>
-
-                </div>
-                <div class="col-xs-4">
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </li>
-        <li class="search-box visible-md visible-lg">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="ti-search"></i></span>
-            <input type="text" class="form-control" placeholder="Search...">
-          </div>
-        </li>
-        <li class="dropdown" uib-dropdown="" is-open="status.isopenEmail">
-          <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ti-email"></i>
-            <span class="badge badge-danger">3</span>
-          </a>
-          <div class="dropdown-menu with-arrow panel panel-default dropdown-menu-scaleIn">
-            <div class="panel-heading">
-              You have 3 mails.
-            </div>
-            <ul class="list-group">
-              <li class="list-group-item">
-                <a href="javascript:;" class="media">
-                                <span class="media-left media-icon">
-                                    <span class="btn-icon btn-icon-round btn-warning"><i class="ti-email"></i></span>
-                                </span>
-                  <div class="media-body">
-                    <span class="block">Lisa sent you a mail</span>
-                    <span class="text-muted block">2min ago</span>
-                  </div>
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="javascript:;" class="media">
-                                <span class="media-left media-icon">
-                                    <span class="btn-icon btn-icon-round btn-info"><i class="ti-email"></i></span>
-                                </span>
-                  <div class="media-body">
-                    <span class="block">Jane sent you a mail</span>
-                    <span class="text-muted">3 hours ago</span>
-                  </div>
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="javascript:;" class="media">
-                                <span class="media-left media-icon">
-                                    <span class="btn-icon btn-icon-round btn-success"><i class="ti-email"></i></span>
-                                </span>
-                  <div class="media-body">
-                    <span class="block">Lynda sent you a mail</span>
-                    <span class="text-muted">9 hours ago</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <div class="panel-footer">
-              <a href="#/mail/inbox">Show all mails.</a>
-            </div>
-          </div>
-        </li>
-        <li class="dropdown" uib-dropdown="" is-open="status.isopenBell">
-          <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ti-bell"></i>
-            <span class="badge badge-info">3</span>
-          </a>
-          <div class="dropdown-menu with-arrow panel panel-default dropdown-menu-scaleIn">
-            <div class="panel-heading">
-              You have 3 notifications.
-            </div>
-            <ul class="list-group">
-              <li class="list-group-item">
-                <a href="javascript:;" class="media">
-                                <span class="media-left media-icon">
-                                    <span class="btn-icon btn-icon-round btn-success"><i class="ti-bell"></i></span>
-                                </span>
-                  <div class="media-body">
-                    <span class="block">New tasks needs to be done</span>
-                    <span class="text-muted block">2min ago</span>
-                  </div>
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="javascript:;" class="media">
-                                <span class="media-left media-icon">
-                                    <span class="btn-icon btn-icon-round btn-info"><i class="ti-bell"></i></span>
-                                </span>
-                  <div class="media-body">
-                    <span class="block">Change your password</span>
-                    <span class="text-muted">3 hours ago</span>
-                  </div>
-                </a>
-              </li>
-              <li class="list-group-item">
-                <a href="javascript:;" class="media">
-                                <span class="media-left media-icon">
-                                    <span class="btn-icon btn-icon-round btn-danger"><i class="ti-bell"></i></span>
-                                </span>
-                  <div class="media-body">
-                    <span class="block">New feature added</span>
-                    <span class="text-muted">9 hours ago</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <div class="panel-footer">
-              <a href="#/mail/inbox">Show all notifications.</a>
-            </div>
-          </div>
-        </li>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Start</a></li>
+        <li><a href="/fullcalendar/">Kalenderverwaltung</a></li>
+        <li><a href="../">Userverwaltung</a></li>
+        <li><a href="../newsletter">Newsletter</a></li>
       </ul>
-
-      <ul class="nav-right pull-right list-unstyled">
-
-        <li class="dropdown text-normal nav-profile" uib-dropdown="" is-open="status.isopenProfile">
-          <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="images/g1.jpg" alt="" class="img-circle img30_30">
-                    <span class="hidden-xs">
-                        <span data-translate="LISA" class="ng-scope">Lisa</span>
-                    </span>
-          </a>
-          <ul class="dropdown-menu with-arrow pull-right dropdown-menu-scaleIn">
-            <li>
-              <a href="#/page/profile">
-                <i class="ti-user"></i>
-                <span data-translate="MY_PROFILE" class="ng-scope">My Profile</span>
-              </a>
-            </li>
-            <li>
-              <a href="#/app/tasks">
-                <i class="ti-check-box"></i>
-                <span data-translate="MY_TASKS" class="ng-scope">My Tasks</span>
-              </a>
-            </li>
-            <li>
-              <a href="#/page/lock-screen">
-                <i class="ti-lock"></i>
-                <span data-translate="LOCK" class="ng-scope">Lock</span>
-              </a>
-            </li>
-            <li>
-              <a href="#/page/signin">
-                <i class="ti-export"></i>
-                <span data-translate="LOG_OUT" class="ng-scope">Logout</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="dropdown langs text-normal ng-scope" uib-dropdown="" is-open="status.isopenLang" data-ng-controller="LangCtrl">
-          <a href="javascript:;" class="dropdown-toggle  dropdown-toggleactive-flag" uib-dropdown-toggle="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="flag flags-american"></div>
-          </a>
-          <ul class="dropdown-menu with-arrow  pull-right list-langs dropdown-menu-scaleIn" role="menu">
-            <li data-ng-show="lang !== 'English' " aria-hidden="true" class="ng-hide">
-              <a href="javascript:;" data-ng-click="setLang('English')">
-                <div class="flag flags-american"></div>
-                English</a></li>
-            <li data-ng-show="lang !== 'Español' " aria-hidden="false" class="">
-              <a href="javascript:;" data-ng-click="setLang('Español')">
-                <div class="flag flags-spain"></div>
-                Español</a></li>
-            <li data-ng-show="lang !== 'Portugal' " aria-hidden="false" class="">
-              <a href="javascript:;" data-ng-click="setLang('Portugal')">
-                <div class="flag flags-portugal"></div>
-                Portugal</a></li>
-            <li data-ng-show="lang !== '中文' " aria-hidden="false" class="">
-              <a href="javascript:;" data-ng-click="setLang('中文')">
-                <div class="flag flags-china"></div>
-                中文</a></li>
-            <li data-ng-show="lang !== '日本語' " aria-hidden="false" class="">
-              <a href="javascript:;" data-ng-click="setLang('日本語')">
-                <div class="flag flags-japan"></div>
-                日本語</a></li>
-            <li data-ng-show="lang !== 'Русский язык' " aria-hidden="false" class="">
-              <a href="javascript:;" data-ng-click="setLang('Русский язык')">
-                <div class="flag flags-russia"></div>
-                Русский язык</a></li>
-          </ul>
-        </li>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
-    </div>
-
-  </header>
-</section>
-
-<div class="main-container">
-  <!-- ngInclude: 'app/layout/sidebar.html' -->
-  <aside data-ng-include=" 'app/layout/sidebar.html' " id="nav-container" class="nav-container ng-scope nav-fixed nav-vertical bg-dark" data-ng-class="{ 'nav-fixed': admin.fixedSidebar,
-                                    'nav-horizontal': admin.menu === 'horizontal',
-                                    'nav-vertical': admin.menu === 'vertical',
-                                    'bg-white': ['31','32','33','34','35','36'].indexOf(admin.skin) >= 0,
-                                    'bg-dark': ['31','32','33','34','35','36'].indexOf(admin.skin) < 0
-                   }">
-    <div class="nav-wrapper ng-scope">
-      <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
-        <ul id="nav" class="nav" data-slim-scroll="" data-collapse-nav="" data-highlight-active="" style="overflow: hidden; width: auto; height: 100%;">
-          <li class="active"><a href="#/dashboard">
-            <i class="ti-home"></i><span data-translate="DASHBOARD" class="ng-scope">Dashboard</span> </a></li>
-          <li class="">
-            <a href="#/ui"><i class="ti-wand"></i><span data-translate="UI_KIT" class="ng-scope">Kalender</span></a>
-            <ul style="display: none;">
-              <li class="">
-                <a href="#/ui/typography"><i class="ti-angle-right"></i><span data-translate="TYPOGRAPHY" class="ng-scope">Typography</span></a>
-              </li>
-              <li class="">
-                <a href="#/ui/icons"><i class="ti-angle-right"></i><span data-translate="ICONS" class="ng-scope">Icons</span>
-                  <span class="badge badge-info">3</span></a></li>
-              <li class="">
-                <a href="#/ui/buttons"><i class="ti-angle-right"></i><span data-translate="BUTTONS" class="ng-scope">Buttons</span></a>
-              </li>
-              <li class="">
-                <a href="#/ui/components"><i class="ti-angle-right"></i><span data-translate="COMPONENTS" class="ng-scope">Components</span>
-                  <span class="badge badge-danger">18</span></a></li>
-              <li class="">
-                <a href="#/ui/boxes"><i class="ti-angle-right"></i><span data-translate="BOXES" class="ng-scope">Boxes</span></a>
-              </li>
-              <li class="">
-                <a href="#/ui/widgets"><i class="ti-angle-right"></i><span data-translate="WIDGETS" class="ng-scope">Widgets</span>
-                  <span class="badge badge-success">13</span></a></li>
-              <li class="">
-                <a href="#/ui/timeline"><i class="ti-angle-right"></i><span data-translate="TIMELINE" class="ng-scope">Timeline</span></a>
-              </li>
-              <li class="">
-                <a href="#/ui/nested-lists"><i class="ti-angle-right"></i><span data-translate="NESTED_LISTS" class="ng-scope">Nested Lists</span></a>
-              </li>
-              <li class="">
-                <a href="#/ui/pricing-tables"><i class="ti-angle-right"></i><span data-translate="PRICING_TABLES" class="ng-scope">Pricing Tables</span></a>
-              </li>
-              <li class="">
-                <a href="#/ui/grids"><i class="ti-angle-right"></i><span data-translate="GRIDS" class="ng-scope">Grids</span></a>
-              </li>
-            </ul>
-            <i class="ti-angle-down icon-has-ul-h"></i><i class="ti-angle-right icon-has-ul"></i></li>
-          <li class="">
-            <a href="#/page"><i class="ti-files"></i><span data-translate="PAGES" class="ng-scope">Newsletter</span></a>
-            <ul style="display: none;">
-              <li>
-                <a href="http://iarouse.com/dist-slim/landing/index.html" target="_blank"><i class="ti-angle-right"></i><span data-translate="LANDING" class="ng-scope">Landing</span></a>
-              </li>
-              <li><a href="#/page/signin"><i class="ti-angle-right"></i><span data-translate="SIGN_IN" class="ng-scope">Sign In</span></a>
-              </li>
-              <li><a href="#/page/signup"><i class="ti-angle-right"></i><span data-translate="SIGN_UP" class="ng-scope">Sign Up</span></a>
-              </li>
-              <li>
-                <a href="#/page/forgot-password"><i class="ti-angle-right"></i><span data-translate="FORGOT_PASSWORD" class="ng-scope">Forgot Password</span></a>
-              </li>
-              <li>
-                <a href="#/page/lock-screen"><i class="ti-angle-right"></i><span data-translate="LOCK_SCREEN" class="ng-scope">Lock Screen</span></a>
-              </li>
-              <li class="">
-                <a href="#/page/profile"><i class="ti-angle-right"></i><span data-translate="USER_PROFILE" class="ng-scope">User Profile</span></a>
-              </li>
-              <li class="">
-                <a href="#/page/invoice"><i class="ti-angle-right"></i><span data-translate="INVOICE" class="ng-scope">Invoice</span></a>
-              </li>
-              <li><a href="#/page/404"><i class="ti-angle-right"></i>404
-                <span data-translate="ERROR" class="ng-scope">Error</span></a></li>
-              <li><a href="#/page/500"><i class="ti-angle-right"></i>500
-                <span data-translate="ERROR" class="ng-scope">Error</span></a></li>
-              <li class="">
-                <a href="#/page/blank"><i class="ti-angle-right"></i><span data-translate="BLANK_PAGE" class="ng-scope">Blank Page</span></a>
-              </li>
-            </ul>
-            <i class="ti-angle-down icon-has-ul-h"></i><i class="ti-angle-right icon-has-ul"></i></li>
-
-          <li class="nav-task">
-            <a href="#/app/tasks">
-              <i class="ti-check-box"></i><span data-translate="TASKS" class="ng-scope">Tasks</span>
-            </a>
-          </li>
-        </ul>
-        <div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 905px; background: rgb(0, 0, 0);"></div>
-        <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div>
-      </div>
-    </div>
-  </aside>
-
-  <div id="content" class="content-container">
-    <!-- ngView:  -->
-    <%= yield %>
-    <!--
-        <section data-ng-view="" class="view-container animate-fade-up">
-          <div class="page page-dashboard ng-scope" data-ng-controller="DashboardCtrl">
-
-            <section>
-              <section class="panel panel-default">
-
-              </section>
-            </section>
-    -->
-
-    <!--</div>
-  </section>
-</div>-->
+    </div><!--/.nav-collapse -->
   </div>
+</nav>
+
+<div class="container">
+  <div class="page">
+    <%= yield %>
+  </div>
+</div><!-- /.container -->
 
 
-  <input id="textAngular-editableFix-010203040506070809" class="ta-hidden-input" aria-hidden="true" unselectable="on" tabindex="-1">
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
 
 
-</div>
 </body>
 </html>
