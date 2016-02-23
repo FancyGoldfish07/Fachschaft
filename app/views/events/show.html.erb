@@ -1,71 +1,49 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
 
-<section class="panel panel-default">
+<p>
+  <strong>Start:</strong>
+  <%= @event.start %>
+</p>
 
-  <div class="panel-heading">
-    <strong>
-      <span class="glyphicon glyphicon-th"></span>
-      Neues Event erstellen
-    </strong>
-  </div>
+<p>
+  <strong>Priority:</strong>
+  <%= @event.priority %>
+</p>
 
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-12">
+<p>
+  <strong>Flag:</strong>
+  <%= @event.flag %>
+</p>
 
-        <p>
-          <strong>Title:</strong>
-          <%= @event.title %>
-        </p>
+<p>
+  <strong>Imageurl:</strong>
+  <%= @event.imageURL %>
+</p>
 
-        <p>
-          <strong>Start:</strong>
-          <%= @event.start %>
-        </p>
+<p>
+  <strong>Url:</strong>
+  <%= @event.url %>
+</p>
 
-        <p>
-          <strong>Priority:</strong>
-          <%= @event.priority %>
-        </p>
+<p>
+  <strong>End:</strong>
+  <%= @event.end %>
+</p>
 
-        <p>
-          <strong>Flag:</strong>
-          <%= @event.flag %>
-        </p>
+<p>
+  <strong>Ort:</strong>
+  <%= @event.ort %>
+</p>
 
-        <p>
-          <strong>Imageurl:</strong>
-          <%= @event.imageURL %>
-        </p>
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
 
-        <p>
-          <strong>Url:</strong>
-          <%= @event.url %>
-        </p>
-
-        <p>
-          <strong>End:</strong>
-          <%= @event.end %>
-        </p>
-
-        <p>
-          <strong>Ort:</strong>
-          <%= @event.ort %>
-        </p>
-
-        <p>
-          <strong>Description:</strong>
-          <%= @event.description %>
-        </p>
-
-        <%= link_to 'Edit', edit_event_path(@event) %> |
-        <%= link_to 'Back', events_path %>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
