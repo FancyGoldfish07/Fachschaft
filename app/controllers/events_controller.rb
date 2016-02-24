@@ -21,6 +21,11 @@ class EventsController < ApplicationController
   def edit
   end
 
+  def review
+@event = Event.find(params[:id])
+ @version = @event.versions.find(params[:version])
+
+  end
   # POST /events
   # POST /events.json
   def create

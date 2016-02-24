@@ -1,0 +1,62 @@
+<div class="panel-heading">
+  <h3>Übersicht</h3>
+</div>
+<div class="panel-body">
+
+      <h4><%= @event.title %></h4>
+      <% if !@event.repeats %>
+          <p>
+          <ul>
+            <li>Startdatum: <%= @event.start.to_date %></li>
+            <li>Startzeit: <%= @event.start.to_time %></li>
+            <li>Endzeitpunkt: <%= @event.end %></li>
+
+          </ul>
+          </p>
+      <% else %>
+          <p>Startzeit: <%= @event.start.to_time %></p>
+      <% end %>
+      <h5>Beschreibung</h5>
+      <p><%= @event.description %></p>
+      <p>Die Priorität ist <%= @event.priority %></p>
+      <p>Eine Aufnahme in den Newsletter ist
+        <% if !@event.flag %>
+            <bold>NICHT</bold>
+        <% end %>
+        erlaubt.</p>
+      <% if @event.imageURL.present? %>
+          <img src="<%= @event.imageURL %>" class="img-responsive">
+      <%end%>
+      <% if @event.url.present? %>
+          <p><%= link_to "Link", @event.url %></p>
+      <% end %>
+      <p>Veranstaltungsort: <%= @event.ort %></p>
+      <p>Typ: <%= @event.event_category.name %></p>
+      <p>Dieser Termin ist für
+        <% if @event.roles.count > 0 %>
+          <ul>
+            <% @event.roles.each do |role| %>
+                <li><%= role.name %></li>
+            <% end %>
+          </ul>
+      <% else %>
+          alle.
+      <% end %>
+      </p>
+      <h5>Termine</h5>
+      <% if @event.repeats %>
+
+          <p>Dieser Termin wird wiederholt am: </p>
+          <ul>
+            <% @event.recurrence.getDatesAllInOne.each do |date| %>
+                <li><%= date %> </li>
+            <% end %>
+          </ul>
+      <% else %>
+          <p>Dieser Termin wird nicht wiederholt. </p>
+      <% end %>
+      <p>
+        Mit einem Klick auf Absenden beginnt der Reviewprozess für dein Event.
+      </p>
+
+ </div>

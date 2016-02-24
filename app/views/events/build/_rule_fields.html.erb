@@ -1,7 +1,0 @@
-<div class="nested-fields">
-<%= f.input :day, label: "Wochentag", collection: Rule.DAYS.each_with_index.map {|name, index| [name,index]}, selected: :day %>
-<%= f.input :week, label: "Wochenwiederholung", input_html: { min: 1}  %>
-<%= f.input :month, label: "Monatswiederholung: 0 bedeutet keine Monatswiederholung", input_html: { min: 0 } %>
-<%= f.input :days, label: "Tageswiederholung: 0 bedeutet keine Tageswiederholung und -1 bededeutet der letzte Wochentag des Monats", input_html: { min: -1, max:4 } %>
-<%= link_to_remove_association "Regel löschen", f %>
-</div>
