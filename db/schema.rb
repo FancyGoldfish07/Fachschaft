@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224054008) do
+ActiveRecord::Schema.define(version: 20160224152018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,29 @@ ActiveRecord::Schema.define(version: 20160224054008) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "event_role_versions", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
+  end
+
+  add_index "event_role_versions", ["item_type", "item_id"], name: "index_event_role_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "event_roles", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "event_roles", ["event_id"], name: "index_event_roles_on_event_id", using: :btree
+  add_index "event_roles", ["role_id"], name: "index_event_roles_on_role_id", using: :btree
 
   create_table "event_versions", force: :cascade do |t|
     t.string   "title"
@@ -81,13 +104,6 @@ ActiveRecord::Schema.define(version: 20160224054008) do
 
   add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
   add_index "events", ["recurrence_id"], name: "index_events_on_recurrence_id", using: :btree
-
-  create_table "events_roles", id: false, force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "role_id"
-  end
-
-  add_index "events_roles", ["event_id", "role_id"], name: "index_events_roles_on_event_id_and_role_id", using: :btree
 
   create_table "exclude_versions", force: :cascade do |t|
     t.string   "whodunnit"
@@ -237,6 +253,8 @@ ActiveRecord::Schema.define(version: 20160224054008) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "event_roles", "events"
+  add_foreign_key "event_roles", "roles"
   add_foreign_key "events", "event_categories"
   add_foreign_key "events", "recurrences"
   add_foreign_key "excludes", "recurrences"

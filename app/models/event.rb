@@ -1,8 +1,10 @@
 #Event class for Calendar entries
 class Event < ActiveRecord::Base
-  has_and_belongs_to_many :roles
+  has_many :event_roles
   belongs_to :event_category
   belongs_to :recurrence
+
+  has_many :roles, through: :event_roles
   after_initialize :set_defaults
   after_save :check_reviewed
   #Uses paper trail
