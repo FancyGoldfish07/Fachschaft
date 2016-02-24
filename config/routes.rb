@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   resources :event_categories
   resources :events do
     resources :build, controller: "events/build"
-
   end
   devise_for :users
+
+  get '/events/:id', to: 'events#authorize'
 
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]

@@ -41,8 +41,19 @@
 </p>
 
 <p>
+  <strong>Reviewed:</strong>
+  <% if @event.reviewed? %>
+    yes
+<% else %>
+    no
+<% end %>
+</p>
+
+<p>
   <strong>Description:</strong>
   <%= @event.description %>
 </p>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+<%= button_to "Authorize", {:controller => :events, :action => :authorize}, {:remote => true, :method => :delete} %>
+

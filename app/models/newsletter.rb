@@ -6,13 +6,13 @@ class Newsletter < ActiveRecord::Base
     @to = to.strftime('%y%m%d')
     # Array for selected events
     @newsletter_events = Array.new
-    # Select all events
-    @events = Event.all
+    # Select all flaged events
+    @events = Event.where(flag: true)
     # Loop puts desired events into array
     @events.each do|u|
       @date = u.start
-      # Event needs to be flagged and takes place in desired period
-      if u.reviewed? and u.flag? and u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
+      # Event needs to be reviewed and takes place in desired period
+      if u.reviewed? and u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
         # Adds event to array
         @newsletter_events.push(u)
       end

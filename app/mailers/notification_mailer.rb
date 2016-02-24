@@ -1,6 +1,7 @@
 class NotificationMailer < ApplicationMailer
 
-  def notify_new_event(user)
+  def notify_new_event(user, event)
+    @event = event
     @user = user
     mail(to: user.email) do |format|
       format.html { render layout: '../../views/notification_mailer/notify_new_event.html.erb' }
@@ -8,7 +9,8 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def notify_edited_event(user)
+  def notify_edited_event(user, event)
+    @event = event
     @user = user
     mail(to: user.email) do |format|
       format.html { render layout: '../../views/notification_mailer/notify_edited_event.html.erb' }
@@ -16,7 +18,8 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def notify_approved_event(user)
+  def notify_approved_event(user, event)
+    @event = event
     @user = user
     mail(to: user.email) do |format|
       format.html { render layout: '../../views/notification_mailer/notify_approved_event.html.erb' }
@@ -24,7 +27,8 @@ class NotificationMailer < ApplicationMailer
     end
   end
 
-  def request_deletion(user)
+  def request_deletion(user, event)
+    @event = event
     @user = user
     mail(to: user.email) do |format|
       format.html { render layout: '../../views/notification_mailer/request_deletion.html.erb' }

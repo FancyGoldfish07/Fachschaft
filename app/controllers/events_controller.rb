@@ -61,6 +61,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def authorize
+    @event.reviewed = true
+    # NotificationMailer.notify_new_event(@user).deliver
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
