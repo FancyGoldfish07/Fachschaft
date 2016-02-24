@@ -4,6 +4,8 @@ class Recurrence < ActiveRecord::Base
   has_many :rules
   has_many :excludes
   has_many :events
+  #Uses paper trail
+  has_paper_trail
 
   #Allow us to edit rules
   accepts_nested_attributes_for :rules, reject_if: :all_blank, allow_destroy: true

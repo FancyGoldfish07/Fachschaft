@@ -2,6 +2,8 @@
 class Rule < ActiveRecord::Base
   belongs_to :recurrence
   after_initialize :set_defaults
+  #Uses paper trail
+  has_paper_trail
 
   #Returns the days of the week in German
   def self.DAYS

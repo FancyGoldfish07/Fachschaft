@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222215602) do
+ActiveRecord::Schema.define(version: 20160224054008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "decrees", force: :cascade do |t|
+    t.integer  "day"
+    t.integer  "week"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -37,6 +44,25 @@ ActiveRecord::Schema.define(version: 20160222215602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "event_versions", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "start"
+    t.integer  "priority"
+    t.boolean  "flag"
+    t.text     "imageURL"
+    t.text     "url"
+    t.datetime "end"
+    t.text     "ort"
+    t.text     "description"
+    t.integer  "event_category"
+    t.integer  "recurrence_id"
+    t.datetime "created_at"
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+  end
+
+  add_index "event_versions", ["item_type", "item_id"], name: "index_event_versions_on_item_type_and_item_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -65,6 +91,17 @@ ActiveRecord::Schema.define(version: 20160222215602) do
   end
 
   add_index "events_roles", ["event_id", "role_id"], name: "index_events_roles_on_event_id_and_role_id", using: :btree
+
+  create_table "exclude_versions", force: :cascade do |t|
+    t.string   "whodunnit"
+    t.date     "date"
+    t.datetime "created_at"
+    t.integer  "recurrence_id"
+    t.string   "item_type",     null: false
+    t.integer  "item_id",       null: false
+  end
+
+  add_index "exclude_versions", ["item_type", "item_id"], name: "index_exclude_versions_on_item_type_and_item_id", using: :btree
 
   create_table "excludes", force: :cascade do |t|
     t.date     "date"
@@ -98,9 +135,52 @@ ActiveRecord::Schema.define(version: 20160222215602) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "occurrences", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "start"
+    t.integer  "priority"
+    t.boolean  "flag"
+    t.text     "imageUrl"
+    t.text     "url"
+    t.datetime "end"
+    t.text     "ort"
+    t.text     "description"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "event_category_id"
+    t.integer  "repeat_id"
+  end
+
+  add_index "occurrences", ["event_category_id"], name: "index_occurrences_on_event_category_id", using: :btree
+  add_index "occurrences", ["repeat_id"], name: "index_occurrences_on_repeat_id", using: :btree
+
+  create_table "occurrences_roles", id: false, force: :cascade do |t|
+    t.integer "occurrence_id"
+    t.integer "role_id"
+  end
+
+  add_index "occurrences_roles", ["occurrence_id", "role_id"], name: "index_occurrences_roles_on_occurrence_id_and_role_id", using: :btree
+
+  create_table "recurrence_versions", force: :cascade do |t|
+    t.date     "start"
+    t.date     "end"
+    t.datetime "created_at"
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+  end
+
+  add_index "recurrence_versions", ["item_type", "item_id"], name: "index_recurrence_versions_on_item_type_and_item_id", using: :btree
+
   create_table "recurrences", force: :cascade do |t|
     t.date     "start"
     t.date     "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "repeats", force: :cascade do |t|
+    t.datetime "start"
+    t.datetime "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -115,6 +195,17 @@ ActiveRecord::Schema.define(version: 20160222215602) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "rule_versions", force: :cascade do |t|
+    t.integer  "day"
+    t.integer  "week"
+    t.datetime "created_at"
+    t.integer  "recurrence_id"
+    t.string   "item_type",     null: false
+    t.integer  "item_id",       null: false
+  end
+
+  add_index "rule_versions", ["item_type", "item_id"], name: "index_rule_versions_on_item_type_and_item_id", using: :btree
 
   create_table "rules", force: :cascade do |t|
     t.integer  "day"
@@ -134,6 +225,15 @@ ActiveRecord::Schema.define(version: 20160222215602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "suspends", force: :cascade do |t|
+    t.date     "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "repeat_id"
+  end
+
+  add_index "suspends", ["repeat_id"], name: "index_suspends_on_repeat_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -177,5 +277,8 @@ ActiveRecord::Schema.define(version: 20160222215602) do
   add_foreign_key "events", "event_categories"
   add_foreign_key "events", "recurrences"
   add_foreign_key "excludes", "recurrences"
+  add_foreign_key "occurrences", "event_categories"
+  add_foreign_key "occurrences", "repeats"
   add_foreign_key "rules", "recurrences", on_delete: :cascade
+  add_foreign_key "suspends", "repeats"
 end
