@@ -80,6 +80,11 @@ ActiveRecord::Schema.define(version: 20160224152018) do
     t.string   "event",             null: false
     t.string   "whodunnit"
     t.text     "object"
+    t.integer  "user_id"
+    t.integer  "admin_id"
+    t.integer  "manager_id"
+    t.integer  "state"
+    t.text     "message"
   end
 
   add_index "event_versions", ["item_type", "item_id"], name: "index_event_versions_on_item_type_and_item_id", using: :btree

@@ -39,8 +39,6 @@ source 'https://rubygems.org'
 
 #Ice-Cube
 gem 'ice_cube', '~> 0.13.3'
-#Ice Cube form helper
-gem 'recurring_select', '~> 2.0'
 
 #Nested forms helper
 gem 'cocoon', '~> 1.2', '>= 1.2.7'

@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   #Use rolify
   rolify
 
+  #A user has created an event_version
+  has_many :event_versions
+
   #after a new user is created set new role
   after_initialize :set_default_role, :if => :new_record?
 

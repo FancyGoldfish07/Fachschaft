@@ -19,6 +19,11 @@ class CreateEventVersions < ActiveRecord::Migration
       t.string   :event,     :null => false
       t.string   :whodunnit
       t.text     :object
+      t.integer :user_id
+      t.integer :admin_id
+      t.integer :manager_id
+      t.integer :state
+      t.text :message
     end
     add_index :event_versions,[:item_type,:item_id]
   end
