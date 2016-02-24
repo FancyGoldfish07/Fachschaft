@@ -61,11 +61,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def authorize
-    @event.reviewed = true
-    # NotificationMailer.notify_new_event(@user).deliver
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -74,6 +69,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title,:recurrence_id,:event_category_id, :start, :priority, :flag, :imageURL, :url, :end, :ort, :description,role_ids: [])
+      params.require(:event).permit(:title,:recurrence_id,:event_category_id, :start, :priority, :flag, :imageURL, :url, :end, :ort, :description, role_ids: [])
     end
 end
+

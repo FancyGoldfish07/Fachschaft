@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   resources :recurrences
   resources :event_categories
   resources :events do
-    resources :build, controller: "events/build"
+    resources :build
   end
-  devise_for :users
 
-  get '/events/:id', to: 'events#authorize'
+  resources :build
+
+  devise_for :users
 
   #Routes just for our lovely admin
   resources :users, only: [:index, :update, :destroy]
@@ -25,8 +26,6 @@ Rails.application.routes.draw do
   get 'home' => 'home#index'
   get 'fullcalendar' => 'fullcalendar#index'
   get 'fullcalendar/index.html.erb' => 'fullcalendar#index'
-
-  # get 'newsletters/new.html.erb' => 'newsletter'
 
   #Dummy route
   root "dummy#index"
@@ -82,3 +81,4 @@ Rails.application.routes.draw do
 
 
 end
+

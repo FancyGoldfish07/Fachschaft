@@ -1,0 +1,18 @@
+<%= form_for @event, url: wizard_path do |f| %>
+    <% if @event.errors.any? %>
+        <div class="error_messages">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+          <ul>
+            <% @event.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= yield f %>
+
+    <div class="actions">
+      <%= f.submit "Continue" %>
+
+    </div>
+<% end %>

@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_self
+ *= require bootstrap-datetimepicker
  *= require_tree .
  */
 
@@ -20,3 +21,4 @@
 @import "app";
 @import "fullcalendar";
 @import "recurring_select";
+
