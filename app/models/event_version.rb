@@ -15,10 +15,14 @@ class EventVersion < PaperTrail::Version
   #Changes the state of the version based on the user
   def changeState(user)
  if user.current_role == Role.Fachschaft || user.current_role == Role.Admin
-   if self.unsubmitted
-
+   if self.unsubmitted?
+     #Set the author of this event revision
+     self.author = user
+     #Make sure the event is awaiting approval
+     self.waiting!
    end
  end
+    save
   end
   private
   #Sets the defaults

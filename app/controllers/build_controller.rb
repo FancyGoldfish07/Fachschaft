@@ -67,7 +67,10 @@ excludes = param[:exclude_ids]
 
       end
     when :check
-      @event.makeRecurr
+     version= @event.versions.last
+      version.changeState(current_user)
+
+
   end
 render_wizard @event
 end
