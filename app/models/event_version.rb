@@ -8,7 +8,7 @@ class EventVersion < PaperTrail::Version
   belongs_to :manager, class_name: 'User',
              foreign_key: 'manager_id'
   #The state this version is in
-  enum state: [:unsubmitted, :submitted, :reviewed, :rejected, :submitted]
+  enum state: [:unsubmitted, :waiting, :reviewed, :rejected, :submitted]
   self.table_name = :event_versions
 
   self.sequence_name = :event_versions_id_seq
@@ -24,7 +24,7 @@ class EventVersion < PaperTrail::Version
   #Sets the defaults
   def set_defaults
     if self.state.blank?
-      self.state ||= :unubmitted
+      self.state ||= :unsubmitted
     end
   end
 end
