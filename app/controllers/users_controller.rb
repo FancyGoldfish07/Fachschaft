@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :checkAdmin, UserMailer.signup_confirmation(self).deliver
+  before_action :checkAdmin #UserMailer.signup_confirmation(self).deliver
   before_action :set_User, only: [:edit, :update, :destroy]
 
   def index
