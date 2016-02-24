@@ -59,7 +59,7 @@
       <p>
         Mit einem Klick auf Absenden beginnt der Reviewprozess für dein Event.
       </p>
-      <%= f.input :reviewed, :as => :hidden, :input_html => { :value => true } %>
+      <%= f.hidden_field :reviewed, { :value => true } %>
           <div class="actions">
             <%if @step != @wizard_steps.first %>
                 <%= link_to "Zurück",previous_wizard_path %>
