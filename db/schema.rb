@@ -49,11 +49,14 @@ ActiveRecord::Schema.define(version: 20160224054008) do
     t.text     "ort"
     t.text     "description"
     t.boolean  "repeats"
-    t.integer  "event_category"
+    t.integer  "event_category_id"
     t.integer  "recurrence_id"
     t.datetime "created_at"
-    t.string   "item_type",      null: false
-    t.integer  "item_id",        null: false
+    t.string   "item_type",         null: false
+    t.integer  "item_id",           null: false
+    t.string   "event",             null: false
+    t.string   "whodunnit"
+    t.text     "object"
   end
 
   add_index "event_versions", ["item_type", "item_id"], name: "index_event_versions_on_item_type_and_item_id", using: :btree
@@ -93,6 +96,8 @@ ActiveRecord::Schema.define(version: 20160224054008) do
     t.integer  "recurrence_id"
     t.string   "item_type",     null: false
     t.integer  "item_id",       null: false
+    t.string   "event",         null: false
+    t.text     "object"
   end
 
   add_index "exclude_versions", ["item_type", "item_id"], name: "index_exclude_versions_on_item_type_and_item_id", using: :btree
@@ -135,6 +140,9 @@ ActiveRecord::Schema.define(version: 20160224054008) do
     t.datetime "created_at"
     t.string   "item_type",  null: false
     t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
   end
 
   add_index "recurrence_versions", ["item_type", "item_id"], name: "index_recurrence_versions_on_item_type_and_item_id", using: :btree
@@ -164,6 +172,9 @@ ActiveRecord::Schema.define(version: 20160224054008) do
     t.integer  "recurrence_id"
     t.string   "item_type",     null: false
     t.integer  "item_id",       null: false
+    t.string   "event",         null: false
+    t.string   "whodunnit"
+    t.text     "object"
   end
 
   add_index "rule_versions", ["item_type", "item_id"], name: "index_rule_versions_on_item_type_and_item_id", using: :btree
