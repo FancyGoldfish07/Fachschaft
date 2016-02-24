@@ -2,5 +2,6 @@
 class ExcludeVersion < PaperTrail::Version
 
     self.table_name = :exclude_versions
-    default_scope { where.not(event: 'create') }
+
+    self.sequence_name = :exclude_versions_id_seq
 end

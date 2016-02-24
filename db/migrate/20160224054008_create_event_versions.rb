@@ -10,6 +10,7 @@ class CreateEventVersions < ActiveRecord::Migration
       t.datetime :end
       t.text :ort
       t.text :description
+      t.boolean :repeats
       t.integer :event_category
       t.integer :recurrence_id
       t.datetime :created_at

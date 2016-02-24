@@ -2,6 +2,7 @@
 class RuleVersion < PaperTrail::Version
 
     self.table_name = :rule_versions
-    default_scope { where.not(event: 'create') }
+
+    self.sequence_name = :rule_versions_id_seq
 
 end

@@ -1,6 +1,6 @@
 #The versioning model for Recurrence
 class RecurrenceVersion < PaperTrail::Version
   self.table_name = :recurrence_versions
-  default_scope { where.not(event: 'create') }
 
+  self.sequence_name = :recurrence_versions_id_seq
 end
