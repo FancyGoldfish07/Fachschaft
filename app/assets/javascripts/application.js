@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require vendor
 //= exclude ui
-//= require app
 //= require moment
 //= require fullcalendar
 //= require cocoon
