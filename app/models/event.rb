@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   after_initialize :set_defaults
   after_save :check_reviewed
   #Uses paper trail
-  has_paper_trail
+  has_paper_trail class_name: 'EventVersion'
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
 

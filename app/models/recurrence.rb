@@ -5,7 +5,7 @@ class Recurrence < ActiveRecord::Base
   has_many :excludes
   has_many :events
   #Uses paper trail
-  has_paper_trail
+  has_paper_trail class_name: 'RecurrenceVersion'
 
   #Allow us to edit rules
   accepts_nested_attributes_for :rules, reject_if: :all_blank, allow_destroy: true
