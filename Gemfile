@@ -4,6 +4,10 @@ source 'https://rubygems.org'
 
   gem 'mailkick'
 
+  gem 'rails_12factor', group: :production
+
+
+
 # Background Tasks
  gem 'delayed_job_active_record'
 
@@ -97,4 +101,5 @@ group :development do
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
 
 end
+ruby "2.2.4"
 
