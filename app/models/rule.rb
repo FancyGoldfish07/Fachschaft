@@ -2,7 +2,7 @@
 class Rule < ActiveRecord::Base
   belongs_to :recurrence
   after_initialize :set_defaults
-  
+
 
   #Returns the days of the week in German
   def self.DAYS
