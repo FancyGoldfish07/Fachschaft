@@ -50,6 +50,30 @@ copy.save!
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    if ablehnen?
+      @event.message = params[:event][:message]
+      @event.manager_id = current_user.id
+      @event.rejected!
+@event.save
+      respond_to do |format|
+
+          format.html { redirect_to root_path, notice: 'Eintrag wurde abgelehnt.' }
+          end
+    elsif genehmigen?
+      @event.reviewed!
+      @event.manager_id = current_user.id
+      @event.save
+      respond_to do |format|
+
+        format.html { redirect_to root_path, notice: 'Eintrag wurde genehmigt.' }
+      end
+    elsif publizieren?
+    @event.changeState(current_user)
+    respond_to do |format|
+
+      format.html { redirect_to root_path, notice: 'Eintrag wurde veröffentlicht.' }
+    end
+    else
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -59,7 +83,8 @@ copy.save!
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
-  end
+    end
+    end
 
   # DELETE /events/1
   # DELETE /events/1.json
@@ -90,4 +115,15 @@ copy.save!
     def event_params
       params.require(:event).permit(:title,:recurrence_id,:event_category_id, :start, :priority, :flag, :imageURL, :url, :end, :ort, :description,role_ids: [])
     end
+    #Was this form submittted to reject the event?
+    def ablehnen?
+      params[:commit] == "Ablehnen"
+    end
+    #Was this form submitted to accept the event?
+    def genehmigen?
+      params[:commit] == "Genehmigen"
+    end
+  def publizieren?
+    params[:commit] == "Veröffentlichen"
+  end
 end

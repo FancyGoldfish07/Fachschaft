@@ -68,7 +68,7 @@ excludes = param[:exclude_ids]
       end
     when :check
      #version= @event.versions.last
-      #version.changeState(current_user)
+      @event.changeState(current_user)
 
 
   end
