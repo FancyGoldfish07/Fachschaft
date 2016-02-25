@@ -10,7 +10,8 @@ class CreateRuleVersions < ActiveRecord::Migration
       t.string   :event,     :null => false
       t.string   :whodunnit
       t.text     :object
+      t.references :rule, index: true, foreign_key: true
     end
-    add_index :rule_versions, [:item_type,:item_id]
+
   end
 end

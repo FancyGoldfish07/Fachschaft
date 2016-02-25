@@ -26,7 +26,9 @@
     <p><%= link_to "Link", event.url %></p>
 <% end %>
 <p>Veranstaltungsort: <%= event.ort %></p>
+<% if event.event_category.present? %>
 <p>Typ: <%= event.event_category.name %></p>
+    <% end %>
 <p>Dieser Termin ist für
   <% if event.roles.count > 0 %>
     <ul>

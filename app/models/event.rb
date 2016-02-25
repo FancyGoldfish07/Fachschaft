@@ -3,12 +3,13 @@ class Event < ActiveRecord::Base
   has_many :event_roles
   belongs_to :event_category
   belongs_to :recurrence
-
+has_many :event_versions
   has_many :roles, through: :event_roles
   after_initialize :set_defaults
+  before_save :makeVersion
   after_save :check_reviewed
-  #Uses paper trail
-  has_paper_trail class_name: 'EventVersion'
+  validates_presence_of :event_category
+
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
 
@@ -71,6 +72,9 @@ end
     end
   end
     private
+  def makeVersion
+
+  end
     #Sets the default priority of the event and start dates
     def set_defaults
       if self.priority.blank?

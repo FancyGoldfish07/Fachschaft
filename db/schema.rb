@@ -42,14 +42,15 @@ ActiveRecord::Schema.define(version: 20160224152018) do
     t.integer  "event_id"
     t.integer  "role_id"
     t.datetime "created_at"
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
+    t.string   "item_type",     null: false
+    t.integer  "item_id",       null: false
+    t.string   "event",         null: false
     t.string   "whodunnit"
     t.text     "object"
+    t.integer  "event_role_id"
   end
 
-  add_index "event_role_versions", ["item_type", "item_id"], name: "index_event_role_versions_on_item_type_and_item_id", using: :btree
+  add_index "event_role_versions", ["event_role_id"], name: "index_event_role_versions_on_event_role_id", using: :btree
 
   create_table "event_roles", force: :cascade do |t|
     t.integer  "event_id"
@@ -85,9 +86,10 @@ ActiveRecord::Schema.define(version: 20160224152018) do
     t.integer  "manager_id"
     t.integer  "state"
     t.text     "message"
+    t.integer  "event_id"
   end
 
-  add_index "event_versions", ["item_type", "item_id"], name: "index_event_versions_on_item_type_and_item_id", using: :btree
+  add_index "event_versions", ["event_id"], name: "index_event_versions_on_event_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -119,9 +121,10 @@ ActiveRecord::Schema.define(version: 20160224152018) do
     t.integer  "item_id",       null: false
     t.string   "event",         null: false
     t.text     "object"
+    t.integer  "exclude_id"
   end
 
-  add_index "exclude_versions", ["item_type", "item_id"], name: "index_exclude_versions_on_item_type_and_item_id", using: :btree
+  add_index "exclude_versions", ["exclude_id"], name: "index_exclude_versions_on_exclude_id", using: :btree
 
   create_table "excludes", force: :cascade do |t|
     t.date     "date"
@@ -159,14 +162,15 @@ ActiveRecord::Schema.define(version: 20160224152018) do
     t.date     "start"
     t.date     "end"
     t.datetime "created_at"
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
+    t.string   "item_type",     null: false
+    t.integer  "item_id",       null: false
+    t.string   "event",         null: false
     t.string   "whodunnit"
     t.text     "object"
+    t.integer  "recurrence_id"
   end
 
-  add_index "recurrence_versions", ["item_type", "item_id"], name: "index_recurrence_versions_on_item_type_and_item_id", using: :btree
+  add_index "recurrence_versions", ["recurrence_id"], name: "index_recurrence_versions_on_recurrence_id", using: :btree
 
   create_table "recurrences", force: :cascade do |t|
     t.date     "start"
@@ -196,9 +200,10 @@ ActiveRecord::Schema.define(version: 20160224152018) do
     t.string   "event",         null: false
     t.string   "whodunnit"
     t.text     "object"
+    t.integer  "rule_id"
   end
 
-  add_index "rule_versions", ["item_type", "item_id"], name: "index_rule_versions_on_item_type_and_item_id", using: :btree
+  add_index "rule_versions", ["rule_id"], name: "index_rule_versions_on_rule_id", using: :btree
 
   create_table "rules", force: :cascade do |t|
     t.integer  "day"
@@ -258,10 +263,15 @@ ActiveRecord::Schema.define(version: 20160224152018) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "event_role_versions", "event_roles"
   add_foreign_key "event_roles", "events"
   add_foreign_key "event_roles", "roles"
+  add_foreign_key "event_versions", "events"
   add_foreign_key "events", "event_categories"
   add_foreign_key "events", "recurrences"
+  add_foreign_key "exclude_versions", "excludes"
   add_foreign_key "excludes", "recurrences"
+  add_foreign_key "recurrence_versions", "recurrences"
+  add_foreign_key "rule_versions", "rules"
   add_foreign_key "rules", "recurrences", on_delete: :cascade
 end

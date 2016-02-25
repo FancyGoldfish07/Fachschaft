@@ -7,11 +7,10 @@ class EventVersion < PaperTrail::Version
                     foreign_key: 'admin_id'
   belongs_to :manager, class_name: 'User',
              foreign_key: 'manager_id'
+  belongs_to :event
   #The state this version is in
   enum state: [:unsubmitted, :waiting, :reviewed, :rejected, :submitted]
-  self.table_name = :event_versions
 
-  self.sequence_name = :event_versions_id_seq
   #Changes the state of the version based on the user
   def changeState(user)
  if user.current_role == Role.Fachschaft || user.current_role == Role.Admin

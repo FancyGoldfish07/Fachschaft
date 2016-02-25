@@ -24,7 +24,8 @@ class CreateEventVersions < ActiveRecord::Migration
       t.integer :manager_id
       t.integer :state
       t.text :message
+      t.references :event, index: true, foreign_key: true
     end
-    add_index :event_versions,[:item_type,:item_id]
+
   end
 end

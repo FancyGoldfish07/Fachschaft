@@ -9,7 +9,8 @@ class CreateRecurrenceVersions < ActiveRecord::Migration
       t.string   :event,     :null => false
       t.string   :whodunnit
       t.text     :object
+      t.references :recurrence, index: true, foreign_key: true
     end
-    add_index :recurrence_versions,[:item_type,:item_id]
+
   end
 end

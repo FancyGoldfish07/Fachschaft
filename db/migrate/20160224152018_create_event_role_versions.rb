@@ -9,7 +9,8 @@ class CreateEventRoleVersions < ActiveRecord::Migration
       t.string   :event,     :null => false
       t.string   :whodunnit
       t.text     :object
+      t.references :event_role, index: true, foreign_key: true
     end
-    add_index :event_role_versions,[:item_type,:item_id]
+
   end
 end
