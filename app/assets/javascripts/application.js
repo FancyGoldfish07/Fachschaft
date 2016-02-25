@@ -20,6 +20,7 @@
 //= require cocoon
 //= require bootstrap-datetimepicker
 //= require moment/de
+//= require datetimePicker
 //= require_tree .
 
 
