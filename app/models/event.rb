@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
 has_many :event_versions
   has_many :roles, through: :event_roles
   after_initialize :set_defaults
-  before_save :makeVersion
+  before_update :makeVersion
   after_save :check_reviewed
   validates_presence_of :event_category
 
@@ -73,11 +73,12 @@ end
   end
     private
   def makeVersion
-version = EventVersion.new(title: self.title,description:self.description,
-                 event_category: self.event_category, ort:self.ort,url: self.url,
-                 imageURL: self.imageURL,start:newStart, end:newEnd,repeats: true,
-                 priority: self.priority,flag:self.flag)
-
+oldOne = Event.find(self.id)
+version = EventVersion.new(title: oldOne.title,description:oldOne.description,
+                 event_category: oldOne.event_category, ort:oldOne.ort,url: oldOne.url,
+                 imageURL: oldOne.imageURL,start:oldOne.start, end:oldOne.end,repeats: oldOne.repeats,
+                 priority: oldOne.priority,flag:oldOne.flag,event: oldOne)
+version.save()
   end
     #Sets the default priority of the event and start dates
     def set_defaults
