@@ -44,6 +44,8 @@ gem 'ice_cube', '~> 0.13.3'
 gem 'cocoon', '~> 1.2', '>= 1.2.7'
   #Rolify
   gem 'rolify', '~> 5.0'
+#Deep clone
+gem 'deep_cloneable', '~> 2.2.0'
 
 #simple Form
 gem 'simple_form', '~> 3.2.1'

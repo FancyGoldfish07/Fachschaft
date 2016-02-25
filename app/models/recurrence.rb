@@ -1,8 +1,8 @@
 #Is an event repeated? If so how often?
 class Recurrence < ActiveRecord::Base
   include IceCube
-  has_many :rules
-  has_many :excludes
+  has_many :rules, autosave: true
+  has_many :excludes, autosave: true
   has_many :events
   #Uses paper trail
   has_paper_trail class_name: 'RecurrenceVersion'

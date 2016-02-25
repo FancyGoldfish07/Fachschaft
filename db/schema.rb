@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224152018) do
+ActiveRecord::Schema.define(version: 20160225024844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,12 @@ ActiveRecord::Schema.define(version: 20160224152018) do
     t.integer  "recurrence_id"
     t.boolean  "repeats"
     t.boolean  "reviewed"
+    t.integer  "parent_id"
+    t.integer  "user_id"
+    t.integer  "admin_id"
+    t.integer  "manager_id"
+    t.integer  "state"
+    t.text     "message"
   end
 
   add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
