@@ -3,14 +3,18 @@
         <% if !event.message.present? %>
             <p>Nachricht</p>
             <%= f.text_area :message %>
-            <%= f.collection_radio_buttons :permitted,["Genehmigen", "Ablehnen"],:to_s,:to_s %>
+            <p>Dieser Beitrag kann nun genehmigt oder abgelehnt werden. Im Falle einer Ablehnung bekommmt der Autor
+            eine Nachricht mit dem obigen Text. </p>
+            <div class="form-group">
+            <%= f.submit "Genehmigen" %> <%= f.submit "Ablehnen" %>
+          </div>
             <% end %>
 <%end %>
 <% if !event.message.present? %>
         <p><%= event.message %></p>
         <% end %>
     <% if current_user.present? &&current_user.isAdmin %>
-        <%= f.check_box :published %>
+        <%= f.submit "Veröffentlichen" %>
     <% end %>
-    <%= f.submit %>
+
 <% end %>
