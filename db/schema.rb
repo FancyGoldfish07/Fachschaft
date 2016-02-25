@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20160225024844) do
     t.integer  "manager_id"
     t.integer  "state"
     t.text     "message"
+    t.boolean  "published"
+    t.boolean  "permitted"
   end
 
   add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
