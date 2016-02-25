@@ -2,8 +2,7 @@
 class Rule < ActiveRecord::Base
   belongs_to :recurrence
   after_initialize :set_defaults
-  #Uses paper trail
-  has_paper_trail class_name: 'RuleVersion'
+  
 
   #Returns the days of the week in German
   def self.DAYS
@@ -19,15 +18,7 @@ class Rule < ActiveRecord::Base
       IceCube::Rule.monthly(month).day_of_week(day => [days])
       end
   end
-  #Handles the default case where our week integer is 0 at startup
-  def getWeek
-    if week.present?
-      week
-    else
-      1
-      end
 
-  end
   private
   def set_defaults
     if day.blank?

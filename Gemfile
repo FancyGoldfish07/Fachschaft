@@ -49,8 +49,7 @@ gem 'deep_cloneable', '~> 2.2.0'
 
 
 
-#Use Paper Trail
-gem 'paper_trail', '~> 4.1'
+
 
 # Use ActiveModel has_secure_password
   gem 'bcrypt', '~> 3.1.7'
