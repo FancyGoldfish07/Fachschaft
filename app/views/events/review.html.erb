@@ -3,9 +3,14 @@
 </div>
 <div class="panel-body">
 
-<%= render @revision %>
+<%= render @event %>
       <p>
-        Mit einem Klick auf Absenden beginnt der Reviewprozess für dein Event.
+        Dieses Event ist <% if @event.parent.present? %>
+         eine Revision von <%= link_to "diesem Eintrag", events_path(@event.parent) %>
+            <% else %>
+        ein eigenständiger Kalendereintrag.
+        <%end %>
       </p>
+<% render partial: "events/review_form", locals:{event: @event} %>
 
  </div>
