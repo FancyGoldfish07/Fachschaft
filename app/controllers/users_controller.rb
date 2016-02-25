@@ -13,7 +13,10 @@ class UsersController < ApplicationController
   #Only used to update the role of a user
   def update
     authorize(current_user)
-    if @user.setRole params[:user][:role_ids]
+    role = params[:user][:role_ids]
+ roleModel =Role.find( role)
+    if @user.setRole roleModel.name
+      @user.save
       redirect_to users_path, :notice => "Rolle geändert"
     else
       redirect_to users_path, :notice => "Rolle nicht geändert"

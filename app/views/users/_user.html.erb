@@ -5,11 +5,10 @@
   <h5><%= user.username %></h5>
 </td>
 <td>
-  <%= simple_form_for(user) do |f| %>
+  <%= form_for(user) do |f| %>
       <span class="ui-select">
 
-      <%=  f.input :role_ids,:label => "Rolle:", :collection => Role.POSSIBLE_ROLES,  selected:user.current_role %>
-
+       <%= f.collection_select(:role_ids,Role.all,:id,:name) %>
       </span>
         <%= f.submit 'Rolle wechseln', :class => 'btn btn-w-md btn-gap-v btn-default' %>
   <% end %>
