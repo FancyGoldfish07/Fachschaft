@@ -1,6 +1,6 @@
 <div class="nested-fields">
-<%= f.input :day, label: "Wochentag", collection: Rule.DAYS.each_with_index.map {|name, index| [name,index]}, include_blank:false %>
-<%= f.input :week, label: "Wochenwiederholung", input_html: { min: 1}  %>
+<%= f.collection_select :day, Rule.DAYS,:to_s,:to_s, include_blank:false %>
+<%= f.number_field :week,  min: 1  %>
   <% #We decided this part is not needed. Functionality would be there though.
   %>
 <%= #f.input :month, label: "Monatswiederholung: 0 bedeutet keine Monatswiederholung", input_html: { min: 0 }

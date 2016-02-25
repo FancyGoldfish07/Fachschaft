@@ -19,8 +19,18 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}])
+copy.parent = @event
+copy.save!
+#Yes this is super ugly, but I am a bit clueless here
+ redirect_to "/events/#{copy.id}/build" and return
   end
 
+  def review
+@event = Event.find(params[:id])
+
+
+  end
   # POST /events
   # POST /events.json
   def create
@@ -62,6 +72,15 @@ class EventsController < ApplicationController
   end
 
   private
+  #taken from wicked gem because I am too stupid to setup a proper route
+  def wizard_path(goto_step = nil, options = {})
+    options = { :controller => 'BuildController',
+                :action     => 'show',
+                :id         => goto_step || params[:id],
+                :only_path  => true
+    }.merge options
+    url_for(options)
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])

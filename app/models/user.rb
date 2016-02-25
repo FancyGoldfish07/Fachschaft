@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   #Use rolify
   rolify
 
+  #A user has created an event_version
+  has_many :event_versions
+
   #after a new user is created set new role
   after_initialize :set_default_role, :if => :new_record?
 
@@ -35,6 +38,14 @@ class User < ActiveRecord::Base
   #returns a boolean
   def isAdmin
     self.has_role? Role.Admin
+  end
+  #Is this a Fachschaft user
+  def isFachschaft
+    self.has_role? Role.Fachschaft
+  end
+  #Is this a manager
+  def isManager
+    self.has_role? Role.Manager
   end
   #Returns the name of the current role
   def current_role

@@ -1,0 +1,16 @@
+<%= form_for(event) do |f| %>
+<% if current_user.present? && current_user.isManager %>
+        <% if !event.message.present? %>
+            <p>Nachricht</p>
+            <%= f.text_area :message %>
+            <%= f.collection_radio_buttons :permitted,["Genehmigen", "Ablehnen"],:to_s,:to_s %>
+            <% end %>
+<%end %>
+<% if !event.message.present? %>
+        <p><%= event.message %></p>
+        <% end %>
+    <% if current_user.present? &&current_user.isAdmin %>
+        <%= f.check_box :published %>
+    <% end %>
+    <%= f.submit %>
+<% end %>
