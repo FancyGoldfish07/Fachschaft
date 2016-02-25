@@ -5,10 +5,20 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     events = Event.submitted
+publishedEvents = Array.new
+    events.each do |event|
 
-    @events = events
-  end
-
+    #This is defined in Event.state enum
+    enumValue = 4
+      kidsReadyToPublish = event.revisions.where("state = ?", enumValue)
+      if kidsReadyToPublish.count > 0
+        publishedEvents.push(kidsReadyToPublish.last)
+      else
+        publishedEvents.push(event)
+    end
+    end
+    @events = publishedEvents
+end
   # GET /events/1
   # GET /events/1.json
   def show
