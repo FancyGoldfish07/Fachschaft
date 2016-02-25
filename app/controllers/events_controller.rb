@@ -14,7 +14,9 @@ publishedEvents = Array.new
       if kidsReadyToPublish.count > 0
         publishedEvents.push(kidsReadyToPublish.last)
       else
+        if !event.parent.present?
         publishedEvents.push(event)
+          end
     end
     end
     @events = publishedEvents
@@ -34,6 +36,7 @@ end
 copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}],except:[:state])
 copy.parent = @event
 copy.author = nil
+copy.message = nil
 copy.manager = nil
 copy.admin = nil
 copy.save!
