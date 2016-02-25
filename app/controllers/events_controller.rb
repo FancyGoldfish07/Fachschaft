@@ -24,6 +24,7 @@ class EventsController < ApplicationController
   def review
 @event = Event.find(params[:id])
  @version = @event.versions.find(params[:version])
+    @revision = @version.reify()
 
   end
   # POST /events
