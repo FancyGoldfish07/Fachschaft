@@ -15,7 +15,9 @@
 /log/*
 !/log/.keep
 /tmp
-
+<<<<<<< HEAD
 /.idea/*
 *.log
 
+=======
+>>>>>>> origin/develop
