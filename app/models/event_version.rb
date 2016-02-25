@@ -1,6 +1,7 @@
 #Event versioning for event model
 class EventVersion < PaperTrail::Version
   after_initialize :set_defaults
+  has_many :event_role_versions
   belongs_to :author, class_name: 'User',
              foreign_key: 'user_id'
   belongs_to :admin,  class_name: 'User',
@@ -8,6 +9,7 @@ class EventVersion < PaperTrail::Version
   belongs_to :manager, class_name: 'User',
              foreign_key: 'manager_id'
   belongs_to :event
+  has_many :roles, through: :event_role_versions
   #The state this version is in
   enum state: [:unsubmitted, :waiting, :reviewed, :rejected, :submitted]
 

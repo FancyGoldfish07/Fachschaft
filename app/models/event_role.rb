@@ -4,4 +4,5 @@ class EventRole < ActiveRecord::Base
   belongs_to :role
   #Uses paper trail
   has_many :event_role_versions
+  
 end

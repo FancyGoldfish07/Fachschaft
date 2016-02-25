@@ -2,7 +2,9 @@
 class Role < ActiveRecord::Base
   has_and_belongs_to_many :users, :join_table => :users_roles
   has_many :event_roles
+  has_many :event_role_versions
   has_many :events, through: :event_roles
+  has_many :event_versions, through: :event_role_versions
   belongs_to :resource, :polymorphic => true
 
   validates :resource_type,

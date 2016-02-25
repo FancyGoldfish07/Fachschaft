@@ -20,7 +20,7 @@ class Rule < ActiveRecord::Base
   end
 
 
- 
+
   private
   def set_defaults
     if day.blank?

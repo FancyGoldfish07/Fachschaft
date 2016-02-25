@@ -73,6 +73,10 @@ end
   end
     private
   def makeVersion
+version = EventVersion.new(title: self.title,description:self.description,
+                 event_category: self.event_category, ort:self.ort,url: self.url,
+                 imageURL: self.imageURL,start:newStart, end:newEnd,repeats: true,
+                 priority: self.priority,flag:self.flag)
 
   end
     #Sets the default priority of the event and start dates

@@ -39,18 +39,18 @@ ActiveRecord::Schema.define(version: 20160224152018) do
   end
 
   create_table "event_role_versions", force: :cascade do |t|
-    t.integer  "event_id"
+    t.integer  "event_version_id"
     t.integer  "role_id"
     t.datetime "created_at"
-    t.string   "item_type",     null: false
-    t.integer  "item_id",       null: false
-    t.string   "event",         null: false
+    t.string   "item_type",        null: false
+    t.integer  "item_id",          null: false
+    t.string   "event",            null: false
     t.string   "whodunnit"
     t.text     "object"
-    t.integer  "event_role_id"
   end
 
-  add_index "event_role_versions", ["event_role_id"], name: "index_event_role_versions_on_event_role_id", using: :btree
+  add_index "event_role_versions", ["event_version_id"], name: "index_event_role_versions_on_event_version_id", using: :btree
+  add_index "event_role_versions", ["role_id"], name: "index_event_role_versions_on_role_id", using: :btree
 
   create_table "event_roles", force: :cascade do |t|
     t.integer  "event_id"
@@ -263,7 +263,8 @@ ActiveRecord::Schema.define(version: 20160224152018) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
-  add_foreign_key "event_role_versions", "event_roles"
+  add_foreign_key "event_role_versions", "event_versions"
+  add_foreign_key "event_role_versions", "roles"
   add_foreign_key "event_roles", "events"
   add_foreign_key "event_roles", "roles"
   add_foreign_key "event_versions", "events"
