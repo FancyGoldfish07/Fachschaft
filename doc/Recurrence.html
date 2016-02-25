@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Recurrence - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">IceCube</span>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-getDates">#getDates</a>
+    
+    <li ><a href="#method-i-getDatesAllInOne">#getDatesAllInOne</a>
+    
+    <li ><a href="#method-i-getDatesSixMonths">#getDatesSixMonths</a>
+    
+    <li ><a href="#method-i-getDatesStartFinish">#getDatesStartFinish</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Recurrence">
+  <h1 id="class-Recurrence" class="class">
+    class Recurrence
+  </h1>
+
+  <section class="description">
+    
+<p>Is an event repeated? If so how often?</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-getDates" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getDates</span><span
+            class="method-args">(startDate, endDate)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get all appointments for our rules from start to end</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getDates-source">
+            <pre><span class="ruby-comment"># File app/models/recurrence.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getDates</span>(<span class="ruby-identifier">startDate</span>, <span class="ruby-identifier">endDate</span>)
+  <span class="ruby-identifier">schedule</span> = <span class="ruby-constant">IceCube</span><span class="ruby-operator">::</span><span class="ruby-constant">Schedule</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">startDate</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">rules</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">add_recurrence_rule</span>(<span class="ruby-identifier">rule</span>.<span class="ruby-identifier">getRule</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">occurrences</span>(<span class="ruby-identifier">endDate</span>)
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getDatesAllInOne" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getDatesAllInOne</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets all the times of the recurrence object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getDatesAllInOne-source">
+            <pre><span class="ruby-comment"># File app/models/recurrence.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getDatesAllInOne</span>
+  <span class="ruby-identifier">schedule</span> = <span class="ruby-constant">IceCube</span><span class="ruby-operator">::</span><span class="ruby-constant">Schedule</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">start</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">rules</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">add_recurrence_rule</span>(<span class="ruby-identifier">rule</span>.<span class="ruby-identifier">getRule</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">excludes</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">excludes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">exclude</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">s</span>.<span class="ruby-identifier">add_exception_time</span> <span class="ruby-identifier">exclude</span>.<span class="ruby-identifier">date</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">occurrences</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">end</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getDatesSixMonths" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getDatesSixMonths</span><span
+            class="method-args">(startDate)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets all dates from now for the next six months</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getDatesSixMonths-source">
+            <pre><span class="ruby-comment"># File app/models/recurrence.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getDatesSixMonths</span>(<span class="ruby-identifier">startDate</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">getDates</span>(<span class="ruby-identifier">startDate</span>, <span class="ruby-identifier">startDate</span> <span class="ruby-operator">+</span> <span class="ruby-value">6</span>.<span class="ruby-identifier">months</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getDatesStartFinish" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getDatesStartFinish</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="getDatesStartFinish-source">
+            <pre><span class="ruby-comment"># File app/models/recurrence.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getDatesStartFinish</span>()
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">getDates</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">start</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">end</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

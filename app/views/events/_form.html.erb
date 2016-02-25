@@ -57,19 +57,19 @@
           $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
 
         });
-        $("#datetimepicker1").on("dp.change", function (e) {
-          $('#datetimepicker2').data("DateTimePicker").maxDate(e.date);
+        $("#datetimepicker2").on("dp.change", function (e) {
+          $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
         });
       });
     </script>
 
 
-<!--
+
     <div class="form-group">
       <%= f.label :start %><br>
-      <%= f.datetime_select :start, :type => 'time', :class => 'form-control', :label => 'Startzeit', :placeholder => 'DD-MM-YYYY'%>
+      <%= f.datetime_select :start, :type => 'time', :class => 'input-group date form-control', :id=> 'datetimepicker1', :label => 'Startzeit', :placeholder => 'DD-MM-YYYY'%>
     </div>
--->
+
 
 
 

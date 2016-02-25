@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Role - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-Admin">::Admin</a>
+    
+    <li ><a href="#method-c-Fachschaft">::Fachschaft</a>
+    
+    <li ><a href="#method-c-Manager">::Manager</a>
+    
+    <li ><a href="#method-c-POSSIBLE_ROLES">::POSSIBLE_ROLES</a>
+    
+    <li ><a href="#method-c-User">::User</a>
+    
+    <li ><a href="#method-c-getRoles">::getRoles</a>
+    
+    <li ><a href="#method-i-toString">#toString</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Role">
+  <h1 id="class-Role" class="class">
+    class Role
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Role.html">Role</a> model for <a href="User.html">User</a></p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-Admin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">Admin</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="Admin-source">
+            <pre><span class="ruby-comment"># File app/models/role.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-constant">Admin</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-constant">POSSIBLE_ROLES</span>[<span class="ruby-value">3</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-Fachschaft" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">Fachschaft</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="Fachschaft-source">
+            <pre><span class="ruby-comment"># File app/models/role.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-constant">Fachschaft</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-constant">POSSIBLE_ROLES</span>[<span class="ruby-value">1</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-Manager" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">Manager</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="Manager-source">
+            <pre><span class="ruby-comment"># File app/models/role.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-constant">Manager</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-constant">POSSIBLE_ROLES</span>[<span class="ruby-value">2</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-POSSIBLE_ROLES" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">POSSIBLE_ROLES</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Our possible roles array</p>
+          
+          
+
+          
+          <div class="method-source-code" id="POSSIBLE_ROLES-source">
+            <pre><span class="ruby-comment"># File app/models/role.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-constant">POSSIBLE_ROLES</span>
+  [<span class="ruby-string">&quot;User&quot;</span>, <span class="ruby-string">&quot;Fachschaft&quot;</span>,<span class="ruby-string">&quot;Manager&quot;</span>,<span class="ruby-string">&quot;Admin&quot;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-User" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">User</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="User-source">
+            <pre><span class="ruby-comment"># File app/models/role.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-constant">User</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-constant">POSSIBLE_ROLES</span>[<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-getRoles" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getRoles</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the role models</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getRoles-source">
+            <pre><span class="ruby-comment"># File app/models/role.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">getRoles</span>
+  <span class="ruby-constant">Role</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-value">6</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-toString" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">toString</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the name of the role. A bit of Java love :)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="toString-source">
+            <pre><span class="ruby-comment"># File app/models/role.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">toString</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

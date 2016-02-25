@@ -5,8 +5,6 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-
-
   config.wrappers :default, class: :input,
     hint_class: :field_with_hint do |b|
     ## Extensions enabled by default
