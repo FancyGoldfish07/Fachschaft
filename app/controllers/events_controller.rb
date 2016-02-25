@@ -31,8 +31,11 @@ end
 
   # GET /events/1/edit
   def edit
-copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}])
+copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}],except:[:state])
 copy.parent = @event
+copy.author = nil
+copy.manager = nil
+copy.admin = nil
 copy.save!
 #Yes this is super ugly, but I am a bit clueless here
  redirect_to "/events/#{copy.id}/build" and return
