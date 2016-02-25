@@ -2,8 +2,8 @@
   <h3>Übersicht</h3>
 </div>
 <div class="panel-body">
-  <%= simple_form_for @event, url: wizard_path do |f| %>
-      <%= f.error_notification %>
+  <%= form_for @event, url: wizard_path do |f| %>
+
   <%= render @event %>
    <p>
         Mit einem Klick auf Absenden beginnt der Reviewprozess für dein Event.
