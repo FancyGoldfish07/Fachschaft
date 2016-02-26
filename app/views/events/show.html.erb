@@ -59,6 +59,11 @@
       <strong>Achtung:</strong> Dieses Event steht nicht im Newsletter.
   <% end %>
 </p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<% if @event.recurring %>
+<%= button_to_default 'Nur diesen Termin bearbeiten', edit_event_path(@event) %>
+    <% if @event.recurring_but_no_owner %>
+    |
+<%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event.recurrence.owner) %>
+<% end %>
+    <% else %>
+<% end %>
