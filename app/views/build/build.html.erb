@@ -41,13 +41,13 @@
     </div>
     <div class="field">
 
-      <%= f.collection_select :role_ids, Role.getRoles, :id, :name, {selected: @event.role_ids},
-                              multiple: true,label: "Relevant für Nutzergruppen" %>
+      <%= f.collection_select :role_ids, Role.getRoles, :id, :name, {selected: @event.role_ids, label: "Relevant für Nutzergruppen"},
+                              multiple: true %>
 
     </div>
     <div class="field">
 
-      <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id}, label: "Eventtyp" %>
+      <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id,  label: "Eventtyp"} %>
 
     </div>
       <div class="field">

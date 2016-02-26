@@ -1,28 +1,28 @@
-
-<% provide(:title,"Wiederholung des Events") %>
+<% provide(:title, "Wiederholung des Events") %>
 <%= bootstrap_form_for @recurrence, url: wizard_path do |f| %>
     <%= f.alert_message "Bitte die Fehler unten beheben." %>
 
 
 
-   <p> Diese Wiederholung geht vom <%= @recurrence.start %> bis zum</p>
-<%= f.date_select :end %>
+    <p> Diese Wiederholung geht vom <%= pretty_date @recurrence.start %> bis zum
+      <%= f.date_select :end, hide_label: true %>
+    </p>
+    <h3>Wiederholungsregeln</h3>
+    <div id="rules">
+
+      <%= f.fields_for :rules do |rule| %>
+          <%= render "rule_fields", :f => rule %>
+
+      <% end %>
       <br>
-    <h3>Rules</h3>
-<div id="rules">
+      <div id="links">
+        <br>
+        <%= link_to_add_association 'Neue Regel', f, :rules, class: "btn btn-primary" %>
+      </div>
+    </div>
 
-<%= f.fields_for :rules do |rule| %>
-      <%= render "rule_fields", :f => rule %>
-
-    <% end %>
-<div id="links">
-<%= link_to_add_association 'Neue Regel', f, :rules %>
-  </div>
-</div>
     <br>
 
 
-
-
-    <%= render partial: 'wizardControls', locals:{f: f} %>
+    <%= render partial: 'wizardControls', locals: {f: f} %>
 <% end %>

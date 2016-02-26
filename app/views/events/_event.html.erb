@@ -2,7 +2,7 @@
 <% if !event.repeats %>
     <p>
     <ul>
-      <li>Startdatum: <%= event.start.to_date %></li>
+      <li>Startdatum: <%= pretty_date event.start.to_date %></li>
       <li>Startzeit: <%= event.start.to_time %></li>
       <li>Endzeitpunkt: <%= event.end %></li>
 
@@ -44,7 +44,7 @@
     <p>Dieser Termin wird wiederholt am: </p>
     <ul>
       <% event.recurrence.getDatesAllInOne.each do |date| %>
-          <li><%= date %> </li>
+          <li><%= pretty_date date %> </li>
       <% end %>
     </ul>
 <% else %>

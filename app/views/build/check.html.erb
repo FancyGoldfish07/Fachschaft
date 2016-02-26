@@ -4,7 +4,7 @@
 
   <%= render @event %>
    <p>
-        Mit einem Klick auf Absenden beginnt der Reviewprozess für dein Event.
+        Mit einem Klick auf Weiter beginnt der Reviewprozess für dein Event.
       </p>
       <%= f.hidden_field :reviewed, { :value => true } %>
     <% render partial: 'wizardControls', locals:{f: f} %>
