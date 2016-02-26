@@ -41,6 +41,16 @@ class Event < ActiveRecord::Base
   def owner_of_recurrence
    self.recurrence.present? && self.recurrence.owner == self
   end
+  #Is this event recurring?
+  def recurring
+    self.recurrence.present?
+  end
+#Gets all days of this event from a specific point in time
+  def getDatesFrom(date)
+    if recurring
+      recurrence.getDatesFrom(date)
+    end
+  end
 
   #Done after save
   def check_reviewed
@@ -84,7 +94,7 @@ class Event < ActiveRecord::Base
                 recurrence.events.create(title: self.title, description: self.description,
                                          event_category: self.event_category, ort: self.ort, role_ids: self.role_ids, url: self.url,
                                          imageURL: self.imageURL, start: newStart, end: newEnd, repeats: false,
-                                         priority: self.priority, flag: self.flag, author: self.author, manager: self.manager, admin: self.admin, state: self.state)
+                                         priority: self.priority, flag: self.flag, author: self.author, manager: self.manager, admin: self.admin, state: self.state, recurrence: self.recurrence)
               end
             end
           end

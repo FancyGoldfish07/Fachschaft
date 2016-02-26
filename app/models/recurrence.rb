@@ -20,7 +20,11 @@ class Recurrence < ActiveRecord::Base
     end
 
   end
+  #Get all dates of this recurrence from a start date
+def getDatesFrom(date)
+  return events.where("start >= ?", date)
 
+end
   #Gets all the times of the recurrence object
   def getDatesAllInOne
     schedule = IceCube::Schedule.new(self.start) do |s|

@@ -42,7 +42,17 @@
 </p>
 
 <p>
-
+<% if @event.recurring %>
+     <% events = @event.getDatesFrom Time.now %>
+      <% if events.count > 0 %>
+      <h5>Dieser Termin findet auch statt</h5>
+        <ul>
+          <% events.each do |event| %>
+         <li><%= link_to pretty_datetime(event.start), event_path(event) %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <% end %>
   <% if @event.flag %>
       Du kannst über den Newsletter über dieses Event informiert werden.
   <% else %>
