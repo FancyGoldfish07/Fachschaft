@@ -1,0 +1,6 @@
+<div class="actions">
+  <%if @step != @wizard_steps.first %>
+      <%= link_to "Zurück",previous_wizard_path %>
+  <%end %>
+  <%= f.submit "Weiter" %>
+</div>

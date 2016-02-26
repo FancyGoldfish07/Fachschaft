@@ -1,9 +1,7 @@
-<div class="panel-heading">
-<h3>Widerholung</h3>
-</div>
-<div class="panel-body">
-<%= form_for @recurrence, url: wizard_path do |f| %>
 
+<% provide(:title,"Wiederholung des Events") %>
+<%= bootstrap_form_for @recurrence, url: wizard_path do |f| %>
+    <%= f.alert_message "Bitte die Fehler unten beheben." %>
 
 
 
@@ -26,10 +24,5 @@
 
 
 
-  <div class="form-actions">
-    <%if @step != @wizard_steps.first %>
-        <%= link_to "Zurück",previous_wizard_path %>
-    <%end %>
-    <%= f.submit "Continue" %>
-  </div>
-<% end %></div>
+    <%= render partial: 'wizardControls', locals:{f: f} %>
+<% end %>

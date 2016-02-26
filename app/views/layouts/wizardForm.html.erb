@@ -57,7 +57,25 @@
 
 <div class="container">
   <div class="page">
-    <%= yield %>
+    <section class="panel panel-default">
+      <div class="panel-heading">
+        <strong>
+          <span class="glyphicon glyphicon-th"></span>
+          <%= yield(:title) %>
+        </strong>
+      </div>
+
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <%= yield %>
+
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </section>
   </div>
 </div><!-- /.container -->
 

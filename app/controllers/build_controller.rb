@@ -1,4 +1,5 @@
 class BuildController < ApplicationController
+  layout "wizardForm"
   include Wicked::Wizard
   steps :build, :add_recurrence, :add_excludes, :check
 
