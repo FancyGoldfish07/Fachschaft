@@ -69,7 +69,34 @@ class Event < ActiveRecord::Base
     return publishedEvents
     end
   end
+  #Unpublish all currently published revisions and the event itself
+  def unpublish
+    if self.state = 4
+      self.state = 5
+      save
+    end
+    if self.revisions.present?
+    self.revisions.each do |event|
+      if event.state = 4
+      event.state = 5
+      event.save
+        end
+    end
+      end
+  end
+  #Unpublishes an event and all of its revisions and its recurrences
+  def unpublish_recurrence
+    self.state = 5
 
+    save
+    #Are we recurring?
+    if recurring
+      recurrence.parent.recurrence.events.each do |event|
+     event.unpublish
+      end
+    end
+
+  end
   #Done after save
   def check_reviewed
     if reviewed
