@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   has_many :event_roles, autosave: true
   belongs_to :event_category
   belongs_to :parent, class_name: 'Event'
-  has_many :revision, :class_name => 'Event', :foreign_key => 'parent_id'
+  has_many :revisions, :class_name => 'Event', :foreign_key => 'parent_id'
   belongs_to :recurrence, autosave: true
   belongs_to :author, class_name: 'User',
              foreign_key: 'user_id'
@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   belongs_to :manager, class_name: 'User',
              foreign_key: 'manager_id'
   #The state this version is in
-  enum state: [:unsubmitted, :waiting, :reviewed, :rejected, :submitted]
+  enum state: {unsubmitted:0, waiting:1, reviewed:2, rejected:3, submitted:4, deleted: 5}
 
   has_many :roles, through: :event_roles
   after_initialize :set_defaults
@@ -79,6 +79,10 @@ end
       end
     end
   end
+  #Publish this event
+  def publish
+
+  end
   #Changes the state of the version based on the user
   def changeState(user)
     if user.current_role == Role.Fachschaft || user.current_role == Role.Admin
@@ -87,7 +91,13 @@ end
         self.author = user
         #Make sure the event is awaiting approval
         self.waiting!
-      end
+      elsif user.current_role == Role.Admin
+        if self.reviewed?
+          self.admin = user
+          self.submitted!
+self.publish
+          end
+        end
     end
     save
   end
@@ -107,4 +117,5 @@ end
         self.end = start.to_time + 1.hour
       end
     end
-  end
+end
+

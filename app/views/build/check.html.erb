@@ -1,19 +1,11 @@
-<div class="panel-heading">
-  <h3>Übersicht</h3>
-</div>
-<div class="panel-body">
-  <%= form_for @event, url: wizard_path do |f| %>
+
+<% provide(:title,"Eventüberblick - Abschicken") %>
+  <%= bootstrap_form_for @event, url: wizard_path do |f| %>
 
   <%= render @event %>
    <p>
-        Mit einem Klick auf Absenden beginnt der Reviewprozess für dein Event.
+        Mit einem Klick auf Weiter beginnt der Reviewprozess für dein Event.
       </p>
       <%= f.hidden_field :reviewed, { :value => true } %>
-          <div class="actions">
-            <%if @step != @wizard_steps.first %>
-                <%= link_to "Zurück",previous_wizard_path %>
-            <%end %>
-        <%= f.submit "Absenden" %>
-      </div>
+    <% render partial: 'wizardControls', locals:{f: f} %>
   <% end %>
-</div>

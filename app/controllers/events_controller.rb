@@ -4,9 +4,23 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-  end
+    events = Event.submitted
+publishedEvents = Array.new
+    events.each do |event|
 
+    #This is defined in Event.state enum
+    enumValue = 4
+      kidsReadyToPublish = event.revisions.where("state = ?", enumValue)
+      if kidsReadyToPublish.count > 0
+        publishedEvents.push(kidsReadyToPublish.last)
+      else
+        if !event.parent.present?
+        publishedEvents.push(event)
+          end
+    end
+    end
+    @events = publishedEvents
+end
   # GET /events/1
   # GET /events/1.json
   def show
@@ -19,8 +33,12 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}])
+copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}],except:[:state])
 copy.parent = @event
+copy.author = nil
+copy.message = nil
+copy.manager = nil
+copy.admin = nil
 copy.save!
 #Yes this is super ugly, but I am a bit clueless here
  redirect_to "/events/#{copy.id}/build" and return

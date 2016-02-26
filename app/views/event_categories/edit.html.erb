@@ -1,6 +1,6 @@
-<h1>Editing Event Category</h1>
+<% provide(:title,"Eventkategorie editieren") %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @event_category %> |
-<%= link_to 'Back', event_categories_path %>
+
+<%= button_to_default 'Zurück', event_categories_path %>
