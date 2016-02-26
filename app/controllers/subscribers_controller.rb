@@ -30,9 +30,6 @@ class SubscribersController < ApplicationController
       if @subscriber.save
         format.html { redirect_to @subscriber, notice: 'Subscriber was successfully created.' }
         format.json { render :show, status: :created, location: @subscriber }
-        # Send confirmation mail
-        NewsletterMailer.newsletter_signup_confirmation(@subscriber).deliver_later
-
       else
         format.html { render :new }
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
@@ -61,8 +58,6 @@ class SubscribersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to subscribers_url, notice: 'Subscriber was successfully destroyed.' }
       format.json { head :no_content }
-      # Send confirmation mail
-      NewsletterMailer.delete_subscription_conf(@subscriber).deliver
     end
   end
 

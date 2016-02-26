@@ -29,7 +29,6 @@ class NewslettersController < ApplicationController
         if @newsletter.save
           format.html { redirect_to @newsletter, notice: 'Newsletter was successfully created.' }
           format.json { render :show, status: :created, location: @newsletter }
-          @newsletter.send_newsletter(@newsletter.from, @newsletter.to, @newsletter.subject, @newsletter.description)
         else
           format.html { render :new }
           format.json { render json: @newsletter.errors, status: :unprocessable_entity }

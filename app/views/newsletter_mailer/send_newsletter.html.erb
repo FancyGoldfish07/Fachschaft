@@ -1,30 +1,89 @@
 <!doctype html>
 <html lang="de">
 <head>
-
+  <meta charset="utf-8">
+  <title>Fachschafts Newsletter</title>
 </head>
 <style>
-  h4.sansserif {
+  #header {
+    background-color:#20549f;
+    color:white;
+    text-align:center;
+    padding:5px;
+  }
+  h1.sansserif {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+  }
+  p.sansserif-big {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    margin-left: 180px;
+    font-weight: bold;
+  }
+  p.sansserif {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-left: 180px;
+    width: 60%;
+  }
+  #title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  #info {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
   }
-  h5.sansserif {
+  #link {
+    color:white;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
+  }
+  #table {
+    margin-left: 180px;
+    width: 60%;
+    background-color:#E0E0E0;
+  }
+  #footer {
+    background-color:#20549f;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
   }
 </style>
 <body>
-<h4 class="sansserif">Hi <%= @subscriber.name %>,</h4>
-<h4 class="sansserif"><%= @text %></h4>
+<div id="header">
+  <h1 class="sansserif">Newsletter der Fachschaft Wirtschaft</h1>
+</div>
+<p class="sansserif-big">Hi <%= @subscriber.name %>,</p>
+<p class="sansserif"><%= @text %></p>
 <br>
 <% @newsletter_events.each do |event| %>
-    <h4 class="sansserif">Title: <%= event.title %></h4>
-    <h5 class="sansserif">Place: <%= event.ort %></h5>
-    <h5 class="sansserif">Time: <%= event.start.strftime("%d.%m.%Y, %H:%M") %></h5>
-    <h4 class="sansserif">Description: <%= event.description %></h4>
-    <h5 class="sansserif">------------------------------------------</h5>
+    <table id="table">
+      <tr>
+        <td id="title">Title: <%= event.title %></td>
+      </tr>
+      <tr>
+        <td id="info">Place: <%= event.ort %></td>
+      </tr>
+      <tr>
+        <td id="info">Time: <%= event.start.strftime("%d.%m.%Y, %H:%M") %></td>
+      </tr>
+      <tr>
+        <td id="info">Description:</td>
+      </tr>
+      <tr>
+        <td id="info"><%= event.description %></td>
+      </tr>
+    </table>
+    <br><br>
 <%end %>
+<br><br>
+<div id="footer">
+  <p id="link">Besuche unseren<a href="http://localhost:3000/events/new" id="link"> Kalender</a> </p>
+</div>
 </body>
 </html>
-
-
