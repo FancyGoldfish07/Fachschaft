@@ -17,8 +17,18 @@
         <li><a href="../newsletter">Newsletter</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <% if current_user.present? %>
+            <li>
+              <%= link_to "Passwort ändern", edit_user_registration_path %>
+
+            </li>
+            <li><%= link_to_delete('Logout', destroy_user_session_path, false) %> </li>
+        <% else %>
+            <li>  <%= link_to("Einloggen", new_user_session_path) %></li>
+            <li>      <%= link_to("Registrieren", new_user_registration_path) %></li>
+        <% end %>
+
+
       </ul>
     </div><!--/.nav-collapse -->
   </div>
