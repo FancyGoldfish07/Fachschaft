@@ -48,7 +48,7 @@ class Event < ActiveRecord::Base
 #Gets all days of this event from a specific point in time
   def getDatesFrom(date)
     if recurring
-      recurrence.getDatesFrom(date)
+      recurrence.getDatesFrom(date).sort_by &:start
     end
   end
 
