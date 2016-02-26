@@ -48,7 +48,25 @@ class Event < ActiveRecord::Base
 #Gets all days of this event from a specific point in time
   def getDatesFrom(date)
     if recurring
-      recurrence.getDatesFrom(date).sort_by &:start
+    events =  recurrence.getDatesFrom(date).sort_by &:start
+    events = Event.submitted
+    publishedEvents = Array.new
+    events.each do |event|
+
+      #This is defined in Event.state enum
+      enumValue = 4
+      kidsReadyToPublish = event.revisions.where("state = ?", enumValue)
+      if kidsReadyToPublish.count > 0
+        if(kidsReadyToPublish.last.recurring)
+        publishedEvents.push(kidsReadyToPublish.last)
+          end
+      else
+        if !event.parent.present?
+          publishedEvents.push(event)
+        end
+      end
+    end
+    return publishedEvents
     end
   end
 
