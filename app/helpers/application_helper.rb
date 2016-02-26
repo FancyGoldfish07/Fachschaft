@@ -20,6 +20,9 @@ module ApplicationHelper
   def button_to_default(name,url)
     link_to name, url, class: "btn btn-w-md btn-gap-v btn-default"
   end
+  def button_to_small(name,url)
+    link_to name, url, class: "btn btn-default"
+  end
   #Gives back a date in the German format
   def pretty_date(date)
 date.strftime("%d.%m.%Y")
