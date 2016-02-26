@@ -4,6 +4,8 @@ class Recurrence < ActiveRecord::Base
   has_many :rules, autosave: true
   has_many :excludes, autosave: true
   has_many :events
+  belongs_to :owner,  class_name: 'Event',
+             foreign_key: 'owner_id'
 
 
   #Allow us to edit rules
