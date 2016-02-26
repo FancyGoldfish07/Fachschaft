@@ -1,14 +1,42 @@
-<%= simple_form_for(@newsletter) do |f| %>
-  <%= f.error_notification %>
+<%= form_for(@newsletter) do |f| %>
 
-  <div class="form-inputs">
-    <%= f.input :subject %>
-    <%= f.input :description %>
-    <%= f.input :from %>
-    <%= f.input :to %>
-  </div>
+    <div class="field">
+      <%= f.label :subject %><br>
+      <%= f.text_area :subject, :class => 'form-control'%>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, :class => 'form-control'%>
+    </div>
+
+
+    <div class="row">
+      <div class='col-md-6'>
+        <div class="form-group">
+          Zeitraum von:
+          <div class='input-group date' id='datetimepicker1'>
+            <input type='datetime' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="form-group">
+          Zeitraum bis:<div class='input-group date' id='datetimepicker2'>
+          <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+        </div>
+        </div>
+      </div>
+    </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+
 <% end %>
