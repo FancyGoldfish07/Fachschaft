@@ -1,39 +1,33 @@
-<p id="notice"><%= notice %></p>
-
+<% provide(:title, @event.title) %>
+<% if @event.imageURL.present? %>
+    <img src="<%= @event.imageURL %>" class="img-responsive">
+<% end %>
 <p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
-
-<p>
-  <strong>Start:</strong>
+  <strong>Startzeit:</strong>
   <%= @event.start %>
 </p>
+<p>
+  <strong>Endzeit:</strong>
+  <%= @event.end %>
+</p>
+
+
 
 <p>
-  <strong>Priority:</strong>
+  <strong>Priorität:</strong>
   <%= @event.priority %>
 </p>
 
 <p>
-  <strong>Flag:</strong>
-  <%= @event.flag %>
+  <strong>Beschreibung:</strong>
+  <%= @event.description %>
 </p>
 
-<p>
-  <strong>Imageurl:</strong>
-  <%= @event.imageURL %>
-</p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @event.url %>
-</p>
 
-<p>
-  <strong>End:</strong>
-  <%= @event.end %>
-</p>
+
+
+
 
 <p>
   <strong>Ort:</strong>
@@ -41,8 +35,19 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @event.description %>
+
+  <% if @event.url.present? %>
+      <% link_to "Mehr Informationen", @event.url %>
+  <% end %>
+</p>
+
+<p>
+
+  <% if @event.flag %>
+      Du kannst über den Newsletter über dieses Event informiert werden.
+  <% else %>
+      <strong>Achtung:</strong> Dieses Event steht nicht im Newsletter.
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
