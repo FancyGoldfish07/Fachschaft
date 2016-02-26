@@ -2,5 +2,5 @@
   <%if @step != @wizard_steps.first %>
       <%= button_to_small "Zurück",previous_wizard_path %>
   <%end %>
-  <%= f.submit "Weiter" %>
+  <%= f.submit "Weiter", class: "btn btn-primary" %>
 </div>

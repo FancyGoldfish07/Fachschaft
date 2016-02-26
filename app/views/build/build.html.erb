@@ -12,6 +12,10 @@
     </div>
     <div class="field">
 
+      <%= f.datetime_select :end, label: "Endzeitpunkt" %>
+    </div>
+    <div class="field">
+
       <%= f.select(:priority, Event.priorities.keys.map {|priority| [priority.titleize,priority]}, label: "Priorität") %>
     </div>
     <div class="field">
@@ -27,10 +31,7 @@
       <%= f.text_field :url, label:"Weblink" %>
     </div>
 
-    <div class="field">
 
-      <%= f.datetime_select :end, label: "Endzeitpunkt" %>
-    </div>
     <div class="field">
 
       <%= f.text_field :ort,label: "Veranstaltungsort" %>
