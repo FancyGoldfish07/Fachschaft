@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160224152018) do
-=======
 ActiveRecord::Schema.define(version: 20160225024844) do
->>>>>>> 5ca43e68910e6caf355c5ce184f0a41386a1825f
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,22 +38,6 @@ ActiveRecord::Schema.define(version: 20160225024844) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-  create_table "event_role_versions", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "role_id"
-    t.datetime "created_at"
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
-    t.string   "whodunnit"
-    t.text     "object"
-  end
-
-  add_index "event_role_versions", ["item_type", "item_id"], name: "index_event_role_versions_on_item_type_and_item_id", using: :btree
-
-=======
->>>>>>> 5ca43e68910e6caf355c5ce184f0a41386a1825f
   create_table "event_roles", force: :cascade do |t|
     t.integer  "event_id"
     t.integer  "role_id"
@@ -68,37 +48,6 @@ ActiveRecord::Schema.define(version: 20160225024844) do
   add_index "event_roles", ["event_id"], name: "index_event_roles_on_event_id", using: :btree
   add_index "event_roles", ["role_id"], name: "index_event_roles_on_role_id", using: :btree
 
-<<<<<<< HEAD
-  create_table "event_versions", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "start"
-    t.integer  "priority"
-    t.boolean  "flag"
-    t.text     "imageURL"
-    t.text     "url"
-    t.datetime "end"
-    t.text     "ort"
-    t.text     "description"
-    t.boolean  "repeats"
-    t.integer  "event_category_id"
-    t.integer  "recurrence_id"
-    t.datetime "created_at"
-    t.string   "item_type",         null: false
-    t.integer  "item_id",           null: false
-    t.string   "event",             null: false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.integer  "user_id"
-    t.integer  "admin_id"
-    t.integer  "manager_id"
-    t.integer  "state"
-    t.text     "message"
-  end
-
-  add_index "event_versions", ["item_type", "item_id"], name: "index_event_versions_on_item_type_and_item_id", using: :btree
-
-=======
->>>>>>> 5ca43e68910e6caf355c5ce184f0a41386a1825f
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.datetime "start"
@@ -128,29 +77,6 @@ ActiveRecord::Schema.define(version: 20160225024844) do
   add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
   add_index "events", ["recurrence_id"], name: "index_events_on_recurrence_id", using: :btree
 
-<<<<<<< HEAD
-  create_table "events_roles", id: false, force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "role_id"
-  end
-
-  add_index "events_roles", ["event_id", "role_id"], name: "index_events_roles_on_event_id_and_role_id", using: :btree
-
-  create_table "exclude_versions", force: :cascade do |t|
-    t.string   "whodunnit"
-    t.date     "date"
-    t.datetime "created_at"
-    t.integer  "recurrence_id"
-    t.string   "item_type",     null: false
-    t.integer  "item_id",       null: false
-    t.string   "event",         null: false
-    t.text     "object"
-  end
-
-  add_index "exclude_versions", ["item_type", "item_id"], name: "index_exclude_versions_on_item_type_and_item_id", using: :btree
-
-=======
->>>>>>> 5ca43e68910e6caf355c5ce184f0a41386a1825f
   create_table "excludes", force: :cascade do |t|
     t.date     "date"
     t.datetime "created_at",    null: false
@@ -183,19 +109,6 @@ ActiveRecord::Schema.define(version: 20160225024844) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "recurrence_versions", force: :cascade do |t|
-    t.date     "start"
-    t.date     "end"
-    t.datetime "created_at"
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
-    t.string   "whodunnit"
-    t.text     "object"
-  end
-
-  add_index "recurrence_versions", ["item_type", "item_id"], name: "index_recurrence_versions_on_item_type_and_item_id", using: :btree
-
   create_table "recurrences", force: :cascade do |t|
     t.date     "start"
     t.date     "end"
@@ -213,20 +126,6 @@ ActiveRecord::Schema.define(version: 20160225024844) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
-
-  create_table "rule_versions", force: :cascade do |t|
-    t.integer  "day"
-    t.integer  "week"
-    t.datetime "created_at"
-    t.integer  "recurrence_id"
-    t.string   "item_type",     null: false
-    t.integer  "item_id",       null: false
-    t.string   "event",         null: false
-    t.string   "whodunnit"
-    t.text     "object"
-  end
-
-  add_index "rule_versions", ["item_type", "item_id"], name: "index_rule_versions_on_item_type_and_item_id", using: :btree
 
   create_table "rules", force: :cascade do |t|
     t.integer  "day"
@@ -274,21 +173,6 @@ ActiveRecord::Schema.define(version: 20160225024844) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
-<<<<<<< HEAD
-  create_table "versions", force: :cascade do |t|
-    t.string   "item_type",      null: false
-    t.integer  "item_id",        null: false
-    t.string   "event",          null: false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.datetime "created_at"
-    t.text     "object_changes"
-  end
-
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
-
-=======
->>>>>>> 5ca43e68910e6caf355c5ce184f0a41386a1825f
   add_foreign_key "event_roles", "events"
   add_foreign_key "event_roles", "roles"
   add_foreign_key "events", "event_categories"

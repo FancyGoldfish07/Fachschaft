@@ -4,7 +4,7 @@ class Newsletter < ActionMailer::Base
   def sample_email_test(user)
     time1 = Time.new
     @user = user
-    mail(to: @user.email, subject: puts 'Newsletter Test '+time1.month + time1.year)
+    mail(to: @user.email, subject: 'Newsletter Test #{time1.month + time1.year}')
   end
   def sample_email(user)
     time1 = Time.new
