@@ -13,15 +13,21 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Start</a></li>
         <li><a href="/fullcalendar/">Kalenderverwaltung</a></li>
-        <li><a href="../">Userverwaltung</a></li>
+        <% if current_user.present? && current_user.isAdmin %>
+            <li>
+        <%= link_to "Userverwaltung", users_path %>
+            </li>
+        <% end %>
         <li><a href="../newsletter">Newsletter</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user.present? %>
             <li>
+
               <%= link_to "Passwort ändern", edit_user_registration_path %>
 
             </li>
+            <li>  <%= link_to_delete("Account löschen", user_path(current_user),true) %></li>
             <li><%= link_to_delete('Logout', destroy_user_session_path, false) %> </li>
         <% else %>
             <li>  <%= link_to("Einloggen", new_user_session_path) %></li>
