@@ -1,20 +1,13 @@
-<div class="panel-heading">
-  <h3>Termine</h3>
-</div>
-<div class="panel-body">
-  <%= simple_form_for @recurrence, url: wizard_path do |f| %>
-      <%= f.error_notification %>
-      <p>Vom <%= @recurrence.start %> bis zum <%= @recurrence.end %> findet dieses Event an diesen Tagen statt.</p>
-      <p>Bitte wähle nun die Tage aus, wo dieses Event nicht stattfindet (z. B. in den Semesterferien). </p>
+
+<% provide(:title,"Termine ausschliessen") %>
+  <%= bootstrap_form_for @recurrence, url: wizard_path do |f| %>
+    <%= f.alert_message "Bitte die Fehler unten beheben." %>
+      <p>Vom <%= pretty_date @recurrence.start %> bis zum <%= pretty_date @recurrence.end %> findet  <%= @recurrence.events.first.title %> an folgenden Tagen statt.</p>
 
 
-      <p>Tage an denen <%= @recurrence.events.first.title %> nicht stattfindet:</p>
-      <%= f.collection_select :exclude_ids, @recurrence.getDatesStartFinish, :to_s, :to_s, {selected: @recurrence.excludes}, multiple: true, include_hidden: false %>
-      <div class="actions">
-     <%if @step != @wizard_steps.first %>
-            <%= link_to "Zurück",previous_wizard_path %>
-            <%end %>
-                <%= f.submit "Continue" %>
-      </div>
+
+
+      <%= f.collection_select :exclude_ids, @recurrence.getDatesStartFinish, :to_s, :to_s, {selected: @recurrence.excludes,
+                                                                                            label: "Tage, an denen das Event nicht stattfindet"}, multiple: true, include_hidden: false %>
+      <%= render partial: 'wizardControls', locals:{f: f} %>
   <% end %>
-</div>

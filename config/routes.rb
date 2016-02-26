@@ -26,9 +26,9 @@ Rails.application.routes.draw do
   get 'home' => 'home#index'
   get 'fullcalendar' => 'fullcalendar#index'
   get 'fullcalendar/index.html.erb' => 'fullcalendar#index'
-
-  #Dummy route
-  root "dummy#index"
+  get 'events/:id/review' => 'events#review'
+  #Home route
+  root "home#index"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

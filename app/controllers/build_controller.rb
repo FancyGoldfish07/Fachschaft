@@ -1,4 +1,7 @@
 class BuildController < ApplicationController
+  #To create a new event you need to be logged in 
+  before_action :authenticate_user!
+  layout "wizardForm"
   include Wicked::Wizard
   steps :build, :add_recurrence, :add_excludes, :check
 
@@ -67,11 +70,19 @@ excludes = param[:exclude_ids]
 
       end
     when :check
-      @event.makeRecurr
+     #version= @event.versions.last
+      @event.changeState(current_user)
+
+
   end
 render_wizard @event
 end
-
+def edit
+  @event = Event.find(params[:id])
+  copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}])
+  copy.save!
+  redirect_to wizard_path(steps.first, :event_id => copy.id)
+end
 
 def create
   @event = Event.create
@@ -85,7 +96,7 @@ end
 private
 #Safe params
 def event_params
-  params.require(:event).permit(:title, :start,:event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, :reviewed, role_ids: [])
+  params.require(:event).permit(:title, :start,:event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, :reviewed, :event_role)
 end
 
 def recurrence_params

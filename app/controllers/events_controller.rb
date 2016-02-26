@@ -4,9 +4,23 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-  end
+    events = Event.submitted
+publishedEvents = Array.new
+    events.each do |event|
 
+    #This is defined in Event.state enum
+    enumValue = 4
+      kidsReadyToPublish = event.revisions.where("state = ?", enumValue)
+      if kidsReadyToPublish.count > 0
+        publishedEvents.push(kidsReadyToPublish.last)
+      else
+        if !event.parent.present?
+        publishedEvents.push(event)
+          end
+    end
+    end
+    @events = publishedEvents
+end
   # GET /events/1
   # GET /events/1.json
   def show
@@ -19,8 +33,22 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}],except:[:state])
+copy.parent = @event
+copy.author = nil
+copy.message = nil
+copy.manager = nil
+copy.admin = nil
+copy.save!
+#Yes this is super ugly, but I am a bit clueless here
+ redirect_to "/events/#{copy.id}/build" and return
   end
 
+  def review
+@event = Event.find(params[:id])
+
+
+  end
   # POST /events
   # POST /events.json
   def create
@@ -40,6 +68,30 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    if ablehnen?
+      @event.message = params[:event][:message]
+      @event.manager_id = current_user.id
+      @event.rejected!
+@event.save
+      respond_to do |format|
+
+          format.html { redirect_to root_path, notice: 'Eintrag wurde abgelehnt.' }
+          end
+    elsif genehmigen?
+      @event.reviewed!
+      @event.manager_id = current_user.id
+      @event.save
+      respond_to do |format|
+
+        format.html { redirect_to root_path, notice: 'Eintrag wurde genehmigt.' }
+      end
+    elsif publizieren?
+    @event.changeState(current_user)
+    respond_to do |format|
+
+      format.html { redirect_to root_path, notice: 'Eintrag wurde veröffentlicht.' }
+    end
+    else
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -49,7 +101,8 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
-  end
+    end
+    end
 
   # DELETE /events/1
   # DELETE /events/1.json
@@ -62,6 +115,15 @@ class EventsController < ApplicationController
   end
 
   private
+  #taken from wicked gem because I am too stupid to setup a proper route
+  def wizard_path(goto_step = nil, options = {})
+    options = { :controller => 'BuildController',
+                :action     => 'show',
+                :id         => goto_step || params[:id],
+                :only_path  => true
+    }.merge options
+    url_for(options)
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
@@ -71,4 +133,15 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:title,:recurrence_id,:event_category_id, :start, :priority, :flag, :imageURL, :url, :end, :ort, :description,role_ids: [])
     end
+    #Was this form submittted to reject the event?
+    def ablehnen?
+      params[:commit] == "Ablehnen"
+    end
+    #Was this form submitted to accept the event?
+    def genehmigen?
+      params[:commit] == "Genehmigen"
+    end
+  def publizieren?
+    params[:commit] == "Veröffentlichen"
+  end
 end

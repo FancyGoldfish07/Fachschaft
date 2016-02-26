@@ -1,25 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Event Categories</h1>
+<% provide(:title,"Eventkategorien") %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<table class="table">
 
   <tbody>
     <% @event_categories.each do |event_category| %>
       <tr>
         <td><%= event_category.name %></td>
-        <td><%= link_to 'Show', event_category %></td>
-        <td><%= link_to 'Edit', edit_event_category_path(event_category) %></td>
+
+        <td><%= button_to_default 'Bearbeiten', edit_event_category_path(event_category) %></td>
         <td><% if event_category.events.count > 0 %>
           <p>Dieser Eventtyp kann erst gelöscht werden, wenn alle Events mit diesem Typ gelöscht worden sind</p>
       <% else %>
-          <%= link_to 'Destroy', event_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%= button_to_delete('Löschen', event_category,true) %></td>
      <% end %>
       </tr>
     <% end %>
@@ -28,7 +22,7 @@
 
 <br>
 
-<%= link_to 'New Event category', new_event_category_path %>
+<%= button_to_default 'Neue Eventkategorie', new_event_category_path %>
 <br>
 <%= select("category", "category_id", EventCategory.all.collect {|p| [ p.name, p.id ] }, includes_blank: 'None') %>
 <div id="calendar_filter">

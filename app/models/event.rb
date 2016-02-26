@@ -1,12 +1,23 @@
 #Event class for Calendar entries
 class Event < ActiveRecord::Base
-  has_and_belongs_to_many :roles
+  has_many :event_roles, autosave: true
   belongs_to :event_category
-  belongs_to :recurrence
+  belongs_to :parent, class_name: 'Event'
+  has_many :revisions, :class_name => 'Event', :foreign_key => 'parent_id'
+  belongs_to :recurrence, autosave: true
+  belongs_to :author, class_name: 'User',
+             foreign_key: 'user_id'
+  belongs_to :admin,  class_name: 'User',
+             foreign_key: 'admin_id'
+  belongs_to :manager, class_name: 'User',
+             foreign_key: 'manager_id'
+  #The state this version is in
+  enum state: {unsubmitted:0, waiting:1, reviewed:2, rejected:3, submitted:4, deleted: 5}
+
+  has_many :roles, through: :event_roles
   after_initialize :set_defaults
   after_save :check_reviewed
-  #Uses paper trail
-  has_paper_trail
+
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
 
@@ -68,9 +79,34 @@ end
       end
     end
   end
+  #Publish this event
+  def publish
+
+  end
+  #Changes the state of the version based on the user
+  def changeState(user)
+    if user.current_role == Role.Fachschaft || user.current_role == Role.Admin
+      if self.unsubmitted?
+        #Set the author of this event revision
+        self.author = user
+        #Make sure the event is awaiting approval
+        self.waiting!
+      elsif user.current_role == Role.Admin
+        if self.reviewed?
+          self.admin = user
+          self.submitted!
+self.publish
+          end
+        end
+    end
+    save
+  end
     private
     #Sets the default priority of the event and start dates
     def set_defaults
+      if self.state.blank?
+        self.state ||= :unsubmitted
+      end
       if self.priority.blank?
       self.priority ||= :medium
       end
@@ -81,4 +117,5 @@ end
         self.end = start.to_time + 1.hour
       end
     end
-  end
+end
+

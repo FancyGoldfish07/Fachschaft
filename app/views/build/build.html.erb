@@ -1,63 +1,61 @@
-<div class="panel-heading">
-<h3>Event</h3>
-</div>
-<div class="panel-body">
-  <%= render layout: 'form' do |f| %>
 
+<% provide(:title,"Event") %>
+<%= bootstrap_form_for @event, url: wizard_path,hide_label:true do |f| %>
+    <%= f.alert_message "Bitte die Fehler unten beheben." %>
     <div class="field">
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </div>
-    <div class="field">
-      <%= f.label :start %><br>
-      <%= f.datetime_select :start %>
-    </div>
-    <div class="field">
-      <%= f.label :priority %><br>
-      <%= f.select(:priority, Event.priorities.keys.map {|priority| [priority.titleize,priority]}) %>
-    </div>
-    <div class="field">
-      <%= f.label :flag %><br>
-      <%= f.check_box :flag %>
-    </div>
-    <div class="field">
-      <%= f.label :imageURL %><br>
-      <%= f.text_area :imageURL %>
-    </div>
-    <div class="field">
-      <%= f.label :url %><br>
-      <%= f.text_area :url %>
-    </div>
 
-    <div class="field">
-      <%= f.label :end %><br>
-      <%= f.datetime_select :end %>
-    </div>
-    <div class="field">
-      <%= f.label :ort %><br>
-      <%= f.text_area :ort %>
-    </div>
-    <div class="field">
-      <%= f.label :description %><br>
-      <%= f.text_area :description %>
+      <%= f.text_field :title, label: "Titel" %>
     </div>
     <div class="field">
 
-      <%= f.collection_select :role_ids, Role.getRoles, :id, :name, {selected: @event.role_ids},
+      <%= f.datetime_select :start, label: "Startzeit" %>
+    </div>
+    <div class="field">
+
+      <%= f.datetime_select :end, label: "Endzeitpunkt" %>
+    </div>
+    <div class="field">
+
+      <%= f.select(:priority, Event.priorities.keys.map {|priority| [priority.titleize,priority]}, label: "Priorität") %>
+    </div>
+    <div class="field">
+
+      <%= f.check_box :flag, label: "Darf in einen Terminnewsletter aufgenommen werden" %>
+    </div>
+    <div class="field">
+
+      <%= f.text_field :imageURL, label: "Pfad zu einem Bild" %>
+    </div>
+    <div class="field">
+
+      <%= f.text_field :url, label:"Weblink" %>
+    </div>
+
+
+    <div class="field">
+
+      <%= f.text_field :ort,label: "Veranstaltungsort" %>
+    </div>
+    <div class="field">
+
+      <%= f.text_area :description, label: "Beschreibung" %>
+    </div>
+    <div class="field">
+
+      <%= f.collection_select :role_ids, Role.getRoles, :id, :name, {selected: @event.role_ids, label: "Relevant für Nutzergruppen"},
                               multiple: true %>
 
     </div>
     <div class="field">
-      <p>Eventtyp:</p>
-      <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id} %>
+
+      <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id,  label: "Eventtyp"} %>
 
     </div>
       <div class="field">
-        <%= f.label :repeats %><br>
-        <%= f.check_box :repeats %>
+
+        <%= f.check_box :repeats, label: "Event wiederholt sich" %>
       </div>
 
-
+    <%= render partial: 'wizardControls', locals:{f: f} %>
 
 <% end %>
-</div>

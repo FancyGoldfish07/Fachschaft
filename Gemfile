@@ -39,19 +39,17 @@ source 'https://rubygems.org'
 
 #Ice-Cube
 gem 'ice_cube', '~> 0.13.3'
-#Ice Cube form helper
-gem 'recurring_select', '~> 2.0'
 
 #Nested forms helper
 gem 'cocoon', '~> 1.2', '>= 1.2.7'
   #Rolify
   gem 'rolify', '~> 5.0'
+#Deep clone
+gem 'deep_cloneable', '~> 2.2.0'
 
-#simple Form
-gem 'simple_form', '~> 3.2.1'
 
-#Use Paper Trail
-gem 'paper_trail', '~> 4.1'
+
+gem 'bootstrap_form', '~> 2.3'
 
 # Use ActiveModel has_secure_password
   gem 'bcrypt', '~> 3.1.7'
@@ -84,6 +82,8 @@ group :development, :test do
   gem 'capybara', '~> 2.6', '>= 2.6.2'
   gem 'factory_girl_rails', '~> 4.6'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem 'guard-rspec'
+  gem 'faker'
   gem 'puma'
 end
 
