@@ -28,7 +28,7 @@ end
 
   # GET /events/new
   def new
-    @event = Event.new
+  redirect_to new_build_path
   end
 
   # GET /events/1/edit
@@ -43,12 +43,21 @@ copy.save!
 #Yes this is super ugly, but I am a bit clueless here
  redirect_to "/events/#{copy.id}/build" and return
   end
-
+#For the review action
   def review
 @event = Event.find(params[:id])
 
 
   end
+  #Shows all the events a manager can still permit
+  def permittables
+    @events = Event.waiting
+  end
+  #Shows all the items an admin can still publish
+  def publishables
+@events = Event.reviewed
+  end
+
   # POST /events
   # POST /events.json
   def create
