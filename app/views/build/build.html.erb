@@ -51,11 +51,15 @@
       <%= f.collection_select :event_category_id, EventCategory.all, :id, :name, {selected: @event.event_category_id,  label: "Eventtyp"} %>
 
     </div>
+    <!-- If we have a recurrence, but we are not the owner, just edit us instead -->
+    <% if @event.owner_of_recurrence || !@event.recurrence %>
+
+
       <div class="field">
 
         <%= f.check_box :repeats, label: "Event wiederholt sich" %>
       </div>
-
+<% end %>
     <%= render partial: 'wizardControls', locals:{f: f} %>
 
 <% end %>
