@@ -10,7 +10,7 @@ class BuildController < ApplicationController
     if @event.repeats
       if !@event.recurrence.present?
 #Create a new recurrence with the date of our event.
-        @event.create_recurrence(start: @event.start.to_date, end: @event.start.to_date + 1.month)
+        @event.create_recurrence(start: @event.start.to_date, end: @event.start.to_date + 1.month, owner:@event)
         @event.save
        @recurrence = @event.recurrence
       else
@@ -77,17 +77,9 @@ excludes = param[:exclude_ids]
   end
 render_wizard @event
 end
-def edit
-  @event = Event.find(params[:id])
-  copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}])
-  copy.save!
-  redirect_to wizard_path(steps.first, :event_id => copy.id)
-end
 
-def create
-  @event = Event.create
-  redirect_to wizard_path(steps.first, :event_id => @event.id)
-end
+
+
   def new
     @event = Event.create
     redirect_to wizard_path(steps.first, :event_id => @event.id)
