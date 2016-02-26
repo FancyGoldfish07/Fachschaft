@@ -4,11 +4,11 @@ class Subscriber < ActiveRecord::Base
   before_destroy :destroy_confirmation
 
   def send_signup_conf
-    NewsletterMailer.newsletter_signup_confirmation(@subscriber).deliver_later
+    NewsletterMailer.newsletter_signup_confirmation(self).deliver_later
   end
 
   def destroy_confirmation
-    NewsletterMailer.delete_subscription_conf(@subscriber).deliver
+    NewsletterMailer.delete_subscription_conf(self).deliver
   end
 
 end

@@ -26,9 +26,13 @@ Rails.application.routes.draw do
   get 'home' => 'home#index'
   get 'fullcalendar' => 'fullcalendar#index'
   get 'fullcalendar/index.html.erb' => 'fullcalendar#index'
-  get 'events/:id/review' => 'events#review'
+  get 'events/:id/review' => 'events#review', as: :review
+  get'calendar/publishables' => 'events#publishables', as: :publishables
+  get 'calendar/permittables' => 'events#permittables', as: :permittables
   #Home route
   root "home#index"
+  get 'events/new', to: 'build#new'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
