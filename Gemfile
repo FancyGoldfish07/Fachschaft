@@ -82,6 +82,8 @@ group :development, :test do
   gem 'capybara', '~> 2.6', '>= 2.6.2'
   gem 'factory_girl_rails', '~> 4.6'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem 'guard-rspec'
+  gem 'faker'
   gem 'puma'
 end
 
