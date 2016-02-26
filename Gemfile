@@ -74,7 +74,7 @@ gem 'wicked', '~> 1.2', '>= 1.2.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'puma'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -84,7 +84,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'guard-rspec'
   gem 'faker'
-  gem 'puma'
+
 end
 
 group :development do
