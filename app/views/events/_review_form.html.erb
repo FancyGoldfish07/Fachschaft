@@ -1,4 +1,5 @@
-<%= form_for(event) do |f| %>
+<% provide(:title,event.title) %>
+<%= bootstrap_form_for(event) do |f| %>
 <% if current_user.present? && current_user.isManager && event.waiting? %>
         <% if !event.message.present? %>
             <p>Nachricht</p>
@@ -6,7 +7,7 @@
             <p>Dieser Beitrag kann nun genehmigt oder abgelehnt werden. Im Falle einer Ablehnung bekommmt der Autor
             eine Nachricht mit dem obigen Text. </p>
             <div class="form-group">
-            <%= f.submit "Genehmigen" %> <%= f.submit "Ablehnen" %>
+            <%= f.submit "Genehmigen" %> <%= f.submit "Ablehnen", class: "btn btn-success", class: "btn btn-danger" %>
           </div>
             <% end %>
 <%elsif current_user.present? && current_user.isAdmin && event.waiting? %>
@@ -16,7 +17,7 @@
         <p><%= event.message %></p>
         <% end %>
 
-        <%= f.submit "Veröffentlichen" %>
+        <%= f.submit "Veröffentlichen", class: "btn btn-success" %>
     <% elsif event.rejected? %>
         <p>Dieses Element darf nicht veröffentlicht werden, hat <%= User.find(event.manager_id).username %> entschieden.</p>
 <% end %>
