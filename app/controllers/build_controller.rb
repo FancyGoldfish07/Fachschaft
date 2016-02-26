@@ -1,4 +1,6 @@
 class BuildController < ApplicationController
+  #To create a new event you need to be logged in 
+  before_action :authenticate_user!
   layout "wizardForm"
   include Wicked::Wizard
   steps :build, :add_recurrence, :add_excludes, :check
