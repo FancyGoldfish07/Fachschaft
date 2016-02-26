@@ -16,7 +16,7 @@
 <% if !event.message.present? %>
         <p><%= event.message %></p>
         <% end %>
-
+<p>Dieses Event wurde von <%= User.find(event.manager_id).username %> inhaltlich für unbenklich befunden.</p>
         <%= f.submit "Veröffentlichen", class: "btn btn-success" %>
     <% elsif event.rejected? %>
         <p>Dieses Element darf nicht veröffentlicht werden, hat <%= User.find(event.manager_id).username %> entschieden.</p>
