@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'calendar/permittables' => 'events#permittables', as: :permittables
   #Home route
   root "fullcalendar#index"
-  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
