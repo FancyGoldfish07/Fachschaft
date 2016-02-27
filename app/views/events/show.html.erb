@@ -42,28 +42,32 @@
 </p>
 
 <p>
-<% if @event.recurring %>
-     <% events = @event.getDatesFrom Time.now %>
+  <% if @event.recurring %>
+      <% events = @event.getDatesFrom Time.now %>
       <% if events.count > 0 %>
-      <h5>Dieser Termin findet auch statt</h5>
+        <h5>Dieser Termin findet auch statt</h5>
         <ul>
           <% events.each do |event| %>
-         <li><%= link_to pretty_datetime(event.start), event_path(event) %></li>
+              <li><%= link_to pretty_datetime(event.start), event_path(event) %></li>
           <% end %>
         </ul>
-      <% end %>
-      <% end %>
-  <% if @event.flag %>
-      Du kannst über den Newsletter über dieses Event informiert werden.
-  <% else %>
-      <strong>Achtung:</strong> Dieses Event steht nicht im Newsletter.
-  <% end %>
+    <% end %>
+<% end %>
+<% if @event.flag %>
+    Du kannst über den Newsletter über dieses Event informiert werden.
+<% else %>
+    <strong>Achtung:</strong> Dieses Event steht nicht im Newsletter.
+<% end %>
 </p>
 <% if @event.recurring %>
-<%= button_to_default 'Nur diesen Termin bearbeiten', edit_event_path(@event) %>
-    <% if @event.recurring_but_no_owner %>
-    |
-<%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event.recurrence.owner) %>
-<% end %>
+    <% if @event.owner_of_recurrence %>
+        <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event) %>
     <% else %>
+        <%= button_to_default 'Nur diesen Termin bearbeiten', edit_event_path(@event) %>
+
+        |
+        <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event.recurrence.owner) %>
+    <% end %>
+<% else %>
+    <%= button_to_default 'Diesen Termin bearbeiten', edit_event_path(@event) %>
 <% end %>
