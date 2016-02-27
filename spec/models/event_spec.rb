@@ -3,87 +3,89 @@ require 'rails_helper'
 RSpec.describe Event, type: :model do
  # pending "add some examples to (or delete) #{__FILE__}"
 
-  before :all do
-    @nullEvent = Event.new
-    @event = Event.new title: 'Test', priority: 'high', flag: 'true', imageURL: 'https://www.test.com', url: 'http://www.anotherTest.com', ort: 'Ghosttown', description: 'Just a short test', event_category_id: '1'
+    let (:event) {FactoryGirl.build(:event)}
+    let(:user) {FactoryGirl.build(:user)}
+
+
+  # Test if all required parameters are set
+  describe 'needs a title' do
+    it 'is valid with a title' do
+      expect(event).to be_valid
+    end
+
+    it 'is invalid without a title' do
+      event.title = nil
+      expect(event).not_to be_valid
+    end
   end
 
-
-  # Test if a value not set (nullable)
-  it 'is required to set a title' do
-    expect(@nullEvent.title).not_to be_nil
+  describe 'needs a start' do
+    it 'is valid with date and time' do
+      expect(event).to be_valid
+    end
+    it 'is invalid without date and time' do
+      event.start = nil
+      expect(event).not_to be_valid
+    end
   end
 
-  it 'is required to set start' do
-    expect(@nullEvent.start).not_to be_nil
+  describe 'needs a priority' do
+  it 'is valid with a priority according to enum' do
+    expect(event).to be_valid
+  end
+    it 'is invalid without a priority' do
+      event.priority = nil
+      expect(event).not_to be_valid
+    end
   end
 
-  it 'is required to set priority' do
-    expect(@nullEvent.priority).not_to be_nil
+  describe 'needs a flag' do
+    it 'is valid with a flag (true or false)' do
+      expect(event).to be_valid
+    end
+    it 'is invalid without a flag' do
+      event.flag = nil
+      expect(event).not_to be_valid
+    end
   end
 
-  it 'is required to set end' do
-    expect(@nullEvent.end).not_to be_nil
+  describe 'needs an end' do
+    it 'is valid with an end' do
+      expect(event).to be_valid
+    end
+    it 'is not valid without an end' do
+      event.end = nil
+      expect(event).not_to be_valid
+    end
   end
 
-  it 'is required to set ort' do
-    expect(@nullEvent.ort).not_to be_nil
+  describe 'needs a locatio  ' do
+    it 'is valid with a location ' do
+      expect(event).to be_valid
+    end
+    it 'is invalid without a location ' do
+      event.ort = nil
+      expect(event).not_to be_valid
+    end
   end
 
-  it 'is required to set event_category_id' do
-    expect(@nullEvent.event_category_id).not_to be_nil
+  describe 'needs an event category id' do
+    it 'is valid with an event_category_id' do
+      expect(event).to be_valid
+    end
+    it 'is invalid without an event category id' do
+      event.event_category_id = nil
+      expect(event).not_to be_valid
+    end
   end
 
-  it 'is required to set recurrence_id' do
-    expect(@nullEvent.recurrence_id).not_to be_nil
-  end
-
-  it 'is required to set repeats' do
-    expect(@nullEvent.repeats).not_to be_nil
-  end
-
-  it 'is required to set reviewed' do
-    expect(@nullEvent.reviewed).not_to be_nil
-  end
-
-
-
-  # This Test only checks whether the get-methods are working well
-
-  it 'return the correct tile' do
-    expect(@event.title) == 'Test'
-  end
-
-  it 'returns the correct priority' do
-    expect(@event.priority) == 'high'
-  end
-
-  it 'returns the correkt boolean for flag' do
-    expect (@event.flag) == 'true'
-  end
-
-  it 'return the correct ImageURL' do
-    expect(@event.imageURL) == 'https://wwww.test.com'
-  end
-
-  it 'return the correct url' do
-    expect(@event.url) == 'http://wwww.anothertest.com'
-  end
-
-  it 'return the correct Ort' do
-    expect(@event.ort) == 'Ghosttown'
-  end
-
-  it 'return the correct description' do
-    expect(@event.description) == 'Just a short test'
-  end
-
-  it 'return the correct description' do
-    expect(@event.event_category_id) == '1'
-  end
-
-  # Tests if a value not set (nullable)
-  it 'is valid Event with a title' do
-    expect(@event).to be_valid
+  describe 'need an user id' do
+    it 'is invalid without an user id' do
+      expect(event).not_to be_valid
+    end
+    it 'is valid with an user id' do
+      event.user_id = user.id
+      expect(event).to be_valid
+    end
   end
 end

@@ -4,13 +4,35 @@ class Rule < ActiveRecord::Base
   after_initialize :set_defaults
 
 
+
   #Returns the days of the week in German
   def self.DAYS
     ["Montag", "Dienstag","Mittwoch","Donnerstag","Freitag","Samstag", "Sonntag"]
   end
+  #Converts the day attribute into a day symbol
+  def getDay
+    array = Rule.DAYS
+
+    case array[day].to_s
+      when "Montag"
+       :monday
+      when "Dienstag"
+        :tuesday
+      when "Mittwoch"
+        :wednesday
+      when "Donnerstag"
+        :thursday
+      when "Freitag"
+        :friday
+      when "Samstag"
+        :saturday
+      when "Sonntag"
+        :sunday
+    end
+  end
   #Returns the Ice_Cube rule
   def getRule
-    dayParam = day + 1
+    dayParam = getDay
     if self.month == 0
       #Rails week at least for now starts sundays
       IceCube::Rule.weekly(week).day(dayParam )

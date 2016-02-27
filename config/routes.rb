@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   resources :newsletters
-  resources :subscribers
+  resources :subscribers do
+    member do
+      get :unsubscribe
+    end
+  end
+
   resources :excludes
   resources :rules
   resources :recurrences
@@ -31,6 +36,8 @@ Rails.application.routes.draw do
   #Home route
   root "fullcalendar#index"
   get 'events/new', to: 'build#new'
+  get 'newsletter/adonnement' => 'subscribers#new', as: :edit_subscription
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -67,20 +74,4 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-
-
-end
+  # Example resource route with con

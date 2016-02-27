@@ -1,30 +1,35 @@
 class Newsletter < ActiveRecord::Base
-
+  belongs_to :admin, class_name: 'User',
+             foreign_key: 'admin_id'
+  belongs_to :manager, class_name: 'User',
+             foreign_key: 'manager_id'
   after_save :send_newsletter
   after_initialize :set_defaults
   after_save :check_reviewed
 
   enum state: {unsubmitted:0, waiting:1, published:2}
 
-  def send_newsletter(from, to, subject, text)
+  def send_newsletter
     # Event has to be newer than "from"
-    @from = from.strftime('%y%m%d')
 
+    @from = Newsletter.from.strftime('%y%m%d')
     # Event has to be older than "to"
-    @to = to.strftime('%y%m%d')
+    @to = Newsletter.to.strftime('%y%m%d')
 
     # Array for selected events
     @newsletter_events = Array.new
 
     # Select all events
-    @events = Event.where(flag: true, reviewed: true)
+
+    @events = Event.where(flag: true, published: true)
 
     # Loop puts desired events into array
     @events.each do |u|
       @date = u.start
 
       # Event needs to be flagged and takes place in desired period
-      if u.published == true and u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
+
+      if u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
 
         # Adds event to array
         @newsletter_events.push(u)
@@ -33,53 +38,10 @@ class Newsletter < ActiveRecord::Base
     end
 
     @subscribers = Subscriber.all
-    @subscribers.each do |u|
 
-      # Sends newsletter zo subscribers
-      NewsletterMailer.send_newsletter(u, @newsletter_events, subject, text).deliver_later
-    end
-
-
-
-
-  def check_submitted
-    if submitted
-      makeRevision
-    end
-  end
-
-
-
-  #Changes the state of the version based on the user
-  def changeState(user)
-    if user.current_role == Role.Admin
-      if self.unsubmitted?
-        #Set the author of this event revision
-        self.admin = user
-        #Make sure the event is awaiting approval
-        self.waiting!
-      elsif user.current_role == Role.Admin
-        if self.reviewed?
-          self.manager = user
-          self.submitted!
-          self.send_newsletter
-        end
-      end
-    end
-    save
-  end
-
-  private
-  #Sets the default priority of the event and start dates
-  def set_defaults
-    if self.state.blank?
-      self.state ||= :unsubmitted
-    end
-    if self.from.blank?
-      self.from = Time.now
-    end
-    if self.end.blank?
-      self.to = from.to_time + 1.week
+    @subscribers.each do|u|
+      # Sends newsletter to subscribers
+      NewsletterMailer.send_newsletter(u, @newsletter_events, Newsletter.subject, Newsletter.description).deliver_later
     end
   end
 end

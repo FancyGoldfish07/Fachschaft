@@ -4,8 +4,18 @@ class Recurrence < ActiveRecord::Base
   has_many :rules, autosave: true
   has_many :excludes, autosave: true
   has_many :events
-
-
+  belongs_to :owner,  class_name: 'Event',
+             foreign_key: 'owner_id'
+  validates_presence_of :rules
+#Unpublish an entire recurrrence
+  def unpublish
+    events.each do |event|
+if event.recurring_but_no_owner
+  #Only do this to the elements that are not the main parent node
+      event.unpublish_revisions
+  end
+    end
+  end
   #Allow us to edit rules
   accepts_nested_attributes_for :rules, reject_if: :all_blank, allow_destroy: true
   #Get all appointments for our rules from start to end
@@ -18,7 +28,11 @@ class Recurrence < ActiveRecord::Base
     end
 
   end
+  #Get all dates of this recurrence from a start date
+def getDatesFrom(date)
+  return events.where("start >= ?", date)
 
+end
   #Gets all the times of the recurrence object
   def getDatesAllInOne
     schedule = IceCube::Schedule.new(self.start) do |s|
