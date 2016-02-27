@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'events/:id/review' => 'events#review', as: :review
   get 'calendar/publishables' => 'events#publishables', as: :publishables
   get 'calendar/permittables' => 'events#permittables', as: :permittables
+  get 'calendar/publishables_newsletter' => 'newsletters#publishables', as: :publishables_newsletter
+  get 'newsletter/abonnement' => 'subscribers#new', as: :edit_subscription
 
   #Home route
   root "fullcalendar#index"

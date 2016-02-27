@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20160225024844) do
     t.datetime "to"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "state"
   end
 
   create_table "recurrences", force: :cascade do |t|
