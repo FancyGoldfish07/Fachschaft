@@ -34,7 +34,11 @@ end
   # GET /events/1/edit
   def edit
 copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}],except:[:state])
+if @event.parent.blank?
 copy.parent = @event
+else
+  copy.parent = @event.parent
+  end
 copy.author = nil
 copy.message = nil
 copy.manager = nil
@@ -81,7 +85,7 @@ copy.save!
       @event.message = params[:event][:message]
       @event.manager_id = current_user.id
       @event.rejected!
-@event.save
+      @event.save
       respond_to do |format|
 
           format.html { redirect_to root_path, notice: 'Eintrag wurde abgelehnt.' }

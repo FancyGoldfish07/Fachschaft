@@ -8,7 +8,7 @@ RSpec.feature :type => feature do
   end
 
   describe 'Check if the home path is the root_path' do
-    it 'should be equal which path you set' do
+    it 'should be equal' do
       visit '/home'
       expect(current_path).to_eql 'root_path'
     end
@@ -25,6 +25,10 @@ RSpec.feature :type => feature do
       end
       click_button 'Account erstellen'
       expect(page).to have_content('Logout')
+    end
+
+    it 'and get role admin if it is the first user who signed up' do
+      expect(AdminUser.role).to_eql 'Admin'
     end
   end
 
@@ -48,5 +52,10 @@ RSpec.feature :type => feature do
       end
      expect(page).to have_content('new_user')
     end
+  end
+
+  describe 'The role of an user' do
+    it 'can be "Admin", "Fachschaft", "Manager", "User" '
+    expect(:user.role).to_eql ('admin' ^ 'fachschaft' ^ 'manager' ^ 'user')
   end
 end
