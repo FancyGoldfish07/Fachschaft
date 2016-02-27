@@ -9,6 +9,7 @@ class Recurrence < ActiveRecord::Base
 #Unpublish an entire recurrrence
   def unpublish
     events.each do |event|
+
       event.unpublish_revisions
     end
   end

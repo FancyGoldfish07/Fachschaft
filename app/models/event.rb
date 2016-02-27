@@ -73,8 +73,8 @@ class Event < ActiveRecord::Base
   end
 #Unpublishes revisions + their parent (except the parent that has no parent)
   def unpublish_revisions
-    #Unpublish us if we are not the parent
-    if self.submitted? && self.parent.present?
+    #Unpublish us
+    if self.submitted? && self.recurring_but_no_owner
       self.deleted!
       save
     end
@@ -183,6 +183,7 @@ class Event < ActiveRecord::Base
       end
       makeRecurr
     end
+
   end
 
   #Changes the state of the version based on the user
