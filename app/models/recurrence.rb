@@ -1,11 +1,13 @@
 #Is an event repeated? If so how often?
 class Recurrence < ActiveRecord::Base
   include IceCube
+  include ModelHelpers
   has_many :rules, autosave: true
   has_many :excludes, autosave: true
   has_many :events
   belongs_to :owner,  class_name: 'Event',
              foreign_key: 'owner_id'
+  #validates_presence_of :rules
 #Unpublish an entire recurrrence
   def unpublish
     events.each do |event|
@@ -51,9 +53,16 @@ end
     def getDatesSixMonths(startDate)
       return getDates(startDate, startDate + 6.months)
     end
-
+#Returns the dates without excludes
     def getDatesStartFinish()
-      return getDates(self.start, self.end)
+      dates = getDates(self.start, self.end)
+      prettyDates = Array.new
+      dates.each do |dateToPrettyfy|
+        newPrettyDate = pretty_date(dateToPrettyfy.to_time.to_date)
+        prettyDates.push newPrettyDate
+      end
+      return prettyDates
+
     end
 
 

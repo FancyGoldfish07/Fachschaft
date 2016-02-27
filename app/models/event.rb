@@ -24,11 +24,11 @@ class Event < ActiveRecord::Base
   #Set backgroundColor based on priority. This is used in the JSON
   def backgroundColor
     if self.highest?
-      "red"
+      "#ff884d"
     elsif self.high?
-      "blue"
+      "#ffcc80"
     else
-      "white"
+      "#ffefcc"
     end
   end
 

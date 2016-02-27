@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <% provide(:title,"Eventkategorien") %>
 
 <table class="table">
@@ -24,7 +22,7 @@
 
 <%= button_to_default 'Neue Eventkategorie', new_event_category_path %>
 <br>
-<%= select("category", "category_id", EventCategory.all.collect {|p| [ p.name, p.id ] }, includes_blank: 'None') %>
+<%= select("category", "category_id", EventCategory.all.collect {|p| [ p.name, p.id ] },{:class => 'form_control', includes_blank: 'None'}) %>
 <div id="calendar_filter">
 
 </div>

@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
     end
   end
   #Checks if the current user is an admin
+  def isUser
+    self.has_role? Role.User
+  end
   #returns a boolean
   def isAdmin
     self.has_role? Role.Admin
