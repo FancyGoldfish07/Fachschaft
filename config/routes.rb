@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :newsletters
-  resources :subscribers
+  resources :subscribers do
+    member do
+      get :unsubscribe
+    end
+  end
 
   resources :excludes
   resources :rules
@@ -32,6 +36,8 @@ Rails.application.routes.draw do
   #Home route
   root "home#index"
   get 'events/new', to: 'build#new'
+  get 'newsletter/adonnement' => 'subscribers#new', as: :edit_subscription
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

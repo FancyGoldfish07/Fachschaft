@@ -2,28 +2,28 @@ class Newsletter < ActiveRecord::Base
 
   after_save :send_newsletter
 
-  def send_newsletter(from, to, subject, text)
+  def send_newsletter
     # Event has to be newer than "from"
-    @from = from.strftime('%y%m%d')
+    @from = Newsletter.from.strftime('%y%m%d')
     # Event has to be older than "to"
-    @to = to.strftime('%y%m%d')
+    @to = Newsletter.to.strftime('%y%m%d')
     # Array for selected events
     @newsletter_events = Array.new
     # Select all events
-    @events = Event.where(flag: true, reviewed: true)
+    @events = Event.where(flag: true, published: true)
     # Loop puts desired events into array
     @events.each do|u|
       @date = u.start
       # Event needs to be flagged and takes place in desired period
-      if u.published == true and u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
+      if u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
         # Adds event to array
         @newsletter_events.push(u)
       end
     end
     @subscribers = Subscriber.all
     @subscribers.each do|u|
-      # Sends newsletter zo subscribers
-      NewsletterMailer.send_newsletter(u, @newsletter_events, subject, text).deliver_later
+      # Sends newsletter to subscribers
+      NewsletterMailer.send_newsletter(u, @newsletter_events, Newsletter.subject, Newsletter.description).deliver_later
     end
   end
 end

@@ -28,7 +28,7 @@ class SubscribersController < ApplicationController
 
     respond_to do |format|
       if @subscriber.save
-        format.html { redirect_to @subscriber, notice: 'Subscriber was successfully created.' }
+        format.html { redirect_to @subscriber, notice: 'Danke für die Anmeldung' }
         format.json { render :show, status: :created, location: @subscriber }
       else
         format.html { render :new }
@@ -56,9 +56,14 @@ class SubscribersController < ApplicationController
   def destroy
     @subscriber.destroy
     respond_to do |format|
-      format.html { redirect_to subscribers_url, notice: 'Subscriber was successfully destroyed.' }
+      format.html { redirect_to subscribers_url, notice: 'Abo erfolgreich gelöscht' }
       format.json { head :no_content }
     end
+  end
+
+  def unsubscribe
+    @sub = Subscriber.find(params[:email])
+    @sub.destroy
   end
 
   private

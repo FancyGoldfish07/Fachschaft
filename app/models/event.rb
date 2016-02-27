@@ -21,6 +21,11 @@ class Event < ActiveRecord::Base
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
 
+  def request_review
+    @users = User.where()
+    UserMailer.notify_new_event(user).deliver_later
+  end
+
   #Set backgroundColor based on priority. This is used in the JSON
   def backgroundColor
     if self.highest?
