@@ -36,6 +36,15 @@ $(document).ready ->
     events: '/events.json'
     eventTextColor: 'black'
 
+    eventClick: (event) ->
+      link = event.url
+      window.open(link.slice(0,-5))
+      return false
+
+
+
+
+
 
 
   $('#calendar_editable').fullCalendar
