@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225024844) do
+ActiveRecord::Schema.define(version: 20160227150306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20160225024844) do
     t.integer  "manager_id"
     t.integer  "state"
     t.text     "message"
-    t.integer  "unadmin_id"
-    t.integer  "unmanager_id"
+    t.boolean  "published"
+    t.boolean  "permitted"
   end
 
   add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
@@ -105,8 +105,10 @@ ActiveRecord::Schema.define(version: 20160225024844) do
     t.text     "description"
     t.datetime "from"
     t.datetime "to"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "unadmin_id"
+    t.integer  "unmanager_id"
   end
 
   create_table "recurrences", force: :cascade do |t|
@@ -114,7 +116,6 @@ ActiveRecord::Schema.define(version: 20160225024844) do
     t.date     "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "owner_id"
   end
 
   create_table "roles", force: :cascade do |t|
