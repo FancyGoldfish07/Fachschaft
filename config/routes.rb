@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   resources :newsletters
   resources :subscribers
-
   resources :excludes
   resources :rules
   resources :recurrences
@@ -23,14 +22,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  get 'home' => 'home#index'
-  get 'fullcalendar' => 'fullcalendar#index'
-  get 'fullcalendar/index.html.erb' => 'fullcalendar#index'
   get 'events/:id/review' => 'events#review', as: :review
-  get'calendar/publishables' => 'events#publishables', as: :publishables
+  get 'calendar/publishables' => 'events#publishables', as: :publishables
   get 'calendar/permittables' => 'events#permittables', as: :permittables
+
   #Home route
-  root "home#index"
+  root "fullcalendar#index"
   get 'events/new', to: 'build#new'
 
   # Example of regular route:

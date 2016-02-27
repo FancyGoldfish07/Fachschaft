@@ -28,11 +28,6 @@ $(document).ready ->
     eventResize: (event, dayDelta, minuteDelta, revertFunc) ->
       updateEvent(event);
 
-  $('#calendar_prev').fullCalendar
-    editable: false,
-    defaultView: 'agendaWeek',
-    height: 500
-    events: '/events.json'
 
   $('#calendar_filter').fullCalendar
     editable: false,
