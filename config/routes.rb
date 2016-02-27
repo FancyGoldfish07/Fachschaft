@@ -7,9 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :excludes
-  resources :rules
-  resources :recurrences
+
   resources :event_categories
   resources :events do
     resources :build
@@ -35,7 +33,7 @@ Rails.application.routes.draw do
 
   #Home route
   root "fullcalendar#index"
-  get 'events/new', to: 'build#new'
+  
 
 
   # Example of regular route:
