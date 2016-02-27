@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   get'calendar/publishables' => 'events#publishables', as: :publishables
   get 'calendar/permittables' => 'events#permittables', as: :permittables
   #Home route
-  root "home#index"
-  get 'events/new', to: 'build#new'
+  root "fullcalendar#index"
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
