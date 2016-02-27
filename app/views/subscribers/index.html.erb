@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Subscribers</h1>
+<h1>Abonnenten anzeigen</h1>
 
 <table>
   <thead>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= subscriber.name %></td>
         <td><%= subscriber.email %></td>
-        <td><%= link_to 'Show', subscriber %></td>
-        <td><%= link_to 'Edit', edit_subscriber_path(subscriber) %></td>
-        <td><%= link_to 'Destroy', subscriber, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Anzeigen', subscriber %></td>
+        <td><%= link_to 'Bearbeiten', edit_subscriber_path(subscriber) %></td>
+        <td><%= link_to 'Löschen', subscriber, method: :delete, data: { confirm: 'Bist du sicher' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Subscriber', new_subscriber_path %>
+<%= link_to 'Neuer Abonnent', new_subscriber_path %>

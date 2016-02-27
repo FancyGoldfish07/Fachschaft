@@ -33175,3 +33175,2486 @@ Processing by Devise::RegistrationsController#new as HTML
   Rendered devise/shared/_links.html.erb (1.8ms)
   Rendered devise/registrations/new.html.erb within layouts/devise (5.6ms)
 Completed 200 OK in 72ms (Views: 67.7ms | ActiveRecord: 0.7ms)
+  [1m[36m (9.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (4.6ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20160211235241)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (11.1ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.1ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (2.3ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160211235241"]]
+  [1m[36m (1.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateEvents (20160219004420)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (5.9ms)[0m  [1mCREATE TABLE "events" ("id" serial primary key, "title" character varying, "start" timestamp, "priority" integer, "flag" boolean, "imageURL" text, "url" text, "end" timestamp, "ort" text, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160219004420"]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Migrating to RolifyCreateRoles (20160219011516)
+  [1m[35m (0.4ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/winfo/Fachschaft/db/migrate/20160219011516_rolify_create_roles.rb:7)
+  [1m[36m (6.6ms)[0m  [1mCREATE TABLE "roles" ("id" serial primary key, "name" character varying, "resource_id" integer, "resource_type" character varying, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users_roles" ("user_id" integer, "role_id" integer) 
+  [1m[36m (2.1ms)[0m  [1mCREATE  INDEX  "index_roles_on_name" ON "roles"  ("name")[0m
+  [1m[35m (1.9ms)[0m  CREATE  INDEX  "index_roles_on_name_and_resource_type_and_resource_id" ON "roles"  ("name", "resource_type", "resource_id")
+  [1m[36m (11.2ms)[0m  [1mCREATE  INDEX  "index_users_roles_on_user_id_and_role_id" ON "users_roles"  ("user_id", "role_id")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160219011516"]]
+  [1m[36m (2.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateEventCategories (20160219071112)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (5.0ms)[0m  [1mCREATE TABLE "event_categories" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160219071112"]]
+  [1m[36m (1.7ms)[0m  [1mCOMMIT[0m
+Migrating to InstallMailkick (20160219082037)
+  [1m[35m (0.1ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/winfo/Fachschaft/db/migrate/20160219082037_install_mailkick.rb:10)
+  [1m[36m (13.0ms)[0m  [1mCREATE TABLE "mailkick_opt_outs" ("id" serial primary key, "email" character varying, "user_id" integer, "user_type" character varying, "active" boolean DEFAULT 't' NOT NULL, "reason" character varying, "list" character varying, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (2.9ms)[0m  CREATE  INDEX  "index_mailkick_opt_outs_on_email" ON "mailkick_opt_outs"  ("email")
+  [1m[36m (2.5ms)[0m  [1mCREATE  INDEX  "index_mailkick_opt_outs_on_user_id_and_user_type" ON "mailkick_opt_outs"  ("user_id", "user_type")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160219082037"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddEventCategoryToEvent (20160219085244)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "events" ADD "event_category_id" integer[0m
+  [1m[35m (11.9ms)[0m  CREATE  INDEX  "index_events_on_event_category_id" ON "events"  ("event_category_id")
+  [1m[36m (7.3ms)[0m  [1mALTER TABLE "events" ADD CONSTRAINT "fk_rails_a0b385fce3"
+FOREIGN KEY ("event_category_id")
+  REFERENCES "event_categories" ("id")
+[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160219085244"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateRecurrences (20160220000217)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "recurrences" ("id" serial primary key, "start" date, "end" date, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160220000217"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddRecurrenceToEvent (20160220000625)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "events" ADD "recurrence_id" integer[0m
+  [1m[35m (8.3ms)[0m  CREATE  INDEX  "index_events_on_recurrence_id" ON "events"  ("recurrence_id")
+  [1m[36m (1.3ms)[0m  [1mALTER TABLE "events" ADD CONSTRAINT "fk_rails_abe19bd7ec"
+FOREIGN KEY ("recurrence_id")
+  REFERENCES "recurrences" ("id")
+[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160220000625"]]
+  [1m[36m (1.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateRules (20160220041227)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (5.4ms)[0m  [1mCREATE TABLE "rules" ("id" serial primary key, "day" integer, "recurrence_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (13.8ms)[0m  CREATE  INDEX  "index_rules_on_recurrence_id" ON "rules"  ("recurrence_id")
+  [1m[36m (1.1ms)[0m  [1mALTER TABLE "rules" ADD CONSTRAINT "fk_rails_d68ea077a7"
+FOREIGN KEY ("recurrence_id")
+  REFERENCES "recurrences" ("id")
+ ON DELETE CASCADE[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160220041227"]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddWeekToRules (20160220042151)
+  [1m[35m (1.4ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "rules" ADD "week" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160220042151"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Migrating to AddMonthToRules (20160220043415)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "rules" ADD "month" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160220043415"]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddDaysToRules (20160220060339)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "rules" ADD "days" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160220060339"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateExcludes (20160220205240)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (3.7ms)[0m  [1mCREATE TABLE "excludes" ("id" serial primary key, "date" date, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160220205240"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddExcludeToRecurrence (20160220205323)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.6ms)[0m  [1mALTER TABLE "excludes" ADD "recurrence_id" integer[0m
+  [1m[35m (2.6ms)[0m  CREATE  INDEX  "index_excludes_on_recurrence_id" ON "excludes"  ("recurrence_id")
+  [1m[36m (1.6ms)[0m  [1mALTER TABLE "excludes" ADD CONSTRAINT "fk_rails_46b7dbabcd"
+FOREIGN KEY ("recurrence_id")
+  REFERENCES "recurrences" ("id")
+[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160220205323"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddRepeatsToEvents (20160221010540)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "events" ADD "repeats" boolean[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160221010540"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Migrating to AddReviewedToEvents (20160222051613)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "events" ADD "reviewed" boolean[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160222051613"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSubscribers (20160222120311)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (5.8ms)[0m  [1mCREATE TABLE "subscribers" ("id" serial primary key, "name" character varying, "email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160222120311"]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddUsernameToUsers (20160222130205)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD "username" character varying[0m
+  [1m[35m (4.4ms)[0m  CREATE UNIQUE INDEX  "index_users_on_username" ON "users"  ("username")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160222130205"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+Migrating to CreateDelayedJobs (20160222144254)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (7.4ms)[0m  CREATE TABLE "delayed_jobs" ("id" serial primary key, "priority" integer DEFAULT 0 NOT NULL, "attempts" integer DEFAULT 0 NOT NULL, "handler" text NOT NULL, "last_error" text, "run_at" timestamp, "locked_at" timestamp, "failed_at" timestamp, "locked_by" character varying, "queue" character varying, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (7.2ms)[0m  [1mCREATE  INDEX  "delayed_jobs_priority" ON "delayed_jobs"  ("priority", "run_at")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160222144254"]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateNewsletters (20160222171444)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (6.7ms)[0m  [1mCREATE TABLE "newsletters" ("id" serial primary key, "subject" character varying, "description" text, "from" timestamp, "to" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160222171444"]]
+  [1m[36m (4.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateEventRoles (20160224150943)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (9.4ms)[0m  [1mCREATE TABLE "event_roles" ("id" serial primary key, "event_id" integer, "role_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (3.1ms)[0m  CREATE  INDEX  "index_event_roles_on_event_id" ON "event_roles"  ("event_id")
+  [1m[36m (2.6ms)[0m  [1mCREATE  INDEX  "index_event_roles_on_role_id" ON "event_roles"  ("role_id")[0m
+  [1m[35m (1.9ms)[0m  ALTER TABLE "event_roles" ADD CONSTRAINT "fk_rails_c9f042cecd"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+
+  [1m[36m (2.5ms)[0m  [1mALTER TABLE "event_roles" ADD CONSTRAINT "fk_rails_cb70fbeec8"
+FOREIGN KEY ("role_id")
+  REFERENCES "roles" ("id")
+[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160224150943"]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddEventToEvents (20160225024844)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "events" ADD "parent_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "events" ADD "user_id" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "events" ADD "admin_id" integer[0m
+  [1m[35m (4.4ms)[0m  ALTER TABLE "events" ADD "manager_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "events" ADD "state" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "events" ADD "message" text
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "events" ADD "unadmin_id" integer[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "events" ADD "unmanager_id" integer
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "recurrences" ADD "owner_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160225024844"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to AddAdminManagerToNewsletters (20160227150306)
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36m (11.2ms)[0m  [1mALTER TABLE "newsletters" ADD "unadmin_id" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "newsletters" ADD "unmanager_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160227150306"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'delayed_jobs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'event_categories'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'event_roles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'events'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'excludes'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'mailkick_opt_outs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'newsletters'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'recurrences'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'roles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'rules'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'subscribers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users_roles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (2.2ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "User"], ["created_at", "2016-02-27 19:15:47.697638"], ["updated_at", "2016-02-27 19:15:47.697638"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Fachschaft"], ["created_at", "2016-02-27 19:15:47.705301"], ["updated_at", "2016-02-27 19:15:47.705301"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Manager"], ["created_at", "2016-02-27 19:15:47.707884"], ["updated_at", "2016-02-27 19:15:47.707884"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "roles" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Admin"], ["created_at", "2016-02-27 19:15:47.710563"], ["updated_at", "2016-02-27 19:15:47.710563"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "event_categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Fachschaftssitzung"], ["created_at", "2016-02-27 19:15:47.723212"], ["updated_at", "2016-02-27 19:15:47.723212"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "event_categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Party"], ["created_at", "2016-02-27 19:15:47.726848"], ["updated_at", "2016-02-27 19:15:47.726848"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mEventCategory Load (0.5ms)[0m  SELECT  "event_categories".* FROM "event_categories"  ORDER BY "event_categories"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "events" ("start", "title", "event_category_id", "state", "priority", "end", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["start", "2016-02-28 19:15:47.736680"], ["title", "Testtermin"], ["event_category_id", 1], ["state", 0], ["priority", 2], ["end", "2016-02-28 20:15:47.736680"], ["created_at", "2016-02-27 19:15:47.763928"], ["updated_at", "2016-02-27 19:15:47.763928"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mEventCategory Load (0.5ms)[0m  SELECT  "event_categories".* FROM "event_categories"  ORDER BY "event_categories"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "events" ("start", "title", "event_category_id", "state", "priority", "end", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["start", "2016-02-29 19:15:47.769470"], ["title", "Party Party Paty"], ["event_category_id", 1], ["state", 0], ["priority", 2], ["end", "2016-02-29 20:15:47.769470"], ["created_at", "2016-02-27 19:15:47.772300"], ["updated_at", "2016-02-27 19:15:47.772300"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for 127.0.0.1 at 2016-02-27 20:24:31 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by FullcalendarController#index as HTML
+  [1m[35mEventCategory Load (1.8ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered fullcalendar/_calendar.html.erb (15.7ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (22.8ms)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_variables.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_mixins.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_path.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_core.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_larger.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_fixed-width.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_list.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_bordered-pulled.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_spinning.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_rotated-flipped.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_stacked.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.css.scss to /usr/local/lib/ruby/gems/2.2.0/gems/weather-icons-rails-0.1.1/app/assets/stylesheets/weather-icons/_icons.scss. (called from _app_views_layouts_application_html_erb__1043030091__625052658 at /home/winfo/Fachschaft/app/views/layouts/application.html.erb:18)
+  Rendered shared/_menu.html.erb (22.6ms)
+Completed 200 OK in 7543ms (Views: 7508.8ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/assets/application.self-82a70d8166389b46713938a39d151c5f20ea4418edb3242ac9117934d24c036e.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:39 +0100
+
+
+Started GET "/assets/rails_bootstrap_forms.self-10cb7d2aef696c4062f219f6678eed1d57c254a6717cea25d021726a4b9a214c.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:39 +0100
+
+
+Started GET "/assets/app.self-a2facb89dce140934e558cb106d7636f4fecec72b1049af647d580d47a778a87.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:39 +0100
+
+
+Started GET "/assets/calendar.self-e62b0e5b43691478964d934d2c0dff359da84d83872131c345905adb252d6499.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:39 +0100
+
+
+Started GET "/assets/event_categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:39 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:39 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/main.self-f1cf68f47a945d75d54cfc6ae4650a1879650193d34fdd9ce6fdf72f970ee751.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/scaffolds.self-c3b70e9fa0733be9a465d3145b23bf7d18ae3124b1f026163eff870c956e730d.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/starter-template.self-3c68a37d25daa3b2b69df8c4367d78f204a5578c4dc8a404adc582dcbd66a36c.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/themify-icons.self-8fcf245f21e0a9a9fb8fee94c9ef35c5ccdf8d1d2085d269dabb41c98dde833e.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/ui.self-14f0e5f762a9bb63a7a57b8796637c294ce52d83966e80fca09527ce8011f940.css?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/datetimePicker.self-cc86a22e58ddf9126603b247ee14fd4e2ce0cb53ea46f39509a1515f3908aa24.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/calendar.self-ef19a6abdd6e0432a0df19714298fc34f8c7324498e237bd68d186a418c79eda.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/event_categories.self-1b228cbeebc36cc18bd79295458506a0d41b926a36630805d2e6cb8faea641c4.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/lang/de.self-b9c1178b8b6951793b97296d87102ab92e5a44a989884bd6900aea0237165a88.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 127.0.0.1 at 2016-02-27 20:24:40 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 127.0.0.1 at 2016-02-27 20:24:41 +0100
+
+
+Started GET "/events.json?start=2016-02-01&end=2016-03-14&_=1456601081006" for 127.0.0.1 at 2016-02-27 20:24:41 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-02-01", "end"=>"2016-03-14", "_"=>"1456601081006"}
+  [1m[36mEvent Load (5.9ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."state" = $1[0m  [["state", 4]]
+  Rendered events/index.json.jbuilder (57.3ms)
+Completed 200 OK in 294ms (Views: 108.7ms | ActiveRecord: 46.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2016-02-27 20:24:45 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[35m (15.8ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (0.4ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (0.2ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (15.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/devise (67.3ms)
+Completed 200 OK in 495ms (Views: 371.9ms | ActiveRecord: 22.5ms)
+
+
+Started GET "/assets/background/1-8c79da7a29d8cc171aba6a6e024dfa9436a0b05506fab0a0f57ee5cd02b8dd9e.jpg" for 127.0.0.1 at 2016-02-27 20:24:45 +0100
+
+
+Started GET "/assets/fonts/themify.woff?-fvbane" for 127.0.0.1 at 2016-02-27 20:24:45 +0100
+
+
+Started POST "/users" for 127.0.0.1 at 2016-02-27 20:25:09 +0100
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lctFdzQdbijA02ynj2Sb3ZNvg6kJmByQDyzu2ZqX5rxoY7P6R2WGnpO//n/An8JbyJG6YPk9uja+1GTu3UfWPw==", "user"=>{"email"=>"info@fachschaft.de", "username"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Account erstellen"}
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (0.3ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "Admin"]]
+  [1m[36mRole Load (0.4ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (4.9ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'info@fachschaft.de' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'info@fachschaft.de' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = '' LIMIT 1[0m
+  [1m[35m (3.7ms)[0m  ROLLBACK
+  Rendered devise/shared/_links.html.erb (3.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/devise (11.9ms)
+Completed 200 OK in 1137ms (Views: 122.7ms | ActiveRecord: 10.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-02-27 21:29:39 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by FullcalendarController#index as HTML
+  [1m[35mEventCategory Load (4.2ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered fullcalendar/_calendar.html.erb (22.3ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (29.6ms)
+  Rendered shared/_menu.html.erb (9.8ms)
+Completed 200 OK in 1131ms (Views: 1094.6ms | ActiveRecord: 12.1ms)
+
+
+Started GET "/events.json?start=2016-02-01&end=2016-03-14&_=1456604981257" for 127.0.0.1 at 2016-02-27 21:29:41 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-02-01", "end"=>"2016-03-14", "_"=>"1456604981257"}
+  [1m[36mEvent Load (1.9ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."state" = $1[0m  [["state", 4]]
+  Rendered events/index.json.jbuilder (18.4ms)
+Completed 200 OK in 168ms (Views: 60.5ms | ActiveRecord: 11.2ms)
+
+
+Started GET "/build/new" for 127.0.0.1 at 2016-02-27 21:29:48 +0100
+Processing by BuildController#new as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 21:29:49 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (1.3ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (3.7ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (0.4ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (24.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (64.7ms)
+Completed 200 OK in 283ms (Views: 172.1ms | ActiveRecord: 10.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-02-27 22:16:05 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by FullcalendarController#index as HTML
+  [1m[35mEventCategory Load (2.9ms)[0m  SELECT "event_categories".* FROM "event_categories"
+  Rendered fullcalendar/_calendar.html.erb (13.2ms)
+  Rendered fullcalendar/index.html.erb within layouts/application (19.7ms)
+  Rendered shared/_menu.html.erb (11.1ms)
+Completed 200 OK in 1127ms (Views: 1092.0ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/events.json?start=2016-02-01&end=2016-03-14&_=1456607766833" for 127.0.0.1 at 2016-02-27 22:16:07 +0100
+Processing by EventsController#index as JSON
+  Parameters: {"start"=>"2016-02-01", "end"=>"2016-03-14", "_"=>"1456607766833"}
+  [1m[36mEvent Load (1.4ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."state" = $1[0m  [["state", 4]]
+  Rendered events/index.json.jbuilder (14.9ms)
+Completed 200 OK in 113ms (Views: 41.6ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:16:11 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (3.3ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (4.8ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (0.8ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (15.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (674.2ms)
+Completed 200 OK in 916ms (Views: 791.2ms | ActiveRecord: 14.7ms)
+
+
+Started GET "/assets/fonts/themify.woff?-fvbane" for 127.0.0.1 at 2016-02-27 22:16:13 +0100
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2016-02-27 22:16:26 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (1.8ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "Admin"]]
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (18.1ms)
+  Rendered devise/registrations/new.html.erb within layouts/devise (53.0ms)
+Completed 200 OK in 223ms (Views: 187.9ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[35m (2.4ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (1.6ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (0.5ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (6.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/devise (14.9ms)
+Completed 200 OK in 161ms (Views: 142.0ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/assets/application.self-82a70d8166389b46713938a39d151c5f20ea4418edb3242ac9117934d24c036e.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/rails_bootstrap_forms.self-10cb7d2aef696c4062f219f6678eed1d57c254a6717cea25d021726a4b9a214c.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/app.self-a2facb89dce140934e558cb106d7636f4fecec72b1049af647d580d47a778a87.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/calendar.self-e62b0e5b43691478964d934d2c0dff359da84d83872131c345905adb252d6499.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/event_categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/main.self-f1cf68f47a945d75d54cfc6ae4650a1879650193d34fdd9ce6fdf72f970ee751.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/scaffolds.self-c3b70e9fa0733be9a465d3145b23bf7d18ae3124b1f026163eff870c956e730d.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/starter-template.self-3c68a37d25daa3b2b69df8c4367d78f204a5578c4dc8a404adc582dcbd66a36c.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/themify-icons.self-8fcf245f21e0a9a9fb8fee94c9ef35c5ccdf8d1d2085d269dabb41c98dde833e.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/ui.self-14f0e5f762a9bb63a7a57b8796637c294ce52d83966e80fca09527ce8011f940.css?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/datetimePicker.self-cc86a22e58ddf9126603b247ee14fd4e2ce0cb53ea46f39509a1515f3908aa24.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:56 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/calendar.self-ef19a6abdd6e0432a0df19714298fc34f8c7324498e237bd68d186a418c79eda.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/event_categories.self-1b228cbeebc36cc18bd79295458506a0d41b926a36630805d2e6cb8faea641c4.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/lang/de.self-b9c1178b8b6951793b97296d87102ab92e5a44a989884bd6900aea0237165a88.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/assets/background/1-8c79da7a29d8cc171aba6a6e024dfa9436a0b05506fab0a0f57ee5cd02b8dd9e.jpg" for 127.0.0.1 at 2016-02-27 22:18:57 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:21:15 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[36m (3.2ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (1.6ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "Admin"]]
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (18.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (37.5ms)
+Completed 200 OK in 197ms (Views: 167.1ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:22:05 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (1.8ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (1.3ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (0.3ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (7.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (19.0ms)
+Completed 200 OK in 150ms (Views: 134.1ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/assets/application.self-82a70d8166389b46713938a39d151c5f20ea4418edb3242ac9117934d24c036e.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/rails_bootstrap_forms.self-10cb7d2aef696c4062f219f6678eed1d57c254a6717cea25d021726a4b9a214c.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/app.self-a2facb89dce140934e558cb106d7636f4fecec72b1049af647d580d47a778a87.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/calendar.self-e62b0e5b43691478964d934d2c0dff359da84d83872131c345905adb252d6499.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/event_categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/main.self-f1cf68f47a945d75d54cfc6ae4650a1879650193d34fdd9ce6fdf72f970ee751.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/scaffolds.self-c3b70e9fa0733be9a465d3145b23bf7d18ae3124b1f026163eff870c956e730d.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/starter-template.self-3c68a37d25daa3b2b69df8c4367d78f204a5578c4dc8a404adc582dcbd66a36c.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/themify-icons.self-8fcf245f21e0a9a9fb8fee94c9ef35c5ccdf8d1d2085d269dabb41c98dde833e.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/ui.self-14f0e5f762a9bb63a7a57b8796637c294ce52d83966e80fca09527ce8011f940.css?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/datetimePicker.self-cc86a22e58ddf9126603b247ee14fd4e2ce0cb53ea46f39509a1515f3908aa24.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/calendar.self-ef19a6abdd6e0432a0df19714298fc34f8c7324498e237bd68d186a418c79eda.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/event_categories.self-1b228cbeebc36cc18bd79295458506a0d41b926a36630805d2e6cb8faea641c4.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/lang/de.self-b9c1178b8b6951793b97296d87102ab92e5a44a989884bd6900aea0237165a88.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/assets/background/1-8c79da7a29d8cc171aba6a6e024dfa9436a0b05506fab0a0f57ee5cd02b8dd9e.jpg" for 127.0.0.1 at 2016-02-27 22:22:06 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:24:01 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[36m (2.1ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (3.3ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "Admin"]]
+  [1m[36mRole Load (0.6ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered devise/sessions/new.html.erb within layouts/devise (86.5ms)
+Completed 500 Internal Server Error in 112ms (ActiveRecord: 6.0ms)
+
+NoMethodError - undefined method `merge' for "Angemeldet bleiben?":String:
+  actionview (4.2.5.1) lib/action_view/helpers/form_helper.rb:1870:in `objectify_options'
+  actionview (4.2.5.1) lib/action_view/helpers/form_helper.rb:1710:in `check_box'
+  app/views/devise/sessions/new.html.erb:40:in `block in _app_views_devise_sessions_new_html_erb__538407996__652679518'
+  actionview (4.2.5.1) lib/action_view/helpers/capture_helper.rb:38:in `block in capture'
+  actionview (4.2.5.1) lib/action_view/helpers/capture_helper.rb:202:in `with_output_buffer'
+  actionview (4.2.5.1) lib/action_view/helpers/capture_helper.rb:38:in `capture'
+  actionview (4.2.5.1) lib/action_view/helpers/form_helper.rb:444:in `form_for'
+  app/views/devise/sessions/new.html.erb:1:in `_app_views_devise_sessions_new_html_erb__538407996__652679518'
+  actionview (4.2.5.1) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/local/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  responders (2.1.1) lib/action_controller/responder.rb:236:in `default_render'
+  responders (2.1.1) lib/action_controller/responder.rb:170:in `to_html'
+  responders (2.1.1) lib/action_controller/responder.rb:163:in `respond'
+  responders (2.1.1) lib/action_controller/responder.rb:156:in `call'
+  responders (2.1.1) lib/action_controller/respond_with.rb:205:in `respond_with'
+  devise (3.5.6) app/controllers/devise/sessions_controller.rb:12:in `new'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/mapper.rb:49:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5.1) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  puma (2.16.0) lib/puma/server.rb:557:in `handle_request'
+  puma (2.16.0) lib/puma/server.rb:404:in `process_client'
+  puma (2.16.0) lib/puma/server.rb:270:in `block in run'
+  puma (2.16.0) lib/puma/thread_pool.rb:106:in `block in spawn_thread'
+
+
+
+Started POST "/__better_errors/16c1fdf5a8c4b735/variables" for 127.0.0.1 at 2016-02-27 22:24:02 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:25:12 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (1.8ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (0.8ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (0.2ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (9.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (21.1ms)
+Completed 200 OK in 188ms (Views: 149.1ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/application.self-82a70d8166389b46713938a39d151c5f20ea4418edb3242ac9117934d24c036e.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:12 +0100
+
+
+Started GET "/assets/rails_bootstrap_forms.self-10cb7d2aef696c4062f219f6678eed1d57c254a6717cea25d021726a4b9a214c.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:12 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:12 +0100
+
+
+Started GET "/assets/app.self-a2facb89dce140934e558cb106d7636f4fecec72b1049af647d580d47a778a87.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:12 +0100
+
+
+Started GET "/assets/calendar.self-e62b0e5b43691478964d934d2c0dff359da84d83872131c345905adb252d6499.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:12 +0100
+
+
+Started GET "/assets/event_categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/main.self-f1cf68f47a945d75d54cfc6ae4650a1879650193d34fdd9ce6fdf72f970ee751.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/scaffolds.self-c3b70e9fa0733be9a465d3145b23bf7d18ae3124b1f026163eff870c956e730d.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/starter-template.self-3c68a37d25daa3b2b69df8c4367d78f204a5578c4dc8a404adc582dcbd66a36c.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/themify-icons.self-8fcf245f21e0a9a9fb8fee94c9ef35c5ccdf8d1d2085d269dabb41c98dde833e.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/ui.self-14f0e5f762a9bb63a7a57b8796637c294ce52d83966e80fca09527ce8011f940.css?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/datetimePicker.self-cc86a22e58ddf9126603b247ee14fd4e2ce0cb53ea46f39509a1515f3908aa24.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/calendar.self-ef19a6abdd6e0432a0df19714298fc34f8c7324498e237bd68d186a418c79eda.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/event_categories.self-1b228cbeebc36cc18bd79295458506a0d41b926a36630805d2e6cb8faea641c4.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/lang/de.self-b9c1178b8b6951793b97296d87102ab92e5a44a989884bd6900aea0237165a88.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 127.0.0.1 at 2016-02-27 22:25:13 +0100
+
+
+Started GET "/assets/background/1-8c79da7a29d8cc171aba6a6e024dfa9436a0b05506fab0a0f57ee5cd02b8dd9e.jpg" for 127.0.0.1 at 2016-02-27 22:25:14 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:28:47 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[36m (7.1ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (5.0ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "Admin"]]
+  [1m[36mRole Load (0.5ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered devise/sessions/new.html.erb within layouts/devise (9.7ms)
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 12.6ms)
+
+SyntaxError - syntax error, unexpected ')'
+..._me, :class=> "ui-checkbox",  );@output_buffer.safe_append='
+...                               ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:43: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;                 end 
+                             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:57: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:68: syntax error, unexpected keyword_ensure, expecting ')'
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:70: syntax error, unexpected keyword_end, expecting ')':
+  app/views/devise/sessions/new.html.erb:41:in `'
+  actionview (4.2.5.1) lib/action_view/template.rb:296:in `compile'
+  actionview (4.2.5.1) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/local/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  responders (2.1.1) lib/action_controller/responder.rb:236:in `default_render'
+  responders (2.1.1) lib/action_controller/responder.rb:170:in `to_html'
+  responders (2.1.1) lib/action_controller/responder.rb:163:in `respond'
+  responders (2.1.1) lib/action_controller/responder.rb:156:in `call'
+  responders (2.1.1) lib/action_controller/respond_with.rb:205:in `respond_with'
+  devise (3.5.6) app/controllers/devise/sessions_controller.rb:12:in `new'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/mapper.rb:49:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5.1) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  puma (2.16.0) lib/puma/server.rb:557:in `handle_request'
+  puma (2.16.0) lib/puma/server.rb:404:in `process_client'
+  puma (2.16.0) lib/puma/server.rb:270:in `block in run'
+  puma (2.16.0) lib/puma/thread_pool.rb:106:in `block in spawn_thread'
+
+
+
+Started POST "/__better_errors/4209a03db14ef635/variables" for 127.0.0.1 at 2016-02-27 22:28:47 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:29:13 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (0.9ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (0.6ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (0.3ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/sessions/new.html.erb within layouts/devise (1.9ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 3.5ms)
+
+SyntaxError - syntax error, unexpected ')'
+..._me, :class=> "ui-checkbox",  );@output_buffer.safe_append='
+...                               ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:43: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;                 end 
+                             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:57: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:68: syntax error, unexpected keyword_ensure, expecting ')'
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:70: syntax error, unexpected keyword_end, expecting ')':
+  app/views/devise/sessions/new.html.erb:41:in `'
+  actionview (4.2.5.1) lib/action_view/template.rb:296:in `compile'
+  actionview (4.2.5.1) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/local/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  responders (2.1.1) lib/action_controller/responder.rb:236:in `default_render'
+  responders (2.1.1) lib/action_controller/responder.rb:170:in `to_html'
+  responders (2.1.1) lib/action_controller/responder.rb:163:in `respond'
+  responders (2.1.1) lib/action_controller/responder.rb:156:in `call'
+  responders (2.1.1) lib/action_controller/respond_with.rb:205:in `respond_with'
+  devise (3.5.6) app/controllers/devise/sessions_controller.rb:12:in `new'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/mapper.rb:49:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5.1) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  puma (2.16.0) lib/puma/server.rb:557:in `handle_request'
+  puma (2.16.0) lib/puma/server.rb:404:in `process_client'
+  puma (2.16.0) lib/puma/server.rb:270:in `block in run'
+  puma (2.16.0) lib/puma/thread_pool.rb:106:in `block in spawn_thread'
+
+
+
+Started POST "/__better_errors/ff2f6616dfb5ac7b/variables" for 127.0.0.1 at 2016-02-27 22:29:13 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:29:15 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[36m (0.9ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (0.7ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "Admin"]]
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered devise/sessions/new.html.erb within layouts/devise (2.2ms)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 4.6ms)
+
+SyntaxError - syntax error, unexpected ')'
+..._me, :class=> "ui-checkbox",  );@output_buffer.safe_append='
+...                               ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:43: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;                 end 
+                             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:57: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:68: syntax error, unexpected keyword_ensure, expecting ')'
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:70: syntax error, unexpected keyword_end, expecting ')':
+  app/views/devise/sessions/new.html.erb:41:in `'
+  actionview (4.2.5.1) lib/action_view/template.rb:296:in `compile'
+  actionview (4.2.5.1) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/local/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  responders (2.1.1) lib/action_controller/responder.rb:236:in `default_render'
+  responders (2.1.1) lib/action_controller/responder.rb:170:in `to_html'
+  responders (2.1.1) lib/action_controller/responder.rb:163:in `respond'
+  responders (2.1.1) lib/action_controller/responder.rb:156:in `call'
+  responders (2.1.1) lib/action_controller/respond_with.rb:205:in `respond_with'
+  devise (3.5.6) app/controllers/devise/sessions_controller.rb:12:in `new'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/mapper.rb:49:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5.1) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  puma (2.16.0) lib/puma/server.rb:557:in `handle_request'
+  puma (2.16.0) lib/puma/server.rb:404:in `process_client'
+  puma (2.16.0) lib/puma/server.rb:270:in `block in run'
+  puma (2.16.0) lib/puma/thread_pool.rb:106:in `block in spawn_thread'
+
+
+
+Started POST "/__better_errors/0dfd2cece58b2c4f/variables" for 127.0.0.1 at 2016-02-27 22:29:15 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:29:21 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (1.4ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (0.6ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (0.5ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/sessions/new.html.erb within layouts/devise (4.5ms)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 3.9ms)
+
+SyntaxError - syntax error, unexpected ')'
+..._me, :class=> "ui-checkbox",  );@output_buffer.safe_append='
+...                               ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:43: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;                 end 
+                             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:57: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:68: syntax error, unexpected keyword_ensure, expecting ')'
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:70: syntax error, unexpected keyword_end, expecting ')':
+  app/views/devise/sessions/new.html.erb:41:in `'
+  actionview (4.2.5.1) lib/action_view/template.rb:296:in `compile'
+  actionview (4.2.5.1) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/local/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  responders (2.1.1) lib/action_controller/responder.rb:236:in `default_render'
+  responders (2.1.1) lib/action_controller/responder.rb:170:in `to_html'
+  responders (2.1.1) lib/action_controller/responder.rb:163:in `respond'
+  responders (2.1.1) lib/action_controller/responder.rb:156:in `call'
+  responders (2.1.1) lib/action_controller/respond_with.rb:205:in `respond_with'
+  devise (3.5.6) app/controllers/devise/sessions_controller.rb:12:in `new'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/mapper.rb:49:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5.1) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  puma (2.16.0) lib/puma/server.rb:557:in `handle_request'
+  puma (2.16.0) lib/puma/server.rb:404:in `process_client'
+  puma (2.16.0) lib/puma/server.rb:270:in `block in run'
+  puma (2.16.0) lib/puma/thread_pool.rb:106:in `block in spawn_thread'
+
+
+
+Started POST "/__better_errors/9501ab52bf300e64/variables" for 127.0.0.1 at 2016-02-27 22:29:22 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:29:22 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (0.3ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "Admin"]]
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered devise/sessions/new.html.erb within layouts/devise (1.4ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.1ms)
+
+SyntaxError - syntax error, unexpected ')'
+..._me, :class=> "ui-checkbox",  );@output_buffer.safe_append='
+...                               ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:43: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;                 end 
+                             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:57: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:68: syntax error, unexpected keyword_ensure, expecting ')'
+/home/winfo/Fachschaft/app/views/devise/sessions/new.html.erb:70: syntax error, unexpected keyword_end, expecting ')':
+  app/views/devise/sessions/new.html.erb:41:in `'
+  actionview (4.2.5.1) lib/action_view/template.rb:296:in `compile'
+  actionview (4.2.5.1) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.2.5.1) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/local/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  responders (2.1.1) lib/action_controller/responder.rb:236:in `default_render'
+  responders (2.1.1) lib/action_controller/responder.rb:170:in `to_html'
+  responders (2.1.1) lib/action_controller/responder.rb:163:in `respond'
+  responders (2.1.1) lib/action_controller/responder.rb:156:in `call'
+  responders (2.1.1) lib/action_controller/respond_with.rb:205:in `respond_with'
+  devise (3.5.6) app/controllers/devise/sessions_controller.rb:12:in `new'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/mapper.rb:49:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5.1) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  puma (2.16.0) lib/puma/server.rb:557:in `handle_request'
+  puma (2.16.0) lib/puma/server.rb:404:in `process_client'
+  puma (2.16.0) lib/puma/server.rb:270:in `block in run'
+  puma (2.16.0) lib/puma/thread_pool.rb:106:in `block in spawn_thread'
+
+
+
+Started POST "/__better_errors/f56f1d5fcada568a/variables" for 127.0.0.1 at 2016-02-27 22:29:22 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:29:40 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (1.6ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (0.6ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (0.4ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (8.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (25.5ms)
+Completed 200 OK in 217ms (Views: 196.5ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/assets/application.self-82a70d8166389b46713938a39d151c5f20ea4418edb3242ac9117934d24c036e.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/rails_bootstrap_forms.self-10cb7d2aef696c4062f219f6678eed1d57c254a6717cea25d021726a4b9a214c.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/event_categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/app.self-a2facb89dce140934e558cb106d7636f4fecec72b1049af647d580d47a778a87.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/calendar.self-e62b0e5b43691478964d934d2c0dff359da84d83872131c345905adb252d6499.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/main.self-f1cf68f47a945d75d54cfc6ae4650a1879650193d34fdd9ce6fdf72f970ee751.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/scaffolds.self-c3b70e9fa0733be9a465d3145b23bf7d18ae3124b1f026163eff870c956e730d.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/starter-template.self-3c68a37d25daa3b2b69df8c4367d78f204a5578c4dc8a404adc582dcbd66a36c.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/themify-icons.self-8fcf245f21e0a9a9fb8fee94c9ef35c5ccdf8d1d2085d269dabb41c98dde833e.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/ui.self-14f0e5f762a9bb63a7a57b8796637c294ce52d83966e80fca09527ce8011f940.css?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/datetimePicker.self-cc86a22e58ddf9126603b247ee14fd4e2ce0cb53ea46f39509a1515f3908aa24.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/calendar.self-ef19a6abdd6e0432a0df19714298fc34f8c7324498e237bd68d186a418c79eda.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/event_categories.self-1b228cbeebc36cc18bd79295458506a0d41b926a36630805d2e6cb8faea641c4.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/lang/de.self-b9c1178b8b6951793b97296d87102ab92e5a44a989884bd6900aea0237165a88.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 127.0.0.1 at 2016-02-27 22:29:41 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 127.0.0.1 at 2016-02-27 22:29:42 +0100
+
+
+Started GET "/assets/background/1-8c79da7a29d8cc171aba6a6e024dfa9436a0b05506fab0a0f57ee5cd02b8dd9e.jpg" for 127.0.0.1 at 2016-02-27 22:29:42 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:29:59 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (0.4ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "Admin"]]
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (7.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (19.3ms)
+Completed 200 OK in 174ms (Views: 162.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/application.self-82a70d8166389b46713938a39d151c5f20ea4418edb3242ac9117934d24c036e.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/rails_bootstrap_forms.self-10cb7d2aef696c4062f219f6678eed1d57c254a6717cea25d021726a4b9a214c.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/app.self-a2facb89dce140934e558cb106d7636f4fecec72b1049af647d580d47a778a87.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/calendar.self-e62b0e5b43691478964d934d2c0dff359da84d83872131c345905adb252d6499.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/event_categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/main.self-f1cf68f47a945d75d54cfc6ae4650a1879650193d34fdd9ce6fdf72f970ee751.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/scaffolds.self-c3b70e9fa0733be9a465d3145b23bf7d18ae3124b1f026163eff870c956e730d.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/starter-template.self-3c68a37d25daa3b2b69df8c4367d78f204a5578c4dc8a404adc582dcbd66a36c.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/themify-icons.self-8fcf245f21e0a9a9fb8fee94c9ef35c5ccdf8d1d2085d269dabb41c98dde833e.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/ui.self-14f0e5f762a9bb63a7a57b8796637c294ce52d83966e80fca09527ce8011f940.css?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/datetimePicker.self-cc86a22e58ddf9126603b247ee14fd4e2ce0cb53ea46f39509a1515f3908aa24.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/calendar.self-ef19a6abdd6e0432a0df19714298fc34f8c7324498e237bd68d186a418c79eda.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/event_categories.self-1b228cbeebc36cc18bd79295458506a0d41b926a36630805d2e6cb8faea641c4.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/lang/de.self-b9c1178b8b6951793b97296d87102ab92e5a44a989884bd6900aea0237165a88.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 127.0.0.1 at 2016-02-27 22:30:00 +0100
+
+
+Started GET "/assets/background/1-8c79da7a29d8cc171aba6a6e024dfa9436a0b05506fab0a0f57ee5cd02b8dd9e.jpg" for 127.0.0.1 at 2016-02-27 22:30:01 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:33:05 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[35m (1.5ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mRole Load (2.9ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1[0m  [["name", "Admin"]]
+  [1m[35mRole Load (6.8ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (8.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (54.3ms)
+Completed 200 OK in 257ms (Views: 227.6ms | ActiveRecord: 11.2ms)
+
+
+Started GET "/assets/application.self-82a70d8166389b46713938a39d151c5f20ea4418edb3242ac9117934d24c036e.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/rails_bootstrap_forms.self-10cb7d2aef696c4062f219f6678eed1d57c254a6717cea25d021726a4b9a214c.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/app.self-a2facb89dce140934e558cb106d7636f4fecec72b1049af647d580d47a778a87.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/calendar.self-e62b0e5b43691478964d934d2c0dff359da84d83872131c345905adb252d6499.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/event_categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/main.self-f1cf68f47a945d75d54cfc6ae4650a1879650193d34fdd9ce6fdf72f970ee751.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/scaffolds.self-c3b70e9fa0733be9a465d3145b23bf7d18ae3124b1f026163eff870c956e730d.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/starter-template.self-3c68a37d25daa3b2b69df8c4367d78f204a5578c4dc8a404adc582dcbd66a36c.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/themify-icons.self-8fcf245f21e0a9a9fb8fee94c9ef35c5ccdf8d1d2085d269dabb41c98dde833e.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:06 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/ui.self-14f0e5f762a9bb63a7a57b8796637c294ce52d83966e80fca09527ce8011f940.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/datetimePicker.self-cc86a22e58ddf9126603b247ee14fd4e2ce0cb53ea46f39509a1515f3908aa24.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/calendar.self-ef19a6abdd6e0432a0df19714298fc34f8c7324498e237bd68d186a418c79eda.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/event_categories.self-1b228cbeebc36cc18bd79295458506a0d41b926a36630805d2e6cb8faea641c4.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/lang/de.self-b9c1178b8b6951793b97296d87102ab92e5a44a989884bd6900aea0237165a88.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/assets/background/1-8c79da7a29d8cc171aba6a6e024dfa9436a0b05506fab0a0f57ee5cd02b8dd9e.jpg" for 127.0.0.1 at 2016-02-27 22:33:07 +0100
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+Processing by Devise::SessionsController#new as HTML
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mRole Load (0.5ms)[0m  SELECT  "roles".* FROM "roles" WHERE "roles"."name" = $1 AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL  ORDER BY "roles"."id" ASC LIMIT 1  [["name", "Admin"]]
+  [1m[36mRole Load (0.7ms)[0m  [1mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered devise/shared/_links.html.erb (9.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/devise (27.4ms)
+Completed 200 OK in 177ms (Views: 157.6ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/application.self-82a70d8166389b46713938a39d151c5f20ea4418edb3242ac9117934d24c036e.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/rails_bootstrap_forms.self-10cb7d2aef696c4062f219f6678eed1d57c254a6717cea25d021726a4b9a214c.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/app.self-a2facb89dce140934e558cb106d7636f4fecec72b1049af647d580d47a778a87.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/calendar.self-e62b0e5b43691478964d934d2c0dff359da84d83872131c345905adb252d6499.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/event_categories.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/main.self-f1cf68f47a945d75d54cfc6ae4650a1879650193d34fdd9ce6fdf72f970ee751.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/excludes.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/ie-10-viewport-bug-workaround.self-d3b6114260a65d675e19e6d036b8ded254bd54da080721e16d78f4fb05488a17.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/event_wizard.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/events.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/newsletters.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:32 +0100
+
+
+Started GET "/assets/recurrences.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/subscribers.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/scaffolds.self-c3b70e9fa0733be9a465d3145b23bf7d18ae3124b1f026163eff870c956e730d.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/starter-template.self-3c68a37d25daa3b2b69df8c4367d78f204a5578c4dc8a404adc582dcbd66a36c.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/rules.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/themify-icons.self-8fcf245f21e0a9a9fb8fee94c9ef35c5ccdf8d1d2085d269dabb41c98dde833e.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/ui.self-14f0e5f762a9bb63a7a57b8796637c294ce52d83966e80fca09527ce8011f940.css?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/vendor.self-f086ab635ce116cbaa172865ec0026f5da650cb45a41bda2a83132767fb41824.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/moment.self-dd7e1dba8e5a8b658165e18950b4810c6e415d45abf282d3924dcfcd35a2638c.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/fullcalendar.self-fb4c190ed24bedb1e0d9aae0bdde6a308204d341fa9d907a0e17f54c81b3f617.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/cocoon.self-05633fd25797688a657c08b26b8d4217031ee589f5ca76f0a57c11ac7d0e76ec.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/bootstrap-datetimepicker.self-f4c780e77f9e34c90cc43fc2a2bc2d2f11d5b54470904990480fc9cb434d918c.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/moment/de.self-75f8dda8c4d318fa9a89f0fc47dbf0555508fb4727c7ee404c8e19ed1fcce03a.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/datetimePicker.self-cc86a22e58ddf9126603b247ee14fd4e2ce0cb53ea46f39509a1515f3908aa24.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/bootstrap.min.self-06b21b80bfffa7de7828e36629f0f8a07e775bb2d38238790b732a831fc5f105.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/calendar.self-ef19a6abdd6e0432a0df19714298fc34f8c7324498e237bd68d186a418c79eda.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/event_categories.self-1b228cbeebc36cc18bd79295458506a0d41b926a36630805d2e6cb8faea641c4.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/event_wizard.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/events.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/excludes.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/ie10-viewport-bug-workaround.self-fc551af1f93278ce46542e0ab702a380c18f24f5b46a002804456d0b9b2cf0d0.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/lang/de.self-b9c1178b8b6951793b97296d87102ab92e5a44a989884bd6900aea0237165a88.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/newsletters.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/recurrences.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/rules.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/subscribers.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/application.self-a345d8d1f44c3f77e7060ba4a1858aeb626c475faccbcaa418e2fa28c30e27bc.js?body=1" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/background/2-f6c3491538ec996e8df02e23e0fc3eaaa9e8a2bc7a991d2e42d8a6d42abcdc0f.jpg" for 127.0.0.1 at 2016-02-27 22:33:33 +0100
+
+
+Started GET "/assets/background/1-8c79da7a29d8cc171aba6a6e024dfa9436a0b05506fab0a0f57ee5cd02b8dd9e.jpg" for 127.0.0.1 at 2016-02-27 22:33:33 +0100

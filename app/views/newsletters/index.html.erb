@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Newsletters</h1>
+<h1>Newsletter anzeigen</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Subject</th>
-      <th>Description</th>
-      <th>From</th>
-      <th>To</th>
+      <th>Betreff</th>
+      <th>Beschreibung</th>
+      <th>Von</th>
+      <th>Zu</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +20,9 @@
         <td><%= newsletter.description %></td>
         <td><%= newsletter.from %></td>
         <td><%= newsletter.to %></td>
-        <td><%= link_to 'Show', newsletter %></td>
-        <td><%= link_to 'Edit', edit_newsletter_path(newsletter) %></td>
-        <td><%= link_to 'Destroy', newsletter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Anzeigen', newsletter %></td>
+        <td><%= link_to 'Bearbeiten', edit_newsletter_path(newsletter) %></td>
+        <td><%= link_to 'Löschen', newsletter, method: :delete, data: { confirm: 'Bist du sicher?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Newsletter', new_newsletter_path %>
+<%= link_to 'Neuer Newsletter', new_newsletter_path %>
