@@ -9,8 +9,10 @@ class Recurrence < ActiveRecord::Base
 #Unpublish an entire recurrrence
   def unpublish
     events.each do |event|
-
+if event.recurring_but_no_owner
+  #Only do this to the elements that are not the main parent node
       event.unpublish_revisions
+  end
     end
   end
   #Allow us to edit rules
