@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   #Home route
   root "fullcalendar#index"
   get 'events/new', to: 'build#new'
-  get 'newsletter/adonnement' => 'subscribers#new', as: :edit_subscription
 
 
   # Example of regular route:
@@ -75,3 +74,4 @@ Rails.application.routes.draw do
   #   end
 
   # Example resource route with con
+end
