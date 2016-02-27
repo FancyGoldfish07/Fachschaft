@@ -1,14 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Newsletters</h1>
+<h1>Übersicht Newsletter</h1>
+
+<% if current_user.present? && (current_user.isAdmin || current_user.isManager) %>
 
 <table>
   <thead>
     <tr>
-      <th>Subject</th>
-      <th>Description</th>
-      <th>From</th>
-      <th>To</th>
+      <th>Betreff</th>
+      <th>.................................</th>
+      <th>Anfangszeitpunkt</th>
+      <th>Endzeitpunkt</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,7 +19,7 @@
     <% @newsletters.each do |newsletter| %>
       <tr>
         <td><%= newsletter.subject %></td>
-        <td><%= newsletter.description %></td>
+        <td></td>
         <td><%= newsletter.from %></td>
         <td><%= newsletter.to %></td>
         <td><%= link_to 'Show', newsletter %></td>
@@ -29,5 +31,7 @@
 </table>
 
 <br>
+
+    <% end %>
 
 <%= link_to 'New Newsletter', new_newsletter_path %>

@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Subscribers</h1>
+<% if current_user.present? && current_user.isAdmin %>
+
+<h3>Übersicht Abonnenten</h3>
 
 <table>
   <thead>
@@ -23,9 +25,7 @@
     <% end %>
   </tbody>
 </table>
-
-
-
 <br>
+    <% end %>
 
-<%= link_to 'New Subscriber', new_subscriber_path %>
+<%= link_to 'Abonnent werden', new_subscriber_path %>
