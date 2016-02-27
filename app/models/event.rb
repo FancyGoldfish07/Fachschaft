@@ -71,13 +71,15 @@ class Event < ActiveRecord::Base
       return publishedEvents
     end
   end
-#Unpublishes
+#Unpublishes revisions + their parent (except the parent that has no parent)
   def unpublish_revisions
-    if self.submitted?
+    #Unpublish us if we are not the parent
+    if self.submitted? && self.parent.present?
       self.deleted!
       save
     end
     if self.revisions.present?
+      #Unpublish the revisions
       self.revisions.each do |event|
         if event.submitted?
           event.deleted!
