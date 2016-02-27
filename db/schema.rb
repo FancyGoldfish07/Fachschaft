@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20160225024844) do
     t.integer  "manager_id"
     t.integer  "state"
     t.text     "message"
-    t.boolean  "published"
-    t.boolean  "permitted"
+    t.integer  "unadmin_id"
+    t.integer  "unmanager_id"
   end
 
   add_index "events", ["event_category_id"], name: "index_events_on_event_category_id", using: :btree
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20160225024844) do
     t.date     "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "owner_id"
   end
 
   create_table "roles", force: :cascade do |t|
