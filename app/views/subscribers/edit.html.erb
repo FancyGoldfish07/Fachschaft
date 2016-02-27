@@ -1,6 +1,10 @@
-<h1>Editing Subscriber</h1>
+<% if current_user.present? && current_user.isAdmin %>
+<h1>Abonnent bearbeiten</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Anzeigen', @subscriber %> |
+
+<% end %>
+
 <%= link_to 'Zurück', subscribers_path %>

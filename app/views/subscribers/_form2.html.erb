@@ -1,11 +1,13 @@
-<%= bootstrap_form_for @subscriber, method: :delete do |f| %>
+<%= bootstrap_form_for(@subscriber) do |f| %>
 
     <div class="field">
       <%= f.email_field :email, :class => 'form-control', :label => 'E-Mail' %>
     </div>
 
     <div class="form-actions">
-      <%= f.submit "Abmelden", :value => "Löschen"%>
+      <%= f.submit "Abmelden" %>
     </div>
+
+
 
 <% end %>

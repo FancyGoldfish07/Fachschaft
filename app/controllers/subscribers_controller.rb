@@ -25,17 +25,25 @@ class SubscribersController < ApplicationController
   # POST /subscribers.json
   def create
     @subscriber = Subscriber.new(subscriber_params)
-
+    if Subscriber.find_by(:email => @subscriber.email) != nil
+      @sub = Subscriber.find_by(:email => @subscriber.email)
+      @sub.destroy
+      redirect_to subscribers_url, notice: 'Sie wurden vom Newsletter abgemeldet'
+    else
+      if @subscriber.name == nil
+        @subscriber.name = 'Abonnent'
+      end
     respond_to do |format|
       if @subscriber.save
-        format.html { redirect_to @subscriber, notice: 'Danke für die Anmeldung' }
+        format.html { redirect_to subscribers_url, notice: 'Danke für die Anmeldung' }
         format.json { render :show, status: :created, location: @subscriber }
       else
         format.html { render :new }
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
       end
     end
-  end
+    end
+    end
 
   # PATCH/PUT /subscribers/1
   # PATCH/PUT /subscribers/1.json
@@ -62,7 +70,7 @@ class SubscribersController < ApplicationController
   end
 
   def unsubscribe
-    @sub = Subscriber.find(params[:email])
+    @sub = Subscriber.find(params[:id])
     @sub.destroy
   end
 
