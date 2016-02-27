@@ -1,5 +1,5 @@
 <div class="nested-fields">
-<%= f.collection_select :day, Rule.DAYS,:to_s,:to_s, include_blank:false, label: "Immer an diesem Tag wiederholen" %>
+<%= f.select :day,Rule.DAYS.map.with_index(1).to_a, include_blank:false, label: "Immer an diesem Tag wiederholen" %>
 <%= f.number_field :week,  min: 1, label: "Alle x Wochen wiederholen"  %>
   <% #We decided this part is not needed. Functionality would be there though.
   %>
