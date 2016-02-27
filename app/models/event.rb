@@ -16,7 +16,7 @@ class Event < ActiveRecord::Base
 
   has_many :roles, through: :event_roles
   after_initialize :set_defaults
-  after_save :check_reviewed
+
 
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
@@ -34,84 +34,89 @@ class Event < ActiveRecord::Base
 
   #Are we in a recurrence, but not the owner?
   def recurring_but_no_owner
-   self.recurrence.present? && self.recurrence.owner != self
+    self.recurrence.present? && self.recurrence.owner != self
   end
 
   #Are we the owner of the recurrence
   def owner_of_recurrence
-   self.recurrence.present? && self.recurrence.owner == self
+    self.recurrence.present? && self.recurrence.owner == self
   end
+
   #Is this event recurring?
   def recurring
     self.recurrence.present?
   end
-#Gets all days of this event from a specific point in time
+
+  #Gets all days of this event from a specific point in time
   def getDatesFrom(date)
     if recurring
-    events =  recurrence.getDatesFrom(date).sort_by &:start
-    events = Event.submitted
-    publishedEvents = Array.new
-    events.each do |event|
+      events = recurrence.getDatesFrom(date).sort_by &:start
+      events = Event.submitted
+      publishedEvents = Array.new
+      events.each do |event|
 
-      #This is defined in Event.state enum
-      enumValue = 4
-      kidsReadyToPublish = event.revisions.where("state = ?", enumValue)
-      if kidsReadyToPublish.count > 0
-        if(kidsReadyToPublish.last.recurring)
-        publishedEvents.push(kidsReadyToPublish.last)
+        #This is defined in Event.state enum
+        enumValue = 4
+        kidsReadyToPublish = event.revisions.where("state = ?", enumValue)
+        if kidsReadyToPublish.count > 0
+          if (kidsReadyToPublish.last.recurring)
+            publishedEvents.push(kidsReadyToPublish.last)
           end
-      else
-        if !event.parent.present?
-          publishedEvents.push(event)
+        else
+          if !event.parent.present?
+            publishedEvents.push(event)
+          end
         end
       end
-    end
-    return publishedEvents
+      return publishedEvents
     end
   end
-  #Unpublish all currently published revisions and the event itself
-  def unpublish
-    if self.state = 4
-      self.state = 5
+#Unpublishes
+  def unpublish_revisions
+    if self.submitted?
+      self.deleted!
       save
     end
     if self.revisions.present?
-    self.revisions.each do |event|
-      if event.state = 4
-      event.state = 5
-      event.save
+      self.revisions.each do |event|
+        if event.submitted?
+          event.deleted!
+          event.save
         end
-    end
       end
+    end
   end
+
+  #Unpublish all currently published revisions and the event itself
+  def unpublish
+    if self.submitted?
+      self.deleted!
+      save
+    end
+    if self.revisions.present?
+      self.revisions.each do |event|
+        if event.submitted?
+          event.deleted!
+          event.save
+        end
+      end
+    end
+  end
+
   #Unpublishes an event and all of its revisions and its recurrences
   def unpublish_recurrence
-    self.state = 5
+    self.deleted!
 
     save
     #Are we recurring?
     if recurring
-      recurrence.parent.recurrence.events.each do |event|
-     event.unpublish
+      recurrence.owner.recurrence.events.each do |event|
+        event.unpublish
       end
     end
 
   end
-  #Done after save
-  def check_reviewed
-    if reviewed
-      makeRevision
-    end
-  end
 
-  #Makes a new revision for this thing.
-  def makeRevision
-    #Only temporarly
-    if repeats
-      makeRecurr
-    end
-
-  end
 
   #Propagates the event into the future
   def makeRecurr
@@ -151,6 +156,29 @@ class Event < ActiveRecord::Base
   #Publish this event
   def publish
     if repeats
+      if self.parent.present?
+          #We are not alone.
+        if self.parent.revisions.count > 1
+          #We are not the first revision
+          #Get revisions that are published
+          kidsReadyToPublish = self.parent.revisions.where("state = ?", 4)
+          if kidsReadyToPublish.count > 1
+            lastPublished = kidsReadyToPublish[kidsReadyToPublish.count - 2]
+            #Last published unpublish your recurrence
+            lastPublished.recurrence.unpublish
+          else
+            #None of the revisions was ready to publish
+            #Destroy our parent's recurrence
+            self.parent.recurrence.unpublish
+          end
+        else
+          #We are the first revision
+          #Unpublish our parents recurrence
+          self.parent.recurrence.unpublish
+          end
+
+
+      end
       makeRecurr
     end
   end

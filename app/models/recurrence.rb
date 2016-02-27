@@ -6,8 +6,12 @@ class Recurrence < ActiveRecord::Base
   has_many :events
   belongs_to :owner,  class_name: 'Event',
              foreign_key: 'owner_id'
-
-
+#Unpublish an entire recurrrence
+  def unpublish
+    events.each do |event|
+      event.unpublish_revisions
+    end
+  end
   #Allow us to edit rules
   accepts_nested_attributes_for :rules, reject_if: :all_blank, allow_destroy: true
   #Get all appointments for our rules from start to end

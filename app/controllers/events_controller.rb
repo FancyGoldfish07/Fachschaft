@@ -34,7 +34,11 @@ end
   # GET /events/1/edit
   def edit
 copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}],except:[:state])
+if @event.parent.blank?
 copy.parent = @event
+else
+  copy.parent = @event.parent
+  end
 copy.author = nil
 copy.message = nil
 copy.manager = nil
