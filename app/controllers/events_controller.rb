@@ -81,6 +81,7 @@ copy.save!
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    #Review part reject
     if ablehnen?
       @event.message = params[:event][:message]
       @event.manager_id = current_user.id
@@ -89,7 +90,8 @@ copy.save!
       respond_to do |format|
 
           format.html { redirect_to root_path, notice: 'Eintrag wurde abgelehnt.' }
-          end
+      end
+      #Review part - Permit
     elsif genehmigen?
       @event.reviewed!
       @event.manager_id = current_user.id
@@ -115,7 +117,11 @@ copy.save!
       end
     end
     end
-    end
+  end
+  #Unpublish an event
+  def unpublish
+    @event = Event.find(params[:id])
+  end
 
   # DELETE /events/1
   # DELETE /events/1.json

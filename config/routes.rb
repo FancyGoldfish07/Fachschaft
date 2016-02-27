@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'events/:id/review' => 'events#review', as: :review
   get'calendar/publishables' => 'events#publishables', as: :publishables
   get 'calendar/permittables' => 'events#permittables', as: :permittables
+  get 'events/:id/upublish' => 'events#unpublish', as: :unpublish
   #Home route
   root "home#index"
   get 'events/new', to: 'build#new'

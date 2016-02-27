@@ -1,0 +1,15 @@
+<% provide(:title, @event.title + " löschen") %>
+
+  <%= render @event %>
+  <p>
+    Dieses Event ist <% if @event.parent.present? %>
+        eine Revision von <%= link_to "diesem Eintrag", events_path(@event.parent) %>
+    <% else %>
+        ein eigenständiger Kalendereintrag.
+    <%end %>
+  </p>
+<% if current_user.present? %>
+    <% if current_user.isManager && @event.unmanager.blank? %>
+        <% elsif current_user.isManager && @event.unadmin.blank? %>
+        <% end %>
+<% end %>
