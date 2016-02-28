@@ -30,9 +30,7 @@ end
   def new
   redirect_to new_build_path
   end
-  #For reviewing
-  def review
-  end
+
 
   #unpublish
   def unpublish
@@ -69,6 +67,19 @@ copy.save!
   #Shows all the items an admin can still publish
   def publishables
 @events = Event.reviewed
+  end
+  #unpublishables
+  def unpublishables
+    if current_user.present?
+      if current_user.isAdmin
+        #We are an admin
+        @events = Event.all.where.not(unmanager_id: nil)
+      end
+      if current_user.isManager
+        @events = Event.all.where.not(unadmin_id: nil)
+      end
+    end
+
   end
 
   # POST /events

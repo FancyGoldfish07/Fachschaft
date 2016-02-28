@@ -4,7 +4,7 @@
   <% @events.each do |event| %>
       <tr>
         <td><%= event.title %></td>
-        <td><%= button_to_small("Ansehen", review_path( event)) %></td>
+        <td><%= button_to_small("Ansehen", unpublish_path( event)) %></td>
       </tr>
   <% end %>
   </tbody>

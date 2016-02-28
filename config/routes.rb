@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   get 'events/:id/review' => 'events#review', as: :review
   get 'events/:id/unpublish' => 'events#unpublish', as: :unpublish
+  get 'calendar/unpublishables' => 'events#unpublishables', as: :unpublishables
   get 'calendar/publishables' => 'events#publishables', as: :publishables
   get 'calendar/permittables' => 'events#permittables', as: :permittables
   get 'calendar/publishables_newsletter' => 'newsletters#publishables', as: :publishables_newsletter
