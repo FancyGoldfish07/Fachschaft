@@ -77,4 +77,5 @@ Rails.application.routes.draw do
   #   end
 
   # Example resource route with con
+  get "*any", via: :all, to: "errors#not_found"
 end

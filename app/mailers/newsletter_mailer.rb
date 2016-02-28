@@ -31,7 +31,7 @@ class NewsletterMailer < ApplicationMailer
 
   def notify_deleted_newsletter(user)
     @user = user
-    
+
     mail(to: user.email, subject: "Newsletter gelöscht") do |format|
       format.html { render layout: '../../views/newsletter_mailer/notify_deleted_newsletter.html.erb' }
       format.text { render text: '../../views/newsletter_mailer/notify_deleted_newsletter.text.erb' }
