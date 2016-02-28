@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
 
   def signup_confirmation(user)
     @user = user
-    mail(to: user.email) do |format|
+    mail(to: user.email, subject: "Registrierung erfolgreich") do |format|
       format.html { render layout: '../../views/user_mailer/signup_confirmation.html.erb' }
       format.text { render text: '../../views/user_mailer/signup_confirmation.text.erb' }
 
@@ -14,7 +14,7 @@ class UserMailer < ApplicationMailer
 
   def role_change_confirmation(user)
     @user = user
-    mail(to: user.email) do |format|
+    mail(to: user.email, subject: "Ihr Profil hat sich geändert") do |format|
       format.html { render layout: '../../views/user_mailer/role_change_confirmation.html.erb' }
       format.text { render text: '../../views/user_mailer/role_change_confirmation.text.erb' }
 
@@ -36,7 +36,7 @@ class UserMailer < ApplicationMailer
 
   def delete_account(user)
     @user = user
-    mail(to: user.email) do |format|
+    mail(to: user.email, subject: "Ihr Account wurde gelöscht") do |format|
       format.html { render layout: '../user_mailer/delete_account.html.erb' }
       format.text { render text: '../user_mailer/delete_account.text.erb' }
 

@@ -1,0 +1,10 @@
+<% if current_user.present? && (current_user.isAdmin || current_user.isManager) %>
+<h4>Newsletter Betreff: <%= newsletter.subject %></h4>
+<h5>Zusätzlicher Text: </h5>
+<p><%= newsletter.description %></p>
+<br>
+    <ul>
+      <li>Der Newsletter umfasst Termine vom: <%=pretty_datetime newsletter.from%> bis zum: <%=pretty_datetime newsletter.to %></li>
+    </ul>
+<%end%>
+

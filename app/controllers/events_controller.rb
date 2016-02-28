@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     events = Event.submitted
-publishedEvents = Array.new
+    publishedEvents = Array.new
     events.each do |event|
 
     #This is defined in Event.state enum
@@ -20,7 +20,7 @@ publishedEvents = Array.new
     end
     end
     @events = publishedEvents
-end
+  end
   # GET /events/1
   # GET /events/1.json
   def show

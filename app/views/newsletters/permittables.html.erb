@@ -1,0 +1,10 @@
+<% provide(:title, "Newsletter zum genehmigen") %>
+<% if current_user.present? && current_user.isManager %>
+<table class="table">
+  <tbody>
+  <% @newsletters.each do |n| %>
+       <tr><td><%= n.subject %></td><td><%= button_to_small("Ansehen", review_newsletter_path(n)) %></td></tr>
+  <% end %>
+  </tbody>
+</table>
+<%end%>

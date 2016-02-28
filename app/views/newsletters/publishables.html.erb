@@ -1,0 +1,11 @@
+<% provide(:title, "Newsletter zum Veröffentlichen") %>
+<% if current_user.present? && current_user.isAdmin %>
+<table class="table">
+  <tbody>
+  <% @newsletters.each do |n| %>
+          <tr><td><%= n.subject %></td><td><%= button_to_small("Ansehen", review_newsletter_path(n)) %></td></tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%end%>

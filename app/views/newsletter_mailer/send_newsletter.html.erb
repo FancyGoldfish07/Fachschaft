@@ -53,6 +53,7 @@
     text-align:center;
     padding:5px;
   }
+
 </style>
 <body>
 <div id="header">
@@ -64,7 +65,7 @@
 <% @newsletter_events.each do |event| %>
     <table id="table">
       <tr>
-        <td id="title">Title: <%= event.title %></td>
+        <td id="title"><%= link_to event.title, 'localhost:3000'+event_path(event) %></td>
       </tr>
       <tr>
         <td id="info">Place: <%= event.ort %></td>
