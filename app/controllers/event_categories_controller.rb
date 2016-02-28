@@ -1,5 +1,5 @@
 class EventCategoriesController < ApplicationController
-  before_action :set_event_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_event_category, only: [ :edit, :update, :destroy]
 
   # GET /event_categories
   # GET /event_categories.json
@@ -10,10 +10,6 @@ class EventCategoriesController < ApplicationController
   # GET /event_categories/1
   # GET /event_categories/1.json
   def show
-
-  end
-
-  def view
     id = params[:id]
 
     @events = Event.giveBackAllPublished
@@ -26,10 +22,9 @@ class EventCategoriesController < ApplicationController
         end
       end
       @events = category_events
-    end
-
-
   end
+end
+
 
   # GET /event_categories/new
   def new
