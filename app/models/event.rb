@@ -32,6 +32,25 @@ class Event < ActiveRecord::Base
       "#ffefcc"
     end
   end
+  #Gives back all published instances of this model
+  def self.giveBackAllPublished
+    events = Event.submitted
+    publishedEvents = Array.new
+    events.each do |event|
+
+      #This is defined in Event.state enum
+      enumValue = 4
+      kidsReadyToPublish = event.revisions.where("state = ?", enumValue)
+      if kidsReadyToPublish.count > 0
+        publishedEvents.push(kidsReadyToPublish.last)
+      else
+        if !event.parent.present?
+          publishedEvents.push(event)
+        end
+      end
+    end
+    return publishedEvents
+  end
 
   #Are we in a recurrence, but not the owner?
   def recurring_but_no_owner
