@@ -28,6 +28,8 @@ source 'https://rubygems.org'
 # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0', group: :doc
 
+#Give us a better session store
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
   gem 'devise', '~> 3.5', '>= 3.5.6'
 
