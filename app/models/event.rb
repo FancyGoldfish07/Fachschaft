@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
   after_initialize :set_defaults
 
 
+
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
 
@@ -219,6 +220,9 @@ class Event < ActiveRecord::Base
     end
     if self.end.blank?
       self.end = start.to_time + 1.hour
+    end
+    if self.repeats.blank?
+      self.repeats = false
     end
   end
 end
