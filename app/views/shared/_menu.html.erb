@@ -41,7 +41,7 @@
         </li>
 
         <% if current_user.present? && current_user.isAdmin then %>
-            <li> <%=link_to "Nutzerverwaltung", users_path %></li>
+            <li> <%=link_to '<span class="glyphicon glyphicon-user"></span> Nutzerverwaltung'.html_safe, users_path %></li>
         <% end %>
 
       </ul>
