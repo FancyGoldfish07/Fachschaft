@@ -30,6 +30,14 @@ end
   def new
   redirect_to new_build_path
   end
+  #For reviewing
+  def review
+  end
+
+  #unpublish
+  def unpublish
+
+  end
 
   # GET /events/1/edit
   def edit
@@ -70,7 +78,7 @@ copy.save!
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Event wurde erfolgreich erstellt.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -108,7 +116,7 @@ copy.save!
     else
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'Event wurde erfolgreich bearbeitet.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -123,7 +131,7 @@ copy.save!
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: 'Event wurde erfolgreich gelöscht.' }
       format.json { head :no_content }
     end
   end
@@ -138,6 +146,7 @@ copy.save!
     }.merge options
     url_for(options)
   end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
@@ -147,14 +156,17 @@ copy.save!
     def event_params
       params.require(:event).permit(:title,:recurrence_id,:event_category_id, :start, :priority, :flag, :imageURL, :url, :end, :ort, :description,role_ids: [])
     end
+
     #Was this form submittted to reject the event?
     def ablehnen?
       params[:commit] == "Ablehnen"
     end
+
     #Was this form submitted to accept the event?
     def genehmigen?
       params[:commit] == "Genehmigen"
     end
+
   def publizieren?
     params[:commit] == "Veröffentlichen"
   end

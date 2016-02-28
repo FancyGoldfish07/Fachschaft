@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   get 'events/:id/review' => 'events#review', as: :review
+  get 'events/:id/unpublish' => 'events#unpublish', as: :unpublish
   get 'calendar/publishables' => 'events#publishables', as: :publishables
   get 'calendar/permittables' => 'events#permittables', as: :permittables
   get 'calendar/publishables_newsletter' => 'newsletters#publishables', as: :publishables_newsletter

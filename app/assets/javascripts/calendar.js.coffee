@@ -38,7 +38,7 @@ $(document).ready ->
 
     eventClick: (event) ->
       link = event.url
-      window.open(link.slice(0,-5))
+      window.open(link.slice(0,-5),"_self")
       return false;
 
 

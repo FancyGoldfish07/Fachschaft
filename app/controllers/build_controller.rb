@@ -91,7 +91,6 @@ class BuildController < ApplicationController
     render_wizard @event
   end
 
-
   def new
     @event = Event.create
     redirect_to wizard_path(steps.first, :event_id => @event.id)
@@ -103,7 +102,7 @@ class BuildController < ApplicationController
     flash[:notice]= "Dein Event wurde an die Manager zur Genehmigung versendet."
   return  root_path
   end
-#Safe params
+  #Safe params
   def event_params
     params.require(:event).permit(:title, :start, :event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, :reviewed, role_ids:[])
   end

@@ -11,6 +11,10 @@ class Event < ActiveRecord::Base
              foreign_key: 'admin_id'
   belongs_to :manager, class_name: 'User',
              foreign_key: 'manager_id'
+  belongs_to :unadmin, class_name: "User",
+             foreign_key: 'unadmin_id'
+  belongs_to :umanager, class_name: "User",
+              foreign_key: 'umanager_id'
   #The state this version is in
   enum state: {unsubmitted: 0, waiting: 1, reviewed: 2, rejected: 3, submitted: 4, deleted: 5}
 
@@ -65,6 +69,7 @@ class Event < ActiveRecord::Base
       "#ffefcc"
     end
   end
+
   #Gives back all published instances of this model
   def self.giveBackAllPublished
     events = Event.submitted
@@ -124,54 +129,6 @@ class Event < ActiveRecord::Base
       return publishedEvents
     end
   end
-#Unpublishes revisions + their parent (except the parent that has no parent)
-  def unpublish_revisions
-    #Unpublish us
-    if self.submitted?
-      self.deleted!
-      save
-    end
-    if self.revisions.present?
-      #Unpublish the revisions
-      self.revisions.each do |event|
-        if event.submitted?
-          event.deleted!
-          event.save
-        end
-      end
-    end
-  end
-
-  #Unpublish all currently published revisions and the event itself
-  def unpublish
-    if self.submitted?
-      self.deleted!
-      save
-    end
-    if self.revisions.present?
-      self.revisions.each do |event|
-        if event.submitted?
-          event.deleted!
-          event.save
-        end
-      end
-    end
-  end
-
-  #Unpublishes an event and all of its revisions and its recurrences
-  def unpublish_recurrence
-    self.deleted!
-
-    save
-    #Are we recurring?
-    if recurring
-      recurrence.owner.recurrence.events.each do |event|
-        event.unpublish
-      end
-    end
-
-  end
-
 
   #Propagates the event into the future
   def makeRecurr
@@ -235,6 +192,53 @@ class Event < ActiveRecord::Base
 
       end
       makeRecurr
+    end
+  end
+
+  #Unpublishes revisions + their parent (except the parent that has no parent)
+  def unpublish_revisions
+    #Unpublish us
+    if self.submitted?
+      self.deleted!
+      save
+    end
+    if self.revisions.present?
+      #Unpublish the revisions
+      self.revisions.each do |event|
+        if event.submitted?
+          event.deleted!
+          event.save
+        end
+      end
+    end
+  end
+
+  #Unpublish all currently published revisions and the event itself
+  def unpublish
+    if self.submitted?
+      self.deleted!
+      save
+    end
+    if self.revisions.present?
+      self.revisions.each do |event|
+        if event.submitted?
+          event.deleted!
+          event.save
+        end
+      end
+    end
+  end
+
+  #Unpublishes an event and all of its revisions and its recurrences
+  def unpublish_recurrence
+    self.deleted!
+
+    save
+    #Are we recurring?
+    if recurring
+      recurrence.owner.recurrence.events.each do |event|
+        event.unpublish
+      end
     end
 
   end
