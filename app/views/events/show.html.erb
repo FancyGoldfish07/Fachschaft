@@ -2,74 +2,67 @@
 <div class="row">
   <div class="col-md-7">
 
-  <div class="row">
-  <div class="col-md-3">
-      <strong>Startzeit:</strong>
-  </div>
-  <div class="col-md-4">
-      <%= pretty_datetime @event.start %>
-  </div></div>
-
     <div class="row">
-    <div class="col-md-3">
-      <strong>Endzeit:</strong>
-    </div>
-    <div class="col-md-4">
-      <%= pretty_datetime @event.end %>
-    </div></div>
-
-
-    <div class="row">
-    <div class="col-md-3">
-      <strong>Priorität:</strong>
-    </div>
-    <div class="col-md-4">
-      <%= @event.priority %>
-    </div>
-  </div>
-    <div class="row">
-    <div class="col-md-3">
-      <strong>Kategorie:</strong>
-    </div>
-    <div class="col-md-4">
-      <%= @event.event_category.name %>
-    </div>
-  </div>
-    <div class="row">
-    <div class="col-md-3">
-      <strong>Beschreibung:</strong>
-    </div>
-    <div class="col-md-4">
-      <%= @event.description %>
-    </div>
-  </div>
-
-
-
-
-    <div class="row">
-    <div class="col-md-3">
-      <strong>Ort:</strong>
-    </div>
-    <div class="col-md-4">
-      <%= @event.ort %>
-    </div>
-    </div>
-
-    <div class="row">
-    <div class="divider"></div>
-      <div class="row">
-        <div class="col-md-1">  </div>
-    <div class="col-md-4">
-      <strong>
-      <% if @event.url.present? %>
-          <%= link_to "Mehr Informationen", @event.url %>
-      <% end %>
-      </strong>
-    </div>
-    </div>
-      <div class="divider"></div>
+      <div class="col-md-3">
+        <strong>Startzeit:</strong>
       </div>
+      <div class="col-md-4">
+        <%= pretty_datetime @event.start %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <strong>Endzeit:</strong>
+      </div>
+      <div class="col-md-4">
+        <%= pretty_datetime @event.end %>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <strong>Priorität:</strong>
+      </div>
+      <div class="col-md-4">
+        <%= @event.priority %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <strong>Beschreibung:</strong>
+      </div>
+      <div class="col-md-4">
+        <%= @event.description %>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <strong>Ort:</strong>
+      </div>
+      <div class="col-md-4">
+        <%= @event.ort %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+          <strong>
+            <% if @event.url.present? %>
+                <%= link_to "Mehr Informationen", @event.url %>
+            <% end %>
+          </strong>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
 
 
     <p>
@@ -92,15 +85,6 @@
     <% end %>
     </p>
     <div class="divider-lg"></div>
-
-
-
-
-
-
-
-
-
 
     <% if @event.recurring %>
         <% if @event.owner_of_recurrence %>
