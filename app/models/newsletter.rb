@@ -12,16 +12,16 @@ class Newsletter < ActiveRecord::Base
   def send_newsletter
     # Event has to be newer than "from"
 
-    @from = Newsletter.from.strftime('%y%m%d')
+    @from = self.from.strftime('%y%m%d')
     # Event has to be older than "to"
-    @to = Newsletter.to.strftime('%y%m%d')
+    @to = self.to.strftime('%y%m%d')
 
     # Array for selected events
     @newsletter_events = Array.new
 
     # Select all events
 
-    @events = Event.where(flag: true, published: true)
+    @events = Event.where(flag: true)
 
     # Loop puts desired events into array
     @events.each do |u|
@@ -29,7 +29,7 @@ class Newsletter < ActiveRecord::Base
 
       # Event needs to be flagged and takes place in desired period
 
-      if u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
+      if u.reviewed? and u.start.strftime('%y%m%d')>=@from and u.start.strftime('%y%m%d')<=@to
 
         # Adds event to array
         @newsletter_events.push(u)
@@ -41,7 +41,7 @@ class Newsletter < ActiveRecord::Base
 
     @subscribers.each do|u|
       # Sends newsletter to subscribers
-      NewsletterMailer.send_newsletter(u, @newsletter_events, Newsletter.subject, Newsletter.description).deliver_later
+      NewsletterMailer.send_newsletter(u, @newsletter_events, self.subject, self.description).deliver_later
     end
   end
 end
