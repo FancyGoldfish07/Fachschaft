@@ -73,10 +73,10 @@ copy.save!
     if current_user.present?
       if current_user.isAdmin
         #We are an admin
-        @events = Event.all.where.not(unmanager_id: nil)
+        @events = Event.submitted.where.not(unmanager_id: nil)
       end
       if current_user.isManager
-        @events = Event.all.where.not(unadmin_id: nil)
+        @events = Event.submitted.where.not(unadmin_id: nil)
       end
     end
 

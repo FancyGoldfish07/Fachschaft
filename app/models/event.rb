@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
              foreign_key: 'manager_id'
   belongs_to :unadmin, class_name: "User",
              foreign_key: 'unadmin_id'
-  belongs_to :umanager, class_name: "User",
+  belongs_to :unmanager, class_name: "User",
               foreign_key: 'umanager_id'
   #The state this version is in
   enum state: {unsubmitted: 0, waiting: 1, reviewed: 2, rejected: 3, submitted: 4, deleted: 5}
