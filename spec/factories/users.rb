@@ -1,12 +1,13 @@
 FactoryGirl.define do
   factory :user do
-    email 'admin@example.com'
+    email 'info@fachschaft.de'
     username 'Test'
     password 'Test#Test'
     password_confirmation 'Test#Test'
 
     factory :fs_user do
-      email 'user@example.com'
+      email 'info@fachschaft.de'
+      username 'Test'
       password 'Test#Test'
       password_confirmation 'Test#Test'
       trait :fs do

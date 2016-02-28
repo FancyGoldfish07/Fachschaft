@@ -45,7 +45,8 @@ copy.manager = nil
 copy.admin = nil
 copy.save!
 #Yes this is super ugly, but I am a bit clueless here
- redirect_to "/events/#{copy.id}/build" and return
+    redirect_to "/events/#{copy.id}/build" and return
+
   end
 #For the review action
   def review
@@ -69,7 +70,7 @@ copy.save!
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Event wurde erfolgreich erstellt.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -81,35 +82,33 @@ copy.save!
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    #Review part reject
     if ablehnen?
       @event.message = params[:event][:message]
       @event.manager_id = current_user.id
       @event.rejected!
-@event.save
+      @event.save
       respond_to do |format|
 
-          format.html { redirect_to root_path, notice: 'Eintrag wurde abgelehnt.' }
-      end
-      #Review part - Permit
+          format.html { redirect_to permittables_path, notice: 'Eintrag wurde abgelehnt.' }
+          end
     elsif genehmigen?
       @event.reviewed!
       @event.manager_id = current_user.id
       @event.save
       respond_to do |format|
 
-        format.html { redirect_to root_path, notice: 'Eintrag wurde genehmigt.' }
+        format.html { redirect_to permittables_path, notice: 'Eintrag wurde genehmigt.' }
       end
     elsif publizieren?
     @event.changeState(current_user)
     respond_to do |format|
 
-      format.html { redirect_to root_path, notice: 'Eintrag wurde veröffentlicht.' }
+      format.html { redirect_to publishables_path, notice: 'Eintrag wurde veröffentlicht.' }
     end
     else
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: 'Event wurde erfolgreich bearbeitet.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -117,18 +116,14 @@ copy.save!
       end
     end
     end
-  end
-  #Unpublish an event
-  def unpublish
-    @event = Event.find(params[:id])
-  end
+    end
 
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: 'Event wurde erfolgreich gelöscht.' }
       format.json { head :no_content }
     end
   end
@@ -143,6 +138,7 @@ copy.save!
     }.merge options
     url_for(options)
   end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
@@ -152,14 +148,17 @@ copy.save!
     def event_params
       params.require(:event).permit(:title,:recurrence_id,:event_category_id, :start, :priority, :flag, :imageURL, :url, :end, :ort, :description,role_ids: [])
     end
+
     #Was this form submittted to reject the event?
     def ablehnen?
       params[:commit] == "Ablehnen"
     end
+
     #Was this form submitted to accept the event?
     def genehmigen?
       params[:commit] == "Genehmigen"
     end
+
   def publizieren?
     params[:commit] == "Veröffentlichen"
   end

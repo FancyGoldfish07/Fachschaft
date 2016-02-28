@@ -1,41 +1,62 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="expand" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Fachschaft</a>
+      <%= link_to 'Fachschaft Wirtschaft', "http://www.fh-fachschaft.de/", class: "navbar-brand" %>
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Start</a></li>
-        <li><a href="/fullcalendar/">Kalenderverwaltung</a></li>
-        <% if current_user.present? && current_user.isAdmin %>
-            <li>
-        <%= link_to "Userverwaltung", users_path %>
-            </li>
+
+        <li class="dropdown">
+          <%= link_to '<span class="glyphicon glyphicon-calendar"></span> Kalender <span class="caret"></span>'.html_safe, '#', :id => 'nav_calendar', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' %>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Kalender', root_path %></li>
+            <% if current_user.present? && (current_user.isFachschaft || current_user.isAdmin || current_user.isManager) then %>
+
+                <% if current_user.isFachschaft || current_user.isAdmin then %>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to 'Neues Event', new_build_path %></li>
+                <%end %>
+                <% if current_user.isManager %>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to 'Events genehmigen', permittables_path %></li>
+                <% end %>
+                <% if current_user.isAdmin then %>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to 'Events veröffentlichen', publishables_path %></li>
+                <% end %>
+            <% end %>
+          </ul>
+        </li>
+       <!--  TODO: currently the newsletter part is cut out because model is not ready for this workflow -->
+        <li class="dropdown">
+          <%= link_to '<span class="glyphicon glyphicon-envelope"></span> Newsletter <span class="caret"></span>'.html_safe, '#', :id => 'nav_calendar', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' %>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Abonnement', :edit_subscription %></li>
+          </ul>
+        </li>
+
+        <% if current_user.present? && current_user.isAdmin then %>
+            <li> <%=link_to '<span class="glyphicon glyphicon-user"></span> Nutzerverwaltung'.html_safe, users_path %></li>
         <% end %>
-        <li><a href="../newsletter">Newsletter</a></li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user.present? %>
             <li>
-
-              <%= link_to "Passwort ändern", edit_user_registration_path %>
-
+              <%= link_to '<span class="glyphicon glyphicon-edit"></span> Passwort ändern'.html_safe, edit_user_registration_path %>
             </li>
-            <li>  <%= link_to_delete("Account löschen", user_path(current_user),true) %></li>
-            <li><%= link_to_delete('Logout', destroy_user_session_path, false) %> </li>
+            <li>  <%= link_to_delete('<span class="glyphicon glyphicon-user"></span> Account löschen'.html_safe, user_path(current_user),true) %></li>
+            <li> <%= link_to_delete('<span class="glyphicon glyphicon-log-out"></span> Logout'.html_safe, destroy_user_session_path, false) %></li>
         <% else %>
-            <li>  <%= link_to("Einloggen", new_user_session_path) %></li>
-            <li>      <%= link_to("Registrieren", new_user_registration_path) %></li>
+            <li>  <%= link_to('<span class="glyphicon glyphicon-user"></span> Einloggen'.html_safe, new_user_session_path) %></li>
+            <li>   <%= link_to('<span class="glyphicon glyphicon-log-in"></span> Registrieren'.html_safe, new_user_registration_path) %></li>
         <% end %>
-
-
       </ul>
-    </div><!--/.nav-collapse -->
+    </div>
   </div>
 </nav>

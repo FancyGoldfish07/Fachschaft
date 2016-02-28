@@ -1,12 +1,14 @@
 #Is an event repeated? If so how often?
 class Recurrence < ActiveRecord::Base
   include IceCube
+  include ModelHelpers
   has_many :rules, autosave: true
   has_many :excludes, autosave: true
   has_many :events
   belongs_to :owner,  class_name: 'Event',
              foreign_key: 'owner_id'
-#Unpublish an entire recurrrence
+  #validates_presence_of :rules
+#Unpublish an entire recurrrence (except the owner)
   def unpublish
     events.each do |event|
 if event.recurring_but_no_owner
@@ -15,6 +17,32 @@ if event.recurring_but_no_owner
   end
     end
   end
+
+#Unpublish the complete thing
+  def unpublish_complete
+    def unpublish
+      events.each do |event|
+
+          #Only do this to the elements that are not the main parent node
+          event.unpublish_revisions
+
+      end
+    end
+  end
+
+  #Unpublishes the owner and makes the owner a new event
+  def moveOwner
+    owner.unpublish_revisions
+    events.each do |event|
+      if event.submitted?
+        self.owner = event
+        save
+        return true
+      end
+    end
+    return false
+  end
+
   #Allow us to edit rules
   accepts_nested_attributes_for :rules, reject_if: :all_blank, allow_destroy: true
   #Get all appointments for our rules from start to end
@@ -27,6 +55,7 @@ if event.recurring_but_no_owner
     end
 
   end
+
   #Get all dates of this recurrence from a start date
 def getDatesFrom(date)
   return events.where("start >= ?", date)
@@ -47,13 +76,17 @@ end
     end
     end
 
-    #Gets all dates from now for the next six months
-    def getDatesSixMonths(startDate)
-      return getDates(startDate, startDate + 6.months)
-    end
 
+#Returns the dates without excludes
     def getDatesStartFinish()
-      return getDates(self.start, self.end)
+      dates = getDates(self.start, self.end)
+      prettyDates = Array.new
+      dates.each do |dateToPrettyfy|
+        newPrettyDate = pretty_date(dateToPrettyfy.to_time.to_date)
+        prettyDates.push newPrettyDate
+      end
+      return prettyDates
+
     end
 
 

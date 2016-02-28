@@ -4,6 +4,7 @@ class Rule < ActiveRecord::Base
   after_initialize :set_defaults
 
 
+
   #Returns the days of the week in German
   def self.DAYS
     ["Montag", "Dienstag","Mittwoch","Donnerstag","Freitag","Samstag", "Sonntag"]

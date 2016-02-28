@@ -28,23 +28,24 @@ $(document).ready ->
     eventResize: (event, dayDelta, minuteDelta, revertFunc) ->
       updateEvent(event);
 
-  $('#calendar_prev').fullCalendar
-    editable: false,
-    defaultView: 'agendaWeek',
-    height: 500
-    events: '/events.json'
 
   $('#calendar_filter').fullCalendar
     editable: false,
     defaultView: 'month',
     height: 500
     events: '/events.json'
+    eventTextColor: 'black'
 
-  $('#category_category_id').change =>
-    selectedValue = $(this).text
-    $('#calendar_filter').fullCalendar
+    eventClick: (event) ->
+      link = event.url
+      window.open(link.slice(0,-5),"_self")
+      return false;
 
-    events:'/event_categories/'+selectedValue+'.json'
+
+
+
+
+
 
   $('#calendar_editable').fullCalendar
     editable: true,

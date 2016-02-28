@@ -1,4 +1,17 @@
 <% provide(:title, "Kalender") %>
-        <div id="calendar_editable">
+<div class="row">
+  <div class="col-md-3">
+
+    <label> Filtern nach:</label>
+
+
+    <select class="form-control" id="category_category_id" >
+      <%= options_for_select EventCategory.all.collect { |c| [c.name, c.id]}.insert(0, "Alle anzeigen") %>
+    </select>
+
+      </div>
+</div>
+<div class="divider-lg"></div>
+<div id="calendar_filter">
 
 </div>

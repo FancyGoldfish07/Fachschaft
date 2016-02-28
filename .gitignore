@@ -11,5 +11,8 @@
 /log/*
 !/log/.keep
 /tmp
-/.idea
+.idea
 *.log
+.log
+.cache
+/tmp/*

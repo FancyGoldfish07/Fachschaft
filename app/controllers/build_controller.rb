@@ -91,16 +91,20 @@ class BuildController < ApplicationController
     render_wizard @event
   end
 
-
   def new
     @event = Event.create
     redirect_to wizard_path(steps.first, :event_id => @event.id)
   end
 
   private
-#Safe params
+  #A finish message for our wizard
+  def finish_wizard_path
+    flash[:notice]= "Dein Event wurde an die Manager zur Genehmigung versendet."
+  return  root_path
+  end
+  #Safe params
   def event_params
-    params.require(:event).permit(:title, :start, :event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, :reviewed, :event_role)
+    params.require(:event).permit(:title, :start, :event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, :reviewed, role_ids:[])
   end
 
   def recurrence_params

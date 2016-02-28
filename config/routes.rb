@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
   resources :newsletters
-  resources :subscribers
+  resources :subscribers do
+    member do
+      get :unsubscribe
+    end
+  end
 
-  resources :excludes
-  resources :rules
-  resources :recurrences
+
   resources :event_categories
   resources :events do
     resources :build
@@ -23,16 +25,16 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  get 'home' => 'home#index'
-  get 'fullcalendar' => 'fullcalendar#index'
-  get 'fullcalendar/index.html.erb' => 'fullcalendar#index'
   get 'events/:id/review' => 'events#review', as: :review
-  get'calendar/publishables' => 'events#publishables', as: :publishables
+  get 'calendar/publishables' => 'events#publishables', as: :publishables
   get 'calendar/permittables' => 'events#permittables', as: :permittables
-  get 'events/:id/upublish' => 'events#unpublish', as: :unpublish
+  get 'calendar/publishables_newsletter' => 'newsletters#publishables', as: :publishables_newsletter
+  get 'newsletter/abonnement' => 'subscribers#new', as: :edit_subscription
+
   #Home route
-  root "home#index"
-  get 'events/new', to: 'build#new'
+  root "fullcalendar#index"
+  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -69,20 +71,5 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-
-
+  # Example resource route with con
 end

@@ -1,6 +1,8 @@
 class NewslettersController < ApplicationController
   before_action :set_newsletter, only: [:show, :edit, :update, :destroy]
 
+  before_action :authenticate_user!
+
   # GET /newsletters
   # GET /newsletters.json
   def index
@@ -27,7 +29,7 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.new(newsletter_params)
       respond_to do |format|
         if @newsletter.save
-          format.html { redirect_to @newsletter, notice: 'Newsletter was successfully created.' }
+          format.html { redirect_to @newsletter, notice: 'Newsletter abgeschickt' }
           format.json { render :show, status: :created, location: @newsletter }
         else
           format.html { render :new }
