@@ -10,6 +10,25 @@ class EventCategoriesController < ApplicationController
   # GET /event_categories/1
   # GET /event_categories/1.json
   def show
+
+  end
+
+  def view
+    id = params[:id]
+
+    @events = Event.giveBackAllPublished
+    if id > 0
+      category = EventCategory.find(id)
+      category_events = Array.new
+      @events.each do |categoryevent|
+        if categoryevent.event_category == category
+          category_events.push(categoryevent)
+        end
+      end
+      @events = category_events
+    end
+
+
   end
 
   # GET /event_categories/new
