@@ -10,7 +10,7 @@
         }else {
             $('#calendar_filter').fullCalendar('removeEvents');
             $('#calendar_filter').fullCalendar('addEventSource', '/event_categories/' + $("#category_category_id :selected").val() + '.json');
-            alert("change to"+val);
+        
         }
 
     });
