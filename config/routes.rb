@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   get 'calendar/permittables' => 'events#permittables', as: :permittables
   get 'calendar/publishables_newsletter' => 'newsletters#publishables', as: :publishables_newsletter
   get 'newsletter/abonnement' => 'subscribers#new', as: :edit_subscription
-  get 'events/:event_id/build(:only_me)' => "build#show", as: :make_copy
+  get 'events/:event_id/build/build/:only_me' => "build#show", as: :make_copy
+  get 'events/:id/copy/:only_me' => "events#edit", as: :edit_copy
   #Home route
   root "fullcalendar#index"
 

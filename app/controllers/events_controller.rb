@@ -33,19 +33,23 @@ end
 
   # GET /events/1/edit
   def edit
-copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}],except:[:state])
+    if params[:only_me]
+      @copy= @event.deep_clone( include: [:event_roles],except:[:state])
+    else
+@copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}],except:[:state])
+end
 if @event.parent.blank?
-copy.parent = @event
+@copy.parent = @event
 else
-  copy.parent = @event.parent
+  @copy.parent = @event.parent
   end
-copy.author = nil
-copy.message = nil
-copy.manager = nil
-copy.admin = nil
-copy.save!
-#Yes this is super ugly, but I am a bit clueless here
- redirect_to make_copy_path(:event_id => copy.id) and return
+@copy.author = nil
+@copy.message = nil
+@copy.manager = nil
+@copy.admin = nil
+@copy.save!
+session[:only_me] = params[:only_me]
+ redirect_to make_copy_path(:event_id => @copy.id,:id => :build,:only_me => params[:only_me] ) and return
   end
 #For the review action
   def review

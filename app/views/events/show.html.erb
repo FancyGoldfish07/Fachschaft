@@ -96,16 +96,18 @@
 
 
     <% if @event.recurring %>
+
         <% if @event.owner_of_recurrence %>
-            <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event) %>
+            <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_copy_path(@event,only_me: false) %>|
+            <%= button_to_default 'Nur diesen Termin bearbeiten', edit_copy_path(@event,only_me:true) %>
         <% else %>
-            <%= button_to_default 'Nur diesen Termin bearbeiten', edit_event_path(@event) %>
+            <%= button_to_default 'Nur diesen Termin bearbeiten', edit_copy_path(@event,only_me:true) %>
 
             |
-            <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event.recurrence.owner) %>
+            <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event.recurrence.owner,only_me: false) %>
         <% end %>
     <% else %>
-        <%= button_to_default 'Diesen Termin bearbeiten', edit_event_path(@event) %>
+        <%= button_to_default 'Diesen Termin bearbeiten', edit_copy_path(@event,only_me: true) %>
     <% end %>
 
 
