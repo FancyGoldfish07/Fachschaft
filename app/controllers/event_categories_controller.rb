@@ -13,7 +13,7 @@ class EventCategoriesController < ApplicationController
     id = params[:id]
 
     @events = Event.giveBackAllPublished
-    if id > 0
+    if id.to_i > 0
       category = EventCategory.find(id)
       category_events = Array.new
       @events.each do |categoryevent|
