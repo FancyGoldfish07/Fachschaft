@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <% if current_user.present? && current_user.isAdmin %>
 
 <h3>Übersicht Abonnenten</h3>
@@ -28,5 +26,5 @@
 <br>
     <% end %>
 
+<%= button_to_default 'Abonnent werden', new_subscriber_path %>
 
-<%= link_to 'Abonnent werden', new_subscriber_path %>

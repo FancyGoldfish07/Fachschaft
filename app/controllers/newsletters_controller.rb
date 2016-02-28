@@ -26,7 +26,8 @@ class NewslettersController < ApplicationController
   # POST /newsletters.json
   def create
     @newsletter = Newsletter.new(newsletter_params)
-    @newsletter.notify_manager(0)
+    @newsletter.notify_admin
+    @newsletter.unmanager_id = current_user.id
       respond_to do |format|
         if @newsletter.save
           format.html { redirect_to @newsletter, notice: 'Newsletter wird nun zur Prüfung freigegeben' }
@@ -41,25 +42,18 @@ class NewslettersController < ApplicationController
   # PATCH/PUT /newsletters/1
   # PATCH/PUT /newsletters/1.json
   def update
-    if genehmigen?
-      @newsletter.unmanager_id = current_user.id
-      @newsletter.save
-      @newsletter.notify_admin
-      respond_to do |format|
-        format.html { redirect_to permittables_newsletter_path, notice: 'Eintrag wurde genehmigt.' }
-      end
-    elsif publizieren?
+    if publizieren?
       @newsletter.unadmin_id = current_user.id
       @newsletter.save
       @newsletter.send_newsletter
       respond_to do |format|
-        format.html { redirect_to publishables_newsletter_path, notice: 'Newsletter versandt.' }
+        format.html { redirect_to :publishables_newsletter, notice: 'Newsletter versandt.' }
       end
     elsif ablehnen?
       @newsletter.destroy
       @newsletter.notify_manager(1)
       respond_to do |format|
-        format.html { redirect_to permittables_newsletter_path, notice: 'Newsletter gelöscht' }
+        format.html { redirect_to :publishables_newsletter, notice: 'Newsletter gelöscht' }
        end
     else
       respond_to do |format|
@@ -89,9 +83,6 @@ class NewslettersController < ApplicationController
     @newsletters = Newsletter.where("unadmin_id is null and unmanager_id is not null")
   end
 
-  def permittables
-    @newsletters = Newsletter.where("unmanager_id is null")
-  end
   def review
     set_newsletter
   end
@@ -111,13 +102,8 @@ class NewslettersController < ApplicationController
     params[:commit] == "Ablehnen"
   end
 
-  def genehmigen?
-    params[:commit] == "Genehmigen"
-  end
-
   def publizieren?
     params[:commit] == "Veröffentlichen"
   end
-
 
 end

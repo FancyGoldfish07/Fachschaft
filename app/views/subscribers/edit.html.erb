@@ -3,8 +3,10 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Anzeigen', @subscriber %> |
+    <%= link_to 'Anzeigen', @subscriber %>  
 
 <% end %>
 
-<%= link_to 'Zurück', subscribers_path %>
+<%= button_to_default 'Zurück', subscribers_path %>
+
+

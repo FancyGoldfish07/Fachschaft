@@ -68,13 +68,13 @@
         <td id="title"><%= link_to event.title, 'localhost:3000'+event_path(event) %></td>
       </tr>
       <tr>
-        <td id="info">Place: <%= event.ort %></td>
+        <td id="info">Ort: <%= event.ort %></td>
       </tr>
       <tr>
-        <td id="info">Time: <%= event.start.strftime("%d.%m.%Y, %H:%M") %></td>
+        <td id="info">Start: <%= event.start.strftime("%d.%m.%Y, %H:%M") %> Ende: <%= event.end.strftime("%d.%m.%Y, %H:%M") %> </td>
       </tr>
       <tr>
-        <td id="info">Description:</td>
+        <td id="info">Beschreibung:</td>
       </tr>
       <tr>
         <td id="info"><%= event.description %></td>
@@ -84,7 +84,7 @@
 <%end %>
 <br><br>
 <div id="footer">
-  <p id="link">Besuche unseren<a href="http://localhost:3000/events/new" id="link"> Kalender</a> </p>
+  <p id="link"><a href="http://www.fh-fachschaft.de/"> Fachschaft</a></p>
 </div>
 </body>
 </html>
