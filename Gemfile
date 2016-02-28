@@ -78,6 +78,7 @@ gem 'wicked', '~> 1.2', '>= 1.2.1'
 gem 'puma', group: :production
 group :production do
   gem 'rails_12factor'
+  gem 'simple_form'
 end
 
 group :development, :test do
