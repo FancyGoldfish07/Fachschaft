@@ -29,7 +29,7 @@ source 'https://rubygems.org'
   gem 'sdoc', '~> 0.4.0', group: :doc
 
 #Give us a better session store
-gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+#gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
   gem 'devise', '~> 3.5', '>= 3.5.6'
 
@@ -37,7 +37,7 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
   gem 'fullcalendar-rails', '~> 2.6'
   # http://eonasdan.github.io/bootstrap-datetimepicker/
-  gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+  #gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
 #Ice-Cube
 gem 'ice_cube', '~> 0.13.3'

@@ -46,7 +46,7 @@
 <h5>Termine</h5>
 <% if event.repeats %>
 
-    <p>Dieser Termin wird wiederholt am: </p>
+    <p>Dieser Termin wird stattfinden am: </p>
     <ul>
       <% event.recurrence.getDatesAllInOne.each do |date| %>
           <li><%= pretty_date date %> </li>
