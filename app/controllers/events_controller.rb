@@ -45,7 +45,7 @@ copy.manager = nil
 copy.admin = nil
 copy.save!
 #Yes this is super ugly, but I am a bit clueless here
- redirect_to "/events/#{copy.id}/build" and return
+ redirect_to make_copy_path(:event_id => copy.id) and return
   end
 #For the review action
   def review
