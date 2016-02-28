@@ -51,7 +51,28 @@ class Event < ActiveRecord::Base
     end
     return publishedEvents
   end
+  #Prepares the old recurrence
+ def prepareOldRecurrence
+   #We are not repeating
+   if self.recurring
+     #Add a new exclude to the recurrence of the owner of our recurrence
+     Exclude.create(date: self.start, recurrence: self.recurrence.owner.recurrence)
 
+     if self.parent.owner_of_recurrence
+       #We own this recurrence
+       #We do not want to be part of it any longer.
+
+       #Move its owner
+      self.recurrence.moveOwner_without_unpublish
+
+     end
+     #Remove the event from the recurrence
+     self.recurrence = nil
+
+     #And we are out
+     save
+   end
+ end
   #Are we in a recurrence, but not the owner?
   def recurring_but_no_owner
     self.recurrence.present? && self.recurrence.owner != self
@@ -180,12 +201,20 @@ class Event < ActiveRecord::Base
     if repeats
       if self.parent.present?
           #We are not alone.
+        if parent.recurrence == self.recurrence
+         #Our parent has our recurrence
+          if parent.owner_of_recurrence
+            #Our parent is the owner of that recurrence
+            #Better ask someone else to do it.
+            parent.recurrence.moveOwner_without_unpublish
+          end
+        end
         if self.parent.revisions.count > 1
           #We are not the first revision
           #Get revisions that are published
           kidsReadyToPublish = self.parent.revisions.where("state = ?", 4)
-          if kidsReadyToPublish.count > 1
-            lastPublished = kidsReadyToPublish[kidsReadyToPublish.count - 2]
+          if kidsReadyToPublish.count > 0
+            lastPublished = kidsReadyToPublish.last
             #Last published unpublish your recurrence
             lastPublished.recurrence.unpublish
           else
@@ -201,9 +230,12 @@ class Event < ActiveRecord::Base
 
 
       end
+      self.submitted!
+      save
       makeRecurr
     end
-
+    self.submitted!
+    save
   end
 
   #Changes the state of the version based on the user
@@ -217,7 +249,7 @@ class Event < ActiveRecord::Base
       elsif user.current_role == Role.Admin
         if self.reviewed?
           self.admin = user
-          self.submitted!
+
           self.publish
         end
       end

@@ -33,8 +33,23 @@ if event.recurring_but_no_owner
     owner.unpublish_revisions
     events.each do |event|
       if event.submitted?
+        self.owner == event
+        save
+        return true
+      end
+    end
+    return false
+  end
+  #Moves the owner without unpublishing it
+  def moveOwner_without_unpublish
+  id =  self.owner_id
+    events.each do |event|
+      if event.submitted? && self.owner.id != event.id && event.parent.blank?
         self.owner = event
         save
+       oldOwner= Event.find(id)
+        oldOwner.recurrence = nil
+        oldOwner.save
         return true
       end
     end

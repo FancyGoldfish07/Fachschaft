@@ -35,17 +35,8 @@ class BuildController < ApplicationController
     case step
       when :build
         @event.update(event_params)
-        if !@event.repeats
-          if @event.recurring
-            #Add a new exclude to the recurrence of the owner of our recurrence
-            Exclude.create(date: @event.start, recurrence: @event.recurrence.owner.recurrence)
-            oldRecurrence = @event.recurrence
-            #Remove the event from the recurrence
-            @event.recurrence = nil
+        if !@event.repeats || session[:only_me]
 
-
-            @event.save
-          end
           jump_to :check
         end
 
@@ -94,6 +85,7 @@ class BuildController < ApplicationController
 
   def new
     @event = Event.create
+    session[:only_me] = false
     redirect_to wizard_path(steps.first, :event_id => @event.id)
   end
 

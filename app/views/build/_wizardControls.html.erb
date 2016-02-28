@@ -1,6 +1,6 @@
 <div class="actions">
   <%if @step != @wizard_steps.first %>
-      <% if @event.repeats %>
+      <% if @event.repeats && !session[:only_me] %>
       <%= button_to_small "Zurück",previous_wizard_path %>
           <% else %>
           <%= button_to_small "Zurück", wizard_path(@wizard_steps.first,:event_id => @event.id) %>
