@@ -1,24 +1,25 @@
-<% provide(:title,event.title) %>
+<% provide(:title, event.title) %>
 <%= bootstrap_form_for(event) do |f| %>
-<% if current_user.present? && current_user.isManager && event.waiting? %>
+    <% if current_user.present? && current_user.isManager && event.waiting? %>
         <% if !event.message.present? %>
 
             <%= f.text_area :message, label: "Nachricht bei Ablehnung" %>
             <p>Dieser Beitrag kann nun genehmigt oder abgelehnt werden. Im Falle einer Ablehnung bekommmt der Autor
-            eine Nachricht mit dem obigen Text. </p>
+              eine Nachricht mit dem obigen Text. </p>
             <div class="form-group">
-            <%= f.submit "Genehmigen" %> <%= f.submit "Ablehnen", class: "btn btn-success", class: "btn btn-danger" %>
-          </div>
-            <% end %>
-<%elsif current_user.present? && current_user.isAdmin && event.waiting? %>
-        <p>Dieses Event muss erst von einem Manager genehmigt werden, bevor es veröffentlicht werden kann.</p>
-        <%elsif current_user.present? && current_user.isAdmin && event.reviewed? %>
-<% if !event.message.present? %>
-        <p><%= event.message %></p>
+              <%= f.submit "Genehmigen" %> <%= f.submit "Ablehnen", class: "btn btn-success", class: "btn btn-danger" %>
+            </div>
         <% end %>
-<p>Dieses Event wurde von <%= User.find(event.manager_id).username %> inhaltlich für unbenklich befunden.</p>
+    <% elsif current_user.present? && current_user.isAdmin && event.waiting? %>
+        <p>Dieses Event muss erst von einem Manager genehmigt werden, bevor es veröffentlicht werden kann.</p>
+    <% elsif current_user.present? && current_user.isAdmin && event.reviewed? %>
+        <% if !event.message.present? %>
+            <p><%= event.message %></p>
+        <% end %>
+        <p>Dieses Event wurde von <%= User.find(event.manager_id).username %> inhaltlich für unbenklich befunden.</p>
         <%= f.submit "Veröffentlichen", class: "btn btn-success" %>
     <% elsif event.rejected? %>
-        <p>Dieses Element darf nicht veröffentlicht werden, hat <%= User.find(event.manager_id).username %> entschieden.</p>
-<% end %>
+        <p>Dieses Element darf nicht veröffentlicht werden, hat <%= User.find(event.manager_id).username %>
+          entschieden.</p>
+    <% end %>
 <% end %>

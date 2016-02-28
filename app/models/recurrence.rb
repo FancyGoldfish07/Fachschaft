@@ -17,6 +17,7 @@ if event.recurring_but_no_owner
   end
     end
   end
+
 #Unpublish the complete thing
   def unpublish_complete
     def unpublish
@@ -28,6 +29,7 @@ if event.recurring_but_no_owner
       end
     end
   end
+
   #Unpublishes the owner and makes the owner a new event
   def moveOwner
     owner.unpublish_revisions
@@ -40,6 +42,7 @@ if event.recurring_but_no_owner
     end
     return false
   end
+
   #Allow us to edit rules
   accepts_nested_attributes_for :rules, reject_if: :all_blank, allow_destroy: true
   #Get all appointments for our rules from start to end
@@ -52,6 +55,7 @@ if event.recurring_but_no_owner
     end
 
   end
+
   #Get all dates of this recurrence from a start date
 def getDatesFrom(date)
   return events.where("start >= ?", date)
