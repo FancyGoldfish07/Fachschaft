@@ -35,30 +35,35 @@ class User < ActiveRecord::Base
       self.add_role roleName
       return true
     else
-
       false
     end
   end
+
   #Checks if the current user is an admin
   def isUser
     self.has_role? Role.User
   end
+
   #returns a boolean
   def isAdmin
     self.has_role? Role.Admin
   end
+
   #Is this a Fachschaft user
   def isFachschaft
     self.has_role? Role.Fachschaft
   end
+
   #Is this a manager
   def isManager
     self.has_role? Role.Manager
   end
+
   #Returns the name of the current role
   def current_role
     self.roles[0].toString
   end
+
   private
   ##
   #First User in the Database is an admin, rest defaults to user

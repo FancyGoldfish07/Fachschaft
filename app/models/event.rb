@@ -32,6 +32,7 @@ class Event < ActiveRecord::Base
       "#ffefcc"
     end
   end
+
   #Gives back all published instances of this model
   def self.giveBackAllPublished
     events = Event.submitted
@@ -91,6 +92,7 @@ class Event < ActiveRecord::Base
       return publishedEvents
     end
   end
+
 #Unpublishes revisions + their parent (except the parent that has no parent)
   def unpublish_revisions
     #Unpublish us
@@ -138,7 +140,6 @@ class Event < ActiveRecord::Base
     end
 
   end
-
 
   #Propagates the event into the future
   def makeRecurr
