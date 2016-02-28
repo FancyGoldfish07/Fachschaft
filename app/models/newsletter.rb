@@ -11,7 +11,6 @@ class Newsletter < ActiveRecord::Base
 
   def send_newsletter
     # Event has to be newer than "from"
-
     @from = self.from.strftime('%y%m%d')
     # Event has to be older than "to"
     @to = self.to.strftime('%y%m%d')
