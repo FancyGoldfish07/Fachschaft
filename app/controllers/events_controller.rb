@@ -34,14 +34,19 @@ end
   # GET /events/1/edit
   def edit
 copy= @event.deep_clone( include: [:event_roles,{recurrence: [:rules,:excludes]}],except:[:state])
+if @event.parent.blank?
 copy.parent = @event
+else
+  copy.parent = @event.parent
+  end
 copy.author = nil
 copy.message = nil
 copy.manager = nil
 copy.admin = nil
 copy.save!
 #Yes this is super ugly, but I am a bit clueless here
- redirect_to "/events/#{copy.id}/build" and return
+    redirect_to "/events/#{copy.id}/build" and return
+
   end
 #For the review action
   def review
@@ -81,10 +86,10 @@ copy.save!
       @event.message = params[:event][:message]
       @event.manager_id = current_user.id
       @event.rejected!
-@event.save
+      @event.save
       respond_to do |format|
 
-          format.html { redirect_to root_path, notice: 'Eintrag wurde abgelehnt.' }
+          format.html { redirect_to permittables_path, notice: 'Eintrag wurde abgelehnt.' }
           end
     elsif genehmigen?
       @event.reviewed!
@@ -92,13 +97,13 @@ copy.save!
       @event.save
       respond_to do |format|
 
-        format.html { redirect_to root_path, notice: 'Eintrag wurde genehmigt.' }
+        format.html { redirect_to permittables_path, notice: 'Eintrag wurde genehmigt.' }
       end
     elsif publizieren?
     @event.changeState(current_user)
     respond_to do |format|
 
-      format.html { redirect_to root_path, notice: 'Eintrag wurde veröffentlicht.' }
+      format.html { redirect_to publishables_path, notice: 'Eintrag wurde veröffentlicht.' }
     end
     else
     respond_to do |format|

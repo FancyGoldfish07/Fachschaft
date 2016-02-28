@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Subscribers</h1>
+<% if current_user.present? && current_user.isAdmin %>
+
+<h3>Übersicht Abonnenten</h3>
 
 <table>
   <thead>
@@ -16,16 +18,15 @@
       <tr>
         <td><%= subscriber.name %></td>
         <td><%= subscriber.email %></td>
-        <td><%= link_to 'Show', subscriber %></td>
-        <td><%= link_to 'Edit', edit_subscriber_path(subscriber) %></td>
-        <td><%= link_to 'Destroy', subscriber, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Anzeigen', subscriber %></td>
+        <td><%= link_to 'Bearbeiten', edit_subscriber_path(subscriber) %></td>
+        <td><%= link_to 'Löschen', subscriber, method: :delete, data: { confirm: 'Bist du sicher' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-
-
 <br>
+    <% end %>
 
-<%= link_to 'New Subscriber', new_subscriber_path %>
+
+<%= link_to 'Abonnent werden', new_subscriber_path %>

@@ -2,18 +2,23 @@
 <% if !event.repeats %>
     <p>
     <ul>
-      <li>Startdatum: <%= pretty_date event.start.to_date %></li>
-      <li>Startzeit: <%= event.start.to_time %></li>
-      <li>Endzeitpunkt: <%= event.end %></li>
+
+      <li>Startzeitpunkt: <%= pretty_datetime event.start %></li>
+      <li>Endzeitpunkt: <%= pretty_datetime event.end %></li>
 
     </ul>
+
     </p>
 <% else %>
-    <p>Startzeit: <%= event.start.to_time %></p>
+    <ul>
+    <li>Startzeit des ersten Events: <%= pretty_datetime event.start%></li>
+      <li>Endzeit des ersten Events: <%= pretty_datetime event.end%></li>
+    </ul>
+    <p>  Achtung: Dieser erste Termin muss nicht an einem der Wiederholungstage liegen!</p>
 <% end %>
 <h5>Beschreibung</h5>
 <p><%= event.description %></p>
-<p>Die Priorität ist <%= event.priority %></p>
+<p>Die Priorität ist <%= event.priority %>.</p>
 <p>Eine Aufnahme in den Newsletter ist
   <% if !event.flag %>
       <bold>NICHT</bold>

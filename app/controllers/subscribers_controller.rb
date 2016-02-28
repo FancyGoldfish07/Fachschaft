@@ -25,17 +25,25 @@ class SubscribersController < ApplicationController
   # POST /subscribers.json
   def create
     @subscriber = Subscriber.new(subscriber_params)
-
+    if Subscriber.find_by(:email => @subscriber.email) != nil
+      @sub = Subscriber.find_by(:email => @subscriber.email)
+      @sub.destroy
+      redirect_to subscribers_url, notice: 'Sie wurden vom Newsletter abgemeldet'
+    else
+      if @subscriber.name == nil
+        @subscriber.name = 'Abonnent'
+      end
     respond_to do |format|
       if @subscriber.save
-        format.html { redirect_to @subscriber, notice: 'Subscriber was successfully created.' }
+        format.html { redirect_to subscribers_url, notice: 'Danke für die Anmeldung' }
         format.json { render :show, status: :created, location: @subscriber }
       else
         format.html { render :new }
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
       end
     end
-  end
+    end
+    end
 
   # PATCH/PUT /subscribers/1
   # PATCH/PUT /subscribers/1.json
@@ -56,13 +64,17 @@ class SubscribersController < ApplicationController
   def destroy
     @subscriber.destroy
     respond_to do |format|
-      format.html { redirect_to subscribers_url, notice: 'Subscriber was successfully destroyed.' }
+      format.html { redirect_to subscribers_url, notice: 'Abo erfolgreich gelöscht' }
       format.json { head :no_content }
     end
   end
 
-  private
+  def unsubscribe
+    @sub = Subscriber.find(params[:id])
+    @sub.destroy
+  end
 
+  private
    # Use callbacks to share common setup or constraints between actions.
     def set_subscriber
       @subscriber = Subscriber.find(params[:id])

@@ -1,5 +1,5 @@
 class EventCategoriesController < ApplicationController
-  before_action :set_event_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_event_category, only: [ :edit, :update, :destroy]
 
   # GET /event_categories
   # GET /event_categories.json
@@ -10,7 +10,21 @@ class EventCategoriesController < ApplicationController
   # GET /event_categories/1
   # GET /event_categories/1.json
   def show
+    id = params[:id]
+
+    @events = Event.giveBackAllPublished
+    if id.to_i > 0
+      category = EventCategory.find(id)
+      category_events = Array.new
+      @events.each do |categoryevent|
+        if categoryevent.event_category == category
+          category_events.push(categoryevent)
+        end
+      end
+      @events = category_events
   end
+end
+
 
   # GET /event_categories/new
   def new
