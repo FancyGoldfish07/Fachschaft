@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Betreff:</strong>
   <%= @newsletter.subject %>
@@ -19,6 +17,4 @@
   <strong>Zu:</strong>
   <%= @newsletter.to %>
 </p>
-
-<%= link_to 'Bearbeiten', edit_newsletter_path(@newsletter) %> |
-<%= link_to 'Zurück', newsletters_path %>
+<%= button_to_default 'Zurück', newsletters_path %>

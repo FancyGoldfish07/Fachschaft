@@ -1,38 +1,31 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Übersicht Newsletter</h1>
 
 <% if current_user.present? && (current_user.isAdmin || current_user.isManager) %>
 
-
-<table>
-  <thead>
-    <tr>
-      <th>Betreff</th>
-      <th>.................................</th>
-      <th>Anfangszeitpunkt</th>
-      <th>Endzeitpunkt</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+    <div class="row">
+    <div class="col-md-4">
+      <strong>Newsletter Betreff</strong>
+    </div>
+    <div class="col-md-4">
+      <strong>Zeitraum von</strong>
+    </div>
+    <div class="col-md-4">
+      <strong>Zeitraum bis</strong>
+    </div>
+    </div>
     <% @newsletters.each do |newsletter| %>
-      <tr>
-        <td><%= newsletter.subject %></td>
-        <td></td>
-        <td><%= newsletter.from %></td>
-        <td><%= newsletter.to %></td>
-        <td><%= link_to 'Anzeigen', newsletter %></td>
-        <td><%= link_to 'Bearbeiten', edit_newsletter_path(newsletter) %></td>
-        <td><%= link_to 'Löschen', newsletter, method: :delete, data: { confirm: 'Bist du sicher?' } %></td>
-      </tr>
+    <div class="row">
+      <div class="col-md-4">
+        <strong><%= newsletter.subject %></strong>
+      </div>
+      <div class="col-md-4">
+        <strong><%= newsletter.from.strftime("%d.%m.%Y") %></strong>
+      </div>
+      <div class="col-md-4">
+        <strong><%= newsletter.to.strftime("%d.%m.%Y") %></strong>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
 <br>
-
-<%= link_to 'Neuer Newsletter', new_newsletter_path %>
-    <% end %>
+<% end %>
 

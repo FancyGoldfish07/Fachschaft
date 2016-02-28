@@ -11,6 +11,33 @@ class NewsletterMailer < ApplicationMailer
     end
   end
 
+  def notify_new_newsletter(user)
+    @user = user
+
+    mail(to: user.email, subject: "Ein neuer Newsletter wurde erstellt") do |format|
+      format.html { render layout: '../../views/newsletter_mailer/notify_new_newsletter.html.erb' }
+      format.text { render text: '../../views/newsletter_mailer/notify_new_newsletter.text.erb' }
+    end
+  end
+
+  def notify_approved_newsletter(user)
+    @user = user
+
+    mail(to: user.email, subject: "Newsletter wurde genehmigt") do |format|
+      format.html { render layout: '../../views/newsletter_mailer/notify_approved_newsletter.html.erb' }
+      format.text { render text: '../../views/newsletter_mailer/notify_approved_newsletter.text.erb' }
+    end
+  end
+
+  def notify_deleted_newsletter(user)
+    @user = user
+
+    mail(to: user.email, subject: "Newsletter gelöscht") do |format|
+      format.html { render layout: '../../views/newsletter_mailer/notify_deleted_newsletter.html.erb' }
+      format.text { render text: '../../views/newsletter_mailer/notify_deleted_newsletter.text.erb' }
+    end
+  end
+
   def newsletter_signup_confirmation(subscriber)
     @subscriber = subscriber
     mail(to: subscriber.email, subject: "Newsletter Anmeldung") do |format|

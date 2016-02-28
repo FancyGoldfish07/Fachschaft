@@ -39,7 +39,7 @@ validates_presence_of :title
     @managers.each do |f|
       puts case x
              when 0
-               NotificationMailer.notify_new_event(f).deliver_later
+               NotificationMailer.notify_new_event(f, self).deliver_later
              when 1
                NotificationMailer.notify_edited_event(f).deliver_later
            end
