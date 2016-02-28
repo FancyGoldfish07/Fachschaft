@@ -1,7 +1,8 @@
 class NotificationMailer < ApplicationMailer
 
-  def notify_new_event(user)
+  def notify_new_event(user, event)
     @user = user
+    @event = event
     mail(to: user.email) do |format|
       format.html { render layout: '../../views/notification_mailer/notify_new_event.html.erb' }
       format.text { render text: '../../views/notification_mailer/notify_new_event.text.erb' }
