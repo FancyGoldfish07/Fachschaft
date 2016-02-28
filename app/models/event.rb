@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   belongs_to :event_category
   belongs_to :parent, class_name: 'Event'
   has_many :revisions, :class_name => 'Event', :foreign_key => 'parent_id'
+attr_accessor :formed
   belongs_to :recurrence, autosave: true
   belongs_to :author, class_name: 'User',
              foreign_key: 'user_id'
@@ -20,10 +21,11 @@ class Event < ActiveRecord::Base
 
   has_many :roles, through: :event_roles
   after_initialize :set_defaults
-
+validates_presence_of :title
 
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
+
 
   def notify_manager(x)
     @managers = Array.new
