@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :review, :unpublish]
 
   # GET /events
   # GET /events.json
@@ -56,8 +56,6 @@ copy.save!
   end
 #For the review action
   def review
-@event = Event.find(params[:id])
-
 
   end
   #Shows all the events a manager can still permit
@@ -109,7 +107,25 @@ copy.save!
       respond_to do |format|
 
           format.html { redirect_to permittables_path, notice: 'Eintrag wurde abgelehnt.' }
+      end
+    elsif unpublizieren?
+      if current_user.present?
+        if current_user.isAdmin
+
+          @event.unadmin = current_user
+          if @event.unmanager.present?
+
+            @event.unpublish
           end
+          end
+          if @event.isManager
+            @event.unmanager = current_user
+            if @event.unadmin.present?
+              @event.unpublish
+            end
+          end
+        @event.save
+      end
     elsif genehmigen?
       @event.reviewed!
       @event.manager_id = current_user.id
@@ -177,8 +193,13 @@ copy.save!
     def genehmigen?
       params[:commit] == "Genehmigen"
     end
-
+#Was this form submitted to publish the event?
   def publizieren?
     params[:commit] == "Veröffentlichen"
   end
+  #Was this form submitted to unpublish an event?
+  def unpublizieren?
+    params[:commit] == "Unpublizieren"
+  end
+
 end
