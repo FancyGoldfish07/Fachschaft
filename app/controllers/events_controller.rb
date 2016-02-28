@@ -30,6 +30,14 @@ end
   def new
   redirect_to new_build_path
   end
+  #For reviewing
+  def review
+  end
+
+  #unpublish
+  def unpublish
+
+  end
 
   # GET /events/1/edit
   def edit
