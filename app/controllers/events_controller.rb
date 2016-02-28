@@ -45,7 +45,8 @@ copy.manager = nil
 copy.admin = nil
 copy.save!
 #Yes this is super ugly, but I am a bit clueless here
- redirect_to "/events/#{copy.id}/build" and return
+    redirect_to "/events/#{copy.id}/build" and return
+
   end
 #For the review action
   def review
@@ -88,7 +89,7 @@ copy.save!
       @event.save
       respond_to do |format|
 
-          format.html { redirect_to root_path, notice: 'Eintrag wurde abgelehnt.' }
+          format.html { redirect_to permittables_path, notice: 'Eintrag wurde abgelehnt.' }
           end
     elsif genehmigen?
       @event.reviewed!
@@ -96,13 +97,13 @@ copy.save!
       @event.save
       respond_to do |format|
 
-        format.html { redirect_to root_path, notice: 'Eintrag wurde genehmigt.' }
+        format.html { redirect_to permittables_path, notice: 'Eintrag wurde genehmigt.' }
       end
     elsif publizieren?
     @event.changeState(current_user)
     respond_to do |format|
 
-      format.html { redirect_to root_path, notice: 'Eintrag wurde veröffentlicht.' }
+      format.html { redirect_to publishables_path, notice: 'Eintrag wurde veröffentlicht.' }
     end
     else
     respond_to do |format|
