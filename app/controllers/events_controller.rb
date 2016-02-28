@@ -34,7 +34,7 @@ end
 
   #unpublish
   def unpublish
-
+set_event
   end
 
   # GET /events/1/edit
@@ -56,7 +56,7 @@ copy.save!
   end
 #For the review action
   def review
-
+set_event
   end
   #Shows all the events a manager can still permit
   def permittables
@@ -118,7 +118,7 @@ copy.save!
             @event.unpublish_all
           end
           end
-          if @event.isManager
+          if current_user.isManager
             @event.unmanager = current_user
             if @event.unadmin.present?
               @event.unpublish_all

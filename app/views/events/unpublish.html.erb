@@ -8,7 +8,7 @@
         ein eigenständiger Kalendereintrag.
     <%end %>
   </p>
-<%= bootstrap_form_for(event) do |f| %>
+<%= bootstrap_form_for(@event) do |f| %>
 <% if current_user.present? %>
     <% if current_user.isManager && @event.unmanager.blank? %>
         <% if @event.unadmin.blank? %>
