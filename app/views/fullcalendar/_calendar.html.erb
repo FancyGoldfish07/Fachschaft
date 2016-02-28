@@ -2,12 +2,14 @@
 <div class="row">
   <div class="col-md-3">
 
-
     <label> Filtern nach:</label>
-    <select class="form-control" id="category_category_id">
-      <%= options_for_select(EventCategory.all.collect { |c| [c.name, c.id] }) %>
+
+
+    <select class="form-control" id="category_category_id" >
+      <%= options_for_select EventCategory.all.collect { |c| [c.name, c.id]}.insert(0, "Alle anzeigen") %>
     </select>
-  </div>
+
+      </div>
 </div>
 <div class="divider-lg"></div>
 <div id="calendar_filter">

@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
     end
     it 'is invalid without an email' do
       user.email = nil
-      expect(user).not_to be_valid
+      expect(user).to_not be_valid
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
     end
     it 'is invalid without an username' do
       user.username = nil
-      expect(user).not_to be valid
+      expect(user).to_not be_valid
     end
   end
 
@@ -34,18 +34,18 @@ RSpec.describe User, type: :model do
     end
     it 'is invalid without a password' do
       user.password = nil
-      expect(user).not_to be be_valid
+      expect(user).to_not be be_valid
     end
-    it 'is in valid with a shorten password' do
+    it 'is invalid with a shorten password' do
       user.password = '1234567'
-      expect(user).not_to be_valid
+      expect(user).to_not be_valid
     end
   end
 
   describe 'needs an unique email' do
     it 'is invalid without a unique email' do
       # user and fs_user both have the same email address
-      expect(fs).not_to be_valid
+      expect(fs).to_not be_valid
     end
     it 'is valid wih several email addresses' do
       # user.email is info@fachschaft.de
@@ -57,7 +57,7 @@ RSpec.describe User, type: :model do
   describe 'needs an unique username' do
     it 'is invalid without an unique username' do
       # user and fs both have username 'Test'
-      expect(fs).not_to be_valid
+      expect(fs).to_not be_valid
     end
     it 'is valid with several usernames' do
       #user.username is 'Test'
@@ -72,7 +72,7 @@ RSpec.describe User, type: :model do
     end
     it 'is not valid with a username format like an email address' do
       user.username = 'test@test.de'
-      expect(user).not_to be_valid
+      expect(user).to_not be_valid
     end
   end
 end

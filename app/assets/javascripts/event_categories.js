@@ -3,12 +3,14 @@
   $(document).ready(function() {
     // page is now ready, initialize the calendar...
     $('#category_category_id').change(function(){
-        if( $("#category_category_id :selected").val()<1){
+        var val = $("#category_category_id :selected").val();
+        if(  val.length >=  2 ){
             $('#calendar_filter').fullCalendar('removeEvents');
-            $('#calendar_filter').fullCalendar('addEventSource', '/events.json');
+            $('#calendar_filter').fullCalendar('addEventSource', 'event_categories/0.json');
         }else {
             $('#calendar_filter').fullCalendar('removeEvents');
             $('#calendar_filter').fullCalendar('addEventSource', '/event_categories/' + $("#category_category_id :selected").val() + '.json');
+        
         }
 
     });

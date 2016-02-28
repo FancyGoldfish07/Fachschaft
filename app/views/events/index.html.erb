@@ -32,9 +32,9 @@
         <td><%= event.event_category %></td>
         <td><%= event.end %></td>
         <td><%= event.roles %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ansehen', event %></td>
+        <td><%= link_to 'Bearbeiten', edit_event_path(event) %></td>
+        <td><%= link_to 'Löschen', event, method: :delete, data: { confirm: 'Bist du sicher?' } %></td>
       </tr>
   <% end %>
   </tbody>

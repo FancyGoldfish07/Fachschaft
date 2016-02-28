@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
   after_initialize :set_defaults
 
 
+
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
 
@@ -30,6 +31,25 @@ class Event < ActiveRecord::Base
     else
       "#ffefcc"
     end
+  end
+  #Gives back all published instances of this model
+  def self.giveBackAllPublished
+    events = Event.submitted
+    publishedEvents = Array.new
+    events.each do |event|
+
+      #This is defined in Event.state enum
+      enumValue = 4
+      kidsReadyToPublish = event.revisions.where("state = ?", enumValue)
+      if kidsReadyToPublish.count > 0
+        publishedEvents.push(kidsReadyToPublish.last)
+      else
+        if !event.parent.present?
+          publishedEvents.push(event)
+        end
+      end
+    end
+    return publishedEvents
   end
 
   #Are we in a recurrence, but not the owner?
@@ -219,6 +239,9 @@ class Event < ActiveRecord::Base
     end
     if self.end.blank?
       self.end = start.to_time + 1.hour
+    end
+    if self.repeats.blank?
+      self.repeats = false
     end
   end
 end

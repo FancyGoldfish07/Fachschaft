@@ -105,7 +105,7 @@ class BuildController < ApplicationController
   end
 #Safe params
   def event_params
-    params.require(:event).permit(:title, :start, :event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, :reviewed, :event_role)
+    params.require(:event).permit(:title, :start, :event_category_id, :priority, :flag, :imageURL, :url, :end, :ort, :description, :repeats, :reviewed, role_ids:[])
   end
 
   def recurrence_params

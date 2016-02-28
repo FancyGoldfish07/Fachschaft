@@ -4,6 +4,7 @@
 
 <% if current_user.present? && (current_user.isAdmin || current_user.isManager) %>
 
+
 <table>
   <thead>
     <tr>
@@ -22,9 +23,9 @@
         <td></td>
         <td><%= newsletter.from %></td>
         <td><%= newsletter.to %></td>
-        <td><%= link_to 'Show', newsletter %></td>
-        <td><%= link_to 'Edit', edit_newsletter_path(newsletter) %></td>
-        <td><%= link_to 'Destroy', newsletter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Anzeigen', newsletter %></td>
+        <td><%= link_to 'Bearbeiten', edit_newsletter_path(newsletter) %></td>
+        <td><%= link_to 'Löschen', newsletter, method: :delete, data: { confirm: 'Bist du sicher?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,6 +33,6 @@
 
 <br>
 
+<%= link_to 'Neuer Newsletter', new_newsletter_path %>
     <% end %>
 
-<%= link_to 'New Newsletter', new_newsletter_path %>

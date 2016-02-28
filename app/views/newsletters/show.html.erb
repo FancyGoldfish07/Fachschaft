@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Subject:</strong>
+  <strong>Betreff:</strong>
   <%= @newsletter.subject %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Beschreibung:</strong>
   <%= @newsletter.description %>
 </p>
 
 <p>
-  <strong>From:</strong>
+  <strong>Von:</strong>
   <%= @newsletter.from %>
 </p>
 
 <p>
-  <strong>To:</strong>
+  <strong>Zu:</strong>
   <%= @newsletter.to %>
 </p>
 
-<%= link_to 'Edit', edit_newsletter_path(@newsletter) %> |
-<%= link_to 'Back', newsletters_path %>
+<%= link_to 'Bearbeiten', edit_newsletter_path(@newsletter) %> |
+<%= link_to 'Zurück', newsletters_path %>

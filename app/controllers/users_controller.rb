@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_User, only: [:edit, :update, :destroy]
 
+  def user_params
+    params.require(:user).permit(:email, :username)
+  end
+
   def index
     @users = User.all
     authorize current_user
