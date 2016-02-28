@@ -77,7 +77,7 @@ gem 'wicked', '~> 1.2', '>= 1.2.1'
 # gem 'capistrano-rails', group: :development
 gem 'puma', group: :production
 group :production do
-  gem 'rails_12_factor'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
