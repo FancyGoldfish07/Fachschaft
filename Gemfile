@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+  ruby '2.2.4'
   # Mailer
   gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
