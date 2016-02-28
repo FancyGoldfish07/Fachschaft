@@ -14,13 +14,12 @@ class Event < ActiveRecord::Base
   belongs_to :unadmin, class_name: "User",
              foreign_key: 'unadmin_id'
   belongs_to :unmanager, class_name: "User",
-              foreign_key: 'umanager_id'
+             foreign_key: 'umanager_id'
   #The state this version is in
   enum state: {unsubmitted: 0, waiting: 1, reviewed: 2, rejected: 3, submitted: 4, deleted: 5}
 
   has_many :roles, through: :event_roles
   after_initialize :set_defaults
-
 
 
   #The priority
@@ -136,7 +135,7 @@ class Event < ActiveRecord::Base
   def publish
     if repeats
       if self.parent.present?
-          #We are not alone.
+        #We are not alone.
         if self.parent.revisions.count > 1
           #We are not the first revision
           #Get revisions that are published
@@ -154,7 +153,7 @@ class Event < ActiveRecord::Base
           #We are the first revision
           #Unpublish our parents recurrence
           self.parent.recurrence.unpublish
-          end
+        end
 
 
       end
@@ -180,8 +179,36 @@ class Event < ActiveRecord::Base
     end
   end
 
-  #Unpublish all currently published revisions and the event itself
+  def unpublish_all
+    if parent.blank?
+      self.unpublish
+    else
+      self.parent.unpublish
+    end
+  end
+
+  #Unpublishes an item and its revisions
   def unpublish
+    if !recurring
+      unpublish_self
+    end
+    if owner_of_recurrence
+      recurrence.unpublish_complete
+    end
+    if recurring_but_no_owner
+      #Create an exclude for our recurrence
+      Exclude.create(date: self.start, recurrence: recurrence.owner.recurrence)
+      #We're no longer part of that recurrence
+      self.recurrence = nil
+      #unpublish us
+      unpublish_self
+
+    end
+
+  end
+
+  #Unpublish all currently published revisions and the event itself
+  def unpublish_self
     if self.submitted?
       self.deleted!
       save

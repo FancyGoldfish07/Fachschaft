@@ -115,16 +115,20 @@ copy.save!
           @event.unadmin = current_user
           if @event.unmanager.present?
 
-            @event.unpublish
+            @event.unpublish_all
           end
           end
           if @event.isManager
             @event.unmanager = current_user
             if @event.unadmin.present?
-              @event.unpublish
+              @event.unpublish_all
             end
           end
         @event.save
+        respond_to do |format|
+
+          format.html { redirect_to unpublishables_path, notice: 'Löschung beantragt.' }
+        end
       end
     elsif genehmigen?
       @event.reviewed!
