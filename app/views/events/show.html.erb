@@ -1,73 +1,123 @@
 <% provide(:title, @event.title) %>
-<% if @event.imageURL.present? %>
-    <img src="<%= @event.imageURL %>" class="img-responsive">
-<% end %>
-<p>
-  <strong>Startzeit:</strong>
-  <%= pretty_datetime @event.start %>
-</p>
-<p>
-  <strong>Endzeit:</strong>
-  <%= pretty_datetime @event.end %>
-</p>
+<div class="row">
+  <div class="col-md-7">
+
+  <div class="row">
+  <div class="col-md-3">
+      <strong>Startzeit:</strong>
+  </div>
+  <div class="col-md-4">
+      <%= pretty_datetime @event.start %>
+  </div></div>
+
+    <div class="row">
+    <div class="col-md-3">
+      <strong>Endzeit:</strong>
+    </div>
+    <div class="col-md-4">
+      <%= pretty_datetime @event.end %>
+    </div></div>
+
+
+    <div class="row">
+    <div class="col-md-3">
+      <strong>Priorität:</strong>
+    </div>
+    <div class="col-md-4">
+      <%= @event.priority %>
+    </div>
+  </div>
+
+    <div class="row">
+    <div class="col-md-3">
+      <strong>Beschreibung:</strong>
+    </div>
+    <div class="col-md-4">
+      <%= @event.description %>
+    </div>
+  </div>
 
 
 
-<p>
-  <strong>Priorität:</strong>
-  <%= @event.priority %>
-</p>
 
-<p>
-  <strong>Beschreibung:</strong>
-  <%= @event.description %>
-</p>
+    <div class="row">
+    <div class="col-md-3">
+      <strong>Ort:</strong>
+    </div>
+    <div class="col-md-4">
+      <%= @event.ort %>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="divider"></div>
+      <div class="row">
+        <div class="col-md-1">  </div>
+    <div class="col-md-4">
+      <strong>
+      <% if @event.url.present? %>
+          <%= link_to "Mehr Informationen", @event.url %>
+      <% end %>
+      </strong>
+    </div>
+    </div>
+      <div class="divider"></div>
+      </div>
 
 
-
-
-
-
-
-<p>
-  <strong>Ort:</strong>
-  <%= @event.ort %>
-</p>
-
-<p>
-
-  <% if @event.url.present? %>
-      <%= link_to "Mehr Informationen", @event.url %>
-  <% end %>
-</p>
-
-<p>
-  <% if @event.recurring %>
-      <% events = @event.getDatesFrom Time.now %>
-      <% if events.count > 0 %>
-        <h5>Dieser Termin findet auch statt</h5>
-        <ul>
-          <% events.each do |event| %>
-              <li><%= link_to pretty_datetime(event.start), event_path(event) %></li>
-          <% end %>
-        </ul>
+    <p>
+      <% if @event.recurring %>
+          <% events = @event.getDatesFrom Time.now %>
+          <% if events.count > 0 %>
+            <h5>Dieser Termin findet auch statt am:</h5>
+            <ul>
+              <% events.each do |event| %>
+                  <li><%= link_to pretty_datetime(event.start), event_path(event) %></li>
+              <% end %>
+            </ul>
+        <% end %>
     <% end %>
-<% end %>
-<% if @event.flag %>
-    Du kannst über den Newsletter über dieses Event informiert werden.
-<% else %>
-    <strong>Achtung:</strong> Dieses Event steht nicht im Newsletter.
-<% end %>
-</p>
-<% if @event.recurring %>
-    <% if @event.owner_of_recurrence %>
-        <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event) %>
+    <div class="divider"></div>
+    <% if @event.flag %>
+        Du kannst über den Newsletter über dieses Event informiert werden.
     <% else %>
-        <%= button_to_default 'Nur diesen Termin bearbeiten', edit_event_path(@event) %>
-
-        |
-        <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event.recurrence.owner) %>
+        <strong>Achtung:</strong> Dieses Event steht nicht im Newsletter.
     <% end %>
-<% else %>
-    <%= button_to_default 'Diesen Termin bearbeiten', edit_event_path(@event) %>
-<% end %>
+    </p>
+    <div class="divider-lg"></div>
+
+
+
+
+
+
+
+
+
+
+    <% if @event.recurring %>
+        <% if @event.owner_of_recurrence %>
+            <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event) %>
+        <% else %>
+            <%= button_to_default 'Nur diesen Termin bearbeiten', edit_event_path(@event) %>
+
+            |
+            <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event.recurrence.owner) %>
+        <% end %>
+    <% else %>
+        <%= button_to_default 'Diesen Termin bearbeiten', edit_event_path(@event) %>
+    <% end %>
+
+
+  </div>
+  <div class="col-md-5">
+    <% if @event.imageURL.present? %>
+        <img src="<%= @event.imageURL %>" class="img-thumbnail img-responsive">
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
