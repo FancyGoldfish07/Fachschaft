@@ -6,11 +6,11 @@
         var val = $("#category_category_id :selected").val();
         if(  val.length >=  2 ){
             $('#calendar_filter').fullCalendar('removeEvents');
-            $('#calendar_filter').fullCalendar('addEventSource', '/0.json');
+            $('#calendar_filter').fullCalendar('addEventSource', 'event_categories/0.json');
         }else {
             $('#calendar_filter').fullCalendar('removeEvents');
-            alert("change to"+val);
             $('#calendar_filter').fullCalendar('addEventSource', '/event_categories/' + $("#category_category_id :selected").val() + '.json');
+            alert("change to"+val);
         }
 
     });
