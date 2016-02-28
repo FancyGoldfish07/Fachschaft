@@ -29,6 +29,10 @@
                     <li role="separator" class="divider"></li>
                     <li><%= link_to 'Events veröffentlichen', publishables_path %></li>
                 <% end %>
+                <% if current_user.isAdmin || current_user.isManager %>
+                    <li role="separator" class="divider"></li>
+                    <li><%= link_to 'Events unpublizieren', unpublishables_path %></li>
+                <% end %>
             <% end %>
           </ul>
         </li>
