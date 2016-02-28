@@ -76,6 +76,9 @@ gem 'wicked', '~> 1.2', '>= 1.2.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'puma', group: :production
+group :production do
+  gem 'rails_12_factor'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
