@@ -24,8 +24,6 @@ class Event < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :description
 
- 
-  validates_datetime :end, :after => :start
 
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
@@ -313,7 +311,4 @@ class Event < ActiveRecord::Base
       self.end = start.to_time + 1.hour
     end
     if self.repeats.blank?
-      self.repeats = false
-    end
-  end
-end
+  
