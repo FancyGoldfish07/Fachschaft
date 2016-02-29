@@ -48,7 +48,7 @@ event2.changeState(admin)
 
 
 # Create some fancy example events that are already reviewed and published.
-event3 = Event.create(start:Time.now + 1.hour, end: Time.now+3.hour,title: "Example FACHSCHAFT", flag: true,  description:"FUCK THIS SHIT! I'm OUT!", event_category: EventCategory.first,
+event3 = Event.create(start:Time.now + 1.hour, end: Time.now+3.hour,title: "Example FACHSCHAFT", flag: true, event_category: EventCategory.first,
                       imageURL:"https://i.ytimg.com/vi/icIeIJhpxLc/maxresdefault.jpg", url:"http://winfuture.de/downloadvorschalt,3527.html",
                       description: "Party Hard")
 event3.save
@@ -59,7 +59,7 @@ event3.admin=admin
 event3.submitted!
 event3.publish
 
-event4 = Event.create(start:Time.now + 5.hour, end: Time.now+15.hour,title: "Example PARTY", description:"FUCK THIS SHIT! I'm OUT!", event_category: EventCategory.first,
+event4 = Event.create(start:Time.now + 5.hour, end: Time.now+15.hour,title: "Example PARTY", event_category: EventCategory.first,
                                     imageURL:"https://i.ytimg.com/vi/icIeIJhpxLc/maxresdefault.jpg", url:"http://winfuture.de/downloadvorschalt,3527.html",
                                     description: "Party Hard")
 event4.save
