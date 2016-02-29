@@ -98,6 +98,9 @@ It consists of 4 groups of users:
 * After you have checked the versions etc. and maybe updated to this versions you can begin by cloning or 
   downloading this repository. 
 * When you have the repository on your local machine you need to navigate into the applications root directory. 
+
+        rake 
+
 * The next step is to create and prepare the database. You can do so by running the following commands:  
 
         rake db:create     // creates the database from the informations given in config/database.yml
@@ -124,6 +127,8 @@ It consists of 4 groups of users:
    * Admin:  
         * Username: admin@example.com  
         * Password: Sparten123  
+
+
 
 
 
