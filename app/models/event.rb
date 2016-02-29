@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   belongs_to :event_category
   belongs_to :parent, class_name: 'Event'
   has_many :revisions, :class_name => 'Event', :foreign_key => 'parent_id'
-  attr_accessor :formed
+ 
   belongs_to :recurrence, autosave: true
   belongs_to :author, class_name: 'User',
              foreign_key: 'user_id'
@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   after_initialize :set_defaults
   validates_presence_of :title
   validates_presence_of :description
-  validates_presence_of :roles
+
   validates_datetime :start, :on_or_after => :now
   validates_datetime :end, :after => :start
 

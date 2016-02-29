@@ -19,7 +19,7 @@
 
                 <% if current_user.isFachschaft || current_user.isAdmin then %>
                     <li role="separator" class="divider"></li>
-                    <li><%= link_to 'Neues Event', new_build_path %></li>
+                    <li><%= link_to 'Neues Event', new_event_path %></li>
                 <%end %>
                 <% if current_user.isManager %>
                     <li role="separator" class="divider"></li>

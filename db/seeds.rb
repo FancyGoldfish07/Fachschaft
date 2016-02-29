@@ -32,19 +32,23 @@ user.save
 
 
 # Create sample events on startup (only needed for the deployment on Heroku and testing purposes)
-event1 = Event.create(start: Time.now + 1.day,title: "Testtermin",event_category: EventCategory.first)
+event1 = Event.create(start: Time.now + 1.day,title: "Testtermin",event_category: EventCategory.first, description:"FUCK THIS SHIT! I'm OUT!")
 event1.save
 # Change state of event1 to waiting for review
 event1.changeState(fachschaft)
 
 
-event2 = Event.create(start: Time.now + 2.day,title: "Party Party Paty",event_category: EventCategory.first)
+event2 = Event.create(start: Time.now + 2.day,title: "Party Party Paty",event_category: EventCategory.first,  description:"FUCK THIS SHIT! I'm OUT!")
 event2.save
 # Change state of event2 to waiting and then to reviewed meaning waiting to be published
 event2.changeState(fachschaft)
 event2.changeState(admin)
 
-event3 = Event.create(start:Time.now + 1.hour, end: Time.now+3.hour,title: "Example FACHSCHAFT", event_category: EventCategory.first,
+
+
+
+# Create some fancy example events that are already reviewed and published.
+event3 = Event.create(start:Time.now + 1.hour, end: Time.now+3.hour,title: "Example FACHSCHAFT", flag: true, event_category: EventCategory.first,
                       imageURL:"https://i.ytimg.com/vi/icIeIJhpxLc/maxresdefault.jpg", url:"http://winfuture.de/downloadvorschalt,3527.html",
                       description: "Party Hard")
 event3.save
