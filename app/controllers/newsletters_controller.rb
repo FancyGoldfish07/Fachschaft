@@ -15,21 +15,23 @@ class NewslettersController < ApplicationController
 
   # GET /newsletters/new
   def new
+    authorize Newsletter
     @newsletter = Newsletter.new
   end
 
   # GET /newsletters/1/edit
   def edit
+    authorize Newsletter
   end
 
   # POST /newsletters
   # POST /newsletters.json
   def create
     @newsletter = Newsletter.new(newsletter_params)
-    @newsletter.notify_admin
     @newsletter.unmanager_id = current_user.id
       respond_to do |format|
         if @newsletter.save
+          @newsletter.notify_admin
           format.html { redirect_to @newsletter, notice: 'Newsletter wird nun zur Prüfung freigegeben' }
           format.json { render :show, status: :created, location: @newsletter }
         else
@@ -72,6 +74,7 @@ class NewslettersController < ApplicationController
   # DELETE /newsletters/1
   # DELETE /newsletters/1.json
   def destroy
+    authorize Newsletter
     @newsletter.destroy
     respond_to do |format|
       format.html { redirect_to newsletters_url, notice: 'Newsletter was successfully destroyed.' }
@@ -80,10 +83,12 @@ class NewslettersController < ApplicationController
   end
 
   def publishables
+    authorize Newsletter
     @newsletters = Newsletter.where("unadmin_id is null and unmanager_id is not null")
   end
 
   def review
+    authorize Newsletter
     set_newsletter
   end
 

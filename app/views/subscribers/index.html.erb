@@ -1,30 +1,31 @@
 <% if current_user.present? && current_user.isAdmin %>
 
-<h3>Übersicht Abonnenten</h3>
+<h4>Übersicht Abonnenten</h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="row">
+      <div class="col-md-4">
+        <strong>Name</strong>
+      </div>
+      <div class="col-md-4">
+        <strong>E-Mail</strong>
+      </div>
+    </div>
 
-  <tbody>
-    <% @subscribers.each do |subscriber| %>
-      <tr>
-        <td><%= subscriber.name %></td>
-        <td><%= subscriber.email %></td>
-        <td><%= link_to 'Anzeigen', subscriber %></td>
-        <td><%= link_to 'Bearbeiten', edit_subscriber_path(subscriber) %></td>
-        <td><%= link_to 'Löschen', subscriber, method: :delete, data: { confirm: 'Bist du sicher' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-    <% end %>
+  <% @subscribers.each do |subscriber| %>
+  <div class="row">
+    <div class="col-md-4">
+      <strong><%= subscriber.name %></strong>
+    </div>
+    <div class="col-md-4">
+      <strong><%= subscriber.email %></strong>
+    </div>
+    <div class="col-md-4">
+      <strong><%= link_to 'Löschen', subscriber, method: :delete, data: { confirm: 'Bist du sicher' } %></strong>
+    </div>
+  </div>
+  <%end%>
+  <%end%>
+
 
 <%= button_to_default 'Abonnent werden', new_subscriber_path %>
 

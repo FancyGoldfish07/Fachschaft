@@ -4,8 +4,8 @@ class Newsletter < ActiveRecord::Base
   belongs_to :manager, class_name: 'User',
              foreign_key: 'manager_id'
 
-  # after_initialize :set_defaults
-  # after_save :check_reviewed
+  validates_presence_of :subject, :description;
+  validates_datetime :to, :after => :from
 
   enum state: {unsubmitted:0, waiting:1, published:2}
 
