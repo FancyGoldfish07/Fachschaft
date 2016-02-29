@@ -52,7 +52,7 @@
 
     </div>
     <!-- If we have a recurrence, but we are not the owner, just edit us instead -->
-    <% if @event.owner_of_recurrence || !@event.recurrence && @event.title.blank? %>
+    <% if @event.owner_of_recurrence || !@event.recurring #&& @event.title.blank? && @event.description.blank? %>
 
 
       <div class="field">
