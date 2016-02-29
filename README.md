@@ -4,19 +4,21 @@
 This application is designed to function as a platform for the Fachschaft to publish new events 
 and send newsletters containing selected events to subscribers.
 It consists of 4 groups of users:
-* 1. User (basic user)
-* 2. Fachschaft (member of the Fachschaft)
-* 3. Manager 
-* 4. Admin.
+   1. User (basic user)
+   2. Fachschaft (member of the Fachschaft)
+   3. Manager 
+   4. Admin.
+
+
 ### The user roles:
 
 #### User:
-*   The signed in user has no special abilities in the application.
-He is allowed to view the calendar and to subscribe to the newsletter.
-Furthermore he can change his Password and delete his own user.
-A user that has not signed up is named a visitor. 
-The visitor is not part of the application's model.
-All other roles also have these basic permissions. 
+* The signed in user has no special abilities in the application.
+* He is allowed to view the calendar and to subscribe to the newsletter.
+* Furthermore he can change his Password and delete his own user.
+* A user that has not signed up is named a visitor. 
+* The visitor is not part of the application's model.
+* All other roles also have these basic permissions. 
 
 #### Fachschaft
 * Basic members of the Fachschaft Wirtschaft belong to this group. 
@@ -26,7 +28,7 @@ All other roles also have these basic permissions.
 #### Manager
 * Users that belong to this role have the permission to review events and create newsletters.
 * The creation of a newsletter initializes a special workflow. This workflow is also going to be 
-* explained later on.
+    explained later on.
 * He is also allowed to approve the deletion of an event. More about this workflow in a later stage.
 
 #### Admin
@@ -37,28 +39,41 @@ All other roles also have these basic permissions.
 * As well as the manager the admin is permitted to approve the deletion of an event.
 
 ### The workflows:
-* 1. Event creation
-*  The 
+1. Event workflow
+    * In the following will be described the worklow from the creation of an event to the deletion of an event.  
+    The creation of an event can be done by the roles Fachschaft and Admin. To create an event they can either choose 
+    the option in the "Kalender" dropdown of the navigation-bar or they use the button displayed underneath the calendar 
+    on the home directory.  
+    The next step is to fill in the form. Please note that the fields "Titel" and "Beschreibung" are mandatory.  
+    The form gives you the opportunity to create recurrent events. If you select this checkbox the wizard will guide you to 
+    a page where you can set the details for the recurrence. As an example you can define on which day of the week and for how long the
+    event will happen.  
+    At the end of the wizard you will be shown a summary of the event you want to create. You can now submit it.  
+    The submission will give the members of the role 'Manager' the opportunity to review the created event and to either 
+    accept it or decline your request with the option to give a short feedback on why he declined it.  
+    Let's assume he accepts and your event is now shown to the admins who now have the chance to publish it, so it will show up in
+    calendar.  
+
+    * To delete an event you have to go to the calendar and select the event that you want to delete.
+    On the next page you can delete the event or edit it. If you want to delete an event you have to either be an admin or a manager.      If a manager wants to delete an event, the admins get a request and vice versa.  
+    
+    * You also have the option of editing the event or all events of the related recurrence. If you decide to edit the event you will
+    be guided to the form that is also used to create an event. Note that editing an event does not affect the currently published
+    event.  
+    The edit-request will now trigger the same workflow as the creation of an event does. Only that at the end the old event will be 
+    replaced by the new version.
+    
+    
+2. Newsletter workflow  
+    * Creation  
+    Only a manager is allowed to create a newsletter. To do so he selects the related option in the navigation-bar and fills in the
+    related form. He can choose a time range to specify which events will show up in the newsletter. The selection is made by 
+    a flag set in the creation wizard of the event.  
+    The newsletter no will show up to the admins who can now reject or accept the newsletter. 
+    After an acception it will be send out to all the subscribers.
+
+-----------------------------------------------------------------------------------------------------
 
 
 
 
-
-
-12.02.2016: <br>
-            Login forms now available on /users/sign_up, users/sign_in/ with new design.<br>
-            1st user is always admin as stated in app/models/user.rb.<br>
-            If you don't remember the first user run rake db:drop and rake db:create.<br><br>
-19.02.2016 <br>
-*Switched to rolify from enums, so everyone can be happy now
-*Major revamp of the Event model
-*Bunch of new models
-*EventCategory which defines a type of event. An event can have one eventcategory.
-*An event can also have multiple roles, to control visibility - user access control itself is not yet done!
-*Role has a lot of static functions now, so that we could in theory leave Rolify behind if this is desired. Rolify has
-proven to be difficult so far...
-
-#Be sure to run rake db:seed after you did your migrations.
-<br><br>
-22.02.2016 <br>
-Calendar views now available at /home but without authentification. This still has to be implemented.
