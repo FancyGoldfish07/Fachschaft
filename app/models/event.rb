@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   after_initialize :set_defaults
   validates_presence_of :title
   validates_presence_of :description
-  validates_presence_of :roles
+  
   validates_datetime :start, :on_or_after => :now
   validates_datetime :end, :after => :start
 
