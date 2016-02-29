@@ -154,7 +154,6 @@ GEM
     mailgun-ruby (1.0.3)
       json (~> 1.8)
       rest-client (~> 1.6)
-    mailkick (0.1.4)
     method_source (0.8.2)
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
@@ -320,7 +319,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails (~> 4.1)
   mailgun-ruby (~> 1.0.3)
-  mailkick
   momentjs-rails (>= 2.8.1)!
   pg (~> 0.18.4)
   puma

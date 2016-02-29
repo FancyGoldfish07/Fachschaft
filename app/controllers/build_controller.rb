@@ -123,6 +123,7 @@ class BuildController < ApplicationController
   #A finish message for our wizard
   def finish_wizard_path
     flash[:notice]= "Dein Event wurde an die Manager zur Genehmigung versendet."
+    @event.notify_manager(0, @event)
     return  root_path
   end
   #Safe params

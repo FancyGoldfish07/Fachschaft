@@ -10,11 +10,8 @@
 </style>
 <body>
 <p id="info">Hi <%= @user.username %>,</p>
-<p id="info">Die Löschung eines Kalendereintrags wurde angefordert.</p>
-
-<p id="info">Autor: <%= User.where(id: @event.author).first.username %></p>
-<p id="info">Titel: <%= @event.title %></p>
-
+<p id="info">Ihr Eintrag wurde abgeleht.</p>
+<p id="info">Manager Info: <%= @msg %></p>
 </body>
 </html>
 

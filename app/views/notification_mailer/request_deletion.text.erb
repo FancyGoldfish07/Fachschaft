@@ -1,3 +1,6 @@
 Hi <%= @user.username %>,
 
 Die Löschung eines Kalendereintrags wurde angefordert.
+
+Autor: <%= User.where(id: @event.author).first.username %>
+Titel: <%= @event.title %>
