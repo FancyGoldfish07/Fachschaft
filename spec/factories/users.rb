@@ -26,14 +26,12 @@ FactoryGirl.define do
     end
   end
 
-  factory :admin do
+  factory :admin, class: User do
     email 'admin@fachschaft.de'
     username 'admin'
     password '12345678'
     password_confirmation '12345678'
-    trait :admin do
-      Role :admin
-    end
+    after(:create) {|user| user.add_role("Admin")}
   end
 
   #The specific roles

@@ -12,7 +12,7 @@ RSpec.feature 'Change role' do
     end
 
     scenario 'am I an admin?' do
-      expect(page).to have_link 'Nutzerverwaltung'
+      expect(admin.has_role? "Admin")
     end
 
     scenario 'check whether second user is displayed" ' do

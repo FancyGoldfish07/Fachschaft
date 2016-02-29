@@ -5,7 +5,7 @@ RSpec.feature 'Subscribe and unsubscribe to the Fachschaft Newsletter' do
 
   let(:user){ FactoryGirl.create(:user) }
 
-  visit root_path
+
 
   context 'at start page' do
 
