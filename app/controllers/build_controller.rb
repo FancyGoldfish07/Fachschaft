@@ -12,7 +12,7 @@ class BuildController < ApplicationController
 #Create a new recurrence with the date of our event.
    recurrence =    Recurrence.new(start: @event.start.to_date, end: @event.start.to_date + 1.month, owner: @event)
        recurrence!(:validate=> false)
-   @event.recurrence = recurrence
+        @event.recurrence = recurrence
         @event.save!(:validate=> false)
         @recurrence = @event.recurrence
       else
@@ -22,11 +22,8 @@ class BuildController < ApplicationController
     else
       oldRecurrence = @event.recurrence
       @event.recurrence = nil
-
-
       @event.save!(:validate=> false)
     end
-
 
     render_wizard
   end

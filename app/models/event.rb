@@ -21,11 +21,14 @@ attr_accessor :formed
 
   has_many :roles, through: :event_roles
   after_initialize :set_defaults
-validates_presence_of :title
+  validates_presence_of :title
+  validates_presence_of :description
+  validates_presence_of :roles
+  validates_datetime :start, :on_or_after => :now, :on_or_before_message => 'Ein Eintrag darf nicht in der Vergangenheit liegen'
+  validates_datetime :end, :after => :start
 
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
-
 
   def notify_manager(x)
     @managers = Array.new
@@ -292,7 +295,7 @@ validates_presence_of :title
   end
 
   private
-  #Sets the default priority of the event and start dates
+  # Sets the default priority of the event and start dates
   def set_defaults
     if self.state.blank?
       self.state ||= :unsubmitted
@@ -311,4 +314,3 @@ validates_presence_of :title
     end
   end
 end
-

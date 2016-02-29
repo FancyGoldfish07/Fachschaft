@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+
+  gem 'validates_timeliness', '~> 4.0'
+
   # Mailer
   gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
