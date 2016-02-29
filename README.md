@@ -1,5 +1,5 @@
 # Fachschaft:
-## A calendar and newsletter solution for the Fachschaft Wirtschaft of the FH Münster
+### A calendar and newsletter solution for the Fachschaft Wirtschaft of the FH Münster
 
 This application is designed to function as a platform for the Fachschaft to publish new events 
 and send newsletters containing selected events to subscribers.
@@ -71,8 +71,35 @@ It consists of 4 groups of users:
     a flag set in the creation wizard of the event.  
     The newsletter no will show up to the admins who can now reject or accept the newsletter. 
     After an acception it will be send out to all the subscribers.
-
+    
 -----------------------------------------------------------------------------------------------------
+## Setting up the application
+######    An example of this application is currently deployed at fachschaft.herokuapp.com  
+
+- Main components
+    * For this project we used a number of gems listed in the gemfile. The main componentes are the following:
+        * Twitter Bootstrap
+        * Fullcalendar (http://fullcalendar.io/)
+        * Rolify
+        * Pundit
+        * Devise  
+        * Please find a more detailed version of the used components at the bottom of this document.
+    
+    * The database server used in this application is postgresql 9.5
+    * The Ruby version is 2\.2\.4
+    * The Rails version is 4\.2\.5\.1  
+    
+##### Local set-up
+    * To make sure this application works properly please check the versions of ruby and rails you have installed. 
+        They should not be older than the specified versions above.   
+    * You also have to make sure you have installed a version of the postresql-server on your machine. 
+    * After you have checked the versions etc. and maybe updated to this versions you can begin by cloning or 
+        downloading this repository. 
+    * When you have the repository on your local machine you need to navigate into the applications root directory. 
+    * The next step is to create and prepare the database. You can do so by running the following commands:  
+
+ 
+
 
 
 
