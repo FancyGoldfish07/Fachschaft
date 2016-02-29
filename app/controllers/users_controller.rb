@@ -6,8 +6,10 @@ class UsersController < ApplicationController
   end
 
   def index
+
+    authorize (current_user)
     @users = User.all
-    authorize current_user
+
   end
 
   def edit
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize current_user
+    authorize (current_user)
     @user.destroy
     if checkAdmin
       # Send confirmation Mail

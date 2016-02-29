@@ -6,6 +6,7 @@ class BuildController < ApplicationController
   steps :build, :add_recurrence, :add_excludes, :check
 
   def show
+    authorize current_user
     @event = Event.find(params[:event_id])
     if @event.repeats
       if !@event.recurrence.present?
@@ -32,6 +33,7 @@ class BuildController < ApplicationController
   end
 
   def update
+    authorize current_user
     @event = Event.find(params[:event_id])
     @recurrence = @event.recurrence
     case step
@@ -96,6 +98,7 @@ class BuildController < ApplicationController
   end
 
   def new
+    authorize current_user
     @event = Event.new
     @event.save!(:validate=> false)
     redirect_to wizard_path(steps.first, :event_id => @event.id)
