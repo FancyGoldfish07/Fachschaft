@@ -74,7 +74,7 @@ It consists of 4 groups of users:
     
 -----------------------------------------------------------------------------------------------------
 ## Setting up the application
-######    An example of this application is currently deployed at fachschaft.herokuapp.com  
+######    An example of this application is currently deployed at https://fachschaft.herokuapp.com  
 
 - Main components
     * For this project we used a number of gems listed in the gemfile. The main componentes are the following:
