@@ -24,8 +24,6 @@ class Event < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :description
 
-  validates_datetime :start, :on_or_after => :now
-  validates_datetime :end, :after => :start
 
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
@@ -159,10 +157,11 @@ class Event < ActiveRecord::Base
                 newStart = DateTime.parse(newStart.to_s)
                 newEnd = DateTime.parse(newEnd.to_s)
 
-                recurrence.events.create(title: self.title, description: self.description,
+               newEvent= Event.new(title: self.title, description: self.description,
                                          event_category: self.event_category, ort: self.ort, role_ids: self.role_ids, url: self.url,
                                          imageURL: self.imageURL, start: newStart, end: newEnd, repeats: false,
                                          priority: self.priority, flag: self.flag, author: self.author, manager: self.manager, admin: self.admin, state: self.state, recurrence: self.recurrence)
+              newEvent.save!(:validate => false)
               end
             end
           end
@@ -312,7 +311,6 @@ class Event < ActiveRecord::Base
       self.end = start.to_time + 1.hour
     end
     if self.repeats.blank?
-      self.repeats = false
     end
   end
 end
