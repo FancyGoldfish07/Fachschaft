@@ -4,6 +4,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+    authorize Event
     redirect_to new_build_path
   end
 
@@ -13,11 +14,12 @@ class EventsController < ApplicationController
 
   #unpublish
   def unpublish
-
+    authorize Event
   end
 
   # GET /events/1/edit
   def edit
+    authorize Event
     copy= @event.deep_clone(include: [:event_roles, {recurrence: [:rules, :excludes]}], except: [:state])
     if @event.parent.blank?
       copy.parent = @event
@@ -37,21 +39,24 @@ class EventsController < ApplicationController
 
   #For the review action
   def review
-
+    authorize Event
   end
 
   #Shows all the events a manager can still permit
   def permittables
+    authorize Event
     @events = Event.waiting
   end
 
   #Shows all the items an admin can still publish
   def publishables
+    authorize Event
     @events = Event.reviewed
   end
 
   #unpublishables
   def unpublishables
+    authorize Event
     if current_user.present?
       if current_user.isAdmin
         #We are an admin

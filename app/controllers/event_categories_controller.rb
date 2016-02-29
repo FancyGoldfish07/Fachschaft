@@ -4,6 +4,7 @@ class EventCategoriesController < ApplicationController
   # GET /event_categories
   # GET /event_categories.json
   def index
+    authorize current_user
     @event_categories = EventCategory.all
   end
 
@@ -28,32 +29,21 @@ end
 
   # GET /event_categories/new
   def new
+    authorize current_user
     @event_category = EventCategory.new
   end
 
   # GET /event_categories/1/edit
   def edit
+    authorize current_user
   end
 
-  # POST /event_categories
-  # POST /event_categories.json
-  def create
-    @event_category = EventCategory.new(event_category_params)
 
-    respond_to do |format|
-      if @event_category.save
-        format.html { redirect_to @event_category, notice: 'Event category was successfully created.' }
-        format.json { render :show, status: :created, location: @event_category }
-      else
-        format.html { render :new }
-        format.json { render json: @event_category.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # PATCH/PUT /event_categories/1
   # PATCH/PUT /event_categories/1.json
   def update
+    authorize current_user
     respond_to do |format|
       if @event_category.update(event_category_params)
         format.html { redirect_to @event_category, notice: 'Event category was successfully updated.' }
@@ -68,6 +58,7 @@ end
   # DELETE /event_categories/1
   # DELETE /event_categories/1.json
   def destroy
+    authorize current_user
     @event_category.destroy
     respond_to do |format|
       format.html { redirect_to event_categories_url, notice: 'Event category was successfully destroyed.' }
