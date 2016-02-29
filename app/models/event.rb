@@ -159,10 +159,11 @@ class Event < ActiveRecord::Base
                 newStart = DateTime.parse(newStart.to_s)
                 newEnd = DateTime.parse(newEnd.to_s)
 
-                recurrence.events.create(title: self.title, description: self.description,
+               newEvent= Event.new(title: self.title, description: self.description,
                                          event_category: self.event_category, ort: self.ort, role_ids: self.role_ids, url: self.url,
                                          imageURL: self.imageURL, start: newStart, end: newEnd, repeats: false,
                                          priority: self.priority, flag: self.flag, author: self.author, manager: self.manager, admin: self.admin, state: self.state, recurrence: self.recurrence)
+              newEvent.save!(:validate => false)
               end
             end
           end
