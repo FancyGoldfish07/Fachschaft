@@ -12,6 +12,9 @@
 <p id="info">Hi <%= @user.username %>,</p>
 <p id="info">Ein Kalendereintrag wurde editiert.</p>
 
+<p id="info">Autor: <%= User.where(id: @event.author).first.username %></p>
+<p id="info">Titel: <%= @event.title %></p>
+
 </body>
 </html>
 

@@ -20,7 +20,6 @@ source 'https://rubygems.org'
   # Mailer
   gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
-
   # Background Tasks
 gem 'delayed_job_active_record', '~> 4.1'
 
@@ -106,7 +105,6 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development by keep
   gem 'spring', '~> 1.6'
-
-  end
+end

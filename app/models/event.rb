@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   #The priority
   enum priority: [:highest, :high, :medium, :low, :lowest]
 
-  def notify_manager(x)
+  def notify_manager(x, event)
     @managers = Array.new
     @users = User.all
     @users.each do |u|
@@ -42,14 +42,16 @@ class Event < ActiveRecord::Base
     @managers.each do |f|
       puts case x
              when 0
-               NotificationMailer.notify_new_event(f, self).deliver_later
+               NotificationMailer.notify_new_event(f, event).deliver_later
              when 1
-               NotificationMailer.notify_edited_event(f).deliver_later
+               NotificationMailer.notify_edited_event(f, event).deliver_later
+             when 2
+               NotificationMailer.request_deletion(f, event).deliver_later
            end
     end
   end
 
-  def notify_admin
+  def notify_admin(event)
     @admins = Array.new
     @users = User.all
     @users.each do |u|
@@ -59,7 +61,7 @@ class Event < ActiveRecord::Base
       end
     end
     @admins.each do |f|
-      NotificationMailer.notify_approved_event(f).deliver_later
+      NotificationMailer.notify_approved_event(f, event).deliver_later
     end
   end
 
