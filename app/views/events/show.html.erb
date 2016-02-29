@@ -93,39 +93,45 @@
     <% end %>
     </p>
     <div class="divider-lg"></div>
+<% if current_user.present? && !(current_user.isAdmin? || current_user.isFachschaft) then %>
+    <% if current_user.isAdmin || current_user.isFachschaft then %>
+      <% if @event.recurring %>
+          <% if @event.owner_of_recurrence %>
+              <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event) %>
+          <% else %>
+              <%= button_to_default 'Nur diesen Termin bearbeiten', edit_event_path(@event) %>
 
-    <% if @event.recurring %>
-        <% if @event.owner_of_recurrence %>
-            <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event) %>
-        <% else %>
-            <%= button_to_default 'Nur diesen Termin bearbeiten', edit_event_path(@event) %>
+              |
+              <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event.recurrence.owner) %>
+          <% end %>
+      <% else %>
+          <%= button_to_default 'Diesen Termin bearbeiten', edit_event_path(@event) %>
+      <% end %>
+    <%end %>
+  <div class="divider-lg"></div>
+    <% if current_user.isAdmin || current_user.isManager then %>
+      <% if @event.recurring %>
+          <% if @event.owner_of_recurrence %>
+              <%= button_to_default 'Die komplette Wiederholungsreihe löschen', unpublish_path(@event) %>
+          <% else %>
+              <%= button_to_default 'Nur diesen Termin löschen', unpublish_path(@event) %>
 
-            |
-            <%= button_to_default 'Die komplette Wiederholungsreihe bearbeiten', edit_event_path(@event.recurrence.owner) %>
+              |
+              <%= button_to_default 'Die komplette Wiederholungsreihe löschen', unpublish_path(@event.recurrence.owner) %>
+          <% end %>
+      <% else %>
+          <%= button_to_default 'Diesen Termin löschen', unpublish_path(@event) %>
+      <% end %>
         <% end %>
-    <% else %>
-        <%= button_to_default 'Diesen Termin bearbeiten', edit_event_path(@event) %>
-    <% end %>
-<div class="divider-lg"></div>
-    <% if @event.recurring %>
-        <% if @event.owner_of_recurrence %>
-            <%= button_to_default 'Die komplette Wiederholungsreihe löschen', unpublish_path(@event) %>
-        <% else %>
-            <%= button_to_default 'Nur diesen Termin löschen', unpublish_path(@event) %>
 
-            |
-            <%= button_to_default 'Die komplette Wiederholungsreihe löschen', unpublish_path(@event.recurrence.owner) %>
-        <% end %>
-    <% else %>
-        <%= button_to_default 'Diesen Termin löschen', unpublish_path(@event) %>
     <% end %>
+    </div>
+    <div class="col-md-5">
+      <% if @event.imageURL.present? %>
+          <img src="<%= @event.imageURL %>" class="img-thumbnail img-responsive">
+      <% end %>
+    </div>
 
-  </div>
-  <div class="col-md-5">
-    <% if @event.imageURL.present? %>
-        <img src="<%= @event.imageURL %>" class="img-thumbnail img-responsive">
-    <% end %>
-  </div>
 </div>
 
 
