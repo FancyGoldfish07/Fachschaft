@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   private
   #redirects the bad boy to root or the refererer
   def permission_denied
-    flash[:error] = "Da haben wir einen Riegel vorgeschoben und zwar keinen Schokoriegel!"
+    flash[:notice] = "Da haben wir einen Riegel vorgeschoben und zwar keinen Schokoriegel!"
 
     redirect_to(request.referrer || root_path)
   end

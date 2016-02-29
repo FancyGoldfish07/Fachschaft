@@ -6,7 +6,12 @@ class BuildController < ApplicationController
   steps :build, :add_recurrence, :add_excludes, :check
 
   def show
-
+    if current_user.present?
+      if current_user.isManager || current_user.isUser
+        flash[:notice] = "Da haben wir einen Riegel vorgeschoben und zwar keinen Schokoriegel!"
+        redirect_to root_path and return
+      end
+    end
     @event = Event.find(params[:event_id])
     if @event.repeats
       if !@event.recurrence.present?
@@ -33,7 +38,12 @@ class BuildController < ApplicationController
   end
 
   def update
-
+    if current_user.present?
+      if current_user.isManager || current_user.isUser
+        flash[:notice] = "Da haben wir einen Riegel vorgeschoben und zwar keinen Schokoriegel!"
+        redirect_to root_path and return
+      end
+    end
     @event = Event.find(params[:event_id])
     @recurrence = @event.recurrence
     case step
@@ -98,7 +108,12 @@ class BuildController < ApplicationController
   end
 
   def new
-
+    if current_user.present?
+      if current_user.isManager || current_user.isUser
+        flash[:notice] = "Da haben wir einen Riegel vorgeschoben und zwar keinen Schokoriegel!"
+        redirect_to root_path and return
+      end
+    end
     @event = Event.new
     @event.save!(:validate=> false)
     redirect_to wizard_path(steps.first, :event_id => @event.id)
@@ -117,6 +132,15 @@ class BuildController < ApplicationController
 
   def recurrence_params
     params.require(:recurrence).permit(:event_id, :start, :end, rules_attributes: [:id, :day, :week, :month, :days, :_destroy], exclude_ids: [])
+  end
+  #Is the user not a manager or user
+  def authorized_todo
+    if current_user.present?
+    if current_user.isManager || current_user.isUser
+      flash[:notice] = "Da haben wir einen Riegel vorgeschoben und zwar keinen Schokoriegel!"
+      redirect_to root_path and return
+    end
+      end
   end
 
 end
