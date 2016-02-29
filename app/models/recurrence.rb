@@ -25,8 +25,6 @@ if event.recurring_but_no_owner
 
           #Only do this to the elements that are not the main parent node
           event.unpublish_self
-
-   
     end
   end
 
