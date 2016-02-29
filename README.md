@@ -99,7 +99,7 @@ It consists of 4 groups of users:
   downloading this repository. 
 * When you have the repository on your local machine you need to navigate into the applications root directory. 
 
-        rake 
+        bundle install //to install all required gems (for detailed information look at the bottom of this document)
 
 * The next step is to create and prepare the database. You can do so by running the following commands:  
 
