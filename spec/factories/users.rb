@@ -6,24 +6,20 @@ FactoryGirl.define do
     password_confirmation '12345678'
     end
 
-    factory :fs_user do
+    factory :fs_user, class:User do
       email 'fs_user@fachschaft.de'
       username 'fs_user'
       password '12345678'
       password_confirmation '12345678'
-      trait :fs do
-        Role :fs
-      end
+      after(:create) {|user| user.add_role("Fs")}
     end
 
-  factory :manager do
+  factory :manager, class: User do
     email 'manager@fachschaft.de'
     username 'manager'
     password '12345678'
     password_confirmation '12345678'
-    trait :manager do
-      Role :manager
-    end
+    after(:create) {|user| user.add_role("Manager")}
   end
 
   factory :admin, class: User do

@@ -1,8 +1,8 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
 
-  let(:user) {FactoryGirl.build(:user)}
-  let(:fs) {FactoryGirl.build(:fs_user)}
+  let(:user) {FactoryGirl.create(:user)}
+  let(:fs) {FactoryGirl.create(:fs_user)}
 
 
 
@@ -44,6 +44,7 @@ RSpec.describe User, type: :model do
 
   describe 'needs an unique email' do
     it 'is invalid without a unique email' do
+      fs.email = user.email
       # user and fs_user both have the same email address
       expect(fs).to_not be_valid
     end
@@ -56,6 +57,7 @@ RSpec.describe User, type: :model do
 
   describe 'needs an unique username' do
     it 'is invalid without an unique username' do
+      fs.username = user.username
       # user and fs both have username 'Test'
       expect(fs).to_not be_valid
     end
