@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :description
 
-  validates_datetime :start, :on_or_after => :now
+ 
   validates_datetime :end, :after => :start
 
   #The priority
