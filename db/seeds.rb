@@ -31,4 +31,5 @@ user2.save
 user2.setRole("Manager")
 
 user3 = User.create(email: "user@example.com", password:"UserSparten123", username:"testuser")
-user3.sa
+user3.save
+# automatically sets role to user.
