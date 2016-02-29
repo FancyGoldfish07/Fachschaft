@@ -10,8 +10,10 @@ class BuildController < ApplicationController
     if @event.repeats
       if !@event.recurrence.present?
 #Create a new recurrence with the date of our event.
-        @event.create_recurrence(start: @event.start.to_date, end: @event.start.to_date + 1.month, owner: @event)
-        @event.save
+   recurrence =    Recurrence.new(start: @event.start.to_date, end: @event.start.to_date + 1.month, owner: @event)
+       recurrence!(:validate=> false)
+   @event.recurrence = recurrence
+        @event.save!(:validate=> false)
         @recurrence = @event.recurrence
       else
         @recurrence = @event.recurrence
@@ -22,7 +24,7 @@ class BuildController < ApplicationController
       @event.recurrence = nil
 
 
-      @event.save
+      @event.save!(:validate=> false)
     end
 
 
@@ -34,7 +36,9 @@ class BuildController < ApplicationController
     @recurrence = @event.recurrence
     case step
       when :build
+
         @event.update(event_params)
+
         if !@event.repeats
           if @event.recurring
             #Add a new exclude to the recurrence of the owner of our recurrence
@@ -92,7 +96,8 @@ class BuildController < ApplicationController
   end
 
   def new
-    @event = Event.create
+    @event = Event.new
+    @event.save!(:validate=> false)
     redirect_to wizard_path(steps.first, :event_id => @event.id)
   end
 
