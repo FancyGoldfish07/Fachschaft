@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   #after a new user is created set new role
   after_initialize :set_default_role, :if => :new_record?
 
+  after_create :notify_signup
+  before_destroy :notify_delete
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -25,6 +28,18 @@ class User < ActiveRecord::Base
   #No email as username
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   #sets the Role of the user. Works only if roleName is part of Role.POSSIBLE_ROLES
+
+  def notify_signup
+    UserMailer.signup_confirmation(self).deliver_later
+  end
+
+  def notify_update
+    UserMailer.role_change_confirmation(self).deliver_later
+  end
+
+  def notify_delete
+    UserMailer.delete_account(self).deliver_later
+  end
 
   def setRole(roleName)
     #Is the role part of possible roles

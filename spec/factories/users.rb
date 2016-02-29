@@ -1,9 +1,10 @@
 FactoryGirl.define do
   factory :user do
-    email 'info@fachschaft.de'
-    username 'Test'
-    password 'Test#Test'
-    password_confirmation 'Test#Test'
+    email 'factoryGirl@fachschaft.de'
+    username 'FactoryGirl'
+    password '12345678'
+    password_confirmation '12345678'
+    end
 
     factory :fs_user do
       email 'info@fachschaft.de'
@@ -11,26 +12,24 @@ FactoryGirl.define do
       password 'Test#Test'
       password_confirmation 'Test#Test'
       trait :fs do
-        role :fs
+        Role :fs
       end
     end
 
-  end
   #The specific roles
   trait :user do
-    role :user
+    Role :user
   end
+
   trait :fs do
-    role :fs
+    Role :fs
   end
 
   trait :manager do
-    role :manager
+    Role :manager
   end
 
   trait :admin do
-    role :admin
+    Role :admin
   end
-
-
 end

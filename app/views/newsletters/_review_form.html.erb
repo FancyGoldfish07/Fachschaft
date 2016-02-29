@@ -1,0 +1,13 @@
+<% provide(:subject, newsletter.subject) %>
+<%= bootstrap_form_for(newsletter) do |f| %>
+
+    <% if newsletter.unmanager_id!=nil %>
+    <p>Dieser Newsletter wurde von <%= User.find(newsletter.unmanager_id).username %> erstellt.</p>
+    <% end %>
+    <% if current_user.present? && current_user.isAdmin && newsletter.unmanager_id!=nil %>
+    <div class="form-group">
+      <%= f.submit "Veröffentlichen" %> <%= f.submit "Ablehnen", class: "btn btn-success", class: "btn btn-danger" %>
+    </div>
+    <%end%>
+<% end %>
+

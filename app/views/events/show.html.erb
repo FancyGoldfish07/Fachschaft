@@ -106,7 +106,19 @@
     <% else %>
         <%= button_to_default 'Diesen Termin bearbeiten', edit_event_path(@event) %>
     <% end %>
+<div class="divider-lg"></div>
+    <% if @event.recurring %>
+        <% if @event.owner_of_recurrence %>
+            <%= button_to_default 'Die komplette Wiederholungsreihe löschen', unpublish_path(@event) %>
+        <% else %>
+            <%= button_to_default 'Nur diesen Termin löschen', unpublish_path(@event) %>
 
+            |
+            <%= button_to_default 'Die komplette Wiederholungsreihe löschen', unpublish_path(@event.recurrence.owner) %>
+        <% end %>
+    <% else %>
+        <%= button_to_default 'Diesen Termin löschen', unpublish_path(@event) %>
+    <% end %>
 
   </div>
   <div class="col-md-5">

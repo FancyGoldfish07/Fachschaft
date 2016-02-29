@@ -8,6 +8,7 @@
         ein eigenständiger Kalendereintrag.
     <%end %>
   </p>
+<%= bootstrap_form_for(@event) do |f| %>
 <% if current_user.present? %>
     <% if current_user.isManager && @event.unmanager.blank? %>
         <% if @event.unadmin.blank? %>
@@ -16,6 +17,12 @@
         <% elsif current_user.isManager && @event.unadmin.blank? %>
         <% if @event.unmanager.blank? %>
             <p>Ein Manager müsste diese Änderung bestätigen.</p>
+            <% end %>
+        <% end %>
+        <% if current_user.isAdmin && !@event.unadmin.present? || current_user.isManager && !@event.unmanager.present? %>
+        <%= f.submit "Unpublizieren" %>
+            <% else %>
+            <p>Diese Änderung wurde bereits von einem Nutzer deiner Nutzergruppe bestätigt.</p>
             <% end %>
         <% end %>
 <% end %>

@@ -7,7 +7,7 @@ class Recurrence < ActiveRecord::Base
   has_many :events
   belongs_to :owner,  class_name: 'Event',
              foreign_key: 'owner_id'
-  #validates_presence_of :rules
+  validates_presence_of :rules
 #Unpublish an entire recurrrence (except the owner)
   def unpublish
     events.each do |event|
@@ -20,13 +20,13 @@ if event.recurring_but_no_owner
 
 #Unpublish the complete thing
   def unpublish_complete
-    def unpublish
+
       events.each do |event|
 
           #Only do this to the elements that are not the main parent node
-          event.unpublish_revisions
+          event.unpublish_self
 
-      end
+   
     end
   end
 
