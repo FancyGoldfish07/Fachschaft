@@ -44,10 +44,24 @@ event2.save
 event2.changeState(fachschaft)
 event2.changeState(admin)
 
-event3 = Event.create(start:Time.now + 1.hour, end: Time.now+3.hour,title: "Example", event_category: EventCategory.last,
+event3 = Event.create(start:Time.now + 1.hour, end: Time.now+3.hour,title: "Example FACHSCHAFT", event_category: EventCategory.first,
                       imageURL:"https://i.ytimg.com/vi/icIeIJhpxLc/maxresdefault.jpg", url:"http://winfuture.de/downloadvorschalt,3527.html",
                       description: "Party Hard")
 event3.save
+event3.changeState(fachschaft)
+event3.changeState(admin)
+event3.reviewed
+event3.admin=admin
+event3.submitted!
 event3.publish
 
-
+event4 = Event.create(start:Time.now + 5.hour, end: Time.now+15.hour,title: "Example PARTY", event_category: EventCategory.first,
+                                    imageURL:"https://i.ytimg.com/vi/icIeIJhpxLc/maxresdefault.jpg", url:"http://winfuture.de/downloadvorschalt,3527.html",
+                                    description: "Party Hard")
+event4.save
+event4.changeState(fachschaft)
+event4.changeState(admin)
+event4.reviewed
+event4.admin=admin
+event4.submitted!
+event4.publish
