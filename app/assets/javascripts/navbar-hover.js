@@ -1,1 +1,1 @@
-$('.dropdown-toggle').dropdownHover();
+$('.navbar-nav').dropdownHover();

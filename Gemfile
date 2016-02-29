@@ -3,7 +3,6 @@ source 'https://rubygems.org'
   gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
   gem 'mailkick'
-
 # Background Tasks
  gem 'delayed_job_active_record'
 

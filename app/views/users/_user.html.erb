@@ -1,19 +1,17 @@
-<td>
- <h5> <%= user.email%></h5>
-</td>
-<td>
-  <h5><%= user.username %></h5>
-</td>
-<td>
-  <%= form_for(user) do |f| %>
+
+  <div class="col-md-3"> <h5> <%= user.email%></h5></div>
+  <div class="col-md-2"><h5><%= user.username %></h5></div>
+  <div class="col-md-5">
+    <%= form_for(user) do |f| %>
       <span class="ui-select">
 
        <%= f.collection_select(:role_ids,Role.all,:id,:name) %>
       </span>
         <%= f.submit 'Rolle wechseln', :class => 'btn btn-w-md btn-gap-v btn-default' %>
-  <% end %>
-</td>
-<td>
-  <%= button_to_delete("Löschen", user_path(user),true)  %><%##unless user == current_user -%>
-</td>
+    <% end %>
+  </div>
+  <div class="col-md-2"> <%= button_to_delete("Löschen", user_path(user),true)  %><%##unless user == current_user -%></div>
+  <br>
+  <div class="divider-lg"> </div>
+
 
