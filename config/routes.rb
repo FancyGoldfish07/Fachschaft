@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   get 'newsletter/abonnement' => 'subscribers#new', as: :edit_subscription
   get 'newsletters/:id/review' => 'newsletters#review', as: :review_newsletter
   get 'newsletter/publishables' => 'newsletters#publishables', as: :publishables_newsletter
-  get 'newsletter/permittables' => 'newsletters#permittables', as: :permittables_newsletter
+
 
   #Home route
   root "fullcalendar#index"

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @subscriber.name %>
@@ -10,5 +8,6 @@
   <%= @subscriber.email %>
 </p>
 
-<%= link_to 'Bearbeiten', edit_subscriber_path(@subscriber) %> |
-<%= link_to 'Zurück', subscribers_path %>
+<%= button_to_default 'Bearbeiten', edit_subscriber_path(@subscriber) %>
+<%= button_to_default 'Zurück', subscribers_path %>
+
