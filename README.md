@@ -83,6 +83,7 @@ It consists of 4 groups of users:
         * Rolify
         * Pundit
         * Devise  
+        
         * Please find a more detailed version of the used components at the bottom of this document.
     
     * The database server used in this application is postgresql 9.5
@@ -99,9 +100,31 @@ It consists of 4 groups of users:
 * When you have the repository on your local machine you need to navigate into the applications root directory. 
 * The next step is to create and prepare the database. You can do so by running the following commands:  
 
-        rake db:create
-        rake db:migrate
-        rake db:seed
+        rake db:create     // creates the database from the informations given in config/database.yml
+        rake db:migrate    // prepares the database structure
+        rake db:seed       // populates the database with needed informations for roles as well as sample data
+   
+* After you set up the database as shown above, you need to specify a smtp server to make use of the notification and
+   newsletter functionality. Therefore you have to the development.rb file located at config/environments/development.rb.
+* After setting up the smtp-configuration you are ready to start. You just need run 
+
+        rails server // to start the used web-server. The application now available at http://localhost:3000 
+
+* As mentioned before, your database now already stores some pre-defined users that you can use to test the application. 
+   They have the following credentials:
+   * User:   
+        * Username: user@example.com  
+        * Password: Sparten123  
+   * Fachschaft:  
+        * Username: fachschaft@example.com  
+        * Password: Sparten123  
+   * Manager:  
+        * Username: manager@example.com  
+        * Password: Sparten123  
+   * Admin:  
+        * Username: admin@example.com  
+        * Password: Sparten123  
+
 
 
 
