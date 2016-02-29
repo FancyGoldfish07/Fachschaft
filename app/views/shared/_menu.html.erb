@@ -12,7 +12,7 @@
       <ul class="nav navbar-nav">
 
         <li class="dropdown">
-          <%= link_to '<span class="glyphicon glyphicon-calendar"></span> Kalender <span class="caret"></span>'.html_safe, '#', :id => 'nav_calendar',:class => 'dropdown-toggle',:data => {:toggle=>"dropdown", :hover => "dropdown", :delay=>"50", :close => { :others=>"true"}} %>
+          <%= link_to '<span class="glyphicon glyphicon-calendar"></span> Kalender <span class="caret"></span>'.html_safe, root_path, :id => 'nav_calendar',:class => 'dropdown-toggle' %>
           <ul class="dropdown-menu">
             <li><%= link_to 'Kalender', root_path %></li>
             <% if current_user.present? && (current_user.isFachschaft || current_user.isAdmin || current_user.isManager) then %>
@@ -38,7 +38,7 @@
         </li>
 
         <li class="dropdown">
-          <%= link_to '<span class="glyphicon glyphicon-envelope"></span> Newsletter <span class="caret"></span>'.html_safe, '#', :id => 'nav_calendar', :class => 'dropdown-toggle',:data => {:toggle=>"dropdown", :hover => "dropdown", :delay=>"50", :close => { :others=>"true"}} %>
+          <%= link_to '<span class="glyphicon glyphicon-envelope"></span> Newsletter <span class="caret"></span>'.html_safe, :edit_subscription, :id => 'nav_calendar', :class => 'dropdown-toggle' %>
           <ul class="dropdown-menu">
             <li><%= link_to 'Abonnement', :edit_subscription %></li>
             <% if current_user.present? && (current_user.isFachschaft || current_user.isAdmin || current_user.isManager) then %>
