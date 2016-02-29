@@ -23,7 +23,7 @@ attr_accessor :formed
   after_initialize :set_defaults
   validates_presence_of :title
   validates_presence_of :description
-  validates_presence_of :roles
+ 
   validates_datetime :start, :on_or_after => :now, :on_or_before_message => 'Ein Eintrag darf nicht in der Vergangenheit liegen'
   validates_datetime :end, :after => :start
 
