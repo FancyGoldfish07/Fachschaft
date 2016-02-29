@@ -21,7 +21,7 @@ class EventPolicy < ApplicationPolicy
   def permittables?
     @current_user.present? && @current_user.isManager
   end
-  def upublishables?
+  def unpublishables?
     @current_user.present? && @current_user.isAdmin || @current_user.present? && @current_user.isManager
   end
   def  publishables?

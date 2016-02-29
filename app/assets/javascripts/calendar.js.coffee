@@ -10,8 +10,7 @@ $(document).ready ->
     eventClick: (event) ->
       link = event.url
       window.open(link.slice(0,-5),"_self")
-      return false;
-
+      return false
 
 updateEvent = (the_event) ->
   $.update "/events/" + the_event.id,
