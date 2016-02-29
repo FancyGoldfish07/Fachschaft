@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   after_create :notify_signup
   before_destroy :notify_delete
-
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

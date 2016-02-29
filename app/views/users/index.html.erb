@@ -1,13 +1,17 @@
 <% provide(:title, "Benutzerverwaltung") %>
+<div class="row">
+  <div class="col-md-3"><h5>E-Mail</h5></div>
+  <div class="col-md-2"><h5>User</h5></div>
+  <div class="col-md-5"><h5>Rolle ändern</h5></div>
+  <div class="col-md-2"><h5>Löschen</h5></div>
+</div>
+<hr>
 <br>
-      <table class="table">
-        <tbody>
+<div class="row">
         <% @users.each do |user| %>
-            <tr>
-              <%= render user %>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
 
+              <%= render user %>
+
+        <% end %>
+</div>
 

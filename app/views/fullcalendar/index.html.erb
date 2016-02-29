@@ -4,4 +4,6 @@
   <%= render 'calendar' %>
 
 <br>
+  <% if current_user.present? && !current_user.isUser then %>
 <%= button_to_default "Neuen Eintrag erstellen", new_build_path %>
+  <% end %>

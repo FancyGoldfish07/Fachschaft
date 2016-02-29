@@ -1,5 +1,5 @@
 class BuildController < ApplicationController
-  #To create a new event you need to be logged in 
+  #To create a new event you need to be logged in
   before_action :authenticate_user!
   layout "wizardForm"
   include Wicked::Wizard
@@ -10,8 +10,8 @@ class BuildController < ApplicationController
     if @event.repeats
       if !@event.recurrence.present?
 #Create a new recurrence with the date of our event.
-   recurrence =    Recurrence.new(start: @event.start.to_date, end: @event.start.to_date + 1.month, owner: @event)
-       recurrence!(:validate=> false)
+        recurrence = Recurrence.new(start: @event.start.to_date, end: @event.start.to_date + 1.month, owner: @event)
+        recurrence.save!(:validate=> false)
         @event.recurrence = recurrence
         @event.save!(:validate=> false)
         @recurrence = @event.recurrence
@@ -22,8 +22,11 @@ class BuildController < ApplicationController
     else
       oldRecurrence = @event.recurrence
       @event.recurrence = nil
+
+
       @event.save!(:validate=> false)
     end
+
 
     render_wizard
   end
@@ -102,7 +105,7 @@ class BuildController < ApplicationController
   #A finish message for our wizard
   def finish_wizard_path
     flash[:notice]= "Dein Event wurde an die Manager zur Genehmigung versendet."
-  return  root_path
+    return  root_path
   end
   #Safe params
   def event_params

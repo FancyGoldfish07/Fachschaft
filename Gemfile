@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 
+  #Datetime validation
   gem 'validates_timeliness', '~> 4.0'
+
+  ruby '2.2.4'
 
   # Mailer
   gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
   gem 'mailkick'
-
 # Background Tasks
  gem 'delayed_job_active_record'
 
@@ -79,7 +81,11 @@ gem 'wicked', '~> 1.2', '>= 1.2.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'puma', group: :production
+group :production do
+  gem 'rails_12factor'
+  gem 'simple_form'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -89,7 +95,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'guard-rspec'
   gem 'faker'
-  gem 'puma'
+
 end
 
 group :development do
