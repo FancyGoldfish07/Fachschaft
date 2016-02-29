@@ -12,6 +12,7 @@ RSpec.feature 'As a registered user I want to to sign in' do
 
     scenario 'sign in' do
       expect(page).to have_link 'Logout'
+      expect(page).to have_link 'Account löschen'
     end
 
     scenario 'sign out' do
