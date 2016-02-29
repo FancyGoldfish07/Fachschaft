@@ -1,3 +1,6 @@
 Hi <%= @user.username %>,
 
 Ein Kalendereintrag wurde editiert.
+
+Autor: <%= User.where(id: @event.author).first.username %>
+Titel: <%= @event.title %>

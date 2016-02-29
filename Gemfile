@@ -8,9 +8,8 @@ source 'https://rubygems.org'
   # Mailer
   gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
-  gem 'mailkick'
 # Background Tasks
- gem 'delayed_job_active_record'
+  gem 'delayed_job_active_record'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
   gem 'rails', '4.2.5.1'

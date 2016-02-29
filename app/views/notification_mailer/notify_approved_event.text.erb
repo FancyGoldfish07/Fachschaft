@@ -1,3 +1,6 @@
 Hi <%= @user.username %>,
 
 Ein neuer Kalendereintrag wurde genehmigt.
+
+Autor: <%= User.where(id: @event.author).first.username %>
+Titel: <%= @event.title %>

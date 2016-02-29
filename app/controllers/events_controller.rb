@@ -73,7 +73,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event wurde erfolgreich erstellt.' }
@@ -93,6 +92,7 @@ class EventsController < ApplicationController
       @event.manager_id = current_user.id
       @event.rejected!
       @event.save
+      NotificationMailer.notify_disapproved(@event.author, @event.message).deliver_later
       respond_to do |format|
 
         format.html { redirect_to permittables_path, notice: 'Eintrag wurde abgelehnt.' }
@@ -100,7 +100,6 @@ class EventsController < ApplicationController
     elsif unpublizieren?
       if current_user.present?
         if current_user.isAdmin
-
           @event.unadmin = current_user
           if @event.unmanager.present?
 
@@ -114,28 +113,28 @@ class EventsController < ApplicationController
           end
         end
         @event.save
+        @event.notify_manager(2, @event)
         respond_to do |format|
-
           format.html { redirect_to unpublishables_path, notice: 'Löschung beantragt.' }
         end
       end
     elsif genehmigen?
       @event.reviewed!
       @event.manager_id = current_user.id
+      @event.notify_admin(@event)
       @event.save
       respond_to do |format|
-
         format.html { redirect_to permittables_path, notice: 'Eintrag wurde genehmigt.' }
       end
     elsif publizieren?
       @event.changeState(current_user)
       respond_to do |format|
-
         format.html { redirect_to publishables_path, notice: 'Eintrag wurde veröffentlicht.' }
       end
     else
       respond_to do |format|
         if @event.update(event_params)
+          @event.notify_manager(1, @event)
           format.html { redirect_to @event, notice: 'Event wurde erfolgreich bearbeitet.' }
           format.json { render :show, status: :ok, location: @event }
         else

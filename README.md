@@ -73,20 +73,59 @@ It consists of 4 groups of users:
     After an acception it will be send out to all the subscribers.
     
 -----------------------------------------------------------------------------------------------------
-# Setting up the application
-######    An example of this application is currently deployed at fachschaft.herokuapp.com  
+## Setting up the application
+######    An example of this application is currently deployed at https://fachschaft.herokuapp.com  
 
-1. Main components
+- Main components
     * For this project we used a number of gems listed in the gemfile. The main componentes are the following:
         * Twitter Bootstrap
         * Fullcalendar (http://fullcalendar.io/)
         * Rolify
         * Pundit
         * Devise  
+        
+        * Please find a more detailed version of the used components at the bottom of this document.
     
     * The database server used in this application is postgresql 9.5
-    * The Ruby version is 2.2.4
-    * The Rails version is 4.2.5.1
+    * The Ruby version is 2\.2\.4
+    * The Rails version is 4\.2\.5\.1  
+    
+##### Local set-up  
+
+* To make sure this application works properly please check the versions of ruby and rails you have installed. 
+  They should not be older than the specified versions above.   
+* You also have to make sure you have installed a version of the postresql-server on your machine. 
+* After you have checked the versions etc. and maybe updated to this versions you can begin by cloning or 
+  downloading this repository. 
+* When you have the repository on your local machine you need to navigate into the applications root directory. 
+* The next step is to create and prepare the database. You can do so by running the following commands:  
+
+        rake db:create     // creates the database from the informations given in config/database.yml
+        rake db:migrate    // prepares the database structure
+        rake db:seed       // populates the database with needed informations for roles as well as sample data
+   
+* After you set up the database as shown above, you need to specify a smtp server to make use of the notification and
+   newsletter functionality. Therefore you have to the development.rb file located at config/environments/development.rb.
+* After setting up the smtp-configuration you are ready to start. You just need run 
+
+        rails server // to start the used web-server. The application now available at http://localhost:3000 
+
+* As mentioned before, your database now already stores some pre-defined users that you can use to test the application. 
+   They have the following credentials:
+   * User:   
+        * Username: user@example.com  
+        * Password: Sparten123  
+   * Fachschaft:  
+        * Username: fachschaft@example.com  
+        * Password: Sparten123  
+   * Manager:  
+        * Username: manager@example.com  
+        * Password: Sparten123  
+   * Admin:  
+        * Username: admin@example.com  
+        * Password: Sparten123  
+
+
 
 
 
