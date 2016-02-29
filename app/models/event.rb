@@ -311,4 +311,6 @@ class Event < ActiveRecord::Base
       self.end = start.to_time + 1.hour
     end
     if self.repeats.blank?
-  
+    end
+  end
+end
