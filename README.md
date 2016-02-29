@@ -89,16 +89,20 @@ It consists of 4 groups of users:
     * The Ruby version is 2\.2\.4
     * The Rails version is 4\.2\.5\.1  
     
-##### Local set-up
-    * To make sure this application works properly please check the versions of ruby and rails you have installed. 
-        They should not be older than the specified versions above.   
-    * You also have to make sure you have installed a version of the postresql-server on your machine. 
-    * After you have checked the versions etc. and maybe updated to this versions you can begin by cloning or 
-        downloading this repository. 
-    * When you have the repository on your local machine you need to navigate into the applications root directory. 
-    * The next step is to create and prepare the database. You can do so by running the following commands:  
+##### Local set-up  
 
- 
+* To make sure this application works properly please check the versions of ruby and rails you have installed. 
+  They should not be older than the specified versions above.   
+* You also have to make sure you have installed a version of the postresql-server on your machine. 
+* After you have checked the versions etc. and maybe updated to this versions you can begin by cloning or 
+  downloading this repository. 
+* When you have the repository on your local machine you need to navigate into the applications root directory. 
+* The next step is to create and prepare the database. You can do so by running the following commands:  
+
+        rake db:create
+        rake db:migrate
+        rake db:seed
+
 
 
 
