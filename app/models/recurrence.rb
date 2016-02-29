@@ -8,8 +8,7 @@ class Recurrence < ActiveRecord::Base
   belongs_to :owner,  class_name: 'Event',
              foreign_key: 'owner_id'
   validates_presence_of :rules
-  validates_datetime :start, :on_or_after => :now
-  validates_datetime :end, :after => :start
+
 #Unpublish an entire recurrrence (except the owner)
   def unpublish
     events.each do |event|
